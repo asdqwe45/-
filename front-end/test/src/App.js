@@ -1,23 +1,34 @@
 import './App.css';
 import {Route, Routes} from 'react-router-dom';
 import Main from './pages/Main'
-import About from './pages/About'
 import Welcome from './pages/Welcome'
 
 function App() {
   return (
     <Routes>
-      <Route path="/main" element={<Main />} />
-      <Route path="/main/straydog" element={<Main />} />
-      <Route path="/main/straydog-guide" element={<Main />} />
 
-
-
-
-
-      <Route path="/aboutus" element={<About />} />
       <Route path="/" element={<Welcome />} />
-      
+
+      {/* MAIN */}
+      <Route path="/main" element={<Main />} />
+
+      {/* STRAYDOG */}
+      <Route path="/straydog" element={<Main />} />
+      <Route path="/straydog-guide" element={<Main />} />
+      <Route path="/straydog-success" element={<Main />} />
+      <Route path="/straydog-fail" element={<Main />} />
+
+      {/* LOSTDOG */}
+      <Route path="/lostdog" element={<Main />} />
+
+      {/* REMOTEPLAY */}
+      <Route path="/remoteplay" element={<Main />} />
+      <Route path="/remoteplay-guide" element={<Main />} />
+
+      {/* NAVBAR */}
+      <Route path="/aboutus" element={<Main />} />
+      <Route path="/ucc" element={<Main />} />
+      <Route path="/mypage" element={<Main />} />
     </Routes>
 
 
