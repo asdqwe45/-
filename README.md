@@ -25,9 +25,7 @@
       - develop/BE
       - develop/EM
     - feature
-      - feature/FE/[feature name]
-      - feature/BE/[feature name]
-      - feature/EM/[feature name]
+      - feature/[FE,BE,EM]/[feature name]
         - ex. feature/FE/mainpage
     - fix
       - fix/[issue num]
@@ -47,30 +45,25 @@
       - refactor : 코드 리펙토링
       - test : 테스트 코드, 리펙토링 테스트 코드 추가
       - ex.
-        지라이슈번호 #comment [FE/BE/EM]-[feature]
-        [담당자이름]: 상세 커밋내용 기입
+        
         ```
-        #150 [FE] fix- 메인페이지
+        지라 이슈 있는 경우:
+
+        # 지라번호 [FE/BE/EM]-[feature]
+        
+        [담당자이름]: 상세 커밋내용 기입
+
+        #150 [FE] feature- 메인페이지
 
         이민규: 메인페이지 api부분 수정하였습니다.
+        
+        지라 이슈 없는 경우:
+        [이민규] fix: 메인페이지
+
+        이민규: 메인페이지 api 연결오류 해결하였습니다.
         ```
 
 <br>
-
-  - Additional Commit
-      - docs
-          - Markdown, Image 등 문서를 생성 혹은 수정한 경우
-          - docs:간단한 설명
-      - style
-          - 중괄호, 세미콜론 위치 등의 간단한 변경 (logic 변경 x)
-          - style:수정한 파일
-      - test
-          - 테스트를 추가, 변경 하는 경우 (production code 변경 x)
-          - test:수정한 파일
-      - chore
-          - 기타 모든 잡무
-          - 예를 들어, 설정파일(package.json, application.json 등)을 변경한 경우
-          - chore:수정한 파일
 
 <br>
 
