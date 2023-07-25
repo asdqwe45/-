@@ -1,0 +1,167 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.menubutton {
+  height: 50px;
+  width: 50px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+#topMenu {
+  height: 30px;
+}
+
+#topMenu ul {
+  /* 메인 메뉴 안의 ul을 설정함: 상위메뉴의 ul+하위 메뉴의 ul */
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+#topMenu ul li {
+  /* 메인 메뉴 안에 ul 태그 안에 있는 li 태그의 스타일 적용(상위/하위메뉴 모두) */
+  color: white;
+  background-color: #2d2d2d;
+  float: left;
+  line-height: 30px;
+  vertical-align: middle;
+  text-align: center;
+  position: relative;
+}
+
+.menuLink,
+.submenuLink {
+  /* 상위 메뉴와 하위 메뉴의 a 태그에 공통으로 설정할 스타일 */
+  text-decoration: none;
+  display: block;
+  width: 150px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.menuLink {
+  /* 상위 메뉴의 글씨색을 흰색으로 설정 */
+  color: white;
+}
+
+.topMenuLi:hover .menuLink {
+  /* 상위 메뉴의 li에 마우스오버 되었을 때 스타일 설정 */
+  color: red;
+  background-color: #4d4d4d;
+}
+
+.longLink {
+  /* 좀 더 긴 메뉴 스타일 설정 */
+  /* width: 190px; */
+}
+
+.submenuLink {
+  /* 하위 메뉴의 a 태그 스타일 설정 */
+  color: #2d2d2d;
+  background-color: white;
+  border: solid 1px black;
+  margin-right: -1px;
+  /* [변경] 위 칸의 하단 테두리와 아래칸의 상단 테두리가 겹쳐지도록 설덩 */
+}
+
+.submenu {
+  /* 하위 메뉴 스타일 설정 */
+  position: absolute;
+  height: 0px;
+  overflow: hidden;
+  transition: height .2s;
+  -webkit-transition: height .2s;
+  -moz-transition: height .2s;
+  -o-transition: height .2s;
+  width: 700px;
+  /* [변경] 가로 드랍다운 메뉴의 넓이 */
+}
+
+.submenu li {
+  display: inline-block;
+  /* [변경] 가로로 펼쳐지도록 설정 */
+}
+
+.topMenuLi:hover .submenu {
+  /* 상위 메뉴에 마우스 모버한 경우 그 안의 하위 메뉴 스타일 설정 */
+  height: 32px;
+  /* [변경] 높이를 32px로 설정 */
+}
+
+.submenuLink:hover {
+  /* 하위 메뉴의 a 태그의 마우스 오버 스타일 설정 */
+  color: red;
+  background-color: #dddddd;
+}
+
+.navh {
+  height: 80px;
+  width: 80px;
+}
+
+.maindogimg {
+  height: 100vh;
+  /* Viewport Height (vh) - 전체 높이를 100%로 설정 */
+  width: 100vw;
+  /* Viewport Width (vw) - 전체 너비를 100%로 설정 */
+  object-fit: cover;
+  /* 이미지 비율을 유지하면서 화면에 맞춤 */
+}
