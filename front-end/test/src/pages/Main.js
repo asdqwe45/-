@@ -18,7 +18,7 @@ import './Main.css';
 const Main = (props) => {
 
     let content = <h2>메인입니다.</h2>; // 여기에 메인 페이지
-    
+
     const page = props.page
     console.log(page)
     if (page === 'straydog') {
@@ -47,24 +47,84 @@ const Main = (props) => {
 
     return (
 
-        <div >
+        <div>
             <div>
                 <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-                    <div className="container-fluid">
-                        <Link to="/main" className="navbar-brand">
-                            <img src="/mainlogo.png" alt="" width="150" height="80" />
-                        </Link>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        
-                        <div className="collapse navbar-collapse" id="navbarNav">
+                    <div className="container-fluid" style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center'
+
+                    }}>
+                        <div style={{
+                            flex: '1',
+                            display: 'flex',
+                            justifyContent: 'flex-start'
+                        }}>
+                            <Link to="/main" className="navbar-brand">
+                                <img src="/mainlogo.png" alt="" width="150" height="80" />
+                            </Link>
+                            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span className="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+
+
+                        <div style={{
+                            flex: '2',
+                            display: 'flex',
+                            justifyContent: 'center',
+                        }} >
+                            <nav id="topMenu">
+                                <ul>
+                                    <li className="topMenuLi">
+                                        <a className="menuLink bg-body-tertiary" href="#">유기견</a>
+                                        <ul className="submenu">
+                                            <li><Link className="submenuLink longLink" to="/straydog">유기견 목록</Link></li>
+                                            <li><Link className="submenuLink longLink" to="/straydog-guide">입양가이드</Link></li>
+                                            <li><Link className="submenuLink longLink" to="/straydog-success">입양완료</Link></li>
+                                            <li><Link className="submenuLink longLink" to="/straydog-fail">추모</Link></li>
+
+                                        </ul>
+                                    </li>
+                                    <li>|</li>
+                                    <li className="topMenuLi bg-body-tertiary">
+                                        <a className="menuLink" href="#">분실견</a>
+                                        <ul className="submenu">
+                                            <li><Link className="submenuLink longLink" to="/lostdog">분실견 목록</Link></li>
+
+                                        </ul>
+                                    </li>
+                                    <li>|</li>
+                                    <li className="topMenuLi bg-body-tertiary">
+                                        <a className="menuLink" href="#">놀아주기</a>
+                                        <ul className="submenu">
+                                            <li><Link className="submenuLink longLink" to="/remoteplay">원격놀이</Link></li>
+                                            <li><Link className="submenuLink longLink" to="/remoteplay-guide">이용가이드</Link></li>
+
+                                        </ul>
+                                    </li>
+                                    <li>|</li>
+
+                                </ul>
+                            </nav>
+
+
+                        </div>
+
+
+
+                        <div style={{
+                            flex: '1',
+                            display: 'flex',
+                            justifyContent: 'flex-end'
+                        }} className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav ms-auto">
 
                                 <li className="nav-item">
                                     <Link to="/mypage" className="nav-link active">My Page</Link>
                                 </li>
-                                
+
                                 <li className="nav-item">
                                     <Link to="/ucc" className="nav-link" >
                                         <img src="/youtubelogo.png" alt="" width="65" height="65" />
@@ -83,8 +143,8 @@ const Main = (props) => {
                 </nav>
             </div >
 
+
             <br />
-            <hr />
 
 
             <h1 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}> Welcome</h1>
@@ -92,56 +152,6 @@ const Main = (props) => {
             <hr />
             <br />
 
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-
-                flexDirection: 'column',
-            }}>
-                <nav id="topMenu">
-                    <ul>
-                        <li className="topMenuLi">
-                            <a className="menuLink" href="#">유기견</a>
-                            <ul className="submenu">
-                                <li><Link className="submenuLink longLink" to="/straydog">유기견 목록</Link></li>
-                                <li><Link className="submenuLink longLink" to="/straydog-guide">입양가이드</Link></li>
-                                <li><Link className="submenuLink longLink" to="/straydog-success">입양완료</Link></li>
-                                <li><Link className="submenuLink longLink" to="/straydog-fail">추모</Link></li>
-
-                            </ul>
-                        </li>
-                        <li>|</li>
-                        <li className="topMenuLi">
-                            <a className="menuLink" href="#">분실견</a>
-                            <ul className="submenu">
-                                <li><Link className="submenuLink longLink" to="/lostdog">분실견 목록</Link></li>
-
-                            </ul>
-                        </li>
-                        <li>|</li>
-                        <li className="topMenuLi">
-                            <a className="menuLink" href="#">놀아주기</a>
-                            <ul className="submenu">
-                                <li><Link className="submenuLink longLink" to="/remoteplay">원격놀이</Link></li>
-                                <li><Link className="submenuLink longLink" to="/remoteplay-guide">이용가이드</Link></li>
-
-                            </ul>
-                        </li>
-                        <li>|</li>
-                        <li className="topMenuLi">
-                            <a className="menuLink" href="#">게시판</a>
-                            <ul className="submenu ">
-                                <li><a href="#" className="submenuLink">1</a></li>
-                                <li><a href="#" className="submenuLink">2</a></li>
-                                <li><a href="#" className="submenuLink">3</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-
-
-            </div>
 
             <div >
                 {content}

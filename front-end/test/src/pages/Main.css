@@ -87,23 +87,27 @@
 .submenu {
     /* 하위 메뉴 스타일 설정 */
     position: absolute;
-    height: 0px;
+    width: 120px;
+    height: auto;
     overflow: hidden;
-    transition: height .2s;
-    -webkit-transition: height .2s;
-    -moz-transition: height .2s;
-    -o-transition: height .2s;
-    width: 700px;
-    /* [변경] 가로 드랍다운 메뉴의 넓이 */
+    transition: opacity .2s, visibility .2s;
+    /* transition을 visibility와 opacity에 적용합니다 */
+    visibility: hidden;
+    /* 초기 상태에서는 보이지 않도록 합니다 */
+    opacity: 0;
+    /* 초기 상태에서는 투명하게 합니다 */
 }
 
 .submenu li {
-    display: inline-block;
+    display: block;
+    /* width: 100%; */
     /* [변경] 가로로 펼쳐지도록 설정 */
 }
 
 .topMenuLi:hover .submenu {
-    /* 상위 메뉴에 마우스 모버한 경우 그 안의 하위 메뉴 스타일 설정 */
-    height: 32px;
-    /* [변경] 높이를 32px로 설정 */
+    /* 상위 메뉴에 마우스를 올렸을 때 하위 메뉴의 스타일을 설정 */
+    visibility: visible;
+    /* 보이도록 설정합니다 */
+    opacity: 1;
+    /* 투명도를 없애서 완전히 보이게 합니다 */
 }
