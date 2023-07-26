@@ -1,14 +1,14 @@
 const StraydogSuccess = () => {
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
             <h1>
                 입양된 강아지
             </h1>
             <p>
-            입양된 강아지 1
+                입양된 강아지 1
             </p>
             <p>
-            입양된 강아지 2
+                입양된 강아지 2
             </p>
             <p>
                 입양된 강아지 3
@@ -16,7 +16,7 @@ const StraydogSuccess = () => {
             <p>
                 입양된 강아지 4
             </p>
-            
+
         </div>
     );
 };

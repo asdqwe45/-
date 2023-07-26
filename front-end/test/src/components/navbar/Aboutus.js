@@ -1,6 +1,6 @@
 const Aboutus = () => {
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
             <h1>
                 소개
             </h1>

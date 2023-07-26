@@ -1,6 +1,6 @@
 const Remoteplay = () => {
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
             <h1>
                 원격놀이
             </h1>
@@ -14,7 +14,7 @@ const Remoteplay = () => {
                 원격놀이 3
             </p>
             <p>
-                원격놀이 4 
+                원격놀이 4
             </p>
             <p>
                 원격놀이 5

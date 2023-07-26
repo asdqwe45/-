@@ -1,6 +1,6 @@
 const StraydogFail = () => {
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
             <h1>
                 추모
             </h1>
@@ -16,7 +16,7 @@ const StraydogFail = () => {
             <p>
                 추모 강아지 4
             </p>
-            
+
         </div>
     );
 };
