@@ -1,7 +1,7 @@
 import { Pagination } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import straydogdata from './straydogdata.json'
-
+import { Link } from 'react-router-dom'
 
 const dogImages = [
     ["/dog1.jpg", "/dog2.jpg", "/dog3.jpg", "/dog4.jpg", "/dog5.jpg", "/dog6.jpg", "/dog2.jpg", "/dog3.jpg", "/dog5.jpg", "/dog1.jpg", "/dog2.jpg", "/dog4.jpg", "/dog5.jpg", "/dog1.jpg", "/dog5.jpg", "/dog6.jpg"],
@@ -30,7 +30,11 @@ const Straydog = () => {
                     {Array.from({ length: 4 }).map((_, rowIndex) => (
                         <tr key={rowIndex}>
                             {dogImages[currentPage].slice(rowIndex * 4, rowIndex * 4 + 4).map((dogImage, index) => (
-                                <td key={index}><img src={dogImage} alt={`Dog ${currentPage * 16 + rowIndex * 4 + index + 1}`} width="300" height="300" /></td>
+                                <td key={index}>
+                                    <Link to="/straydog-detail" className="nav-link active">
+                                        <img src={dogImage} alt={`Dog ${currentPage * 16 + rowIndex * 4 + index + 1}`} width="300" height="300" />
+                                    </Link>
+                                </td>
                             ))}
                         </tr>
                     ))}

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
 import Straydog from '../components/straydog/Straydog'
+import StraydogDetail from '../components/straydog/StraydogDetail'
 import StraydogGuide from '../components/straydog/StraydogGuide'
 import StraydogSuccess from '../components/straydog/StraydogSuccess'
 import StraydogFail from '../components/straydog/StraydogFail'
@@ -14,13 +15,16 @@ import './Main.css';
 
 
 
-const Main = () => {
-    const [page, setPage] = useState('main');
-    let content = <h2>메인입니다.</h2>; // 여기에 메인 페이지
-    console.log(page)
+const Main = (props) => {
 
+    let content = <h2>메인입니다.</h2>; // 여기에 메인 페이지
+    
+    const page = props.page
+    console.log(page)
     if (page === 'straydog') {
         content = <Straydog />
+    } else if (page === 'straydog-detail') {
+        content = <StraydogDetail />
     } else if (page === 'straydog-guide') {
         content = <StraydogGuide />
     } else if (page === 'straydog-success') {
@@ -47,28 +51,30 @@ const Main = () => {
             <div>
                 <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
                     <div className="container-fluid">
-                        <a className="navbar-brand" href="/"><Link to="/main" onClick={() => {
-                            setPage('main')
-                        }}><img src="/mainlogo.png" alt="" width="150" height="80" /></Link></a>
+                        <Link to="/main" className="navbar-brand">
+                            <img src="/mainlogo.png" alt="" width="150" height="80" />
+                        </Link>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
+                        
                         <div className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav ms-auto">
+
                                 <li className="nav-item">
-                                    <a className="nav-link active" aria-current="page" href="#"><Link to="/mypage" onClick={() => {
-                                        setPage('mypage')
-                                    }}>My Page</Link></a>
+                                    <Link to="/mypage" className="nav-link active">My Page</Link>
                                 </li>
+                                
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#"><Link to="/ucc" onClick={() => {
-                                        setPage('ucc')
-                                    }}><img src="/youtubelogo.png" alt="" width="65" height="65" /></Link></a>
+                                    <Link to="/ucc" className="nav-link" >
+                                        <img src="/youtubelogo.png" alt="" width="65" height="65" />
+                                    </Link>
                                 </li>
+
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/aboutus" onClick={() => {
-                                        setPage('aboutus')
-                                    }}><p style={{ marginTop: '18px', fontWeight: 'bolder', fontFamily: 'Arial' }}>about us</p></Link>
+                                    <Link className="nav-link" to="/aboutus">
+                                        <p style={{ marginTop: '18px', fontWeight: 'bolder', fontFamily: 'Arial' }}>about us</p>
+                                    </Link>
                                 </li>
 
                             </ul>
@@ -98,18 +104,10 @@ const Main = () => {
                         <li className="topMenuLi">
                             <a className="menuLink" href="#">유기견</a>
                             <ul className="submenu">
-                                <li><Link className="submenuLink longLink" to="/straydog" onClick={() => {
-                                    setPage('straydog')
-                                }}>유기견 목록</Link></li>
-                                <li><Link className="submenuLink longLink" to="/straydog-guide" onClick={() => {
-                                    setPage('straydog-guide')
-                                }}>입양가이드</Link></li>
-                                <li><Link className="submenuLink longLink" to="/straydog-success" onClick={() => {
-                                    setPage('straydog-success')
-                                }}>입양완료</Link></li>
-                                <li><Link className="submenuLink longLink" to="/straydog-fail" onClick={() => {
-                                    setPage('straydog-fail')
-                                }}>추모</Link></li>
+                                <li><Link className="submenuLink longLink" to="/straydog">유기견 목록</Link></li>
+                                <li><Link className="submenuLink longLink" to="/straydog-guide">입양가이드</Link></li>
+                                <li><Link className="submenuLink longLink" to="/straydog-success">입양완료</Link></li>
+                                <li><Link className="submenuLink longLink" to="/straydog-fail">추모</Link></li>
 
                             </ul>
                         </li>
@@ -117,9 +115,7 @@ const Main = () => {
                         <li className="topMenuLi">
                             <a className="menuLink" href="#">분실견</a>
                             <ul className="submenu">
-                                <li><Link className="submenuLink longLink" to="/lostdog" onClick={() => {
-                                    setPage('lostdog')
-                                }}>분실견 목록</Link></li>
+                                <li><Link className="submenuLink longLink" to="/lostdog">분실견 목록</Link></li>
 
                             </ul>
                         </li>
@@ -127,12 +123,8 @@ const Main = () => {
                         <li className="topMenuLi">
                             <a className="menuLink" href="#">놀아주기</a>
                             <ul className="submenu">
-                                <li><Link className="submenuLink longLink" to="/remoteplay" onClick={() => {
-                                    setPage('remoteplay')
-                                }}>원격놀이</Link></li>
-                                <li><Link className="submenuLink longLink" to="/remoteplay-guide" onClick={() => {
-                                    setPage('remoteplay-guide')
-                                }}>이용가이드</Link></li>
+                                <li><Link className="submenuLink longLink" to="/remoteplay">원격놀이</Link></li>
+                                <li><Link className="submenuLink longLink" to="/remoteplay-guide">이용가이드</Link></li>
 
                             </ul>
                         </li>
