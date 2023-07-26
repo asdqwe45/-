@@ -42,89 +42,74 @@ const Main = () => {
     }
 
     return (
-        <div style={{
-            backgroundImage: `url("/maindog.jpg")`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
 
-            height: '100vh',
-            width: '100vw'
-        }}>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="/"><Link to="/main" onClick={() => {
-                        setPage('main')
-                    }}><h1>Logo</h1></Link></a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav ms-auto">
-                            <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#"><Link to="/mypage" onClick={() => {
-                                    setPage('mypage')
-                                }}>My Page</Link></a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#"><Link to="/ucc" onClick={() => {
-                                    setPage('ucc')
-                                }}>Youtube</Link></a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#"><Link to="/aboutus" onClick={() => {
-                                    setPage('aboutus')
-                                }}>about us</Link></a>
-                            </li>
+        <div >
+            <div>
+                <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+                    <div className="container-fluid">
+                        <a className="navbar-brand" href="/"><Link to="/main" onClick={() => {
+                            setPage('main')
+                        }}><img src="/mainlogo.png" alt="" width="150" height="80" /></Link></a>
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarNav">
+                            <ul className="navbar-nav ms-auto">
+                                <li className="nav-item">
+                                    <a className="nav-link active" aria-current="page" href="#"><Link to="/mypage" onClick={() => {
+                                        setPage('mypage')
+                                    }}>My Page</Link></a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#"><Link to="/ucc" onClick={() => {
+                                        setPage('ucc')
+                                    }}><img src="/youtubelogo.png" alt="" width="65" height="65" /></Link></a>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/aboutus" onClick={() => {
+                                        setPage('aboutus')
+                                    }}><p style={{ marginTop: '18px', fontWeight: 'bolder', fontFamily: 'Arial' }}>about us</p></Link>
+                                </li>
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </nav>
-            {/* <Link to="/main" onClick={() => {
-                setPage('main')
-            }}><h1>홈</h1></Link> */}
-
-
-            {/* NAVBAR */}
-            {/* <Link to="/mypage" onClick={() => {
-                setPage('mypage')
-            }}>마이페이지</Link>
-            <span> || </span>
-            <Link to="/ucc" onClick={() => {
-                setPage('ucc')
-            }}>Youtube</Link>
-            <span>||</span>
-            <Link to="/aboutus" onClick={() => {
-                setPage('aboutus')
-            }}>about us</Link> */}
+                </nav>
+            </div >
 
             <br />
             <hr />
-            <h1> Welcome</h1>
+
+
+            <h1 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}> Welcome</h1>
+
             <hr />
+            <br />
 
             <div style={{
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+
+                flexDirection: 'column',
             }}>
                 <nav id="topMenu">
                     <ul>
                         <li className="topMenuLi">
                             <a className="menuLink" href="#">유기견</a>
                             <ul className="submenu">
-                                <li><a href="#" className="submenuLink longLink"><Link to="/straydog" onClick={() => {
+                                <li><Link className="submenuLink longLink" to="/straydog" onClick={() => {
                                     setPage('straydog')
-                                }}>유기견 목록</Link></a></li>
-                                <li><a href="#" className="submenuLink longLink"><Link to="/straydog-guide" onClick={() => {
+                                }}>유기견 목록</Link></li>
+                                <li><Link className="submenuLink longLink" to="/straydog-guide" onClick={() => {
                                     setPage('straydog-guide')
-                                }}>입양가이드</Link></a></li>
-                                <li><a href="#" className="submenuLink longLink"><Link to="/straydog-success" onClick={() => {
+                                }}>입양가이드</Link></li>
+                                <li><Link className="submenuLink longLink" to="/straydog-success" onClick={() => {
                                     setPage('straydog-success')
-                                }}>입양완료</Link></a></li>
-                                <li><a href="#" className="submenuLink longLink"><Link to="/straydog-fail" onClick={() => {
+                                }}>입양완료</Link></li>
+                                <li><Link className="submenuLink longLink" to="/straydog-fail" onClick={() => {
                                     setPage('straydog-fail')
-                                }}>추모</Link></a></li>
+                                }}>추모</Link></li>
 
                             </ul>
                         </li>
@@ -132,9 +117,9 @@ const Main = () => {
                         <li className="topMenuLi">
                             <a className="menuLink" href="#">분실견</a>
                             <ul className="submenu">
-                                <li><a href="#" className="submenuLink"><Link to="/lostdog" onClick={() => {
+                                <li><Link className="submenuLink longLink" to="/lostdog" onClick={() => {
                                     setPage('lostdog')
-                                }}>분실견</Link></a></li>
+                                }}>분실견 목록</Link></li>
 
                             </ul>
                         </li>
@@ -142,12 +127,12 @@ const Main = () => {
                         <li className="topMenuLi">
                             <a className="menuLink" href="#">놀아주기</a>
                             <ul className="submenu">
-                                <li><a href="#" className="submenuLink"><Link to="/remoteplay" onClick={() => {
+                                <li><Link className="submenuLink longLink" to="/remoteplay" onClick={() => {
                                     setPage('remoteplay')
-                                }}>원격놀이</Link></a></li>
-                                <li><a href="#" className="submenuLink"><Link to="/remoteplay-guide" onClick={() => {
+                                }}>원격놀이</Link></li>
+                                <li><Link className="submenuLink longLink" to="/remoteplay-guide" onClick={() => {
                                     setPage('remoteplay-guide')
-                                }}>이용가이드</Link></a></li>
+                                }}>이용가이드</Link></li>
 
                             </ul>
                         </li>
@@ -162,49 +147,33 @@ const Main = () => {
                         </li>
                     </ul>
                 </nav>
+
+
             </div>
 
-            {/* STRAYDOG
-            <Link to="/straydog" onClick={() => {
-                setPage('straydog')
-            }}>유기견</Link>
-            <span> || </span>
-            <Link to="/straydog-guide" onClick={() => {
-                setPage('straydog-guide')
-            }}>입양가이드</Link>
-            <span> || </span>
-            <Link to="/straydog-success" onClick={() => {
-                setPage('straydog-success')
-            }}>입양완료</Link>
-            <span> || </span>
-            <Link to="/straydog-fail" onClick={() => {
-                setPage('straydog-fail')
-            }}>추모</Link>
-            <hr /> */}
+            <div >
+                {content}
+            </div>
+            <hr />
+            <div style={{ marginTop: '60px', marginLeft: '60px' }}>
+
+                <p>(주) 백문이불여일犬
+                    <br />
+                    Address : 광주시 광산구 장덕동 삼성사업장
+                    <br />
+                    <br />
+                    사업자 번호 : 2225-896866
+                    <br />
+                    TEL : 010-8664-2108   FAX : 050-5656-8585
+                    EMAIL : woojin0321@naver.com
+                    <br />
+                    All Photo by ⓒ Tom Crew on Unsplash view
+                </p>
+
+            </div>
 
 
-
-            {/* LOSTDOG */}
-            {/* <Link to="/lostdog" onClick={() => {
-                setPage('lostdog')
-            }}>분실견</Link>
-            <hr /> */}
-
-
-
-            {/* REMOTEPLAY */}
-            {/* <Link to="/remoteplay" onClick={() => {
-                setPage('remoteplay')
-            }}>원격놀이</Link>
-            <span> || </span>
-            <Link to="/remoteplay-guide" onClick={() => {
-                setPage('remoteplay-guide')
-            }}>이용가이드</Link>
-            <hr /> */}
-
-            {content}
-
-        </div>
+        </div >
 
     );
 };

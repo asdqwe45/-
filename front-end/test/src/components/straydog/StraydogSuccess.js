@@ -1,6 +1,6 @@
 const StraydogSuccess = () => {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '60px' }}>
             <h1>
                 입양된 강아지
             </h1>

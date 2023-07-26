@@ -1,19 +1,27 @@
 import { Pagination } from 'react-bootstrap';
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import straydogdata from './straydogdata.json'
 
 
 const dogImages = [
-    ["/dog1.jpg", "/dog2.jpg", "/dog3.jpg", "/dog4.jpg", "/dog5.jpg", "/dog6.jpg", "/dog7.jpg", "/dog8.jpg", "/dog9.jpg", "/dog10.jpg", "/dog11.jpg", "/dog12.jpg", "/dog13.jpg", "/dog14.jpg", "/dog15.jpg", "/dog16.jpg"],
-    ["/dog1.jpg", "/dog2.jpg", "/dog3.jpg", "/dog4.jpg", "/dog5.jpg", "/dog6.jpg", "/dog7.jpg", "/dog8.jpg", "/dog9.jpg", "/dog10.jpg", "/dog11.jpg", "/dog12.jpg", "/dog13.jpg", "/dog14.jpg", "/dog15.jpg", "/dog16.jpg"],
+    ["/dog1.jpg", "/dog2.jpg", "/dog3.jpg", "/dog4.jpg", "/dog5.jpg", "/dog6.jpg", "/dog2.jpg", "/dog3.jpg", "/dog5.jpg", "/dog1.jpg", "/dog2.jpg", "/dog4.jpg", "/dog5.jpg", "/dog1.jpg", "/dog5.jpg", "/dog6.jpg"],
+    ["/dog1.jpg", "/dog2.jpg", "/dog3.jpg", "/dog4.jpg", "/dog5.jpg", "/dog6.jpg", "/dog4.jpg", "/dog3.jpg", "/dog4.jpg", "/dog1.jpg", "/dog1.jpg", "/dog2.jpg", "/dog3.jpg", "/dog4.jpg", "/dog5.jpg", "/dog6.jpg"],
     // 추가 이미지 배열
 ];
 
+
+
 const Straydog = () => {
     const [currentPage, setCurrentPage] = useState(0);
+    console.log(straydogdata[1].Sex)
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+
+
+
+
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '60px' }}>
+            Newstray
             <h1>입양견</h1>
 
 
@@ -39,7 +47,10 @@ const Straydog = () => {
                 <Pagination.Next onClick={() => setCurrentPage(oldPage => Math.min(oldPage + 1, dogImages.length - 1))} />
             </Pagination>
         </div>
+
+
     );
 };
 
 export default Straydog;
+
