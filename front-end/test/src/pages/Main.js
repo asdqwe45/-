@@ -11,13 +11,15 @@ import RemoteplayGuide from '../components/remoteplay/RemoteplayGuide'
 import Aboutus from '../components/navbar/Aboutus'
 import YoutubeUCC from '../components/navbar/YoutubeUCC'
 import Mypage from '../components/navbar/Mypage'
+import Maincarousel from '../components/main/Carousel'
 import './Main.css';
+
 
 
 
 const Main = (props) => {
 
-    let content = <h2>메인입니다.</h2>; // 여기에 메인 페이지
+    let content = <Maincarousel />
 
     const page = props.page
     console.log(page)
@@ -80,10 +82,10 @@ const Main = (props) => {
                                     <li className="topMenuLi">
                                         <a className="menuLink bg-body-tertiary" href="#">유기견</a>
                                         <ul className="submenu">
-                                            <li><Link className="submenuLink longLink" to="/straydog">유기견 목록</Link></li>
-                                            <li><Link className="submenuLink longLink" to="/straydog-guide">입양가이드</Link></li>
-                                            <li><Link className="submenuLink longLink" to="/straydog-success">입양완료</Link></li>
-                                            <li><Link className="submenuLink longLink" to="/straydog-fail">추모</Link></li>
+                                            <li><Link className="submenuLink longLink" to="/straydog">∙ 유기견 목록</Link></li>
+                                            <li><Link className="submenuLink longLink" to="/straydog-guide">∙ 입양가이드</Link></li>
+                                            <li><Link className="submenuLink longLink" to="/straydog-success">∙ 입양완료</Link></li>
+                                            <li><Link className="submenuLink longLink" to="/straydog-fail">∙ 추모</Link></li>
 
                                         </ul>
                                     </li>
@@ -91,7 +93,7 @@ const Main = (props) => {
                                     <li className="topMenuLi bg-body-tertiary">
                                         <a className="menuLink" href="#">분실견</a>
                                         <ul className="submenu">
-                                            <li><Link className="submenuLink longLink" to="/lostdog">분실견 목록</Link></li>
+                                            <li><Link className="submenuLink longLink" to="/lostdog">∙ 분실견 목록</Link></li>
 
                                         </ul>
                                     </li>
@@ -99,8 +101,8 @@ const Main = (props) => {
                                     <li className="topMenuLi bg-body-tertiary">
                                         <a className="menuLink" href="#">놀아주기</a>
                                         <ul className="submenu">
-                                            <li><Link className="submenuLink longLink" to="/remoteplay">원격놀이</Link></li>
-                                            <li><Link className="submenuLink longLink" to="/remoteplay-guide">이용가이드</Link></li>
+                                            <li><Link className="submenuLink longLink" to="/remoteplay">∙ 원격놀이</Link></li>
+                                            <li><Link className="submenuLink longLink" to="/remoteplay-guide">∙ 이용가이드</Link></li>
 
                                         </ul>
                                     </li>

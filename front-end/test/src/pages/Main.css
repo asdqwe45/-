@@ -38,7 +38,7 @@
 #topMenu ul li {
     /* 메인 메뉴 안에 ul 태그 안에 있는 li 태그의 스타일 적용(상위/하위메뉴 모두) */
     color: white;
-    background-color: white;
+    background-color: none;
     float: left;
     line-height: 30px;
     vertical-align: middle;
@@ -64,9 +64,9 @@
 
 .topMenuLi:hover .menuLink {
     /* 상위 메뉴의 li에 마우스오버 되었을 때 스타일 설정 */
-    color: white;
-    background-color: #4d4d4d;
-    border-radius: 5px;
+    /* color: white; */
+    /* background-color: #4d4d4d; */
+    /* border-radius: 5px; */
 }
 
 .longLink {
@@ -77,11 +77,13 @@
 .submenuLink {
     /* 하위 메뉴의 a 태그 스타일 설정 */
     color: #2d2d2d;
-    background-color: white;
-    border: solid 1px black;
-    margin-right: -1px;
-    border-radius: 5px;
+    background-color: none;
+    /* border: solid 1px black; */
+    /* margin-right: -1px; */
+    /* border-radius: 5px; */
     /* [변경] 위 칸의 하단 테두리와 아래칸의 상단 테두리가 겹쳐지도록 설덩 */
+    text-align: left;
+    padding-left: 18px;
 }
 
 .submenu {

@@ -21,7 +21,6 @@ const Straydog = () => {
 
 
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '60px' }}>
-            Newstray
             <h1>입양견</h1>
 
 
