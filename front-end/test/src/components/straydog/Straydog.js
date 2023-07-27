@@ -21,10 +21,10 @@ const Straydog = () => {
 
 
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '60px' }}>
-            <h1>입양견</h1>
+            <h1 style={{ marginTop: '140px' }}>입양견 목록 페이지 입니다.</h1>
 
 
-            <table>
+            <table style={{ marginTop: '30px' }}>
                 <tbody>
                     {Array.from({ length: 4 }).map((_, rowIndex) => (
                         <tr key={rowIndex}>

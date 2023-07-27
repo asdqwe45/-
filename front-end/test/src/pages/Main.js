@@ -51,7 +51,7 @@ const Main = (props) => {
 
         <div>
             <div>
-                <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+                <nav className="navbar navbar-expand-lg bg-body-none fixed-top">
                     <div className="container-fluid" style={{
                         display: 'flex',
                         justifyContent: 'space-between',
@@ -80,7 +80,7 @@ const Main = (props) => {
                             <nav id="topMenu">
                                 <ul>
                                     <li className="topMenuLi">
-                                        <a className="menuLink bg-body-tertiary" href="#">유기견</a>
+                                        <a className="menuLink bg-body-none" href="#">유기견</a>
                                         <ul className="submenu">
                                             <li><Link className="submenuLink longLink" to="/straydog">∙ 유기견 목록</Link></li>
                                             <li><Link className="submenuLink longLink" to="/straydog-guide">∙ 입양가이드</Link></li>
@@ -90,7 +90,7 @@ const Main = (props) => {
                                         </ul>
                                     </li>
                                     <li>|</li>
-                                    <li className="topMenuLi bg-body-tertiary">
+                                    <li className="topMenuLi bg-body-none">
                                         <a className="menuLink" href="#">분실견</a>
                                         <ul className="submenu">
                                             <li><Link className="submenuLink longLink" to="/lostdog">∙ 분실견 목록</Link></li>
@@ -98,7 +98,7 @@ const Main = (props) => {
                                         </ul>
                                     </li>
                                     <li>|</li>
-                                    <li className="topMenuLi bg-body-tertiary">
+                                    <li className="topMenuLi bg-body-none">
                                         <a className="menuLink" href="#">놀아주기</a>
                                         <ul className="submenu">
                                             <li><Link className="submenuLink longLink" to="/remoteplay">∙ 원격놀이</Link></li>
@@ -106,7 +106,7 @@ const Main = (props) => {
 
                                         </ul>
                                     </li>
-                                    <li>|</li>
+
 
                                 </ul>
                             </nav>
@@ -124,7 +124,9 @@ const Main = (props) => {
                             <ul className="navbar-nav ms-auto">
 
                                 <li className="nav-item">
-                                    <Link to="/mypage" className="nav-link active">My Page</Link>
+                                    <Link to="/mypage" className="nav-link active">
+                                        <img src="/mypage.png" alt="" width="40" height="40" style={{ marginTop: '12px', }} />
+                                    </Link>
                                 </li>
 
                                 <li className="nav-item">
@@ -146,13 +148,13 @@ const Main = (props) => {
             </div >
 
 
-            <br />
+            {/* <br /> */}
 
 
-            <h1 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}> Welcome</h1>
+            {/* <h1 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}> Welcome</h1> */}
 
-            <hr />
-            <br />
+            {/* <hr /> */}
+            {/* <br /> */}
 
 
             <div >
