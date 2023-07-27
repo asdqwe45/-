@@ -25,13 +25,6 @@ let DogsService = exports.DogsService = class DogsService {
     findAll() {
         return this.dogsRepository.find();
     }
-    findOne(DogID) {
-        const dog = this.dogs.find((dog) => dog.DogID === DogID);
-        if (!dog) {
-            throw new common_1.NotFoundException(`dog with ID ${DogID} Not Found.`);
-        }
-        return dog;
-    }
 };
 exports.DogsService = DogsService = __decorate([
     (0, common_1.Injectable)(),

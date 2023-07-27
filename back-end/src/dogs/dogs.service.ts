@@ -10,15 +10,16 @@ export class DogsService {
     private dogsRepository: Repository<Dog>,
   ) {}
   private dogs: Dog[] = [];
+
   findAll(): Promise<Dog[]> {
     return this.dogsRepository.find();
   }
 
-  findOne(DogID: number): Dog{
-    const dog = this.dogs.find((dog) => dog.DogID === DogID);
-    if(!dog){
-      throw new NotFoundException(`dog with ID ${DogID} Not Found.`)
-    }
-    return dog;
-  }
+  // findOne(DogID: number): Dog {
+  //   const dog = this.dogs.find((dog: { DogID: number; }) => dog.DogID === DogID);
+  //   if(!dog){
+  //     throw new NotFoundException(`dog with ID ${DogID} Not Found.`)
+  //   }
+  //   return dog;
+  // }
 }

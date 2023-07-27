@@ -5,5 +5,4 @@ export declare class DogsService {
     constructor(dogsRepository: Repository<Dog>);
     private dogs;
     findAll(): Promise<Dog[]>;
-    findOne(DogID: number): Dog;
 }
