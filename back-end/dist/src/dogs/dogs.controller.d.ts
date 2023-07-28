@@ -4,4 +4,8 @@ export declare class DogController {
     constructor(dogService: DogsService);
     private dogs;
     findAll(): Promise<any>;
+    getOne(ID: string): Promise<any>;
+    deleteOne(ID: string): Promise<any>;
+    create(dogData: any): Promise<void>;
+    patch(DogID: string, updateData: any): any;
 }

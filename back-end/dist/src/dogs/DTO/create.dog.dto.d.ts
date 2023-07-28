@@ -1,5 +1,4 @@
-export declare class Dog {
-    [x: string]: any;
+export declare class CreateDogDto {
     DogID: number;
     Sex: string;
     Age: number;

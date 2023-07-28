@@ -22,8 +22,33 @@ let DogsService = exports.DogsService = class DogsService {
         this.dogsRepository = dogsRepository;
         this.dogs = [];
     }
-    findAll() {
-        return this.dogsRepository.find();
+    async getAll() {
+        const dogs = await this.dogsRepository.find();
+        const obj = {
+            "dogs": dogs,
+        };
+        return obj;
+    }
+    async getOne(DogID) {
+        const dogs = await this.dogsRepository.find();
+        console.log("getOne");
+        const obj = {
+            "dog": dogs.find(dog => dog.DogID === parseInt(DogID)),
+        };
+        return obj;
+    }
+    async deleteOne(DogID) {
+        this.getOne(DogID);
+        this.dogs = this.dogs.filter((dog) => dog.DogID === parseInt(DogID));
+    }
+    async create(dogData) {
+        const id = dogData.DogID;
+        await this.dogsRepository.save({ id, ...dogData });
+    }
+    update(DogID, updateData) {
+        const dog = this.getOne(DogID);
+        this.deleteOne(DogID);
+        this.dogs.push({ ...dog, ...updateData });
     }
 };
 exports.DogsService = DogsService = __decorate([
