@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Delete, Put, Patch,Post,Body } from '@nestjs/common';
 import { DogsService } from './dogs.service';
 import { Dog } from './entities/dogs.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,18 +13,25 @@ export class DogController {
   private dogs: Dog[] = [];
   @Get()
   async findAll(): Promise<any> {
-    const dogs = await this.dogService.findAll();
-    const obj ={
-      "dogs": dogs,
-    };
-    return obj;
+    return this.dogService.getAll();
   }
-  // @Get('/:id')
-  // async findOne(@Param('id') ID: number): Promise<any>  {
-  //   const dogs = await this.dogService.findAll();
-  //   const obj = {
-  //     "dogs": dogs.find((dog) => dog.DogID === ID),
-  //   };
-  //   return obj;
-  // }
+  @Get('/:id')
+  getOne(@Param('id') ID: string): Promise<any>  {
+    return this.dogService.getOne(ID);
+  }
+  @Delete('/:id')
+  deleteOne(@Param('id') ID: string): Promise<any> {
+    return this.dogService.deleteOne(ID);
+  }
+  @Post()
+  create(@Body() dogData) {
+    return this.dogService.create(dogData);
+  }
+  @Patch('/:id')
+  patch(@Param('id') DogID : string, @Body() updateData) {
+    return {
+      updateDog: DogID,
+      ...updateData,
+    };
+  }
 }
