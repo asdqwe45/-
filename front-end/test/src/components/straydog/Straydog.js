@@ -2,6 +2,7 @@ import { Pagination } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import straydogdata from './straydogdata.json'
 import { Link } from 'react-router-dom'
+import './Straydog.css';
 
 const dogImages = [
     ["/dog1.jpg", "/dog2.jpg", "/dog3.jpg", "/dog4.jpg", "/dog5.jpg", "/dog6.jpg", "/dog2.jpg", "/dog3.jpg", "/dog5.jpg", "/dog1.jpg", "/dog2.jpg", "/dog4.jpg", "/dog5.jpg", "/dog1.jpg", "/dog5.jpg", "/dog6.jpg"],
@@ -30,9 +31,32 @@ const Straydog = () => {
                         <tr key={rowIndex}>
                             {dogImages[currentPage].slice(rowIndex * 4, rowIndex * 4 + 4).map((dogImage, index) => (
                                 <td key={index}>
-                                    <Link to="/straydog-detail" className="nav-link active">
-                                        <img src={dogImage} alt={`Dog ${currentPage * 16 + rowIndex * 4 + index + 1}`} width="300" height="300" />
-                                    </Link>
+
+                                    <div class="flip">
+                                        <div class="card">
+                                            {/* <!-- 앞면 --> */}
+                                            <div class="front">
+                                                <Link to="/straydog-detail" className="nav-link active">
+                                                    <img src={dogImage} alt={`Dog ${currentPage * 16 + rowIndex * 4 + index + 1}`} width="300" height="300" />
+                                                </Link>
+                                            </div>
+                                            {/* <!-- 뒷면 --> */}
+                                            <div class="back">
+                                                <Link to="/straydog-detail" className="nav-link active">
+                                                    <div className='dogbaiscinfodiv'>
+                                                        <p>강아지 기본정보</p>
+                                                    </div>
+
+
+                                                </Link>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+
                                 </td>
                             ))}
                         </tr>
@@ -49,7 +73,10 @@ const Straydog = () => {
                 ))}
                 <Pagination.Next onClick={() => setCurrentPage(oldPage => Math.min(oldPage + 1, dogImages.length - 1))} />
             </Pagination>
+
         </div>
+
+
 
 
     );
