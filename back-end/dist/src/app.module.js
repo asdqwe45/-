@@ -12,16 +12,20 @@ const dogs_module_1 = require("./dogs/dogs.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const ormconfig_1 = require("../ormconfig");
 const config_1 = require("@nestjs/config");
+const straydogs_module_1 = require("./dogs/straydogs/straydogs.module");
+const lost_module_1 = require("./dogs/lost/lost.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             dogs_module_1.DogsModule,
+            straydogs_module_1.StrayDogsModule,
             config_1.ConfigModule.forRoot({
                 envFilePath: ['./development.env'],
             }),
             typeorm_1.TypeOrmModule.forRoot(ormconfig_1.default),
+            lost_module_1.LostDogsModule,
         ],
         controllers: [],
         providers: [],

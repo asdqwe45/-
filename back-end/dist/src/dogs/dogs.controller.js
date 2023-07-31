@@ -15,12 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DogController = void 0;
 const common_1 = require("@nestjs/common");
 const dogs_service_1 = require("./dogs.service");
+const update_dog_dto_1 = require("./DTO/update.dog.dto");
 let DogController = exports.DogController = class DogController {
     constructor(dogService) {
         this.dogService = dogService;
         this.dogs = [];
     }
-    async findAll() {
+    findAll() {
         return this.dogService.getAll();
     }
     getOne(ID) {
@@ -30,13 +31,10 @@ let DogController = exports.DogController = class DogController {
         return this.dogService.deleteOne(ID);
     }
     create(dogData) {
-        return this.dogService.create(dogData);
+        this.dogService.create(dogData);
     }
     patch(DogID, updateData) {
-        return {
-            updateDog: DogID,
-            ...updateData,
-        };
+        this.dogService.update(DogID, updateData);
     }
 };
 __decorate([
@@ -49,14 +47,14 @@ __decorate([
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
 ], DogController.prototype, "getOne", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], DogController.prototype, "deleteOne", null);
 __decorate([
@@ -71,7 +69,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:paramtypes", [Number, update_dog_dto_1.UpdateDogDto]),
     __metadata("design:returntype", void 0)
 ], DogController.prototype, "patch", null);
 exports.DogController = DogController = __decorate([

@@ -3,8 +3,8 @@ import { DogsModule } from './dogs/dogs.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import  ormconfig from '../ormconfig';
 import { ConfigModule } from '@nestjs/config';
-import { StrayDogsModule } from './straydogs/straydogs.module';
-import { LostDogsModule } from './lost/lost.module';
+import { StrayDogsModule } from './dogs/straydogs/straydogs.module';
+import { LostDogsModule } from './dogs/lost/lost.module';
 
 @Module({
   imports: [

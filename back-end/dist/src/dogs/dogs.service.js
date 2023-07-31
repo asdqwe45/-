@@ -20,35 +20,31 @@ const typeorm_2 = require("@nestjs/typeorm");
 let DogsService = exports.DogsService = class DogsService {
     constructor(dogsRepository) {
         this.dogsRepository = dogsRepository;
-        this.dogs = [];
     }
     async getAll() {
         const dogs = await this.dogsRepository.find();
         const obj = {
-            "dogs": dogs,
+            dogs,
         };
         return obj;
     }
     async getOne(DogID) {
         const dogs = await this.dogsRepository.find();
-        console.log("getOne");
-        const obj = {
-            "dog": dogs.find(dog => dog.DogID === parseInt(DogID)),
-        };
+        const obj = dogs.find(dog => dog.DogID === DogID);
+        if (!obj) {
+            throw new common_1.NotFoundException(`Dog with ID ${DogID} not found.`);
+        }
         return obj;
     }
     async deleteOne(DogID) {
         this.getOne(DogID);
-        this.dogs = this.dogs.filter((dog) => dog.DogID === parseInt(DogID));
+        this.dogsRepository.delete(DogID);
     }
     async create(dogData) {
-        const id = dogData.DogID;
-        await this.dogsRepository.save({ id, ...dogData });
+        await this.dogsRepository.save(dogData);
     }
-    update(DogID, updateData) {
-        const dog = this.getOne(DogID);
-        this.deleteOne(DogID);
-        this.dogs.push({ ...dog, ...updateData });
+    async update(DogID, updateData) {
+        await this.dogsRepository.update(DogID, updateData);
     }
 };
 exports.DogsService = DogsService = __decorate([

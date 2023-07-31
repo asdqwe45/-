@@ -1,7 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity('Dog')
-export class Dog {
+export class Dog { 
   [x: string]: any;
   @PrimaryGeneratedColumn()
   DogID: number;

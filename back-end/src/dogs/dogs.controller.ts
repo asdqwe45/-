@@ -1,37 +1,32 @@
 import { Controller, Get, Param, Delete, Put, Patch,Post,Body } from '@nestjs/common';
 import { DogsService } from './dogs.service';
 import { Dog } from './entities/dogs.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-
+import { UpdateDogDto } from './DTO/update.dog.dto';
 
 @Controller('dogs')
 export class DogController {
   constructor(
-    private readonly dogService: DogsService
+    private readonly dogService: DogsService,
   ) {}
   private dogs: Dog[] = [];
   @Get()
-  async findAll(): Promise<any> {
+  findAll(): Promise<any> {
     return this.dogService.getAll();
   }
   @Get('/:id')
-  getOne(@Param('id') ID: string): Promise<any>  {
+  getOne(@Param('id') ID: number)  {
     return this.dogService.getOne(ID);
   }
   @Delete('/:id')
-  deleteOne(@Param('id') ID: string): Promise<any> {
+  deleteOne(@Param('id') ID: number): Promise<any> {
     return this.dogService.deleteOne(ID);
   }
   @Post()
   create(@Body() dogData) {
-    return this.dogService.create(dogData);
+    this.dogService.create(dogData);
   }
   @Patch('/:id')
-  patch(@Param('id') DogID : string, @Body() updateData) {
-    return {
-      updateDog: DogID,
-      ...updateData,
-    };
+  patch(@Param('id') DogID : number, @Body() updateData: UpdateDogDto) {
+    this.dogService.update(DogID,updateData);
   }
 }

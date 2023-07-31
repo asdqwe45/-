@@ -1,6 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { Dog } from 'src/dogs/entities/dogs.entity';
+import { User } from 'src/users/entities/user.entity';
 dotenv.config();
 const ormconfig: TypeOrmModuleOptions = {
   type: 'mariadb', // 어떤 DB인가?
@@ -12,5 +13,5 @@ const ormconfig: TypeOrmModuleOptions = {
   entities:[Dog],
   synchronize: true, // 테이블을 생성할꺼냐 묻는 속성, 최초에 한번만 true
 }
-
-export default ormconfig
+ 
+export default ormconfig 

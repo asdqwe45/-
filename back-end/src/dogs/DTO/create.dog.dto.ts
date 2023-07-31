@@ -10,7 +10,6 @@ export class CreateDogDto{
   @IsNumber()
   Age: number;
 
-  @IsOptional()
   @IsString()
   ChipNumber: string;
 

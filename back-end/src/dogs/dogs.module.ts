@@ -4,6 +4,7 @@ import { DogsService } from './dogs.service';
 import { Dog } from './entities/dogs.entity';
 import { Repository } from 'typeorm';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
 @Module({
   imports: [TypeOrmModule.forFeature([Dog])],
   controllers: [DogController],
