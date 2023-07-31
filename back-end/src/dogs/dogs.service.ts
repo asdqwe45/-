@@ -14,9 +14,8 @@ export class DogsService {
 
   async getOne(DogID: number): Promise<any> {
     const dogs = await this.dogsRepository.find();
-    console.log("getOne");
     const obj = {
-      "data": dogs.find(dog => dog.DogID === DogID),
+      "dog": dogs.find(dog => dog.DogID === DogID),
     };
     return obj;
   }

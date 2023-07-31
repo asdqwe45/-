@@ -4,7 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import  ormconfig from '../ormconfig';
 import { ConfigModule } from '@nestjs/config';
 import { StrayDogsModule } from './dogs/straydogs/straydogs.module';
-import { LostDogsModule } from './dogs/lost/lost.module';
+import { LostDogsModule } from './dogs/lostdogs/lost.module';
+import { AdoptedDogsModule } from './dogs/adopteddog/adopteddog.module';
+
 
 @Module({
   imports: [
@@ -15,6 +17,7 @@ import { LostDogsModule } from './dogs/lost/lost.module';
     }),
     TypeOrmModule.forRoot(ormconfig),
     LostDogsModule,
+    AdoptedDogsModule
   ],
   controllers: [],
   providers: [],

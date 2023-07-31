@@ -18,11 +18,11 @@ export class LostDogsService {
   }
   async getOneLostDog(DogID: number): Promise<Dog> {
     let dogs = await this.dogsRepository.find();
-    const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "stray"); 
-    if(!dog) {
+    const lostdog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "lost"); 
+    if(!lostdog) {
         throw new NotFoundException(`LostDog with ID ${DogID} not found.`);
     }
-    return dog;
+    return lostdog;
   }
   async deleteOne(DogID: number): Promise<void> {
     this.getOneLostDog(DogID);
@@ -30,7 +30,7 @@ export class LostDogsService {
   } 
 
   async create(dogData : CreateDogDto): Promise<void> {
-    dogData.Status = "stray";
+    dogData.Status = "lost";
     await this.dogsRepository.save(dogData);
   }
   

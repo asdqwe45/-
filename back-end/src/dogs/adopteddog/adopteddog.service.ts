@@ -6,28 +6,26 @@ import { CreateDogDto } from 'src/dogs/DTO/create.dog.dto';
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 
 @Injectable()
-export class LostDogsService {
+export class AdoptedDogsService {
   constructor(
     @InjectRepository(Dog)
     private dogsRepository: Repository<Dog>,
   ) {}
-  async getAllLostDogs(): Promise<any> {
+  async getAllAdoptedDogs( ):Promise<any>{
     const dogs = await this.dogsRepository.find();
-    const obj = {
-        dogs:dogs.filter(dog => dog.Status === "lost")
-  };
+    const obj = dogs.filter(dog => dog.Status === "adopted")
     return obj;
-  } 
-  async getOneLostDog(DogID: number): Promise<Dog> {
+  }
+  async getOneAdoptedDog(DogID: number): Promise<Dog> {
     let dogs = await this.dogsRepository.find();
-    const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "stray"); 
+    const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "adopted"); 
     if(!dog) {
         throw new NotFoundException(`LostDog with ID ${DogID} not found.`);
     }
     return dog;
   }
   async deleteOne(DogID: number): Promise<void> {
-    this.getOneLostDog(DogID);
+    this.getOneAdoptedDog(DogID);
     this.dogsRepository.delete(DogID);
   } 
 
@@ -37,7 +35,7 @@ export class LostDogsService {
   }
   
   async update(DogID: number, updateData: UpdateDogDto): Promise<void> {
-    this.getOneLostDog(DogID);
+    this.getOneAdoptedDog(DogID);
     await this.dogsRepository.update(DogID, updateData);
   }
 }

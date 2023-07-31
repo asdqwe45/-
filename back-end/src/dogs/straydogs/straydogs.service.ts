@@ -11,13 +11,11 @@ export class StrayDogsService {
     @InjectRepository(Dog)
     private dogsRepository: Repository<Dog>,
   ) {}
-  async getAllStrayDogs(): Promise<any> {
+  async getAllStrayDogs( ):Promise<any>{
     const dogs = await this.dogsRepository.find();
-    const obj = {
-        dogs:dogs.filter(dog => dog.Status === "stray")
-  };
+    const obj = dogs.filter(dog => dog.Status === "stray")
     return obj;
-  } 
+  }
   async getOneStrayDog(DogID: number): Promise<Dog> {
     let dogs = await this.dogsRepository.find();
     const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "stray"); 
