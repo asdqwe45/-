@@ -20,8 +20,4 @@ export class AdoptedDogsController {
     const totalItem = await this.adoptedDogsService.getAllAdoptedDogsCount();
     return {totalItem, adoptedDog};
   }
-  @Get(':id')
-  getOneLostDog(@Param('id') ID: number)  {
-    return this.adoptedDogsService.getOneAdoptedDog(ID);
-  }
 }

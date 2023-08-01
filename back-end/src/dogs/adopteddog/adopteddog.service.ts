@@ -10,20 +10,11 @@ export class AdoptedDogsService {
     private dogsRepository: Repository<Dog>,
   ) {}
   async getAllAdoptedDogs( ):Promise<any>{
-    const dogs = (await this.dogsRepository.find()).reverse();
-    const obj = dogs.filter(dog => dog.Status === "Adopted")
-    return obj;
+    const dogs = (await this.dogsRepository.find({where:{Status: "Adopted"}})).reverse();
+    return dogs;
   }
   async getAllAdoptedDogsCount(){
     const totalItem = this.dogsRepository.count({where: {Status:"Adopted"}});
     return totalItem;
-  }
-  async getOneAdoptedDog(DogID: number): Promise<Dog> {
-    let dogs = await this.dogsRepository.find();
-    const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "Adopted"); 
-    if(!dog) {
-        throw new NotFoundException(`AdoptedDog with ID ${DogID} not found.`);
-    }
-    return dog;
   }
 }

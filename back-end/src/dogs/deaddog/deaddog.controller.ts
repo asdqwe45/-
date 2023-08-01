@@ -19,8 +19,4 @@ export class DeadDogsController {
     const totalItem = await this.deadDogsService.getAllDeadDogsCount();
     return {totalItem, DeadDog};
   }
-  @Get(':id')
-  getOneDeadDog(@Param('id') ID: number)  {
-    return this.deadDogsService.getOneDeadDog(ID);
-  }
 }

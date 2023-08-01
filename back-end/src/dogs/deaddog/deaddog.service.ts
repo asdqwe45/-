@@ -10,20 +10,11 @@ export class DeadDogsService {
     private dogsRepository: Repository<Dog>,
   ) {}
   async getAllDeadDogs( ):Promise<any>{
-    const dogs = (await this.dogsRepository.find()).reverse();
-    const obj = dogs.filter(dog => dog.Status === "Dead")
-    return obj;
+    const dogs = (await this.dogsRepository.find({where: {Status:"Dead"}})).reverse();
+    return dogs;
   }
   async getAllDeadDogsCount(){
     const totalItem = this.dogsRepository.count({where:{Status:"Dead"}});
     return totalItem;
-  }
-  async getOneDeadDog(DogID: number): Promise<Dog> {
-    let dogs = await this.dogsRepository.find();
-    const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "Dead"); 
-    if(!dog) {
-        throw new NotFoundException(`DeadDog with ID ${DogID} not found.`);
-    }
-    return dog;
   }
 }
