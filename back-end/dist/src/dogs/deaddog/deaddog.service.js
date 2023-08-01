@@ -21,12 +21,12 @@ let DeadDogsService = exports.DeadDogsService = class DeadDogsService {
     constructor(dogsRepository) {
         this.dogsRepository = dogsRepository;
     }
-    async getAllAdoptedDogs() {
+    async getAllDeadDogs() {
         const dogs = await this.dogsRepository.find();
         const obj = dogs.filter(dog => dog.Status === "Dead");
         return obj;
     }
-    async getOneAdoptedDog(DogID) {
+    async getOneDeadDog(DogID) {
         let dogs = await this.dogsRepository.find();
         const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "Dead");
         if (!dog) {

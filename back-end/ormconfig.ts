@@ -10,7 +10,7 @@ const ormconfig: TypeOrmModuleOptions = {
   username: 'test', // 사용자명
   password: 'test', // 사용자 패스워드
   database: 'dog', // 스키마 이름
-  entities:[Dog],
+  entities:[Dog,User],
   synchronize: true, // 테이블을 생성할꺼냐 묻는 속성, 최초에 한번만 true
 }
  

@@ -30,7 +30,7 @@ export class StrayDogsService {
   } 
 
   async create(dogData : CreateDogDto): Promise<void> {
-    dogData.Status = "stray";
+    dogData.Status = "Stray";
     await this.dogsRepository.save(dogData);
   }
 

@@ -13,14 +13,17 @@ export class User {
   Email: string;
 
   @Column({ length: 100 })
-  password: string;
+  Password: string;
 
   @Column({ length: 100 })
   PhoneNumber: string;
 
   @Column({ length: 100 })
-  NickName: string;
+  Nickname: string;
 
   @Column({ length: 100 })
   Address: string;
+
+  @Column()
+  Admin:boolean;
 }

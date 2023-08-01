@@ -3,8 +3,9 @@ export declare class User {
     UserID: number;
     Name: string;
     Email: string;
-    password: string;
+    Password: string;
     PhoneNumber: string;
-    NickName: string;
+    Nickname: string;
     Address: string;
+    Admin: boolean;
 }

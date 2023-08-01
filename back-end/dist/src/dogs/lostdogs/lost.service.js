@@ -39,7 +39,7 @@ let LostDogsService = exports.LostDogsService = class LostDogsService {
         this.dogsRepository.delete(DogID);
     }
     async create(dogData) {
-        dogData.Status = "lost";
+        dogData.Status = "Lost";
         await this.dogsRepository.save(dogData);
     }
     async update(DogID, updateData) {

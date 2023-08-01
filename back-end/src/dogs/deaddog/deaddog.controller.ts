@@ -4,22 +4,22 @@ import { DeadDogsService } from './deaddog.service';
 @Controller('deaddog')
 export class DeadDogsController {
   constructor(
-    private readonly adoptedDogsService: DeadDogsService
+    private readonly deadDogsService: DeadDogsService
   ) {}
   @Get()
-  async getDogs(@Query('page') page: number = 1, @Query('pageSize') pageSize:number = 10):Promise<any> {
-    const adoptedDogs = await this.adoptedDogsService.getAllAdoptedDogs();
+  async getDeadDogs(@Query('page') page: number = 1, @Query('pageSize') pageSize:number = 10):Promise<any> {
+    const DeadDogs = await this.deadDogsService.getAllDeadDogs();
     if(isNaN(page)||isNaN(pageSize)){
       page=1;
       pageSize=10;
     }
     const startIndex = (page-1) * pageSize;
     const endIndex = startIndex + pageSize;
-    const adoptedDog = adoptedDogs.slice(startIndex,endIndex);
-    return adoptedDog;
+    const DeadDog = DeadDogs.slice(startIndex,endIndex);
+    return DeadDog;
   }
   @Get(':id')
-  getOneLostDog(@Param('id') ID: number)  {
-    return this.adoptedDogsService.getOneAdoptedDog(ID);
+  getOneDeadDog(@Param('id') ID: number)  {
+    return this.deadDogsService.getOneDeadDog(ID);
   }
 }

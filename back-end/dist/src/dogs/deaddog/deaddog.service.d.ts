@@ -3,6 +3,6 @@ import { Repository } from 'typeorm';
 export declare class DeadDogsService {
     private dogsRepository;
     constructor(dogsRepository: Repository<Dog>);
-    getAllAdoptedDogs(): Promise<any>;
-    getOneAdoptedDog(DogID: number): Promise<Dog>;
+    getAllDeadDogs(): Promise<any>;
+    getOneDeadDog(DogID: number): Promise<Dog>;
 }

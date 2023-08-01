@@ -28,7 +28,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ length: 100 }),
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
+], User.prototype, "Password", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 100 }),
     __metadata("design:type", String)
@@ -36,11 +36,15 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ length: 100 }),
     __metadata("design:type", String)
-], User.prototype, "NickName", void 0);
+], User.prototype, "Nickname", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 100 }),
     __metadata("design:type", String)
 ], User.prototype, "Address", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Boolean)
+], User.prototype, "Admin", void 0);
 exports.User = User = __decorate([
     (0, typeorm_1.Entity)('User')
 ], User);

@@ -16,22 +16,22 @@ exports.DeadDogsController = void 0;
 const common_1 = require("@nestjs/common");
 const deaddog_service_1 = require("./deaddog.service");
 let DeadDogsController = exports.DeadDogsController = class DeadDogsController {
-    constructor(adoptedDogsService) {
-        this.adoptedDogsService = adoptedDogsService;
+    constructor(deadDogsService) {
+        this.deadDogsService = deadDogsService;
     }
-    async getDogs(page = 1, pageSize = 10) {
-        const adoptedDogs = await this.adoptedDogsService.getAllAdoptedDogs();
+    async getDeadDogs(page = 1, pageSize = 10) {
+        const DeadDogs = await this.deadDogsService.getAllDeadDogs();
         if (isNaN(page) || isNaN(pageSize)) {
             page = 1;
             pageSize = 10;
         }
         const startIndex = (page - 1) * pageSize;
         const endIndex = startIndex + pageSize;
-        const adoptedDog = adoptedDogs.slice(startIndex, endIndex);
-        return adoptedDog;
+        const DeadDog = DeadDogs.slice(startIndex, endIndex);
+        return DeadDog;
     }
-    getOneLostDog(ID) {
-        return this.adoptedDogsService.getOneAdoptedDog(ID);
+    getOneDeadDog(ID) {
+        return this.deadDogsService.getOneDeadDog(ID);
     }
 };
 __decorate([
@@ -41,14 +41,14 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", Promise)
-], DeadDogsController.prototype, "getDogs", null);
+], DeadDogsController.prototype, "getDeadDogs", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
-], DeadDogsController.prototype, "getOneLostDog", null);
+], DeadDogsController.prototype, "getOneDeadDog", null);
 exports.DeadDogsController = DeadDogsController = __decorate([
     (0, common_1.Controller)('deaddog'),
     __metadata("design:paramtypes", [deaddog_service_1.DeadDogsService])

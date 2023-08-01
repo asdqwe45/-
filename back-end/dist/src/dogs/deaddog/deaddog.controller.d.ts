@@ -1,7 +1,7 @@
 import { DeadDogsService } from './deaddog.service';
 export declare class DeadDogsController {
-    private readonly adoptedDogsService;
-    constructor(adoptedDogsService: DeadDogsService);
-    getDogs(page?: number, pageSize?: number): Promise<any>;
-    getOneLostDog(ID: number): Promise<import("../entities/dogs.entity").Dog>;
+    private readonly deadDogsService;
+    constructor(deadDogsService: DeadDogsService);
+    getDeadDogs(page?: number, pageSize?: number): Promise<any>;
+    getOneDeadDog(ID: number): Promise<import("../entities/dogs.entity").Dog>;
 }
