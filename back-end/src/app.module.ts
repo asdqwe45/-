@@ -8,6 +8,7 @@ import { LostDogsModule } from './dogs/lostdogs/lost.module';
 import { AdoptedDogsModule } from './dogs/adopteddog/adopteddog.module';
 import { DeadDogsModule } from './dogs/deaddog/deaddog.module';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     DogsModule,
@@ -20,6 +21,7 @@ import { UserModule } from './user/user.module';
     AdoptedDogsModule,
     DeadDogsModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

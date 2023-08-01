@@ -17,6 +17,7 @@ const lost_module_1 = require("./dogs/lostdogs/lost.module");
 const adopteddog_module_1 = require("./dogs/adopteddog/adopteddog.module");
 const deaddog_module_1 = require("./dogs/deaddog/deaddog.module");
 const user_module_1 = require("./user/user.module");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
@@ -32,6 +33,7 @@ exports.AppModule = AppModule = __decorate([
             adopteddog_module_1.AdoptedDogsModule,
             deaddog_module_1.DeadDogsModule,
             user_module_1.UserModule,
+            auth_module_1.AuthModule,
         ],
         controllers: [],
         providers: [],
