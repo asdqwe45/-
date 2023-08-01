@@ -20,8 +20,16 @@ let LostDogsController = exports.LostDogsController = class LostDogsController {
     constructor(lostDogsService) {
         this.lostDogsService = lostDogsService;
     }
-    getAllLostDogs() {
-        return this.lostDogsService.getAllLostDogs();
+    async getDogs(page = 1, pageSize = 10) {
+        const lostDogs = await this.lostDogsService.getAllLostDogs();
+        if (isNaN(page) || isNaN(pageSize)) {
+            page = 1;
+            pageSize = 10;
+        }
+        const startIndex = (page - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        const lostDog = lostDogs.slice(startIndex, endIndex);
+        return lostDog;
     }
     getOneLostDog(ID) {
         return this.lostDogsService.getOneLostDog(ID);
@@ -38,10 +46,12 @@ let LostDogsController = exports.LostDogsController = class LostDogsController {
 };
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('pageSize')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], LostDogsController.prototype, "getAllLostDogs", null);
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", Promise)
+], LostDogsController.prototype, "getDogs", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
@@ -72,7 +82,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], LostDogsController.prototype, "patch", null);
 exports.LostDogsController = LostDogsController = __decorate([
-    (0, common_1.Controller)('lostdogs'),
+    (0, common_1.Controller)('lostdog'),
     __metadata("design:paramtypes", [lost_service_1.LostDogsService])
 ], LostDogsController);
 //# sourceMappingURL=lost.controller.js.map

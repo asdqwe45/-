@@ -1,11 +1,10 @@
-import { Query, Controller, Get, Param, Delete, Put, Patch,Post,Body } from '@nestjs/common';
-import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
-import { AdoptedDogsService } from './adopteddog.service';
+import { Query, Controller, Get, Param} from '@nestjs/common';
+import { DeadDogsService } from './deaddog.service';
 
-@Controller('adopteddog')
-export class AdoptedDogsController {
+@Controller('deaddog')
+export class DeadDogsController {
   constructor(
-    private readonly adoptedDogsService: AdoptedDogsService
+    private readonly adoptedDogsService: DeadDogsService
   ) {}
   @Get()
   async getDogs(@Query('page') page: number = 1, @Query('pageSize') pageSize:number = 10):Promise<any> {

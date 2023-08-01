@@ -14,6 +14,7 @@ export class StrayDogsController {
       page=1;
       pageSize=10;
     }
+    console.log(strayDogs);
     const startIndex = (page-1) * pageSize;
     const endIndex = startIndex + pageSize;
     const StrayDog = strayDogs.slice(startIndex,endIndex);

@@ -20,8 +20,17 @@ let StrayDogsController = exports.StrayDogsController = class StrayDogsControlle
     constructor(strayDogsService) {
         this.strayDogsService = strayDogsService;
     }
-    getAllStrayDogs() {
-        return this.strayDogsService.getAllStrayDogs();
+    async getDogs(page = 1, pageSize = 10) {
+        const strayDogs = await this.strayDogsService.getAllStrayDogs();
+        if (isNaN(page) || isNaN(pageSize)) {
+            page = 1;
+            pageSize = 10;
+        }
+        console.log(strayDogs);
+        const startIndex = (page - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        const StrayDog = strayDogs.slice(startIndex, endIndex);
+        return StrayDog;
     }
     getOneStrayDog(ID) {
         return this.strayDogsService.getOneStrayDog(ID);
@@ -38,10 +47,12 @@ let StrayDogsController = exports.StrayDogsController = class StrayDogsControlle
 };
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('pageSize')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], StrayDogsController.prototype, "getAllStrayDogs", null);
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", Promise)
+], StrayDogsController.prototype, "getDogs", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
@@ -72,7 +83,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StrayDogsController.prototype, "patch", null);
 exports.StrayDogsController = StrayDogsController = __decorate([
-    (0, common_1.Controller)('straydogs'),
+    (0, common_1.Controller)('straydog'),
     __metadata("design:paramtypes", [strayDogs_service_1.StrayDogsService])
 ], StrayDogsController);
 //# sourceMappingURL=straydogs.controller.js.map

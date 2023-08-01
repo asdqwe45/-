@@ -12,46 +12,48 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LostDogsService = void 0;
+exports.DogsService = void 0;
 const common_1 = require("@nestjs/common");
 const dogs_entity_1 = require("../entities/dogs.entity");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
-let LostDogsService = exports.LostDogsService = class LostDogsService {
+let DogsService = exports.DogsService = class DogsService {
     constructor(dogsRepository) {
         this.dogsRepository = dogsRepository;
+        this.dogs = [];
     }
-    async getAllLostDogs() {
+    async getOne(DogID) {
         const dogs = await this.dogsRepository.find();
         const obj = {
-            dogs: dogs.filter(dog => dog.Status === "lost")
+            "dog": dogs.find(dog => dog.DogID === DogID),
         };
         return obj;
     }
-    async getOneLostDog(DogID) {
-        let dogs = await this.dogsRepository.find();
-        const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "stray");
-        if (!dog) {
-            throw new common_1.NotFoundException(`LostDog with ID ${DogID} not found.`);
+    async getDogs(page = 1, pageSize = 10) {
+        if (isNaN(page) || isNaN(pageSize)) {
+            page = 1;
+            pageSize = 10;
         }
-        return dog;
+        const skip = (page - 1) * pageSize;
+        return this.dogsRepository.find({ skip, take: pageSize });
     }
     async deleteOne(DogID) {
-        this.getOneLostDog(DogID);
-        this.dogsRepository.delete(DogID);
+        this.getOne(DogID);
+        this.dogs = this.dogs.filter((dog) => dog.DogID === DogID);
     }
     async create(dogData) {
-        dogData.Status = "stray";
-        await this.dogsRepository.save(dogData);
+        const id = dogData.DogID;
+        await this.dogsRepository.save({ id, ...dogData });
     }
-    async update(DogID, updateData) {
-        this.getOneLostDog(DogID);
-        await this.dogsRepository.update(DogID, updateData);
+    update(DogID, updateData) {
+        const dog = this.getOne(DogID);
+        this.deleteOne(DogID);
+        this.dogs.push({ ...dog, ...updateData });
     }
 };
-exports.LostDogsService = LostDogsService = __decorate([
+exports.DogsService = DogsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_2.InjectRepository)(dogs_entity_1.Dog)),
     __metadata("design:paramtypes", [typeorm_1.Repository])
-], LostDogsService);
-//# sourceMappingURL=lost.service.js.map
+], DogsService);
+//# sourceMappingURL=dogs.service.js.map

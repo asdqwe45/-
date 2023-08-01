@@ -13,12 +13,12 @@ export class StrayDogsService {
   ) {}
   async getAllStrayDogs( ):Promise<any>{
     const dogs = await this.dogsRepository.find();
-    const obj = dogs.filter(dog => dog.Status === "stray")
+    const obj = dogs.filter(dog => dog.Status === "Stray")
     return obj;
   }
   async getOneStrayDog(DogID: number): Promise<Dog> {
     let dogs = await this.dogsRepository.find();
-    const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "stray"); 
+    const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "Stray"); 
     if(!dog) {
         throw new NotFoundException(`StrayDog with ID ${DogID} not found.`)
     }

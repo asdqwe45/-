@@ -12,20 +12,22 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DogController = void 0;
+exports.DogsController = void 0;
 const common_1 = require("@nestjs/common");
 const dogs_service_1 = require("./dogs.service");
-const update_dog_dto_1 = require("./DTO/update.dog.dto");
-let DogController = exports.DogController = class DogController {
-    constructor(dogService) {
+const update_dog_dto_1 = require("../DTO/update.dog.dto");
+const typeorm_1 = require("typeorm");
+let DogsController = exports.DogsController = class DogsController {
+    constructor(dogService, dogsRepository) {
         this.dogService = dogService;
+        this.dogsRepository = dogsRepository;
         this.dogs = [];
-    }
-    findAll() {
-        return this.dogService.getAll();
     }
     getOne(ID) {
         return this.dogService.getOne(ID);
+    }
+    async getDogs(page = 1, pageSize = 10) {
+        return this.dogService.getDogs(page, pageSize);
     }
     deleteOne(ID) {
         return this.dogService.deleteOne(ID);
@@ -38,32 +40,34 @@ let DogController = exports.DogController = class DogController {
     }
 };
 __decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], DogController.prototype, "findAll", null);
-__decorate([
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
-], DogController.prototype, "getOne", null);
+], DogsController.prototype, "getOne", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('pageSize')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", Promise)
+], DogsController.prototype, "getDogs", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
-], DogController.prototype, "deleteOne", null);
+], DogsController.prototype, "deleteOne", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
-], DogController.prototype, "create", null);
+], DogsController.prototype, "create", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
     __param(0, (0, common_1.Param)('id')),
@@ -71,9 +75,10 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, update_dog_dto_1.UpdateDogDto]),
     __metadata("design:returntype", void 0)
-], DogController.prototype, "patch", null);
-exports.DogController = DogController = __decorate([
-    (0, common_1.Controller)('dogs'),
-    __metadata("design:paramtypes", [dogs_service_1.DogsService])
-], DogController);
+], DogsController.prototype, "patch", null);
+exports.DogsController = DogsController = __decorate([
+    (0, common_1.Controller)('dog'),
+    __metadata("design:paramtypes", [dogs_service_1.DogsService,
+        typeorm_1.Repository])
+], DogsController);
 //# sourceMappingURL=dogs.controller.js.map

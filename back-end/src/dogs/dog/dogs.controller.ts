@@ -1,10 +1,10 @@
 import { Controller, Get, Param, Delete, Put, Patch,Post,Body,Query, ParseIntPipe } from '@nestjs/common';
 import { DogsService } from './dogs.service';
-import { Dog } from './entities/dogs.entity';
-import { UpdateDogDto } from './DTO/update.dog.dto';
+import { Dog } from '../entities/dogs.entity';
+import { UpdateDogDto } from '../DTO/update.dog.dto';
 import { Repository } from 'typeorm';
 @Controller('dog')
-export class DogController {
+export class DogsController {
   constructor(
     private readonly dogService: DogsService,
     private dogsRepository: Repository<Dog>

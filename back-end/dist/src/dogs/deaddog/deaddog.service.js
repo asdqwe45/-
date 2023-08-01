@@ -12,44 +12,32 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StrayDogsService = void 0;
+exports.DeadDogsService = void 0;
 const common_1 = require("@nestjs/common");
 const dogs_entity_1 = require("../entities/dogs.entity");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
-let StrayDogsService = exports.StrayDogsService = class StrayDogsService {
+let DeadDogsService = exports.DeadDogsService = class DeadDogsService {
     constructor(dogsRepository) {
         this.dogsRepository = dogsRepository;
     }
-    async getAllStrayDogs() {
+    async getAllAdoptedDogs() {
         const dogs = await this.dogsRepository.find();
-        const obj = dogs.filter(dog => dog.Status === "Stray");
+        const obj = dogs.filter(dog => dog.Status === "Dead");
         return obj;
     }
-    async getOneStrayDog(DogID) {
+    async getOneAdoptedDog(DogID) {
         let dogs = await this.dogsRepository.find();
-        const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "Stray");
+        const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "Dead");
         if (!dog) {
-            throw new common_1.NotFoundException(`StrayDog with ID ${DogID} not found.`);
+            throw new common_1.NotFoundException(`DeadDog with ID ${DogID} not found.`);
         }
         return dog;
     }
-    async deleteOne(DogID) {
-        this.getOneStrayDog(DogID);
-        this.dogsRepository.delete(DogID);
-    }
-    async create(dogData) {
-        dogData.Status = "stray";
-        await this.dogsRepository.save(dogData);
-    }
-    async update(DogID, updateData) {
-        this.getOneStrayDog(DogID);
-        await this.dogsRepository.update(DogID, updateData);
-    }
 };
-exports.StrayDogsService = StrayDogsService = __decorate([
+exports.DeadDogsService = DeadDogsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_2.InjectRepository)(dogs_entity_1.Dog)),
     __metadata("design:paramtypes", [typeorm_1.Repository])
-], StrayDogsService);
-//# sourceMappingURL=strayDogs.service.js.map
+], DeadDogsService);
+//# sourceMappingURL=deaddog.service.js.map

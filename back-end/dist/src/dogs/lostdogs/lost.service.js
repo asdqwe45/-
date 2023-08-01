@@ -12,44 +12,44 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DogsService = void 0;
+exports.LostDogsService = void 0;
 const common_1 = require("@nestjs/common");
-const dogs_entity_1 = require("./entities/dogs.entity");
+const dogs_entity_1 = require("../entities/dogs.entity");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
-let DogsService = exports.DogsService = class DogsService {
+let LostDogsService = exports.LostDogsService = class LostDogsService {
     constructor(dogsRepository) {
         this.dogsRepository = dogsRepository;
     }
-    async getAll() {
+    async getAllLostDogs() {
         const dogs = await this.dogsRepository.find();
-        const obj = {
-            dogs,
-        };
+        const obj = dogs.filter(dog => dog.Status === "Lost");
         return obj;
     }
-    async getOne(DogID) {
-        const dogs = await this.dogsRepository.find();
-        const obj = dogs.find(dog => dog.DogID === DogID);
-        if (!obj) {
-            throw new common_1.NotFoundException(`Dog with ID ${DogID} not found.`);
+    async getOneLostDog(DogID) {
+        let dogs = await this.dogsRepository.find();
+        const lostdog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "Lost");
+        if (!lostdog) {
+            throw new common_1.NotFoundException(`LostDog with ID ${DogID} not found.`);
         }
-        return obj;
+        return lostdog;
     }
     async deleteOne(DogID) {
-        this.getOne(DogID);
+        this.getOneLostDog(DogID);
         this.dogsRepository.delete(DogID);
     }
     async create(dogData) {
+        dogData.Status = "lost";
         await this.dogsRepository.save(dogData);
     }
     async update(DogID, updateData) {
+        this.getOneLostDog(DogID);
         await this.dogsRepository.update(DogID, updateData);
     }
 };
-exports.DogsService = DogsService = __decorate([
+exports.LostDogsService = LostDogsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_2.InjectRepository)(dogs_entity_1.Dog)),
     __metadata("design:paramtypes", [typeorm_1.Repository])
-], DogsService);
-//# sourceMappingURL=dogs.service.js.map
+], LostDogsService);
+//# sourceMappingURL=lost.service.js.map

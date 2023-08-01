@@ -6,20 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DogsModule = void 0;
+exports.DeadDogsModule = void 0;
 const common_1 = require("@nestjs/common");
-const dogs_controller_1 = require("./dogs.controller");
-const dogs_service_1 = require("./dogs.service");
-const dogs_entity_1 = require("./entities/dogs.entity");
+const dogs_entity_1 = require("../entities/dogs.entity");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
-let DogsModule = exports.DogsModule = class DogsModule {
+const deaddog_service_1 = require("./deaddog.service");
+const deaddog_controller_1 = require("./deaddog.controller");
+let DeadDogsModule = exports.DeadDogsModule = class DeadDogsModule {
 };
-exports.DogsModule = DogsModule = __decorate([
+exports.DeadDogsModule = DeadDogsModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_2.TypeOrmModule.forFeature([dogs_entity_1.Dog])],
-        controllers: [dogs_controller_1.DogController],
-        providers: [dogs_service_1.DogsService, typeorm_1.Repository]
+        controllers: [deaddog_controller_1.DeadDogsController],
+        providers: [deaddog_service_1.DeadDogsService, typeorm_1.Repository]
     })
-], DogsModule);
-//# sourceMappingURL=dogs.module.js.map
+], DeadDogsModule);
+//# sourceMappingURL=deaddog.module.js.map

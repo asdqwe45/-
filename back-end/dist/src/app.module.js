@@ -8,12 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const dogs_module_1 = require("./dogs/dogs.module");
+const dogs_module_1 = require("./dogs/dog/dogs.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const ormconfig_1 = require("../ormconfig");
 const config_1 = require("@nestjs/config");
 const straydogs_module_1 = require("./dogs/straydogs/straydogs.module");
-const lost_module_1 = require("./dogs/lost/lost.module");
+const lost_module_1 = require("./dogs/lostdogs/lost.module");
+const adopteddog_module_1 = require("./dogs/adopteddog/adopteddog.module");
+const deaddog_module_1 = require("./dogs/deaddog/deaddog.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
@@ -26,6 +28,8 @@ exports.AppModule = AppModule = __decorate([
             }),
             typeorm_1.TypeOrmModule.forRoot(ormconfig_1.default),
             lost_module_1.LostDogsModule,
+            adopteddog_module_1.AdoptedDogsModule,
+            deaddog_module_1.DeadDogsModule
         ],
         controllers: [],
         providers: [],

@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
-import { DogsModule } from './dogs/dogs.module';
+import { DogsModule } from './dogs/dog/dogs.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import  ormconfig from '../ormconfig';
 import { ConfigModule } from '@nestjs/config';
 import { StrayDogsModule } from './dogs/straydogs/straydogs.module';
 import { LostDogsModule } from './dogs/lostdogs/lost.module';
 import { AdoptedDogsModule } from './dogs/adopteddog/adopteddog.module';
+import { DeadDogsModule } from './dogs/deaddog/deaddog.module';
 
 
 @Module({
@@ -17,7 +18,8 @@ import { AdoptedDogsModule } from './dogs/adopteddog/adopteddog.module';
     }),
     TypeOrmModule.forRoot(ormconfig),
     LostDogsModule,
-    AdoptedDogsModule
+    AdoptedDogsModule,
+    DeadDogsModule 
   ],
   controllers: [],
   providers: [],
