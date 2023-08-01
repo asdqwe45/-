@@ -8,29 +8,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DogsService = void 0;
+exports.UrgentDogController = void 0;
 const common_1 = require("@nestjs/common");
-const dogs_entity_1 = require("../entities/dogs.entity");
-const typeorm_1 = require("typeorm");
-const typeorm_2 = require("@nestjs/typeorm");
-let DogsService = exports.DogsService = class DogsService {
-    constructor(dogsRepository) {
-        this.dogsRepository = dogsRepository;
+const urgentdog_service_1 = require("./urgentdog.service");
+let UrgentDogController = exports.UrgentDogController = class UrgentDogController {
+    constructor(urgentDogService) {
+        this.urgentDogService = urgentDogService;
         this.dogs = [];
     }
-    async getDogs() {
-        return this.dogsRepository.find({
-            select: ['DogID', 'Age'],
-        });
+    getRecommendedDogs() {
+        return this.urgentDogService.getRecommendedDogs();
     }
 };
-exports.DogsService = DogsService = __decorate([
-    (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_2.InjectRepository)(dogs_entity_1.Dog)),
-    __metadata("design:paramtypes", [typeorm_1.Repository])
-], DogsService);
-//# sourceMappingURL=dogs.service.js.map
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UrgentDogController.prototype, "getRecommendedDogs", null);
+exports.UrgentDogController = UrgentDogController = __decorate([
+    (0, common_1.Controller)('urgentdog'),
+    __metadata("design:paramtypes", [urgentdog_service_1.UrgentDogService])
+], UrgentDogController);
+//# sourceMappingURL=urgentdog.controller.js.map

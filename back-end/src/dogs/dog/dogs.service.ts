@@ -13,9 +13,16 @@ export class DogsService {
   private dogs : Dog[] = [];
 
   async getDogs( ){
-    return (await this.dogsRepository.find()).reverse();
+    return this.dogsRepository.find({
+      select: ['DogID','Age'],
+    });
+    // return (await this.dogsRepository.find()).reverse();
   }
-  
+  // async findAll(): Promise<User[]> {
+  //   return this.userRepository.find({
+  //     select: ['seq', 'UserID', 'Name', 'Admin'],
+  //   });
+  // }
   // async getOne(DogID: number): Promise<any> {
   //   const dog = await this.dogsRepository.findOneBy({DogID});
   //   return dog;

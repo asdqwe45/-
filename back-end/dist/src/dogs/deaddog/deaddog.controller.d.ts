@@ -3,5 +3,4 @@ export declare class DeadDogsController {
     private readonly deadDogsService;
     constructor(deadDogsService: DeadDogsService);
     getDeadDogs(page?: number, pageSize?: number): Promise<any>;
-    getOneDeadDog(ID: number): Promise<import("../entities/dogs.entity").Dog>;
 }

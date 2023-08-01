@@ -8,6 +8,7 @@ import { LostDogsModule } from './dogs/lostdogs/lost.module';
 import { AdoptedDogsModule } from './dogs/adopteddog/adopteddog.module';
 import { DeadDogsModule } from './dogs/deaddog/deaddog.module';
 import { UrgentDogModule } from './dogs/urgentdog/urgentdog.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { UrgentDogModule } from './dogs/urgentdog/urgentdog.module';
       envFilePath: ['./development.env'],
     }),
     TypeOrmModule.forRoot(ormconfig),
-    UrgentDogModule
+    UrgentDogModule,
+    AdminModule
   ],
   controllers: [],
   providers: [],

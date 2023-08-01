@@ -5,5 +5,4 @@ export declare class DeadDogsService {
     constructor(dogsRepository: Repository<Dog>);
     getAllDeadDogs(): Promise<any>;
     getAllDeadDogsCount(): Promise<number>;
-    getOneDeadDog(DogID: number): Promise<Dog>;
 }

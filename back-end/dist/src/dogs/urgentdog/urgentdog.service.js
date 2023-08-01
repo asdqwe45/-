@@ -12,44 +12,30 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsersService = void 0;
+exports.UrgentDogService = void 0;
 const common_1 = require("@nestjs/common");
+const dogs_entity_1 = require("../entities/dogs.entity");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
-const user_entity_1 = require("./entities/user.entity");
-let UsersService = exports.UsersService = class UsersService {
-    constructor(usersRepository) {
-        this.usersRepository = usersRepository;
+let UrgentDogService = exports.UrgentDogService = class UrgentDogService {
+    constructor(dogsRepository) {
+        this.dogsRepository = dogsRepository;
     }
-    async getAll() {
-        const dogs = await this.usersRepository.find();
-        const obj = {
-            dogs,
-        };
-        return obj;
-    }
-    async getOne(DogID) {
-        const dogs = await this.usersRepository.find();
-        const obj = dogs.find(dog => dog.DogID === DogID);
-        if (!obj) {
-            throw new common_1.NotFoundException(`Dog with ID ${DogID} not found.`);
-        }
-        return obj;
-    }
-    async deleteOne(DogID) {
-        this.getOne(DogID);
-        this.usersRepository.delete(DogID);
-    }
-    async create(dogData) {
-        await this.usersRepository.save(dogData);
-    }
-    async update(DogID, updateData) {
-        await this.usersRepository.update(DogID, updateData);
+    async getRecommendedDogs() {
+        const urgentdogs = await this.dogsRepository
+            .createQueryBuilder('dog')
+            .where('dog.Status IN (:...status)', { status: ['Stray', 'Lost'] })
+            .orderBy('dog.RemainedDay', 'ASC')
+            .addOrderBy('dog.Age', 'DESC')
+            .addOrderBy('dog.EnteredDay', 'DESC')
+            .take(4)
+            .getMany();
+        return urgentdogs;
     }
 };
-exports.UsersService = UsersService = __decorate([
+exports.UrgentDogService = UrgentDogService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_2.InjectRepository)(user_entity_1.User)),
+    __param(0, (0, typeorm_2.InjectRepository)(dogs_entity_1.Dog)),
     __metadata("design:paramtypes", [typeorm_1.Repository])
-], UsersService);
-//# sourceMappingURL=users.service.js.map
+], UrgentDogService);
+//# sourceMappingURL=urgentdog.service.js.map

@@ -16,7 +16,8 @@ const straydogs_module_1 = require("./dogs/straydogs/straydogs.module");
 const lost_module_1 = require("./dogs/lostdogs/lost.module");
 const adopteddog_module_1 = require("./dogs/adopteddog/adopteddog.module");
 const deaddog_module_1 = require("./dogs/deaddog/deaddog.module");
-const users_module_1 = require("./users/users.module");
+const urgentdog_module_1 = require("./dogs/urgentdog/urgentdog.module");
+const admin_module_1 = require("./admin/admin.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
@@ -31,7 +32,8 @@ exports.AppModule = AppModule = __decorate([
                 envFilePath: ['./development.env'],
             }),
             typeorm_1.TypeOrmModule.forRoot(ormconfig_1.default),
-            users_module_1.UsersModule
+            urgentdog_module_1.UrgentDogModule,
+            admin_module_1.AdminModule
         ],
         controllers: [],
         providers: [],

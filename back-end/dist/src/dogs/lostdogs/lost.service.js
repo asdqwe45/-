@@ -22,21 +22,16 @@ let LostDogsService = exports.LostDogsService = class LostDogsService {
         this.dogsRepository = dogsRepository;
     }
     async getAllLostDogs() {
-        const dogs = (await this.dogsRepository.find()).reverse();
-        const obj = dogs.filter(dog => dog.Status === "Lost");
-        return obj;
+        const dogs = (await this.dogsRepository.find({ where: { Status: "Lost" } })).reverse();
+        return dogs;
     }
     async getAllLostDogsCount() {
         const count = this.dogsRepository.count({ where: { Status: "Lost" } });
         return count;
     }
     async getOneLostDog(DogID) {
-        let dogs = await this.dogsRepository.find();
-        const lostdog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "Lost");
-        if (!lostdog) {
-            throw new common_1.NotFoundException(`LostDog with ID ${DogID} not found.`);
-        }
-        return lostdog;
+        const LostDog = this.dogsRepository.findOneBy({ Status: "Lost", DogID: DogID });
+        return LostDog;
     }
     async deleteOne(DogID) {
         this.getOneLostDog(DogID);

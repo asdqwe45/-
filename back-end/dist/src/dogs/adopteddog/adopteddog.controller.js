@@ -28,10 +28,8 @@ let AdoptedDogsController = exports.AdoptedDogsController = class AdoptedDogsCon
         const startIndex = (page - 1) * pageSize;
         const endIndex = startIndex + pageSize;
         const adoptedDog = adoptedDogs.slice(startIndex, endIndex);
-        return adoptedDog;
-    }
-    getOneLostDog(ID) {
-        return this.adoptedDogsService.getOneAdoptedDog(ID);
+        const totalItem = await this.adoptedDogsService.getAllAdoptedDogsCount();
+        return { totalItem, adoptedDog };
     }
 };
 __decorate([
@@ -42,13 +40,6 @@ __decorate([
     __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", Promise)
 ], AdoptedDogsController.prototype, "getDogs", null);
-__decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", void 0)
-], AdoptedDogsController.prototype, "getOneLostDog", null);
 exports.AdoptedDogsController = AdoptedDogsController = __decorate([
     (0, common_1.Controller)('adopteddog'),
     __metadata("design:paramtypes", [adopteddog_service_1.AdoptedDogsService])

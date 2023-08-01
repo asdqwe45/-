@@ -16,36 +16,24 @@ let User = exports.User = class User {
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], User.prototype, "UserID", void 0);
+], User.prototype, "seq", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
+    (0, typeorm_1.Column)({ length: 255 }),
     __metadata("design:type", String)
 ], User.prototype, "Name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
+    (0, typeorm_1.PrimaryColumn)({ length: 255 }),
     __metadata("design:type", String)
-], User.prototype, "Email", void 0);
+], User.prototype, "UserID", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
+    (0, typeorm_1.Column)({ length: 255 }),
     __metadata("design:type", String)
 ], User.prototype, "Password", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
-    __metadata("design:type", String)
-], User.prototype, "PhoneNumber", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
-    __metadata("design:type", String)
-], User.prototype, "Nickname", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
-    __metadata("design:type", String)
-], User.prototype, "Address", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Boolean)
+    (0, typeorm_1.Column)('int'),
+    __metadata("design:type", Number)
 ], User.prototype, "Admin", void 0);
 exports.User = User = __decorate([
     (0, typeorm_1.Entity)('User')
 ], User);
-//# sourceMappingURL=user.entity.js.map
+//# sourceMappingURL=admin.entity.js.map

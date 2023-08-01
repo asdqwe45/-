@@ -22,17 +22,12 @@ let AdoptedDogsService = exports.AdoptedDogsService = class AdoptedDogsService {
         this.dogsRepository = dogsRepository;
     }
     async getAllAdoptedDogs() {
-        const dogs = (await this.dogsRepository.find()).reverse();
-        const obj = dogs.filter(dog => dog.Status === "Adopted");
-        return obj;
+        const dogs = (await this.dogsRepository.find({ where: { Status: "Adopted" } })).reverse();
+        return dogs;
     }
-    async getOneAdoptedDog(DogID) {
-        let dogs = await this.dogsRepository.find();
-        const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "Adopted");
-        if (!dog) {
-            throw new common_1.NotFoundException(`AdoptedDog with ID ${DogID} not found.`);
-        }
-        return dog;
+    async getAllAdoptedDogsCount() {
+        const totalItem = this.dogsRepository.count({ where: { Status: "Adopted" } });
+        return totalItem;
     }
 };
 exports.AdoptedDogsService = AdoptedDogsService = __decorate([

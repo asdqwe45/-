@@ -31,9 +31,6 @@ let DeadDogsController = exports.DeadDogsController = class DeadDogsController {
         const totalItem = await this.deadDogsService.getAllDeadDogsCount();
         return { totalItem, DeadDog };
     }
-    getOneDeadDog(ID) {
-        return this.deadDogsService.getOneDeadDog(ID);
-    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -43,13 +40,6 @@ __decorate([
     __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", Promise)
 ], DeadDogsController.prototype, "getDeadDogs", null);
-__decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", void 0)
-], DeadDogsController.prototype, "getOneDeadDog", null);
 exports.DeadDogsController = DeadDogsController = __decorate([
     (0, common_1.Controller)('deaddog'),
     __metadata("design:paramtypes", [deaddog_service_1.DeadDogsService])
