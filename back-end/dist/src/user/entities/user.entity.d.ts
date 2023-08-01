@@ -1,10 +1,12 @@
 export declare class User {
     [x: string]: any;
-    UserID: number;
+    seq: number;
+    UserID: string;
     Name: string;
     Email: string;
-    password: string;
+    Password: string;
     PhoneNumber: string;
-    NickName: string;
+    Nickname: string;
     Address: string;
+    Admin: number;
 }
