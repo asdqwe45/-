@@ -1,7 +1,7 @@
 import { Query,Controller, Get, Param, Delete, Put, Patch,Post,Body } from '@nestjs/common';
 import { StrayDogsService } from './strayDogs.service';
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
-import { Dog } from '../entities/dogs.entity';
+
 @Controller('straydog')
 export class StrayDogsController {
   constructor(
@@ -12,7 +12,7 @@ export class StrayDogsController {
     const strayDogs = await this.strayDogsService.getAllStrayDogs();
     if(isNaN(page)||isNaN(pageSize)){
       page=1;
-      pageSize=10;
+      pageSize=100;
     }
     const startIndex = (page-1) * pageSize;
     const endIndex = startIndex + pageSize;

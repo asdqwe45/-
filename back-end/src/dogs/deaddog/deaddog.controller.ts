@@ -11,12 +11,13 @@ export class DeadDogsController {
     const DeadDogs = await this.deadDogsService.getAllDeadDogs();
     if(isNaN(page)||isNaN(pageSize)){
       page=1;
-      pageSize=10;
+      pageSize=100;
     }
     const startIndex = (page-1) * pageSize;
     const endIndex = startIndex + pageSize;
     const DeadDog = DeadDogs.slice(startIndex,endIndex);
-    return DeadDog;
+    const totalItem = await this.deadDogsService.getAllDeadDogsCount();
+    return {totalItem, DeadDog};
   }
   @Get(':id')
   getOneDeadDog(@Param('id') ID: number)  {
