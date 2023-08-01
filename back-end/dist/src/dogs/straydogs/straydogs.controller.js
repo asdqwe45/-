@@ -24,7 +24,7 @@ let StrayDogsController = exports.StrayDogsController = class StrayDogsControlle
         const strayDogs = await this.strayDogsService.getAllStrayDogs();
         if (isNaN(page) || isNaN(pageSize)) {
             page = 1;
-            pageSize = 10;
+            pageSize = 100;
         }
         const startIndex = (page - 1) * pageSize;
         const endIndex = startIndex + pageSize;

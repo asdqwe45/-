@@ -27,6 +27,7 @@ __decorate([
     __metadata("design:type", Number)
 ], CreateDogDto.prototype, "Age", void 0);
 __decorate([
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateDogDto.prototype, "ChipNumber", void 0);
@@ -51,6 +52,7 @@ __decorate([
     __metadata("design:type", Number)
 ], CreateDogDto.prototype, "Weight", void 0);
 __decorate([
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateDogDto.prototype, "Status", void 0);

@@ -26,6 +26,10 @@ let DeadDogsService = exports.DeadDogsService = class DeadDogsService {
         const obj = dogs.filter(dog => dog.Status === "Dead");
         return obj;
     }
+    async getAllDeadDogsCount() {
+        const totalItem = this.dogsRepository.count({ where: { Status: "Dead" } });
+        return totalItem;
+    }
     async getOneDeadDog(DogID) {
         let dogs = await this.dogsRepository.find();
         const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "Dead");
