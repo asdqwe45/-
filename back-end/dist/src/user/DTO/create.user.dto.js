@@ -27,6 +27,22 @@ __decorate([
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "Password", void 0);
 __decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateUserDto.prototype, "PhoneNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateUserDto.prototype, "Nickname", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateUserDto.prototype, "Address", void 0);
+__decorate([
+    (0, class_validator_1.IsEmail)(),
+    __metadata("design:type", String)
+], CreateUserDto.prototype, "Email", void 0);
+__decorate([
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateUserDto.prototype, "Admin", void 0);

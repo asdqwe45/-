@@ -1,6 +1,9 @@
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './DTO/create.user.dto';
+export declare const bcryptConstant: {
+    saltOrRounds: number;
+};
 export declare class UserService {
     private userRepository;
     constructor(userRepository: Repository<User>);

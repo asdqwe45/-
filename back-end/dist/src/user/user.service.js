@@ -12,11 +12,15 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserService = void 0;
+exports.UserService = exports.bcryptConstant = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const user_entity_1 = require("./entities/user.entity");
+const bcrypt = require("bcrypt");
+exports.bcryptConstant = {
+    saltOrRounds: 10,
+};
 let UserService = exports.UserService = class UserService {
     constructor(userRepository) {
         this.userRepository = userRepository;
@@ -32,6 +36,7 @@ let UserService = exports.UserService = class UserService {
                 error: 'Forbidden',
             });
         }
+        createUserDto.Password = await bcrypt.hash(createUserDto.Password, exports.bcryptConstant.saltOrRounds);
         const { Password, ...result } = await this.userRepository.save(createUserDto);
         return result;
     }

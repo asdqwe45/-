@@ -8,6 +8,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './DTO/create.user.dto';
+import * as bcrypt from 'bcrypt';
+
+export const bcryptConstant = {
+  saltOrRounds: 10,
+};
+
 @Injectable()
 export class UserService {
   constructor(
@@ -19,8 +25,6 @@ export class UserService {
     const isExist = await this.userRepository.findOneBy({
       UserID: createUserDto.UserID,
     });
-    // const users = await this.userRepository.find();
-    // const isExist = users.find((user) => user.userId === createUserDto.UserId);
     if (isExist) {
       throw new ForbiddenException({
         statusCode: HttpStatus.FORBIDDEN,
@@ -29,6 +33,10 @@ export class UserService {
       });
     }
 
+    createUserDto.Password = await bcrypt.hash(
+      createUserDto.Password,
+      bcryptConstant.saltOrRounds,
+    );
     const { Password, ...result } = await this.userRepository.save(
       createUserDto,
     );
