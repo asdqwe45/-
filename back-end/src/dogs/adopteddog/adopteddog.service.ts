@@ -12,7 +12,7 @@ export class AdoptedDogsService {
     private dogsRepository: Repository<Dog>,
   ) {}
   async getAllAdoptedDogs( ):Promise<any>{
-    const dogs = await this.dogsRepository.find();
+    const dogs = (await this.dogsRepository.find()).reverse();
     const obj = dogs.filter(dog => dog.Status === "Adopted")
     return obj;
   }

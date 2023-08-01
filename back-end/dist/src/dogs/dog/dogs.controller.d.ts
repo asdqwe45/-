@@ -8,7 +8,7 @@ export declare class DogsController {
     constructor(dogService: DogsService, dogsRepository: Repository<Dog>);
     private dogs;
     getOne(ID: number): Promise<any>;
-    getDogs(page?: number, pageSize?: number): Promise<Dog[]>;
+    getDogs(): Promise<Dog[]>;
     deleteOne(ID: number): Promise<any>;
     create(dogData: any): void;
     patch(DogID: number, updateData: UpdateDogDto): void;

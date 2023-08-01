@@ -20,13 +20,8 @@ export class DogsService {
     return obj;
   }
 
-  async getDogs( page: number = 1, pageSize: number = 10):Promise<Dog[]>{
-    if(isNaN(page)||isNaN(pageSize)){
-      page=1;
-      pageSize=10;
-    }
-    const skip = (page-1)*pageSize;
-    return this.dogsRepository.find({skip,take: pageSize});
+  async getDogs( ){
+    return (await this.dogsRepository.find()).reverse();
   }
 
   async deleteOne(DogID: number): Promise<any> {

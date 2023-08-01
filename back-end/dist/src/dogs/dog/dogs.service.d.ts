@@ -6,7 +6,7 @@ export declare class DogsService {
     constructor(dogsRepository: Repository<Dog>);
     private dogs;
     getOne(DogID: number): Promise<any>;
-    getDogs(page?: number, pageSize?: number): Promise<Dog[]>;
+    getDogs(): Promise<Dog[]>;
     deleteOne(DogID: number): Promise<any>;
     create(dogData: CreateDogDto): Promise<void>;
     update(DogID: number, updateData: any): void;

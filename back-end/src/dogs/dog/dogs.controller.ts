@@ -18,8 +18,8 @@ export class DogsController {
   }
 
   @Get()
-  async getDogs(@Query('page') page: number = 1, @Query('pageSize') pageSize:number = 10):Promise<Dog[]> {
-    return this.dogService.getDogs(page,pageSize);
+  async getDogs() {
+    return this.dogService.getDogs();
   }
 
   @Delete('/:id')

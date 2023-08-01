@@ -26,8 +26,8 @@ let DogsController = exports.DogsController = class DogsController {
     getOne(ID) {
         return this.dogService.getOne(ID);
     }
-    async getDogs(page = 1, pageSize = 10) {
-        return this.dogService.getDogs(page, pageSize);
+    async getDogs() {
+        return this.dogService.getDogs();
     }
     deleteOne(ID) {
         return this.dogService.deleteOne(ID);
@@ -48,10 +48,8 @@ __decorate([
 ], DogsController.prototype, "getOne", null);
 __decorate([
     (0, common_1.Get)(),
-    __param(0, (0, common_1.Query)('page')),
-    __param(1, (0, common_1.Query)('pageSize')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], DogsController.prototype, "getDogs", null);
 __decorate([

@@ -22,9 +22,13 @@ let LostDogsService = exports.LostDogsService = class LostDogsService {
         this.dogsRepository = dogsRepository;
     }
     async getAllLostDogs() {
-        const dogs = await this.dogsRepository.find();
+        const dogs = (await this.dogsRepository.find()).reverse();
         const obj = dogs.filter(dog => dog.Status === "Lost");
         return obj;
+    }
+    async getAllLostDogsCount() {
+        const count = this.dogsRepository.count({ where: { Status: "Lost" } });
+        return count;
     }
     async getOneLostDog(DogID) {
         let dogs = await this.dogsRepository.find();

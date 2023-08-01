@@ -29,13 +29,8 @@ let DogsService = exports.DogsService = class DogsService {
         };
         return obj;
     }
-    async getDogs(page = 1, pageSize = 10) {
-        if (isNaN(page) || isNaN(pageSize)) {
-            page = 1;
-            pageSize = 10;
-        }
-        const skip = (page - 1) * pageSize;
-        return this.dogsRepository.find({ skip, take: pageSize });
+    async getDogs() {
+        return (await this.dogsRepository.find()).reverse();
     }
     async deleteOne(DogID) {
         this.getOne(DogID);
