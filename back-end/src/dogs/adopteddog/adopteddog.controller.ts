@@ -17,7 +17,8 @@ export class AdoptedDogsController {
     const startIndex = (page-1) * pageSize;
     const endIndex = startIndex + pageSize;
     const adoptedDog = adoptedDogs.slice(startIndex,endIndex);
-    return adoptedDog;
+    const totalItem = await this.adoptedDogsService.getAllAdoptedDogsCount();
+    return {totalItem, adoptedDog};
   }
   @Get(':id')
   getOneLostDog(@Param('id') ID: number)  {

@@ -14,6 +14,10 @@ export class AdoptedDogsService {
     const obj = dogs.filter(dog => dog.Status === "Adopted")
     return obj;
   }
+  async getAllAdoptedDogsCount(){
+    const totalItem = this.dogsRepository.count({where: {Status:"Adopted"}});
+    return totalItem;
+  }
   async getOneAdoptedDog(DogID: number): Promise<Dog> {
     let dogs = await this.dogsRepository.find();
     const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "Adopted"); 
