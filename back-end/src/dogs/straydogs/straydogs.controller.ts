@@ -1,4 +1,4 @@
-import { Query,Controller, Get, Param, Delete, Put, Patch,Post,Body } from '@nestjs/common';
+import { Query,Controller, Get, Param, Delete, Put, Post,Body } from '@nestjs/common';
 import { StrayDogsService } from './strayDogs.service';
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 
@@ -32,7 +32,7 @@ export class StrayDogsController {
   create(@Body() dogData) {
     this.strayDogsService.create(dogData);
   }
-  @Patch('/:id')
+  @Put('/:id')
   patch(@Param('id') DogID : number, @Body() updateData: UpdateDogDto) {
     this.strayDogsService.update(DogID,updateData);
   }

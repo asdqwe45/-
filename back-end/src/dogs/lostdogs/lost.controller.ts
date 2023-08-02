@@ -1,4 +1,4 @@
-import { Query, Controller, Get, Param, Delete, Put, Patch,Post,Body } from '@nestjs/common';
+import { Query, Controller, Get, Param, Delete, Put, Post,Body } from '@nestjs/common';
 import { LostDogsService } from './lost.service';
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 
@@ -32,7 +32,7 @@ export class LostDogsController {
   create(@Body() dogData) {
     this.lostDogsService.create(dogData);
   }
-  @Patch('/:id')
+  @Put('/:id')
   patch(@Param('id') DogID : number, @Body() updateData: UpdateDogDto) {
     this.lostDogsService.update(DogID,updateData);
   }
