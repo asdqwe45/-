@@ -17,7 +17,6 @@ __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], User.prototype, "seq", void 0);
-<<<<<<<< HEAD:back-end/dist/src/user/entities/user.entity.js
 __decorate([
     (0, typeorm_1.PrimaryColumn)(),
     __metadata("design:type", String)
@@ -28,18 +27,9 @@ __decorate([
 ], User.prototype, "Name", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-========
-__decorate([
-    (0, typeorm_1.Column)({ length: 255 }),
     __metadata("design:type", String)
-], User.prototype, "Name", void 0);
+], User.prototype, "Email", void 0);
 __decorate([
-    (0, typeorm_1.PrimaryColumn)({ length: 255 }),
->>>>>>>> 9e5682a248de612e46e97edd28c4f525805912c3:back-end/dist/src/admin/entities/admin.entity.js
-    __metadata("design:type", String)
-], User.prototype, "UserID", void 0);
-__decorate([
-<<<<<<<< HEAD:back-end/dist/src/user/entities/user.entity.js
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], User.prototype, "Password", void 0);
@@ -57,16 +47,9 @@ __decorate([
 ], User.prototype, "Address", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-========
-    (0, typeorm_1.Column)({ length: 255 }),
-    __metadata("design:type", String)
-], User.prototype, "Password", void 0);
-__decorate([
-    (0, typeorm_1.Column)('int'),
->>>>>>>> 9e5682a248de612e46e97edd28c4f525805912c3:back-end/dist/src/admin/entities/admin.entity.js
     __metadata("design:type", Number)
 ], User.prototype, "Admin", void 0);
 exports.User = User = __decorate([
     (0, typeorm_1.Entity)('User')
 ], User);
-//# sourceMappingURL=admin.entity.js.map
+//# sourceMappingURL=user.entity.js.map

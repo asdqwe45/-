@@ -10,14 +10,14 @@ export class AdoptedDogsController {
   @Get()
   async getDogs(@Query('page') page: number = 1, @Query('pageSize') pageSize:number = 10):Promise<any> {
     const adoptedDogs = await this.adoptedDogsService.getAllAdoptedDogs();
+    const totalItem = await this.adoptedDogsService.getAllAdoptedDogsCount();
     if(isNaN(page)||isNaN(pageSize)){
       page=1;
-      pageSize=100;
+      pageSize=totalItem;
     }
     const startIndex = (page-1) * pageSize;
     const endIndex = startIndex + pageSize;
     const adoptedDog = adoptedDogs.slice(startIndex,endIndex);
-    const totalItem = await this.adoptedDogsService.getAllAdoptedDogsCount();
     return {totalItem, adoptedDog};
   }
 }

@@ -9,14 +9,14 @@ export class DeadDogsController {
   @Get()
   async getDeadDogs(@Query('page') page: number = 1, @Query('pageSize') pageSize:number = 10):Promise<any> {
     const DeadDogs = await this.deadDogsService.getAllDeadDogs();
+    const totalItem = await this.deadDogsService.getAllDeadDogsCount();
     if(isNaN(page)||isNaN(pageSize)){
       page=1;
-      pageSize=100;
+      pageSize=totalItem;
     }
     const startIndex = (page-1) * pageSize;
     const endIndex = startIndex + pageSize;
     const DeadDog = DeadDogs.slice(startIndex,endIndex);
-    const totalItem = await this.deadDogsService.getAllDeadDogsCount();
     return {totalItem, DeadDog};
   }
 }

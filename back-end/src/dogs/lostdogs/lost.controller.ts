@@ -10,14 +10,14 @@ export class LostDogsController {
   @Get()
   async getDogs(@Query('page') page: number = 1, @Query('pageSize') pageSize:number = 100):Promise<any> {
     const lostDogs = await this.lostDogsService.getAllLostDogs();
+    const totalItem = await this.lostDogsService.getAllLostDogsCount();
     if(isNaN(page)||isNaN(pageSize)){
       page=1;
-      pageSize=100;
+      pageSize=totalItem;
     }
     const startIndex = (page-1) * pageSize;
     const endIndex = startIndex + pageSize;
     const lostDog = lostDogs.slice(startIndex,endIndex);
-    const totalItem = await this.lostDogsService.getAllLostDogsCount();
     return {totalItem,lostDog};
   }
   @Get(':id')

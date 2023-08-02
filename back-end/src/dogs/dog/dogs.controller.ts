@@ -7,13 +7,12 @@ import { Repository } from 'typeorm';
 export class DogsController {
   constructor(
     private readonly dogService: DogsService,
-    private dogsRepository: Repository<Dog>
-
   ) {}
-  private dogs: Dog[] = [];
+  private dogs : Dog[] = [];
   @Get()
   async getDogs() {
-    return this.dogService.getDogs();
+    const dog = await this.dogService.getDogs();
+    return {dog};
   }
 
   // @Get('/:id')

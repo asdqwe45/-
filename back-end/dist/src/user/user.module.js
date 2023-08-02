@@ -6,7 +6,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-<<<<<<<< HEAD:back-end/dist/src/user/user.module.js
 exports.UserModule = void 0;
 const common_1 = require("@nestjs/common");
 const user_controller_1 = require("./user.controller");
@@ -24,22 +23,3 @@ exports.UserModule = UserModule = __decorate([
     })
 ], UserModule);
 //# sourceMappingURL=user.module.js.map
-========
-exports.UrgentDogModule = void 0;
-const common_1 = require("@nestjs/common");
-const dogs_entity_1 = require("../entities/dogs.entity");
-const typeorm_1 = require("typeorm");
-const typeorm_2 = require("@nestjs/typeorm");
-const urgentdog_service_1 = require("./urgentdog.service");
-const urgentdog_controller_1 = require("./urgentdog.controller");
-let UrgentDogModule = exports.UrgentDogModule = class UrgentDogModule {
-};
-exports.UrgentDogModule = UrgentDogModule = __decorate([
-    (0, common_1.Module)({
-        imports: [typeorm_2.TypeOrmModule.forFeature([dogs_entity_1.Dog])],
-        controllers: [urgentdog_controller_1.UrgentDogController],
-        providers: [urgentdog_service_1.UrgentDogService, typeorm_1.Repository]
-    })
-], UrgentDogModule);
-//# sourceMappingURL=urgentdog.module.js.map
->>>>>>>> 9e5682a248de612e46e97edd28c4f525805912c3:back-end/dist/src/dogs/urgentdog/urgentdog.module.js

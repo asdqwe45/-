@@ -13,10 +13,10 @@ export class DogsService {
   private dogs : Dog[] = [];
 
   async getDogs( ){
-    return this.dogsRepository.find({
-      select: ['DogID','Age'],
-    });
-    // return (await this.dogsRepository.find()).reverse();
+    return (await this.dogsRepository.find()).reverse();
+  }
+  async getDogsCount(){
+    return await this.dogsRepository.count();
   }
   // async findAll(): Promise<User[]> {
   //   return this.userRepository.find({

@@ -37,10 +37,10 @@ exports.AppModule = AppModule = __decorate([
             lost_module_1.LostDogsModule,
             adopteddog_module_1.AdoptedDogsModule,
             deaddog_module_1.DeadDogsModule,
+            urgentdog_module_1.UrgentDogModule,
+            admin_module_1.AdminModule,
             user_module_1.UserModule,
             auth_module_1.AuthModule,
-            urgentdog_module_1.UrgentDogModule,
-            admin_module_1.AdminModule
         ],
         controllers: [],
         providers: [],

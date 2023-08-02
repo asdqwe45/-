@@ -22,14 +22,14 @@ let LostDogsController = exports.LostDogsController = class LostDogsController {
     }
     async getDogs(page = 1, pageSize = 100) {
         const lostDogs = await this.lostDogsService.getAllLostDogs();
+        const totalItem = await this.lostDogsService.getAllLostDogsCount();
         if (isNaN(page) || isNaN(pageSize)) {
             page = 1;
-            pageSize = 100;
+            pageSize = totalItem;
         }
         const startIndex = (page - 1) * pageSize;
         const endIndex = startIndex + pageSize;
         const lostDog = lostDogs.slice(startIndex, endIndex);
-        const totalItem = await this.lostDogsService.getAllLostDogsCount();
         return { totalItem, lostDog };
     }
     getOneLostDog(ID) {
@@ -75,7 +75,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], LostDogsController.prototype, "create", null);
 __decorate([
-    (0, common_1.Patch)('/:id'),
+    (0, common_1.Put)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),

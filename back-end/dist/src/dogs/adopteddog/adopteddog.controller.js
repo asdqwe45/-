@@ -21,14 +21,14 @@ let AdoptedDogsController = exports.AdoptedDogsController = class AdoptedDogsCon
     }
     async getDogs(page = 1, pageSize = 10) {
         const adoptedDogs = await this.adoptedDogsService.getAllAdoptedDogs();
+        const totalItem = await this.adoptedDogsService.getAllAdoptedDogsCount();
         if (isNaN(page) || isNaN(pageSize)) {
             page = 1;
-            pageSize = 100;
+            pageSize = totalItem;
         }
         const startIndex = (page - 1) * pageSize;
         const endIndex = startIndex + pageSize;
         const adoptedDog = adoptedDogs.slice(startIndex, endIndex);
-        const totalItem = await this.adoptedDogsService.getAllAdoptedDogsCount();
         return { totalItem, adoptedDog };
     }
 };

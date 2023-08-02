@@ -6,25 +6,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-<<<<<<<< HEAD:back-end/dist/src/user/user.module.js
-exports.UserModule = void 0;
-const common_1 = require("@nestjs/common");
-const user_controller_1 = require("./user.controller");
-const typeorm_1 = require("@nestjs/typeorm");
-const user_entity_1 = require("./entities/user.entity");
-const user_service_1 = require("./user.service");
-const typeorm_2 = require("typeorm");
-let UserModule = exports.UserModule = class UserModule {
-};
-exports.UserModule = UserModule = __decorate([
-    (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.User])],
-        controllers: [user_controller_1.UserController],
-        providers: [user_service_1.UserService, typeorm_2.Repository],
-    })
-], UserModule);
-//# sourceMappingURL=user.module.js.map
-========
 exports.UrgentDogModule = void 0;
 const common_1 = require("@nestjs/common");
 const dogs_entity_1 = require("../entities/dogs.entity");
@@ -42,4 +23,3 @@ exports.UrgentDogModule = UrgentDogModule = __decorate([
     })
 ], UrgentDogModule);
 //# sourceMappingURL=urgentdog.module.js.map
->>>>>>>> 9e5682a248de612e46e97edd28c4f525805912c3:back-end/dist/src/dogs/urgentdog/urgentdog.module.js

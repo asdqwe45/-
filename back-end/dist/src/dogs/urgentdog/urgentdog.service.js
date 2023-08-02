@@ -12,26 +12,30 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DogsService = void 0;
+exports.UrgentDogService = void 0;
 const common_1 = require("@nestjs/common");
 const dogs_entity_1 = require("../entities/dogs.entity");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
-let DogsService = exports.DogsService = class DogsService {
+let UrgentDogService = exports.UrgentDogService = class UrgentDogService {
     constructor(dogsRepository) {
         this.dogsRepository = dogsRepository;
-        this.dogs = [];
     }
-    async getDogs() {
-        return (await this.dogsRepository.find()).reverse();
-    }
-    async getDogsCount() {
-        return await this.dogsRepository.count();
+    async getRecommendedDogs() {
+        const urgentdogs = await this.dogsRepository
+            .createQueryBuilder('dog')
+            .where('dog.Status IN (:...status)', { status: ['Stray', 'Lost'] })
+            .orderBy('dog.RemainedDay', 'ASC')
+            .addOrderBy('dog.Age', 'DESC')
+            .addOrderBy('dog.EnteredDay', 'DESC')
+            .take(4)
+            .getMany();
+        return urgentdogs;
     }
 };
-exports.DogsService = DogsService = __decorate([
+exports.UrgentDogService = UrgentDogService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_2.InjectRepository)(dogs_entity_1.Dog)),
     __metadata("design:paramtypes", [typeorm_1.Repository])
-], DogsService);
-//# sourceMappingURL=dogs.service.js.map
+], UrgentDogService);
+//# sourceMappingURL=urgentdog.service.js.map

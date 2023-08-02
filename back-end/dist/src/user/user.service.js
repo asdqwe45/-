@@ -52,6 +52,9 @@ let UserService = exports.UserService = class UserService {
         const { seq, UserID, Name, Admin } = user;
         return { seq, UserID, Name, Admin };
     }
+    async findAllCount() {
+        return this.userRepository.count();
+    }
 };
 exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),

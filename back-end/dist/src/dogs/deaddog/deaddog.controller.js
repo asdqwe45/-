@@ -21,14 +21,14 @@ let DeadDogsController = exports.DeadDogsController = class DeadDogsController {
     }
     async getDeadDogs(page = 1, pageSize = 10) {
         const DeadDogs = await this.deadDogsService.getAllDeadDogs();
+        const totalItem = await this.deadDogsService.getAllDeadDogsCount();
         if (isNaN(page) || isNaN(pageSize)) {
             page = 1;
-            pageSize = 100;
+            pageSize = totalItem;
         }
         const startIndex = (page - 1) * pageSize;
         const endIndex = startIndex + pageSize;
         const DeadDog = DeadDogs.slice(startIndex, endIndex);
-        const totalItem = await this.deadDogsService.getAllDeadDogsCount();
         return { totalItem, DeadDog };
     }
 };

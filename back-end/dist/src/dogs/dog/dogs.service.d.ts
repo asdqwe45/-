@@ -5,4 +5,5 @@ export declare class DogsService {
     constructor(dogsRepository: Repository<Dog>);
     private dogs;
     getDogs(): Promise<Dog[]>;
+    getDogsCount(): Promise<number>;
 }

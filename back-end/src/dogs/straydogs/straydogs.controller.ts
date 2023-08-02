@@ -10,14 +10,14 @@ export class StrayDogsController {
   @Get()
   async getDogs(@Query('page') page: number = 1, @Query('pageSize') pageSize:number = 100):Promise<any> {
     const strayDogs = await this.strayDogsService.getAllStrayDogs();
+    const totalItem = await this.strayDogsService.getAllStrayDogsCount();
     if(isNaN(page)||isNaN(pageSize)){
       page=1;
-      pageSize=100;
+      pageSize=totalItem;
     }
     const startIndex = (page-1) * pageSize;
     const endIndex = startIndex + pageSize;
     const StrayDog = strayDogs.slice(startIndex,endIndex);
-    const totalItem = await this.strayDogsService.getAllStrayDogsCount();
     return {totalItem,StrayDog};
   }
   @Get(':id')

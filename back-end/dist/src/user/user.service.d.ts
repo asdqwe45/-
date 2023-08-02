@@ -10,4 +10,5 @@ export declare class UserService {
     create(createUserDto: CreateUserDto): Promise<any>;
     findAll(): Promise<User[]>;
     findOne(id: string): Promise<Partial<User>>;
+    findAllCount(): Promise<number>;
 }

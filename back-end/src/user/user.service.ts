@@ -56,4 +56,8 @@ export class UserService {
     const { seq, UserID, Name, Admin } = user;
     return { seq, UserID, Name, Admin };
   }
+
+  async findAllCount(){
+    return this.userRepository.count();
+  }
 }
