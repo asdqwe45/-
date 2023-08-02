@@ -3,71 +3,94 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import './Straydog.css';
+import ReactPaginate from 'react-paginate';
 
-const dogImages = [
-    ["/dog1.jpg", "/dog2.jpg", "/dog3.jpg", "/dog4.jpg", "/dog5.jpg", "/dog6.jpg", "/dog2.jpg", "/dog3.jpg", "/dog5.jpg", "/dog1.jpg", "/dog2.jpg", "/dog4.jpg", "/dog5.jpg", "/dog1.jpg", "/dog5.jpg"],
-    ["/dog1.jpg", "/dog2.jpg", "/dog3.jpg", "/dog4.jpg", "/dog5.jpg", "/dog6.jpg", "/dog4.jpg", "/dog3.jpg", "/dog4.jpg", "/dog1.jpg", "/dog1.jpg", "/dog2.jpg", "/dog3.jpg", "/dog4.jpg", "/dog5.jpg", "/dog6.jpg"],
-    // 추가 이미지 배열
-];
+function chunkArray(array, size) {
+    const chunked_arr = [];
+    let copied = [...array];
 
-const Straydog = () => {
+    while (copied.length > 0) {
+        chunked_arr.push(copied.splice(0, size));
+    }
+    return chunked_arr;
+}
+
+
+
+function Straydog() {
+    const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
-    const [Dogs, setDogs] = useState([]);
-    useEffect(() => {
-        const apiCall = async () => {
-        const response = await axios.get('/dogs');
-        console.log(response.data, '++++');   
-        setDogs(response.data.dogs)
-          
-        };
-        apiCall();
-      }, [])
-    
-    console.log('---')
-    console.log(Dogs)
+    const [totalPage, setTotalPage] = useState(0);
+    // console.log(data.length)
 
-    const filteredDogs = Dogs.filter(Dog => {
-        return Dog.Status === 'Stray';
-      });
-      //     [{id: 1, name: 'Alice', country: 'Canada'},
-      //     {id: 3, name: 'Carl', 'country: 'Canada'}]
-    console.log(filteredDogs, '*****');
-    
-    const dogImages1 = filteredDogs.map(dog => {
-        return dog.Image
-    })
-    console.log(dogImages1)
+    const dataChunks = chunkArray(data, 3);
+
+
+
+
+
+
+
+    // fetch data
+    const perPage = 12; // items per page
+    // total page count (24 items / 3 items per page = 8 pages)
+
+    // fetch data
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await axios.get(`/straydog?page=${currentPage + 1}&pageSize=${perPage}`);
+
+            setData(response.data.StrayDog); // set data
+            setTotalPage(Math.ceil(response.data.totalItem / perPage));
+            console.log(response.data)
+        }
+        fetchData();
+    }, [currentPage, perPage]);
+
+    // handle page click
+    const handlePageClick = (data) => {
+        let selected = data.selected;
+        setCurrentPage(selected);
+    };
 
     return (
-
-
-
-
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '60px' }}>
-            <h1 style={{ marginTop: '140px' }}>입양견 목록 페이지 입니다.</h1>
-
-
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '200px' }}>
+            <div>
+                <p>유기견 목록 페이지 입니다.</p>
+            </div>
             <table style={{ marginTop: '140px' }}>
-                <tbody>
-                    {Array.from({ length: 4 }).map((_, rowIndex) => (
-                        <tr key={rowIndex}>
-                            {filteredDogs[currentPage].slice(rowIndex * 4, rowIndex * 4 + 4).map((dogImage, index) => (
-                                <td key={index}>
-                                    
-                                    <div class="flip">
-                                        <div class="card">
+                <tbody >
+                    {dataChunks.map((chunk, i) =>
+                        <tr key={i} >
+                            {chunk.map(item =>
+                                <td key={item.DogId} >
+
+                                    <div className="flip" >
+                                        <div className="card" >
                                             {/* <!-- 앞면 --> */}
-                                            <div class="front">
-                                                <Link to="/straydog-detail" className="nav-link active">
-                                                    <img src={dogImage} alt={`Dog ${currentPage * 16 + rowIndex * 4 + index + 1}`} width="300" height="300" />
-                                                </Link>
-                                                
+                                            <div className="front">
+
+                                                <img src={item.Image} alt={item.DogId} style={{ width: '300px', height: '300px', }} className="nav-link active" />
+
+
                                             </div>
                                             {/* <!-- 뒷면 --> */}
-                                            <div class="back">
-                                                <Link to="/straydog-detail" className="nav-link active">
+                                            <div className="back">
+                                                <Link to={{ pathname: `/straydog-detail/${item.DogID}` }} className="nav-link active" state={{ dogID: item.dogID }}>
                                                     <div className='dogbaiscinfodiv'>
-                                                        <p>강아지 기본정보</p>
+                                                        <div>
+
+                                                            <p>
+                                                                나이 : {item.Age}
+                                                            </p>
+                                                            <p>
+                                                                성별 : {item.Sex}
+                                                            </p>
+                                                            <p>
+                                                                강아지 아이디 : {item.DogID}
+                                                            </p>
+
+                                                        </div>
                                                     </div>
 
 
@@ -77,33 +100,48 @@ const Straydog = () => {
                                         </div>
                                     </div>
 
-
-
+                                    {/* <img src={item.Image} alt={item.DogId} style={{ width: '300px', height: '300px', }} />
+                                    <p>{item.Sex}</p>
+                                    <p>{item.Age}</p>
+                                    <p>{item.DogID}</p> */}
 
                                 </td>
-                            ))}
+                            )}
                         </tr>
-                    ))}
+                    )}
                 </tbody>
             </table>
 
-            <Pagination>
-                <Pagination.Prev onClick={() => setCurrentPage(oldPage => Math.max(oldPage - 1, 0))} />
-                {dogImages.map((_, index) => (
-                    <Pagination.Item key={index} active={index === currentPage} onClick={() => setCurrentPage(index)}>
-                        {index + 1}
-                    </Pagination.Item>
-                ))}
-                <Pagination.Next onClick={() => setCurrentPage(oldPage => Math.min(oldPage + 1, dogImages.length - 1))} />
-            </Pagination>
+            <ReactPaginate
+                previousLabel={"prev"}
+                nextLabel={"next"}
+                breakLabel={"..."}
+                breakClassName={"break-me"}
+                pageCount={totalPage}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                subContainerClassName={"pages pagination"}
+                activeClassName={"active"}
+            />
 
         </div>
-
-
-
-
     );
-};
+}
+
+
+
+
+
+// const dogImages = [
+//     ["/dog1.jpg"]
+//     // ["/dog1.jpg", "/dog2.jpg", "/dog3.jpg", "/dog4.jpg", "/dog5.jpg", "/dog6.jpg", "/dog2.jpg", "/dog3.jpg", "/dog5.jpg", "/dog1.jpg", "/dog2.jpg", "/dog4.jpg", "/dog5.jpg", "/dog1.jpg", "/dog5.jpg"],
+//     // ["/dog1.jpg", "/dog2.jpg", "/dog3.jpg", "/dog4.jpg", "/dog5.jpg", "/dog6.jpg", "/dog4.jpg", "/dog3.jpg", "/dog4.jpg", "/dog1.jpg", "/dog1.jpg", "/dog2.jpg", "/dog3.jpg", "/dog4.jpg", "/dog5.jpg", "/dog6.jpg"],
+//     // 추가 이미지 배열
+// ];
+
+
 
 export default Straydog;
 

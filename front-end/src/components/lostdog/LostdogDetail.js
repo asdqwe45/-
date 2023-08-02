@@ -1,11 +1,11 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import './StraydogDetail.css';
+import '../straydog/StraydogDetail.css';
 
 
 
-const StraydogDetail = () => {
+const LostdogDetail = () => {
     const { id } = useParams()
     const [dog, setDog] = useState({
         "DogID": 37,
@@ -27,7 +27,7 @@ const StraydogDetail = () => {
     console.log('도그 아이디', id)
     useEffect(() => {
         const apiCall = async () => {
-            const response = await axios.get(`/straydog/${id}`);
+            const response = await axios.get(`/lostdog/${id}`);
             // console.log(response.data, '맞지?')
             setDog(response.data)
         }
@@ -36,7 +36,7 @@ const StraydogDetail = () => {
     }, [])
 
     const DeleteDog = async () => {
-        const response = await axios.delete(`/straydog/${id}`);
+        const response = await axios.delete(`/lostdog/${id}`);
         // console.log(response.data, '맞지?')
         setDog(response.data)
     }
@@ -47,7 +47,7 @@ const StraydogDetail = () => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '200px' }}>
             <h1>
-                유기견 상세정보
+                분실견 상세정보
             </h1>
             <div style={{ display: 'flex', alignItems: 'center', paddingTop: '40px' }}>
 
@@ -68,26 +68,17 @@ const StraydogDetail = () => {
                 </p>
             </div>
 
-            {/* 이건 user만 보이기 */}
+            {/* 해당 작성자와 관리자만 보이기 */}
             <div style={{ display: 'flex' }}>
                 <div style={{ paddingTop: '50px' }}>
-                    <button style={{ height: '50px', width: '80px' }}>
-                        입양하기
-                    </button>
-                </div>
-            </div>
-
-            {/* 이건 관리자만 보이기 */}
-            <div style={{ display: 'flex' }}>
-                <div style={{ paddingTop: '50px' }}>
-                    <Link to={{ pathname: `/admin/update/${id}` }} className="nav-link active">
+                    <Link to={{ pathname: `/lostdog/update/${id}` }} className="nav-link active">
                         <button style={{ height: '50px', width: '80px' }}>
                             수정하기
                         </button>
                     </Link>
                 </div>
                 <div style={{ paddingTop: '50px' }}>
-                    <Link to='/straydog' className="nav-link active">
+                    <Link to='/lostdog' className="nav-link active">
                         <button style={{ height: '50px', width: '80px' }} onClick={DeleteDog}>
                             삭제하기
                         </button>
@@ -100,4 +91,4 @@ const StraydogDetail = () => {
         </div>
     );
 };
-export default StraydogDetail
+export default LostdogDetail

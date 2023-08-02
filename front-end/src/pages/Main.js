@@ -12,6 +12,11 @@ import Aboutus from '../components/navbar/Aboutus'
 import YoutubeUCC from '../components/navbar/YoutubeUCC'
 import Mypage from '../components/navbar/Mypage'
 import Maincarousel from '../components/main/Carousel'
+import StraydogCreate from '../components/admin/straydogCreate'
+import StraydogUpdate from '../components/admin/straydogUpdate'
+import LostdogDetail from '../components/lostdog/LostdogDetail'
+import LostdogCreate from '../components/lostdog/LostdogCreate'
+import LostdogUpdate from '../components/lostdog/LostdogUpdate'
 import './Main.css';
 
 
@@ -35,6 +40,12 @@ const Main = (props) => {
         content = <StraydogFail />
     } else if (page === 'lostdog') {
         content = <Lostdog />
+    } else if (page === 'lostdog-detail') {
+        content = <LostdogDetail />
+    } else if (page === 'lostdog-create') {
+        content = <LostdogCreate />
+    } else if (page === 'lostdog-update') {
+        content = <LostdogUpdate />
     } else if (page === 'remoteplay') {
         content = <Remoteplay />
     } else if (page === 'remoteplay-guide') {
@@ -45,7 +56,11 @@ const Main = (props) => {
         content = <YoutubeUCC />
     } else if (page === 'mypage') {
         content = <Mypage />
-    }
+    } else if (page === 'admin-create') {
+        content = <StraydogCreate />
+    } else if (page === 'admin-update') {
+        content = <StraydogUpdate />
+    } 
 
     return (
 
