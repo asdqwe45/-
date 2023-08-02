@@ -20,17 +20,17 @@ let StrayDogsController = exports.StrayDogsController = class StrayDogsControlle
     constructor(strayDogsService) {
         this.strayDogsService = strayDogsService;
     }
-    async getDogs(page = 1, pageSize = 10) {
+    async getDogs(page = 1, pageSize = 100) {
         const strayDogs = await this.strayDogsService.getAllStrayDogs();
         if (isNaN(page) || isNaN(pageSize)) {
             page = 1;
-            pageSize = 10;
+            pageSize = 100;
         }
-        console.log(strayDogs);
         const startIndex = (page - 1) * pageSize;
         const endIndex = startIndex + pageSize;
         const StrayDog = strayDogs.slice(startIndex, endIndex);
-        return StrayDog;
+        const totalItem = await this.strayDogsService.getAllStrayDogsCount();
+        return { totalItem, StrayDog };
     }
     getOneStrayDog(ID) {
         return this.strayDogsService.getOneStrayDog(ID);

@@ -1,7 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { Dog } from 'src/dogs/entities/dogs.entity';
-import { User } from 'src/user/entities/user.entity';
+import { User } from 'src/users/entities/user.entity';
 dotenv.config();
 const ormconfig: TypeOrmModuleOptions = {
   type: 'mariadb', // 어떤 DB인가?

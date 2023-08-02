@@ -2,8 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Dog } from 'src/dogs/entities/dogs.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateDogDto } from 'src/dogs/DTO/create.dog.dto';
-import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 
 @Injectable()
 export class AdoptedDogsService {
@@ -12,16 +10,11 @@ export class AdoptedDogsService {
     private dogsRepository: Repository<Dog>,
   ) {}
   async getAllAdoptedDogs( ):Promise<any>{
-    const dogs = await this.dogsRepository.find();
-    const obj = dogs.filter(dog => dog.Status === "Adopted")
-    return obj;
+    const dogs = (await this.dogsRepository.find({where:{Status: "Adopted"}})).reverse();
+    return dogs;
   }
-  async getOneAdoptedDog(DogID: number): Promise<Dog> {
-    let dogs = await this.dogsRepository.find();
-    const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "Adopted"); 
-    if(!dog) {
-        throw new NotFoundException(`AdoptedDog with ID ${DogID} not found.`);
-    }
-    return dog;
+  async getAllAdoptedDogsCount(){
+    const totalItem = this.dogsRepository.count({where: {Status:"Adopted"}});
+    return totalItem;
   }
 }

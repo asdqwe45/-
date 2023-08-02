@@ -20,16 +20,17 @@ let LostDogsController = exports.LostDogsController = class LostDogsController {
     constructor(lostDogsService) {
         this.lostDogsService = lostDogsService;
     }
-    async getDogs(page = 1, pageSize = 10) {
+    async getDogs(page = 1, pageSize = 100) {
         const lostDogs = await this.lostDogsService.getAllLostDogs();
         if (isNaN(page) || isNaN(pageSize)) {
             page = 1;
-            pageSize = 10;
+            pageSize = 100;
         }
         const startIndex = (page - 1) * pageSize;
         const endIndex = startIndex + pageSize;
         const lostDog = lostDogs.slice(startIndex, endIndex);
-        return lostDog;
+        const totalItem = await this.lostDogsService.getAllLostDogsCount();
+        return { totalItem, lostDog };
     }
     getOneLostDog(ID) {
         return this.lostDogsService.getOneLostDog(ID);

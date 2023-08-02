@@ -12,15 +12,12 @@ export class AdoptedDogsController {
     const adoptedDogs = await this.adoptedDogsService.getAllAdoptedDogs();
     if(isNaN(page)||isNaN(pageSize)){
       page=1;
-      pageSize=10;
+      pageSize=100;
     }
     const startIndex = (page-1) * pageSize;
     const endIndex = startIndex + pageSize;
     const adoptedDog = adoptedDogs.slice(startIndex,endIndex);
-    return adoptedDog;
-  }
-  @Get(':id')
-  getOneLostDog(@Param('id') ID: number)  {
-    return this.adoptedDogsService.getOneAdoptedDog(ID);
+    const totalItem = await this.adoptedDogsService.getAllAdoptedDogsCount();
+    return {totalItem, adoptedDog};
   }
 }

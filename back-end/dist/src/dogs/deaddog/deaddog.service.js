@@ -21,18 +21,13 @@ let DeadDogsService = exports.DeadDogsService = class DeadDogsService {
     constructor(dogsRepository) {
         this.dogsRepository = dogsRepository;
     }
-    async getAllAdoptedDogs() {
-        const dogs = await this.dogsRepository.find();
-        const obj = dogs.filter(dog => dog.Status === "Dead");
-        return obj;
+    async getAllDeadDogs() {
+        const dogs = (await this.dogsRepository.find({ where: { Status: "Dead" } })).reverse();
+        return dogs;
     }
-    async getOneAdoptedDog(DogID) {
-        let dogs = await this.dogsRepository.find();
-        const dog = dogs.find((dog) => dog.DogID === DogID && dog.Status === "Dead");
-        if (!dog) {
-            throw new common_1.NotFoundException(`DeadDog with ID ${DogID} not found.`);
-        }
-        return dog;
+    async getAllDeadDogsCount() {
+        const totalItem = this.dogsRepository.count({ where: { Status: "Dead" } });
+        return totalItem;
     }
 };
 exports.DeadDogsService = DeadDogsService = __decorate([

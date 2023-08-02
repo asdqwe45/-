@@ -11,29 +11,28 @@ export class DogsController {
 
   ) {}
   private dogs: Dog[] = [];
-
-  @Get('/:id')
-  getOne(@Param('id') ID: number)  {
-    return this.dogService.getOne(ID);
-  }
-
   @Get()
-  async getDogs(@Query('page') page: number = 1, @Query('pageSize') pageSize:number = 10):Promise<Dog[]> {
-    return this.dogService.getDogs(page,pageSize);
+  async getDogs() {
+    return this.dogService.getDogs();
   }
 
-  @Delete('/:id')
-  deleteOne(@Param('id') ID: number): Promise<any> {
-    return this.dogService.deleteOne(ID);
-  }
+  // @Get('/:id')
+  // getOne(@Param('id') ID: number)  {
+  //   return this.dogService.getOne(ID);
+  // }
 
-  @Post()
-  create(@Body() dogData) {
-    this.dogService.create(dogData);
-  }
+  // @Delete('/:id')
+  // deleteOne(@Param('id') ID: number): Promise<any> {
+  //   return this.dogService.deleteOne(ID);
+  // }
+
+  // @Post()
+  // create(@Body() dogData) {
+  //   this.dogService.create(dogData);
+  // }
   
-  @Patch('/:id')
-  patch(@Param('id') DogID : number, @Body() updateData: UpdateDogDto) {
-    this.dogService.update(DogID,updateData);
-  }
+  // @Patch('/:id')
+  // patch(@Param('id') DogID : number, @Body() updateData: UpdateDogDto) {
+  //   this.dogService.update(DogID,updateData);
+  // }
 }

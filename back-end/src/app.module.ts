@@ -7,12 +7,16 @@ import { StrayDogsModule } from './dogs/straydogs/straydogs.module';
 import { LostDogsModule } from './dogs/lostdogs/lost.module';
 import { AdoptedDogsModule } from './dogs/adopteddog/adopteddog.module';
 import { DeadDogsModule } from './dogs/deaddog/deaddog.module';
-import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
+import { UrgentDogModule } from './dogs/urgentdog/urgentdog.module';
+import { AdminModule } from './admin/admin.module';
+
 @Module({
   imports: [
     DogsModule,
     StrayDogsModule,
+    LostDogsModule,
+    AdoptedDogsModule,
+    DeadDogsModule ,
     ConfigModule.forRoot({
       envFilePath: ['./development.env'],
     }),
@@ -20,8 +24,8 @@ import { AuthModule } from './auth/auth.module';
     LostDogsModule,
     AdoptedDogsModule,
     DeadDogsModule,
-    UserModule,
-    AuthModule,
+    UrgentDogModule,
+    AdminModule
   ],
   controllers: [],
   providers: [],
