@@ -18,6 +18,7 @@ import LostdogDetail from '../components/lostdog/LostdogDetail'
 import LostdogCreate from '../components/lostdog/LostdogCreate'
 import LostdogUpdate from '../components/lostdog/LostdogUpdate'
 import './Main.css';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -25,6 +26,13 @@ import './Main.css';
 const Main = (props) => {
 
     let content = <Maincarousel />
+
+    const navigate = useNavigate();
+
+    const signOut = () => {
+        localStorage.removeItem("rasyueToken");
+        navigate("/login");
+    };
 
     const page = props.page
     console.log(page)
@@ -60,7 +68,7 @@ const Main = (props) => {
         content = <StraydogCreate />
     } else if (page === 'admin-update') {
         content = <StraydogUpdate />
-    } 
+    }
 
     return (
 
@@ -85,6 +93,10 @@ const Main = (props) => {
                                 <span className="navbar-toggler-icon"></span>
                             </button>
                         </div>
+
+                        <button type="button" onClick={signOut}>
+                            Sign Out
+                        </button>
 
 
                         <div style={{

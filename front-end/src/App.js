@@ -1,11 +1,17 @@
 import './App.css';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import Main from './pages/Main'
 import Welcome from './pages/Welcome'
 import Login from './pages/Login'
+import Signup from './pages/Signup'
 import { useState } from 'react';
 
 function App() {
+
+  const RequireAuth = ({ children }) => {
+    const token = localStorage.getItem('rasyueToken');
+    return token ? children : <Navigate to="/login" />;
+  };
 
   const [dogID, setDogID] = useState(null)
 
@@ -23,38 +29,37 @@ function App() {
 
       {/* LOGIN */}
       <Route path="/login" element={<Login />} />
-
-
+      <Route path="/signup" element={<Signup />} />
 
       {/* MAIN */}
-      <Route path="/main" element={<Main page={'main'} />} />
-      <Route path="/main" element={<Main page={'main-carousel'} />} />
+      <Route path="/main" element={<RequireAuth><Main page={'main'} /></RequireAuth>} />
+      <Route path="/main" element={<RequireAuth><Main page={'main-carousel'} /></RequireAuth>} />
 
       {/* STRAYDOG */}
-      <Route path="/straydog" element={<Main page={'straydog'} />} />
-      <Route path="/straydog-detail/:id" element={<Main page={'straydog-detail'} />} />
-      <Route path="/straydog-guide" element={<Main page={'straydog-guide'} />} />
-      <Route path="/straydog-success" element={<Main page={'straydog-success'} />} />
-      <Route path="/straydog-fail" element={<Main page={'straydog-fail'} />} />
+      <Route path="/straydog" element={<RequireAuth><Main page={'straydog'} /></RequireAuth>} />
+      <Route path="/straydog-detail/:id" element={<RequireAuth><Main page={'straydog-detail'} /></RequireAuth>} />
+      <Route path="/straydog-guide" element={<RequireAuth><Main page={'straydog-guide'} /></RequireAuth>} />
+      <Route path="/straydog-success" element={<RequireAuth><Main page={'straydog-success'} /></RequireAuth>} />
+      <Route path="/straydog-fail" element={<RequireAuth><Main page={'straydog-fail'} /></RequireAuth>} />
 
       {/* LOSTDOG */}
-      <Route path="/lostdog" element={<Main page={'lostdog'} />} />
-      <Route path="/lostdog-detail/:id" element={<Main page={'lostdog-detail'} />} />
-      <Route path="/lostdog/create" element={<Main page={'lostdog-create'} />} />
-      <Route path="/lostdog/update/:id" element={<Main page={'lostdog-update'} />} />
+      <Route path="/lostdog" element={<RequireAuth><Main page={'lostdog'} /></RequireAuth>} />
+      <Route path="/lostdog-detail/:id" element={<RequireAuth><Main page={'lostdog-detail'} /></RequireAuth>} />
+      <Route path="/lostdog/create" element={<RequireAuth><Main page={'lostdog-create'} /></RequireAuth>} />
+      <Route path="/lostdog/update/:id" element={<RequireAuth><Main page={'lostdog-update'} /></RequireAuth>} />
 
       {/* REMOTEPLAY */}
-      <Route path="/remoteplay" element={<Main page={'remoteplay'} />} />
-      <Route path="/remoteplay-guide" element={<Main page={'remoteplay-guide'} />} />
+      <Route path="/remoteplay" element={<RequireAuth><Main page={'remoteplay'} /></RequireAuth>} />
+      <Route path="/remoteplay-guide" element={<RequireAuth><Main page={'remoteplay-guide'} /></RequireAuth>} />
 
       {/* NAVBAR */}
-      <Route path="/aboutus" element={<Main page={'aboutus'} />} />
-      <Route path="/ucc" element={<Main page={'ucc'} />} />
-      <Route path="/mypage" element={<Main page={'mypage'} />} />
+      <Route path="/aboutus" element={<RequireAuth><Main page={'aboutus'} /></RequireAuth>} />
+      <Route path="/ucc" element={<RequireAuth><Main page={'ucc'} /></RequireAuth>} />
+      <Route path="/mypage" element={<RequireAuth><Main page={'mypage'} /></RequireAuth>} />
 
       {/* ADMIN */}
-      <Route path="/admin/create" element={<Main page={'admin-create'} />} />
-      <Route path="/admin/update/:id" element={<Main page={'admin-update'} />} />
+      <Route path="/admin/create" element={<RequireAuth><Main page={'admin-create'} /></RequireAuth>} />
+      <Route path="/admin/update/:id" element={<RequireAuth><Main page={'admin-update'} /></RequireAuth>} />
     </Routes>
 
 
