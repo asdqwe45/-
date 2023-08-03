@@ -20,11 +20,22 @@ const urgentdog_module_1 = require("./dogs/urgentdog/urgentdog.module");
 const admin_module_1 = require("./admin/admin.module");
 const user_module_1 = require("./user/user.module");
 const auth_module_1 = require("./auth/auth.module");
+const cache_manager_1 = require("@nestjs/cache-manager");
+const token_middleware_1 = require("../middleware/token.middleware");
 let AppModule = exports.AppModule = class AppModule {
+    configure(consumer) {
+        consumer
+            .apply(token_middleware_1.TokenMiddleware)
+            .forRoutes({ path: 'dog', method: common_1.RequestMethod.ALL });
+    }
 };
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            cache_manager_1.CacheModule.register({
+                isGlobal: true,
+                ttl: 60,
+            }),
             dogs_module_1.DogsModule,
             straydogs_module_1.StrayDogsModule,
             lost_module_1.LostDogsModule,

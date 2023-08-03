@@ -1,13 +1,20 @@
-import { ForbiddenException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  ForbiddenException,
+  HttpStatus,
+  Injectable,
+  Inject,
+} from '@nestjs/common';
+import { CACHE_MANAGER } from '@nestjs/cache-manager/dist';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { User } from '../user/entities/user.entity';
 import { Repository } from 'typeorm';
+import { Cache } from 'cache-manager';
 import { InjectRepository } from '@nestjs/typeorm';
-import { LoginUserDto } from 'src/user/DTO/login.user.dto';
 @Injectable()
 export class AuthService {
   constructor(
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
     @InjectRepository(User)
     private userRepository: Repository<User>,
     private jwtService: JwtService,
@@ -45,8 +52,15 @@ export class AuthService {
       seq: user.seq,
       Admin: user.Admin,
     }; // 필요한 필드 추가
+
+    // JWT 토큰 생성
+    const token = this.jwtService.sign(payload);
+
+    // Redis에 토큰 저장
+    await this.cacheManager.set(token, JSON.stringify(user), 60);
+
     return {
-      accessToken: this.jwtService.sign(payload),
+      accessToken: token,
     };
   }
 }
