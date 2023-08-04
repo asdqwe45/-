@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { DogsModule } from './dogs/dog/dogs.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import ormconfig from '../ormconfig';
@@ -11,14 +11,19 @@ import { UrgentDogModule } from './dogs/urgentdog/urgentdog.module';
 import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
-
+import { CacheModule } from '@nestjs/cache-manager';
+import { TokenMiddleware } from 'middleware/token.middleware';
 @Module({
   imports: [
+    CacheModule.register({
+      isGlobal: true,
+      ttl: 60,
+    }),
     DogsModule,
     StrayDogsModule,
     LostDogsModule,
     AdoptedDogsModule,
-    DeadDogsModule ,
+    DeadDogsModule,
     ConfigModule.forRoot({
       envFilePath: ['./development.env'],
     }),
@@ -34,4 +39,10 @@ import { AuthModule } from './auth/auth.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(TokenMiddleware)
+      .forRoutes({ path: 'dog', method: RequestMethod.ALL });
+  }
+}

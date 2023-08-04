@@ -1,24 +1,32 @@
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import Remoteplaycarousel from './RemoteplayCarousel'
+
+
 const Remoteplay = () => {
+
+    const [urgentdog, seturgentdog] = useState()
+    let content = <h1>로딩중 ... </h1>
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await axios.get('/urgentdog');
+
+            seturgentdog(response.data)
+            
+            console.log(response.data)
+        }
+        fetchData();
+    }, [])
+    if ( urgentdog !== null){
+        content = <Remoteplaycarousel urgentdog={urgentdog}/>
+    }
+
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '200px' }}>
-            <h1>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
+            <h1 style={{marginBottom : '100px'}}>
                 원격놀이
             </h1>
-            <p>
-                원격놀이 1
-            </p>
-            <p>
-                원격놀이 2
-            </p>
-            <p>
-                원격놀이 3
-            </p>
-            <p>
-                원격놀이 4
-            </p>
-            <p>
-                원격놀이 5
-            </p>
+            {content}
         </div>
     );
 };

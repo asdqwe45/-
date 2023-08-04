@@ -14,13 +14,15 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
+const dist_1 = require("@nestjs/cache-manager/dist");
 const jwt_1 = require("@nestjs/jwt");
 const bcrypt = require("bcrypt");
 const user_entity_1 = require("../user/entities/user.entity");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
 let AuthService = exports.AuthService = class AuthService {
-    constructor(userRepository, jwtService) {
+    constructor(cacheManager, userRepository, jwtService) {
+        this.cacheManager = cacheManager;
         this.userRepository = userRepository;
         this.jwtService = jwtService;
     }
@@ -53,15 +55,18 @@ let AuthService = exports.AuthService = class AuthService {
             seq: user.seq,
             Admin: user.Admin,
         };
+        const token = this.jwtService.sign(payload);
+        await this.cacheManager.set(token, JSON.stringify(user), 60);
         return {
-            accessToken: this.jwtService.sign(payload),
+            accessToken: token,
         };
     }
 };
 exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_2.InjectRepository)(user_entity_1.User)),
-    __metadata("design:paramtypes", [typeorm_1.Repository,
+    __param(0, (0, common_1.Inject)(dist_1.CACHE_MANAGER)),
+    __param(1, (0, typeorm_2.InjectRepository)(user_entity_1.User)),
+    __metadata("design:paramtypes", [Object, typeorm_1.Repository,
         jwt_1.JwtService])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map
