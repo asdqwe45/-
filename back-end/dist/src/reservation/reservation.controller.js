@@ -12,30 +12,26 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UrgentDogService = void 0;
+exports.ReservationController = void 0;
 const common_1 = require("@nestjs/common");
-const dogs_entity_1 = require("../entities/dogs.entity");
-const typeorm_1 = require("typeorm");
-const typeorm_2 = require("@nestjs/typeorm");
-let UrgentDogService = exports.UrgentDogService = class UrgentDogService {
-    constructor(dogsRepository) {
-        this.dogsRepository = dogsRepository;
+const reservation_service_1 = require("./reservation.service");
+let ReservationController = exports.ReservationController = class ReservationController {
+    constructor(reservationService) {
+        this.reservationService = reservationService;
     }
-    async getRecommendedDogs() {
-        const urgentdogs = await this.dogsRepository
-            .createQueryBuilder('dog')
-            .where('dog.Status IN (:...status)', { status: ['Stray'] })
-            .orderBy('dog.RemainedDay', 'ASC')
-            .addOrderBy('dog.Age', 'DESC')
-            .addOrderBy('dog.EnteredDay', 'DESC')
-            .take(4)
-            .getMany();
-        return urgentdogs;
+    async getReservedTimeByDate(date = new Date()) {
+        return this.reservationService.getReservedTimeByDate(date);
     }
 };
-exports.UrgentDogService = UrgentDogService = __decorate([
-    (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_2.InjectRepository)(dogs_entity_1.Dog)),
-    __metadata("design:paramtypes", [typeorm_1.Repository])
-], UrgentDogService);
-//# sourceMappingURL=urgentdog.service.js.map
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)('date')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Date]),
+    __metadata("design:returntype", Promise)
+], ReservationController.prototype, "getReservedTimeByDate", null);
+exports.ReservationController = ReservationController = __decorate([
+    (0, common_1.Controller)('reservation'),
+    __metadata("design:paramtypes", [reservation_service_1.ReservationService])
+], ReservationController);
+//# sourceMappingURL=reservation.controller.js.map
