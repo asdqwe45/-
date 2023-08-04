@@ -40,12 +40,12 @@ const StraydogDetail = () => {
         // console.log(response.data, '맞지?')
         setDog(response.data)
     }
-    
+
 
     // console.log(dog, '아니야?')
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '200px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <h1>
                 유기견 상세정보
             </h1>
@@ -71,9 +71,11 @@ const StraydogDetail = () => {
             {/* 이건 user만 보이기 */}
             <div style={{ display: 'flex' }}>
                 <div style={{ paddingTop: '50px' }}>
-                    <button style={{ height: '50px', width: '80px' }}>
-                        입양하기
-                    </button>
+                    <Link to='/reservation' className="nav-link active" state={{ dogID: dog.DogID }}>
+                        <button style={{ height: '50px', width: '80px' }}>
+                            입양하기
+                        </button>
+                    </Link>
                 </div>
             </div>
 
@@ -92,11 +94,11 @@ const StraydogDetail = () => {
                             삭제하기
                         </button>
                     </Link>
-                    
+
 
                 </div>
             </div>
-            
+
         </div>
     );
 };

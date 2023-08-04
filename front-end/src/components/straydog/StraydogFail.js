@@ -55,7 +55,7 @@ function StraydogFail() {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '200px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <p>추모 페이지 입니다.</p>
             <table style={{ marginTop: '140px' }}>
                 <tbody >

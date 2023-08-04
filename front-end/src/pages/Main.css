@@ -113,3 +113,7 @@
     opacity: 1;
     /* 투명도를 없애서 완전히 보이게 합니다 */
 }
+
+.backg {
+    background-color: #e2d9ce;
+}

@@ -40,12 +40,12 @@ const LostdogDetail = () => {
         // console.log(response.data, '맞지?')
         setDog(response.data)
     }
-    
+
 
     // console.log(dog, '아니야?')
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '200px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <h1>
                 분실견 상세정보
             </h1>
@@ -83,11 +83,11 @@ const LostdogDetail = () => {
                             삭제하기
                         </button>
                     </Link>
-                    
+
 
                 </div>
             </div>
-            
+
         </div>
     );
 };

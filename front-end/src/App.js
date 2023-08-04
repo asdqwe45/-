@@ -35,6 +35,9 @@ function App() {
       <Route path="/main" element={<RequireAuth><Main page={'main'} /></RequireAuth>} />
       <Route path="/main" element={<RequireAuth><Main page={'main-carousel'} /></RequireAuth>} />
 
+      {/* RESERVATION */}
+      <Route path="/reservation" element={<RequireAuth><Main page={'reservation'} /></RequireAuth>} />
+
       {/* STRAYDOG */}
       <Route path="/straydog" element={<RequireAuth><Main page={'straydog'} /></RequireAuth>} />
       <Route path="/straydog-detail/:id" element={<RequireAuth><Main page={'straydog-detail'} /></RequireAuth>} />

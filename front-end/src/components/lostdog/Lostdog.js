@@ -56,7 +56,7 @@ function Lostdog() {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '200px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <p>분실견 페이지입니다.</p>
             <table style={{ marginTop: '140px' }}>
                 <tbody >

@@ -17,6 +17,7 @@ import StraydogUpdate from '../components/admin/straydogUpdate'
 import LostdogDetail from '../components/lostdog/LostdogDetail'
 import LostdogCreate from '../components/lostdog/LostdogCreate'
 import LostdogUpdate from '../components/lostdog/LostdogUpdate'
+import Reservation from '../components/reservation/Reservation'
 import './Main.css';
 import { useNavigate } from "react-router-dom";
 
@@ -68,11 +69,13 @@ const Main = (props) => {
         content = <StraydogCreate />
     } else if (page === 'admin-update') {
         content = <StraydogUpdate />
+    } else if (page === 'reservation') {
+        content = <Reservation />
     }
 
     return (
 
-        <div>
+        <div className='backg'>
             <div>
                 <nav className="navbar navbar-expand-lg bg-body-none fixed-top">
                     <div className="container-fluid" style={{
@@ -147,7 +150,7 @@ const Main = (props) => {
                             flex: '1',
                             display: 'flex',
                             justifyContent: 'flex-end'
-                        }} className="collapse navbar-collapse" id="navbarNav">
+                        }} className="collapse navbar-collapse " id="navbarNav">
                             <ul className="navbar-nav ms-auto">
 
                                 <li className="nav-item">
@@ -187,10 +190,14 @@ const Main = (props) => {
             <div >
                 {content}
             </div>
-            <hr />
-            <div style={{ marginTop: '60px', marginLeft: '60px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
 
-                <p>(주) 백문이불여일犬
+                <hr style={{ width: '1000px' }} />
+            </div>
+
+            <div style={{ marginTop: '40px', marginLeft: '160px', paddingBottom: '40px' }}>
+
+                <p style={{ marginBottom: '-1px' }}>(주) 백문이불여일犬
                     <br />
                     Address : 광주시 광산구 장덕동 삼성사업장
                     <br />

@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { setToken } from "./Auth";
 
 
@@ -31,12 +30,14 @@ export default (props) => {
                 if (res.data.accessToken) {
                     setToken(res.data.accessToken);
                     navigate("/main");
+
                 }
             })
             .catch((error) => {
                 console.log(error, "error");
                 alert('아이디 혹은 비밀번호가 틀렸습니다.');
             });
+
     };
 
     return (
