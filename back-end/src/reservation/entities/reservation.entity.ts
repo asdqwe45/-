@@ -3,6 +3,7 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity('Reservation')
 export class Reservation { 
   [x: string]: any;
+
   @PrimaryGeneratedColumn()
   ReservationID: number;
 
@@ -20,4 +21,5 @@ export class Reservation {
 
   @Column({ length: 255 })
   Type: string;
+  
 }

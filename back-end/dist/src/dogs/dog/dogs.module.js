@@ -13,13 +13,14 @@ const dogs_service_1 = require("./dogs.service");
 const dogs_entity_1 = require("../entities/dogs.entity");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
+const endpoint_service_1 = require("../../endpoint/endpoint.service");
 let DogsModule = exports.DogsModule = class DogsModule {
 };
 exports.DogsModule = DogsModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_2.TypeOrmModule.forFeature([dogs_entity_1.Dog])],
         controllers: [dogs_controller_1.DogsController],
-        providers: [dogs_service_1.DogsService, typeorm_1.Repository]
+        providers: [dogs_service_1.DogsService, typeorm_1.Repository, endpoint_service_1.EndpointService]
     })
 ], DogsModule);
 //# sourceMappingURL=dogs.module.js.map

@@ -51,6 +51,9 @@ let ReservationService = exports.ReservationService = class ReservationService {
     isValidDate(date) {
         return !isNaN(date.getTime());
     }
+    async deleteOne(ID) {
+        return await this.reservationRepository.delete({ ReservationID: ID });
+    }
 };
 exports.ReservationService = ReservationService = __decorate([
     (0, common_1.Injectable)(),

@@ -56,7 +56,7 @@ let AuthService = exports.AuthService = class AuthService {
             Admin: user.Admin,
         };
         const token = this.jwtService.sign(payload);
-        await this.cacheManager.set(token, JSON.stringify(user), 60);
+        await this.cacheManager.set(token, JSON.stringify(user), 0);
         return {
             accessToken: token,
         };

@@ -5,4 +5,5 @@ export declare class ReservationService {
     constructor(reservationRepository: Repository<Reservation>);
     getReservedTimeByDate(date: Date): Promise<string[]>;
     isValidDate(date: Date): boolean;
+    deleteOne(ID: number): Promise<import("typeorm").DeleteResult>;
 }

@@ -56,8 +56,7 @@ export class AuthService {
     // JWT 토큰 생성
     const token = this.jwtService.sign(payload);
 
-    // Redis에 토큰 저장
-    await this.cacheManager.set(token, JSON.stringify(user), 60);
+    await this.cacheManager.set(token, JSON.stringify(user),0);
 
     return {
       accessToken: token,

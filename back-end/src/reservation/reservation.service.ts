@@ -44,10 +44,12 @@ export class ReservationService {
         
         return Result;
     }
-    isValidDate(date:Date):boolean{
+    isValidDate(date:Date): boolean {
         return !isNaN(date.getTime());
     }
-
+    async deleteOne(ID: number) {
+        return await this.reservationRepository.delete({ReservationID:ID});
+    }
 
 //   async getAllLostDogs( ):Promise<any>{
 //     const dogs = (await this.dogsRepository.find({where:{Status:"Lost"}})).reverse();

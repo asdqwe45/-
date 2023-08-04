@@ -22,6 +22,9 @@ let ReservationController = exports.ReservationController = class ReservationCon
     async getReservedTimeByDate(date = new Date()) {
         return this.reservationService.getReservedTimeByDate(date);
     }
+    async deleteOne(ID) {
+        return await this.reservationService.deleteOne(ID);
+    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -30,6 +33,13 @@ __decorate([
     __metadata("design:paramtypes", [Date]),
     __metadata("design:returntype", Promise)
 ], ReservationController.prototype, "getReservedTimeByDate", null);
+__decorate([
+    (0, common_1.Delete)('/:reservationID'),
+    __param(0, (0, common_1.Param)('reservationID')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ReservationController.prototype, "deleteOne", null);
 exports.ReservationController = ReservationController = __decorate([
     (0, common_1.Controller)('reservation'),
     __metadata("design:paramtypes", [reservation_service_1.ReservationService])

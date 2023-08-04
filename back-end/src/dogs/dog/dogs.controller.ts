@@ -1,17 +1,25 @@
-import { Controller, Get, Param, Delete, Put, Patch,Post,Body,Query, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Param, Delete, Put, Patch,Post,Body,Query, ParseIntPipe, UseGuards, Request } from '@nestjs/common';
 import { DogsService } from './dogs.service';
 import { Dog } from '../entities/dogs.entity';
 import { UpdateDogDto } from '../DTO/update.dog.dto';
 import { Repository } from 'typeorm';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { EndpointService } from 'src/endpoint/endpoint.service';
 @Controller('dog')
 export class DogsController {
   constructor(
     private readonly dogService: DogsService,
+    private readonly endpointService: EndpointService,
   ) {}
   private dogs : Dog[] = [];
+  //@UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Get()
-  async getDogs() {
-    const dog = await this.dogService.getDogs();
+  async getDogs(@Request() req) {
+    console.log(req.body);
+    console.log(req);
+     const dog = await this.dogService.getDogs();
+    // his.endpointService.getRespose(req);
     return {dog};
   }
 

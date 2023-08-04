@@ -12,33 +12,28 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DogsController = void 0;
+exports.EndpointController = void 0;
 const common_1 = require("@nestjs/common");
-const dogs_service_1 = require("./dogs.service");
-const endpoint_service_1 = require("../../endpoint/endpoint.service");
-let DogsController = exports.DogsController = class DogsController {
-    constructor(dogService, endpointService) {
-        this.dogService = dogService;
+const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
+const endpoint_service_1 = require("./endpoint.service");
+let EndpointController = exports.EndpointController = class EndpointController {
+    constructor(endpointService) {
         this.endpointService = endpointService;
-        this.dogs = [];
     }
-    async getDogs(req) {
-        console.log(req.body);
-        console.log(req);
-        const dog = await this.dogService.getDogs();
-        return { dog };
+    async getResponse(req) {
+        return this.endpointService.getRespose(req);
     }
 };
 __decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)(),
     __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], DogsController.prototype, "getDogs", null);
-exports.DogsController = DogsController = __decorate([
-    (0, common_1.Controller)('dog'),
-    __metadata("design:paramtypes", [dogs_service_1.DogsService,
-        endpoint_service_1.EndpointService])
-], DogsController);
-//# sourceMappingURL=dogs.controller.js.map
+], EndpointController.prototype, "getResponse", null);
+exports.EndpointController = EndpointController = __decorate([
+    (0, common_1.Controller)('endpoint'),
+    __metadata("design:paramtypes", [endpoint_service_1.EndpointService])
+], EndpointController);
+//# sourceMappingURL=endpoint.controller.js.map
