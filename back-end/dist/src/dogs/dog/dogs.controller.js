@@ -24,7 +24,7 @@ let DogsController = exports.DogsController = class DogsController {
     }
     async getDogs(req) {
         console.log(req.body);
-        console.log(req);
+        console.log(req.User);
         const dog = await this.dogService.getDogs();
         return { dog };
     }

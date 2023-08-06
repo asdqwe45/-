@@ -5,6 +5,8 @@ import { UpdateDogDto } from '../DTO/update.dog.dto';
 import { Repository } from 'typeorm';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { EndpointService } from 'src/endpoint/endpoint.service';
+import { AuthGuard } from '@nestjs/passport';
+
 @Controller('dog')
 export class DogsController {
   constructor(
@@ -12,12 +14,12 @@ export class DogsController {
     private readonly endpointService: EndpointService,
   ) {}
   private dogs : Dog[] = [];
-  //@UseGuards(JwtAuthGuard)
-  //@UseGuards(JwtAuthGuard)
   @Get()
+  //@UseGuards(JwtAuthGuard)
+  //@UseGuards(AuthGuard('jwt'))
   async getDogs(@Request() req) {
     console.log(req.body);
-    console.log(req);
+    console.log(req.User);
      const dog = await this.dogService.getDogs();
     // his.endpointService.getRespose(req);
     return {dog};

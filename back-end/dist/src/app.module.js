@@ -24,6 +24,8 @@ const cache_manager_1 = require("@nestjs/cache-manager");
 const token_middleware_1 = require("../middleware/token.middleware");
 const reservation_module_1 = require("./reservation/reservation.module");
 const endpoint_module_1 = require("./endpoint/endpoint.module");
+const app_controller_1 = require("./app.controller");
+const app_service_1 = require("./app.service");
 let AppModule = exports.AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -57,8 +59,8 @@ exports.AppModule = AppModule = __decorate([
             reservation_module_1.ReservationModule,
             endpoint_module_1.EndpointModule,
         ],
-        controllers: [],
-        providers: [],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

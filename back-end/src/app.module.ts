@@ -15,6 +15,8 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { TokenMiddleware } from 'middleware/token.middleware';
 import { ReservationModule } from './reservation/reservation.module';
 import { EndpointModule } from './endpoint/endpoint.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 @Module({
   imports: [
     CacheModule.register({
@@ -40,8 +42,8 @@ import { EndpointModule } from './endpoint/endpoint.module';
     ReservationModule,
     EndpointModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
