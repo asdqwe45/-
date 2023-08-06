@@ -2,7 +2,7 @@ import { Query, Controller, Get, Param, Delete, Put, Patch,Post,Body } from '@ne
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 import { AdoptedDogsService } from './adopteddog.service';
 
-@Controller('adopteddog')
+@Controller('api/adopteddog')
 export class AdoptedDogsController {
   constructor(
     private readonly adoptedDogsService: AdoptedDogsService

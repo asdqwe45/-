@@ -22,6 +22,8 @@ const user_module_1 = require("./user/user.module");
 const auth_module_1 = require("./auth/auth.module");
 const cache_manager_1 = require("@nestjs/cache-manager");
 const token_middleware_1 = require("../middleware/token.middleware");
+const serve_static_1 = require("@nestjs/serve-static");
+const path_1 = require("path");
 let AppModule = exports.AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -32,6 +34,9 @@ let AppModule = exports.AppModule = class AppModule {
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: (0, path_1.join)(__dirname, '..', '../../front-end/build')
+            }),
             cache_manager_1.CacheModule.register({
                 isGlobal: true,
                 ttl: 60,

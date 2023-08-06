@@ -3,7 +3,7 @@ import { DogsService } from './dogs.service';
 import { Dog } from '../entities/dogs.entity';
 import { UpdateDogDto } from '../DTO/update.dog.dto';
 import { Repository } from 'typeorm';
-@Controller('dog')
+@Controller('api/dog')
 export class DogsController {
   constructor(
     private readonly dogService: DogsService,

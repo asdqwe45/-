@@ -1,4 +1,4 @@
-import { StrayDogsService } from './strayDogs.service';
+import { StrayDogsService } from './straydogs.service';
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 export declare class StrayDogsController {
     private readonly strayDogsService;

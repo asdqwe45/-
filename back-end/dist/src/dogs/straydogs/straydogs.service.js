@@ -51,4 +51,4 @@ exports.StrayDogsService = StrayDogsService = __decorate([
     __param(0, (0, typeorm_2.InjectRepository)(dogs_entity_1.Dog)),
     __metadata("design:paramtypes", [typeorm_1.Repository])
 ], StrayDogsService);
-//# sourceMappingURL=strayDogs.service.js.map
+//# sourceMappingURL=straydogs.service.js.map

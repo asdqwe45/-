@@ -73,7 +73,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AdminController.prototype, "getOneUser", null);
 exports.AdminController = AdminController = __decorate([
-    (0, common_1.Controller)('admin'),
+    (0, common_1.Controller)('api/admin'),
     __metadata("design:paramtypes", [dogs_service_1.DogsService,
         user_service_1.UserService])
 ], AdminController);

@@ -13,8 +13,13 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { TokenMiddleware } from 'middleware/token.middleware';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath:join(__dirname,'..','../../front-end/build')
+    }),
     CacheModule.register({
       isGlobal: true,
       ttl: 60,

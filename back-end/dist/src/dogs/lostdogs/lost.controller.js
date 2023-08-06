@@ -83,7 +83,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], LostDogsController.prototype, "patch", null);
 exports.LostDogsController = LostDogsController = __decorate([
-    (0, common_1.Controller)('lostdog'),
+    (0, common_1.Controller)('api/lostdog'),
     __metadata("design:paramtypes", [lost_service_1.LostDogsService])
 ], LostDogsController);
 //# sourceMappingURL=lost.controller.js.map

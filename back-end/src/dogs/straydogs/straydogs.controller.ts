@@ -1,8 +1,8 @@
 import { Query,Controller, Get, Param, Delete, Put, Post,Body } from '@nestjs/common';
-import { StrayDogsService } from './strayDogs.service';
+import { StrayDogsService } from './straydogs.service';
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 
-@Controller('straydog')
+@Controller('api/straydog')
 export class StrayDogsController {
   constructor(
     private readonly strayDogsService: StrayDogsService

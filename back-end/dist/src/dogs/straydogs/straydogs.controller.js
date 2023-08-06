@@ -14,7 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StrayDogsController = void 0;
 const common_1 = require("@nestjs/common");
-const strayDogs_service_1 = require("./strayDogs.service");
+const straydogs_service_1 = require("./straydogs.service");
 const update_dog_dto_1 = require("../DTO/update.dog.dto");
 let StrayDogsController = exports.StrayDogsController = class StrayDogsController {
     constructor(strayDogsService) {
@@ -83,7 +83,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StrayDogsController.prototype, "patch", null);
 exports.StrayDogsController = StrayDogsController = __decorate([
-    (0, common_1.Controller)('straydog'),
-    __metadata("design:paramtypes", [strayDogs_service_1.StrayDogsService])
+    (0, common_1.Controller)('api/straydog'),
+    __metadata("design:paramtypes", [straydogs_service_1.StrayDogsService])
 ], StrayDogsController);
 //# sourceMappingURL=straydogs.controller.js.map
