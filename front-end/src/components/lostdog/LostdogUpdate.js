@@ -32,7 +32,7 @@ const LostdogUpdate = () => {
     console.log('도그 아이디', id)
     useEffect(() => {
         const apiCall = async () => {
-            const response = await axios.get(`/lostdog/${id}`);
+            const response = await axios.get(`/api/lostdog/${id}`);
             console.log(response.data, '맞지?')
             setDog(response.data)
         }
@@ -124,7 +124,7 @@ const LostdogUpdate = () => {
         console.log(LostDate)
         console.log(typeof Date(LostDate), 2)
         // PUT 요청
-        axios.put(`/lostdog/${id}`, JSON.stringify(
+        axios.put(`/api/lostdog/${id}`, JSON.stringify(
             {
                 Sex: Sex,
                 Age: Age,

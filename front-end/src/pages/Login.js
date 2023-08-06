@@ -20,7 +20,7 @@ export default (props) => {
     const onClickLogin = () => {
         console.log('들어옴?')
         axios
-            .post("http://localhost:3001/user/login", {
+            .post("/api/user/login", {
                 UserID: inputId,
                 Password: inputPw,
             })

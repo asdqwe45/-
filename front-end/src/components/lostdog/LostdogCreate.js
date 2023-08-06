@@ -105,7 +105,7 @@ const LostdogCreate = () => {
         else {
             // e.preventDefault();
             console.log(LostDate, 11212121212)
-            axios.post('/lostdog', JSON.stringify(
+            axios.post('/api/lostdog', JSON.stringify(
                 {
                     "Sex": Sex,
                     "Age": Age,
