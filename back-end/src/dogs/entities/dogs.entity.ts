@@ -21,7 +21,7 @@ export class Dog {
   @Column({ length: 50 })
   Breed: string;
 
-  @Column('int')
+  @Column('int', { nullable: true })
   RemainedDay: number;
 
   @Column({ length: 50 })
@@ -51,6 +51,6 @@ export class Dog {
   @Column({ length: 255 })
   Comment: string;
 
-  @Column({ length: 255 })
+  @Column({ length: 255, nullable: true })
   UserID: string;
 }
