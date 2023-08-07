@@ -48,9 +48,9 @@ export class Dog {
   @Column({ length: 50, nullable: true })
   ReturnedHome: string;
 
-  @Column({ length: 255 })
+  @Column({ length: 255 , nullable: true }})
   Comment: string;
 
-  @Column({ length: 255, nullable: true })
+  @Column({ length: 255})
   UserID: string;
 }
