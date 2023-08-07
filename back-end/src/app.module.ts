@@ -13,12 +13,14 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { TokenMiddleware } from 'middleware/token.middleware';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import { ReservationModule } from './reservation/reservation.module';
-import { EndpointModule } from './endpoint/endpoint.module';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath:join(__dirname,'..','../../front-end/build')
+    }),
     CacheModule.register({
       isGlobal: true,
       ttl: 60,
@@ -39,8 +41,7 @@ import { AppService } from './app.service';
     AdminModule,
     UserModule,
     AuthModule,
-    ReservationModule,
-    EndpointModule,
+    ReservationModule
   ],
   controllers: [AppController],
   providers: [AppService],

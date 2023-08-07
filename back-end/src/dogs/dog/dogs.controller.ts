@@ -3,11 +3,7 @@ import { DogsService } from './dogs.service';
 import { Dog } from '../entities/dogs.entity';
 import { UpdateDogDto } from '../DTO/update.dog.dto';
 import { Repository } from 'typeorm';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { EndpointService } from 'src/endpoint/endpoint.service';
-import { AuthGuard } from '@nestjs/passport';
-
-@Controller('dog')
+@Controller('api/dog')
 export class DogsController {
   constructor(
     private readonly dogService: DogsService,

@@ -1,7 +1,7 @@
 import { Query, Controller, Get, Param} from '@nestjs/common';
 import { DeadDogsService } from './deaddog.service';
 
-@Controller('deaddog')
+@Controller('api/deaddog')
 export class DeadDogsController {
   constructor(
     private readonly deadDogsService: DeadDogsService

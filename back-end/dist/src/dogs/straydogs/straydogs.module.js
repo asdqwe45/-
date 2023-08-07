@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StrayDogsModule = void 0;
 const common_1 = require("@nestjs/common");
 const straydogs_controller_1 = require("./straydogs.controller");
-const strayDogs_service_1 = require("./strayDogs.service");
+const straydogs_service_1 = require("./straydogs.service");
 const dogs_entity_1 = require("../entities/dogs.entity");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
@@ -19,7 +19,7 @@ exports.StrayDogsModule = StrayDogsModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_2.TypeOrmModule.forFeature([dogs_entity_1.Dog])],
         controllers: [straydogs_controller_1.StrayDogsController],
-        providers: [strayDogs_service_1.StrayDogsService, typeorm_1.Repository]
+        providers: [straydogs_service_1.StrayDogsService, typeorm_1.Repository]
     })
 ], StrayDogsModule);
 //# sourceMappingURL=straydogs.module.js.map

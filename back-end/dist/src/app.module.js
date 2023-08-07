@@ -22,10 +22,16 @@ const user_module_1 = require("./user/user.module");
 const auth_module_1 = require("./auth/auth.module");
 const cache_manager_1 = require("@nestjs/cache-manager");
 const token_middleware_1 = require("../middleware/token.middleware");
+<<<<<<< HEAD
 const reservation_module_1 = require("./reservation/reservation.module");
 const endpoint_module_1 = require("./endpoint/endpoint.module");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
+=======
+const serve_static_1 = require("@nestjs/serve-static");
+const path_1 = require("path");
+const reservation_module_1 = require("./reservation/reservation.module");
+>>>>>>> develop
 let AppModule = exports.AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -36,6 +42,9 @@ let AppModule = exports.AppModule = class AppModule {
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: (0, path_1.join)(__dirname, '..', '../../front-end/build')
+            }),
             cache_manager_1.CacheModule.register({
                 isGlobal: true,
                 ttl: 60,
@@ -56,8 +65,12 @@ exports.AppModule = AppModule = __decorate([
             admin_module_1.AdminModule,
             user_module_1.UserModule,
             auth_module_1.AuthModule,
+<<<<<<< HEAD
             reservation_module_1.ReservationModule,
             endpoint_module_1.EndpointModule,
+=======
+            reservation_module_1.ReservationModule
+>>>>>>> develop
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

@@ -54,4 +54,3 @@ export class Dog {
   @Column({ length: 255 })
   UserID: string;
 }
-

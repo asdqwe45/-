@@ -107,7 +107,7 @@ const StraydogCreate = () => {
 
         else {
             // e.preventDefault();
-            axios.post('/straydog', JSON.stringify(
+            axios.post('/api/straydog', JSON.stringify(
                 {
                     "Sex": Sex,
                     "Age": Age,

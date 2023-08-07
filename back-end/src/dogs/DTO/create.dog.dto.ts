@@ -1,6 +1,6 @@
 import { IsString, IsNumber, IsOptional, IsDate } from 'class-validator';
 
-export class CreateDogDto{
+export class CreateDogDto {
   @IsNumber()
   DogID: number;
 
@@ -20,8 +20,8 @@ export class CreateDogDto{
   @IsString()
   Breed: string;
 
-  @IsString()
-  RemainedDay: string;
+  @IsNumber()
+  RemainedDay: number;
 
   @IsString()
   DogSize: string;
@@ -47,4 +47,7 @@ export class CreateDogDto{
 
   @IsString()
   ReturnedHome: string;
+
+  @IsString()
+  UserID: string;
 }

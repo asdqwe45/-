@@ -2,7 +2,7 @@ import { Query, Controller, Get, Param, Delete, Put, Post,Body } from '@nestjs/c
 import { LostDogsService } from './lost.service';
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 
-@Controller('lostdog')
+@Controller('api/lostdog')
 export class LostDogsController {
   constructor(
     private readonly lostDogsService: LostDogsService

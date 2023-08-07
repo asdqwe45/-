@@ -19,4 +19,3 @@ export class CreateReservationDto {
   @IsString()
   Type: string;
 }
-

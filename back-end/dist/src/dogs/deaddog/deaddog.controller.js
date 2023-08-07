@@ -41,7 +41,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], DeadDogsController.prototype, "getDeadDogs", null);
 exports.DeadDogsController = DeadDogsController = __decorate([
-    (0, common_1.Controller)('deaddog'),
+    (0, common_1.Controller)('api/deaddog'),
     __metadata("design:paramtypes", [deaddog_service_1.DeadDogsService])
 ], DeadDogsController);
 //# sourceMappingURL=deaddog.controller.js.map

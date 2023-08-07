@@ -72,7 +72,7 @@ const Reservation = () => {
                 "type": selectedType,
                 "time": selectedDateTime
             };
-            const response = await axios.post('http://localhost:3001/reservation', payload);
+            const response = await axios.post('/api/reservation', payload);
             console.log(response.data);
         } catch (error) {
             console.log(error);

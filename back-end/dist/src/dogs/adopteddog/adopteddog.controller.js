@@ -41,7 +41,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AdoptedDogsController.prototype, "getDogs", null);
 exports.AdoptedDogsController = AdoptedDogsController = __decorate([
-    (0, common_1.Controller)('adopteddog'),
+    (0, common_1.Controller)('api/adopteddog'),
     __metadata("design:paramtypes", [adopteddog_service_1.AdoptedDogsService])
 ], AdoptedDogsController);
 //# sourceMappingURL=adopteddog.controller.js.map

@@ -60,6 +60,8 @@ export class AuthService {
 
     return {
       accessToken: token,
+      UserID: user.UserID,
+      Admin: user.Admin,
     };
   }
 }
