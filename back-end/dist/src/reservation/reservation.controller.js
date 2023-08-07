@@ -25,11 +25,6 @@ let ReservationController = exports.ReservationController = class ReservationCon
     async deleteOne(ID) {
         return await this.reservationService.deleteOne(ID);
     }
-<<<<<<< HEAD
-};
-__decorate([
-    (0, common_1.Get)(),
-=======
     async getDog(id) {
         return await this.reservationService.getOneByDogID(id);
     }
@@ -39,7 +34,6 @@ __decorate([
 };
 __decorate([
     (0, common_1.Get)('/state'),
->>>>>>> develop
     __param(0, (0, common_1.Query)('date')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Date]),
@@ -52,10 +46,6 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], ReservationController.prototype, "deleteOne", null);
-<<<<<<< HEAD
-exports.ReservationController = ReservationController = __decorate([
-    (0, common_1.Controller)('reservation'),
-=======
 __decorate([
     (0, common_1.Get)('/dog/:dogID'),
     __param(0, (0, common_1.Param)('dogID')),
@@ -72,7 +62,6 @@ __decorate([
 ], ReservationController.prototype, "createReservation", null);
 exports.ReservationController = ReservationController = __decorate([
     (0, common_1.Controller)('api/reservation'),
->>>>>>> develop
     __metadata("design:paramtypes", [reservation_service_1.ReservationService])
 ], ReservationController);
 //# sourceMappingURL=reservation.controller.js.map

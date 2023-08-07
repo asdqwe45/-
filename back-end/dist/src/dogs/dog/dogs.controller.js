@@ -15,11 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DogsController = void 0;
 const common_1 = require("@nestjs/common");
 const dogs_service_1 = require("./dogs.service");
-const endpoint_service_1 = require("../../endpoint/endpoint.service");
 let DogsController = exports.DogsController = class DogsController {
-    constructor(dogService, endpointService) {
+    constructor(dogService) {
         this.dogService = dogService;
-        this.endpointService = endpointService;
         this.dogs = [];
     }
     async getDogs(req) {
@@ -37,13 +35,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], DogsController.prototype, "getDogs", null);
 exports.DogsController = DogsController = __decorate([
-<<<<<<< HEAD
-    (0, common_1.Controller)('dog'),
-    __metadata("design:paramtypes", [dogs_service_1.DogsService,
-        endpoint_service_1.EndpointService])
-=======
     (0, common_1.Controller)('api/dog'),
     __metadata("design:paramtypes", [dogs_service_1.DogsService])
->>>>>>> develop
 ], DogsController);
 //# sourceMappingURL=dogs.controller.js.map

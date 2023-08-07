@@ -7,7 +7,6 @@ import { Repository } from 'typeorm';
 export class DogsController {
   constructor(
     private readonly dogService: DogsService,
-    private readonly endpointService: EndpointService,
   ) {}
   private dogs : Dog[] = [];
   @Get()

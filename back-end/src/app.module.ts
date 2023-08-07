@@ -43,8 +43,8 @@ import { ReservationModule } from './reservation/reservation.module';
     AuthModule,
     ReservationModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

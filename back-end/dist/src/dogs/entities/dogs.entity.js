@@ -38,7 +38,7 @@ __decorate([
     __metadata("design:type", String)
 ], Dog.prototype, "Breed", void 0);
 __decorate([
-    (0, typeorm_1.Column)('int'),
+    (0, typeorm_1.Column)('int', { nullable: true }),
     __metadata("design:type", Number)
 ], Dog.prototype, "RemainedDay", void 0);
 __decorate([
@@ -74,7 +74,7 @@ __decorate([
     __metadata("design:type", String)
 ], Dog.prototype, "ReturnedHome", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 255 }),
+    (0, typeorm_1.Column)({ length: 255, nullable: true }),
     __metadata("design:type", String)
 ], Dog.prototype, "Comment", void 0);
 __decorate([
