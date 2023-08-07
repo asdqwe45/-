@@ -29,6 +29,8 @@ export class AuthService {
         message: [`등록되지 않은 사용자입니다.`],
         error: 'Forbidden',
       });
+    } else {
+      console.log('test');
     }
 
     const isMatch = await bcrypt.compare(Password, user.Password);

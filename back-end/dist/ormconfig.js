@@ -13,7 +13,7 @@ const ormconfig = {
     password: 'test',
     database: 'dog',
     entities: [user_entity_1.User, dogs_entity_1.Dog, reservation_entity_1.Reservation],
-    synchronize: true,
+    synchronize: false,
 };
 exports.default = ormconfig;
 //# sourceMappingURL=ormconfig.js.map

@@ -40,8 +40,8 @@ __decorate([
     __metadata("design:type", String)
 ], CreateDogDto.prototype, "Breed", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
 ], CreateDogDto.prototype, "RemainedDay", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
@@ -76,4 +76,8 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateDogDto.prototype, "ReturnedHome", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateDogDto.prototype, "UserID", void 0);
 //# sourceMappingURL=create.dog.dto.js.map
