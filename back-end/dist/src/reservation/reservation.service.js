@@ -25,6 +25,7 @@ let ReservationService = exports.ReservationService = class ReservationService {
         if (!this.isValidDate(date)) {
             date = new Date();
         }
+        console.log(date);
         const StartDay = new Date(date);
         StartDay.setHours(0, 0, 0, 0);
         const EndDay = new Date(date);
@@ -53,6 +54,13 @@ let ReservationService = exports.ReservationService = class ReservationService {
     }
     async deleteOne(ID) {
         return await this.reservationRepository.delete({ ReservationID: ID });
+    }
+    async getOneByDogID(id) {
+        console.log(id);
+        return await this.reservationRepository.find({ where: { DogID: id } });
+    }
+    async createReservation(reservationData) {
+        return await this.reservationRepository.save(reservationData);
     }
 };
 exports.ReservationService = ReservationService = __decorate([
