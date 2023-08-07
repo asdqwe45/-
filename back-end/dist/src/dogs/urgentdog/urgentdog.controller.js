@@ -28,7 +28,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UrgentDogController.prototype, "getRecommendedDogs", null);
 exports.UrgentDogController = UrgentDogController = __decorate([
-    (0, common_1.Controller)('urgentdog'),
+    (0, common_1.Controller)('api/urgentdog'),
     __metadata("design:paramtypes", [urgentdog_service_1.UrgentDogService])
 ], UrgentDogController);
 //# sourceMappingURL=urgentdog.controller.js.map

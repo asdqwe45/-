@@ -15,6 +15,7 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { TokenMiddleware } from 'middleware/token.middleware';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ReservationModule } from './reservation/reservation.module';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
@@ -40,6 +41,7 @@ import { join } from 'path';
     AdminModule,
     UserModule,
     AuthModule,
+    ReservationModule
   ],
   controllers: [],
   providers: [],
