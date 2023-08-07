@@ -7,17 +7,22 @@ export class ReservationController {
   constructor(
     private readonly reservationService: ReservationService
   ) {}
-
-  @Get()
+  @Get('/state')
   async getReservedTimeByDate(@Query('date') date: Date =new Date()): Promise<any>{
     return this.reservationService.getReservedTimeByDate(date);
   }
-
   @Delete('/:reservationID')
   async deleteOne(@Param('reservationID') ID: number) {
         return await this.reservationService.deleteOne(ID);
   }
-
+  @Get('/dog/:dogID')
+  async getDog(@Param('dogID') id: number){
+    return await this.reservationService.getOneByDogID(id);
+  }
+  @Post()
+  async createReservation(@Body() reservationData ){
+    return this.reservationService.createReservation(reservationData);
+  }
 //   @Get()
 //   async getDogs(@Query('page') page: number = 1, @Query('pageSize') pageSize:number = 100):Promise<any> {
 //     const lostDogs = await this.lostDogsService.getAllLostDogs();

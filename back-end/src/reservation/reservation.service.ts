@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateDogDto } from 'src/dogs/DTO/create.dog.dto';
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 import { Reservation } from './entities/reservation.entity';
+import { CreateReservationDto } from './DTO/create.reservation.dto';
 
 @Injectable()
 export class ReservationService {
@@ -49,6 +50,13 @@ export class ReservationService {
     }
     async deleteOne(ID: number) {
         return await this.reservationRepository.delete({ReservationID:ID});
+    }
+    async getOneByDogID(id:number){
+        console.log(id); 
+        return await this.reservationRepository.find({where:{DogID:id}});
+    }
+    async createReservation(reservationData: CreateReservationDto) {
+        return await this.reservationRepository.save(reservationData);
     }
 
 //   async getAllLostDogs( ):Promise<any>{

@@ -55,6 +55,13 @@ let ReservationService = exports.ReservationService = class ReservationService {
     async deleteOne(ID) {
         return await this.reservationRepository.delete({ ReservationID: ID });
     }
+    async getOneByDogID(id) {
+        console.log(id);
+        return await this.reservationRepository.find({ where: { DogID: id } });
+    }
+    async createReservation(reservationData) {
+        return await this.reservationRepository.save(reservationData);
+    }
 };
 exports.ReservationService = ReservationService = __decorate([
     (0, common_1.Injectable)(),
