@@ -16,7 +16,7 @@ import { jwtConstants } from '../common/constants';
     PassportModule,
     JwtModule.register({
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '60h' },
     }),
     TypeOrmModule.forFeature([User]), // User 엔터티를 임포트
   ],

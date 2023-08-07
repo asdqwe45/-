@@ -49,8 +49,18 @@ let UserService = exports.UserService = class UserService {
         if (!user) {
             throw new common_1.NotFoundException(`User with ID ${id} not found.`);
         }
-        const { seq, UserID, Name, Admin } = user;
-        return { seq, UserID, Name, Admin };
+        const { seq, Name, UserID, Password, Admin, Email, PhoneNumber, Nickname, Address, } = user;
+        return {
+            seq,
+            Name,
+            UserID,
+            Password,
+            Admin,
+            Email,
+            PhoneNumber,
+            Nickname,
+            Address,
+        };
     }
     async findAllCount() {
         return this.userRepository.count();

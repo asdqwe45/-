@@ -1,19 +1,36 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './DTO/create.user.dto';
 import { User } from './entities/user.entity';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Controller('api/user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  async findAll() {
-    const users = await this.userService.findAll();
-    console.log(users[0]);
-    console.log(typeof users[0].UserID);
-
-    return users;
+  @UseGuards(JwtAuthGuard)
+  async getUserInfo(@Request() req) {
+    const { UserID, Admin } = req.user;
+    console.log(req.user);
+    if (Admin == 0) {
+      {
+        const user = await this.userService.findOne(UserID);
+        console.log(user);
+        return user;
+      }
+    }
+    // admin이 1일경우
+    else {
+    }
   }
 
   @Post('signup')

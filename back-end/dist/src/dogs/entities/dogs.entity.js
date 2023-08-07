@@ -38,8 +38,8 @@ __decorate([
     __metadata("design:type", String)
 ], Dog.prototype, "Breed", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 50 }),
-    __metadata("design:type", String)
+    (0, typeorm_1.Column)('int'),
+    __metadata("design:type", Number)
 ], Dog.prototype, "RemainedDay", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 50 }),
@@ -73,6 +73,14 @@ __decorate([
     (0, typeorm_1.Column)({ length: 50, nullable: true }),
     __metadata("design:type", String)
 ], Dog.prototype, "ReturnedHome", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ length: 255 }),
+    __metadata("design:type", String)
+], Dog.prototype, "Comment", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ length: 255 }),
+    __metadata("design:type", String)
+], Dog.prototype, "UserID", void 0);
 exports.Dog = Dog = __decorate([
     (0, typeorm_1.Entity)('Dog')
 ], Dog);
