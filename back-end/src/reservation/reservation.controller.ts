@@ -11,6 +11,7 @@ export class ReservationController {
   async getReservedTimeByDate(@Query('date') date: Date =new Date()): Promise<any>{
     return this.reservationService.getReservedTimeByDate(date);
   }
+  
   @Delete('/:reservationID')
   async deleteOne(@Param('reservationID') ID: number) {
         return await this.reservationService.deleteOne(ID);

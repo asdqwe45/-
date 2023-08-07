@@ -13,7 +13,8 @@ export class ReservationService {
     @InjectRepository(Reservation)
     private reservationRepository: Repository<Reservation>,
   ) {}
-    async getReservedTimeByDate(date: Date): Promise<string[]> {
+  
+    async getReservedTimeByDate(date: Date): Promise<any> {
         if(!this.isValidDate(date)){
             date = new Date();
         }
@@ -24,24 +25,47 @@ export class ReservationService {
         const EndDay = new Date(date);
         EndDay.setHours(23,59,59,999);
 
-        const reservations = await this.reservationRepository.find({
+        const VisitReservations = await this.reservationRepository.find({
             where: {
                 ReservationDatetime: Between(StartDay,EndDay),
+                Type:"방문예약",
+            },
+        });
+        const PlayReservations = await this.reservationRepository.find({
+            where: {
+                ReservationDatetime: Between(StartDay,EndDay),
+                Type:"놀아주기예약",
             },
         });
 
-        const reservedTimes = reservations.map((reservation) => {
+        const VisitReservedTimes = VisitReservations.map((reservation) => {
             return reservation.ReservationDatetime.getHours().toString();
         })
-        let Result=[];
+        let VisitResult=[];
         for(let i=9;i<=17;i++){
-            if(!reservedTimes.includes(i.toString())){
-                Result.push(`${i.toString()} : false`);
+            if(!VisitReservedTimes.includes(i.toString())){
+                VisitResult.push(`${i.toString()} : false`);
             }
             else{
-                Result.push(`${i.toString()} : true`);
+                VisitResult.push(`${i.toString()} : true`);
             }
         }
+        const PlayReservedTimes = PlayReservations.map((reservation) => {
+            return reservation.ReservationDatetime.getHours().toString();
+        })
+        let PlayResult=[];
+        for(let i=9;i<=17;i++){
+            if(!PlayReservedTimes.includes(i.toString())){
+                PlayResult.push(`${i.toString()} : false`);
+            }
+            else{
+                PlayResult.push(`${i.toString()} : true`);
+            }
+        }
+        const Result = {
+            "type: visit":VisitResult,
+            "type: play":PlayResult,
+        };
         
         return Result;
     }
