@@ -16,11 +16,17 @@ import { TokenMiddleware } from 'middleware/token.middleware';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ReservationModule } from './reservation/reservation.module';
+import { FileModule } from './file/file.module';
+import { MulterModule } from '@nestjs/platform-express';
 @Module({
   imports: [
     // ServeStaticModule.forRoot({
     //   rootPath:join(__dirname,'..','../../front-end/build')
     // }),
+    MulterModule.register({
+      dest: './uploads',
+    })
+    ,
     CacheModule.register({
       isGlobal: true,
       ttl: 60,
@@ -41,7 +47,8 @@ import { ReservationModule } from './reservation/reservation.module';
     AdminModule,
     UserModule,
     AuthModule,
-    ReservationModule
+    ReservationModule,
+    FileModule
   ],
   controllers: [],
   providers: [],
