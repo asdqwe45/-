@@ -1,8 +1,6 @@
-import { IsString, IsNumber, IsEmail, IsDate } from 'class-validator';
+import { IsString, IsNumber, IsDateString } from 'class-validator';
 
 export class CreateReservationDto {
-  @IsNumber()
-  ReservationID: number;
 
   @IsNumber()
   DogID: number;
@@ -10,7 +8,7 @@ export class CreateReservationDto {
   @IsNumber()
   seq: number;
 
-  @IsDate()
+  @IsDateString()
   ReservationDatetime: Date;
 
   @IsString()

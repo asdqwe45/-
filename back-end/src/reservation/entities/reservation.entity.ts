@@ -13,7 +13,7 @@ export class Reservation {
   @Column('int')
   seq: number;
 
-  @Column()
+  @Column('date')
   ReservationDatetime: Date;
 
   @Column({ length: 255 })

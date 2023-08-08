@@ -1,6 +1,7 @@
-import { Query, Controller, Get, Param, Delete, Put, Post,Body } from '@nestjs/common';
+import { Query, Controller, Get, Param, Delete, Put, Post,Body, Request } from '@nestjs/common';
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 import { ReservationService } from './reservation.service';
+import { CreateReservationDto } from './DTO/create.reservation.dto';
 
 @Controller('api/reservation')
 export class ReservationController {
@@ -21,9 +22,10 @@ export class ReservationController {
     return await this.reservationService.getOneByDogID(id);
   }
   @Post()
-  async createReservation(@Body() reservationData ){
+  async createReservation(@Body() reservationData: CreateReservationDto, @Request() req ){
+    console.log(reservationData);
     return this.reservationService.createReservation(reservationData);
-  }
+  } 
 //   @Get()
 //   async getDogs(@Query('page') page: number = 1, @Query('pageSize') pageSize:number = 100):Promise<any> {
 //     const lostDogs = await this.lostDogsService.getAllLostDogs();
