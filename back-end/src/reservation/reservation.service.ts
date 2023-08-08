@@ -75,13 +75,27 @@ export class ReservationService {
     async deleteOne(ID: number) {
         return await this.reservationRepository.delete({ReservationID:ID});
     }
-    async getOneByDogID(id:number){
-        console.log(id); 
-        return await this.reservationRepository.find({where:{DogID:id}});
+    async getByDogID(id: number) {
+        const reservations = await this.reservationRepository.find({ where: { DogID: id } });
+    
+        return reservations.map((reservation) => {
+            reservation.ReservationDatetime.setHours(reservation.ReservationDatetime.getHours() + 9);
+            return reservation; // 수정된 reservation 객체를 반환합니다.
+        });
     }
+    
     async createReservation(reservationData: CreateReservationDto) {
         return await this.reservationRepository.save(reservationData);
     }
+    async getByUserID(sequence: number) {
+        const reservations = await this.reservationRepository.find({ where: { seq: sequence } });
+    
+        return reservations.map((reservation) => {
+            reservation.ReservationDatetime.setHours(reservation.ReservationDatetime.getHours() + 9);
+            return reservation; // 수정된 reservation 객체를 반환합니다.
+        });
+    }
+    
 
 //   async getAllLostDogs( ):Promise<any>{
 //     const dogs = (await this.dogsRepository.find({where:{Status:"Lost"}})).reverse();
