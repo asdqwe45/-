@@ -10,16 +10,15 @@ export class Reservation {
   @Column('int')
   DogID: number;
 
-  @Column('int')
+  @Column('int',{nullable:true})
   seq: number;
 
-  @Column('date')
+  @Column()
   ReservationDatetime: Date;
 
-  @Column({ length: 255 })
+  @Column({ length: 255 , nullable:true })
   Confirm: string;
 
   @Column({ length: 255 })
   Type: string;
-  
 }

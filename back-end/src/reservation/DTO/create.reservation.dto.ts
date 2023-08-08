@@ -1,4 +1,5 @@
 import { IsString, IsNumber, IsDateString } from 'class-validator';
+import { IsNull } from 'typeorm';
 
 export class CreateReservationDto {
 

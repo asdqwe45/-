@@ -28,13 +28,13 @@ export class ReservationService {
         const VisitReservations = await this.reservationRepository.find({
             where: {
                 ReservationDatetime: Between(StartDay,EndDay),
-                Type:"방문예약",
+                Type:"visit",
             },
         });
         const PlayReservations = await this.reservationRepository.find({
             where: {
                 ReservationDatetime: Between(StartDay,EndDay),
-                Type:"놀아주기예약",
+                Type:"play",
             },
         });
 

@@ -1,18 +1,20 @@
-import { Query, Controller, Get, Param, Delete, Put, Post,Body, Request } from '@nestjs/common';
+import { Query, Controller, Get, Param, Delete, Put, Post,Body, UseGuards, Request } from '@nestjs/common';
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 import { ReservationService } from './reservation.service';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { UserService } from 'src/user/user.service';
 import { CreateReservationDto } from './DTO/create.reservation.dto';
 
 @Controller('api/reservation')
 export class ReservationController {
   constructor(
-    private readonly reservationService: ReservationService
+    private readonly reservationService: ReservationService,
+    private readonly userService: UserService
   ) {}
   @Get('/state')
   async getReservedTimeByDate(@Query('date') date: Date =new Date()): Promise<any>{
     return this.reservationService.getReservedTimeByDate(date);
   }
-  
   @Delete('/:reservationID')
   async deleteOne(@Param('reservationID') ID: number) {
         return await this.reservationService.deleteOne(ID);
@@ -22,10 +24,13 @@ export class ReservationController {
     return await this.reservationService.getOneByDogID(id);
   }
   @Post()
+  @UseGuards(JwtAuthGuard)
   async createReservation(@Body() reservationData: CreateReservationDto, @Request() req ){
-    console.log(reservationData);
+    const user = await this.userService.findOne(req.user.UserID);
+    reservationData.Confirm = "pending";
+    reservationData.seq = user.seq;
     return this.reservationService.createReservation(reservationData);
-  } 
+  }
 //   @Get()
 //   async getDogs(@Query('page') page: number = 1, @Query('pageSize') pageSize:number = 100):Promise<any> {
 //     const lostDogs = await this.lostDogsService.getAllLostDogs();
