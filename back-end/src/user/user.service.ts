@@ -11,6 +11,8 @@ import { User } from './entities/user.entity';
 import { CreateUserDto } from './DTO/create.user.dto';
 import * as bcrypt from 'bcrypt';
 import { UpdateUserDto } from './DTO/update.user.dto';
+import { isUndefined } from 'util';
+import { isEmpty } from 'class-validator';
 
 export const bcryptConstant = {
   saltOrRounds: 10,
@@ -94,9 +96,9 @@ export class UserService {
     result.PhoneNumber = updateData.PhoneNumber;
     result.Nickname = updateData.Nickname;
     result.Address = updateData.Address;
-  
-    if (updateData.newPassword !== null) {
-      console.log(updateData.newPassword);
+
+    if (updateData.newPassword !== null && updateData.newPassword!==undefined) {
+      console.log("password");
       const isMatch = await bcrypt.compare(updateData.currentPassword, user.Password);
       if (!isMatch) {
         throw new BadRequestException('Current password is incorrect');
@@ -104,11 +106,11 @@ export class UserService {
       
       const hashedPassword = await bcrypt.hash(updateData.newPassword, bcryptConstant.saltOrRounds);
       result.Password = hashedPassword;
-    }
+    } 
   
     // userRepository 업데이트
     this.userRepository.update(user, result);
-  }
+  } 
   
   
 }
