@@ -15,4 +15,5 @@ export declare class CreateDogDto {
     LostDate: Date;
     ReturnedHome: string;
     UserID: string;
+    Comment: string;
 }

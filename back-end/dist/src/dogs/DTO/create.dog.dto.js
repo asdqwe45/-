@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateDogDto = void 0;
 const class_validator_1 = require("class-validator");
+const class_validator_2 = require("class-validator");
 class CreateDogDto {
 }
 exports.CreateDogDto = CreateDogDto;
@@ -57,7 +58,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreateDogDto.prototype, "Status", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
+    (0, class_validator_2.IsDateString)(),
     __metadata("design:type", Date)
 ], CreateDogDto.prototype, "EnteredDay", void 0);
 __decorate([
@@ -69,7 +70,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreateDogDto.prototype, "LostLocation", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
+    (0, class_validator_2.IsDateString)(),
     __metadata("design:type", Date)
 ], CreateDogDto.prototype, "LostDate", void 0);
 __decorate([
@@ -80,4 +81,8 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateDogDto.prototype, "UserID", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateDogDto.prototype, "Comment", void 0);
 //# sourceMappingURL=create.dog.dto.js.map
