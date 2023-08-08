@@ -80,4 +80,7 @@ export class UserService {
   async findAllCount() {
     return this.userRepository.count();
   }
+  async deleteUser(user) {
+    await this.userRepository.remove(user);
+  }
 }

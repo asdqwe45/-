@@ -6,6 +6,7 @@ import {
   Param,
   UseGuards,
   Request,
+  Delete,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './DTO/create.user.dto';
@@ -41,5 +42,11 @@ export class UserController {
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Partial<User>> {
     return this.userService.findOne(id);
+  }
+  @Delete()
+  @UseGuards(JwtAuthGuard)
+  async deleteUser(@Request() req) {
+    const user = await this.userService.findOne(req.user.UserID);
+    return this.userService.deleteUser(user);
   }
 }
