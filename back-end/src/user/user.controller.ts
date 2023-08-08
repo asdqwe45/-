@@ -20,11 +20,11 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   async getUserInfo(@Request() req) {
     const { UserID, Admin } = req.user;
-    console.log(req.user);
+    // console.log(req.user);
     if (Admin == 0) {
       {
         const user = await this.userService.findOne(UserID);
-        console.log(user);
+        // console.log(user);
         return user;
       }
     }
