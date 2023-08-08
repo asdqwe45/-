@@ -7,6 +7,7 @@ import {
   UseGuards,
   Request,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './DTO/create.user.dto';
@@ -48,5 +49,12 @@ export class UserController {
   async deleteUser(@Request() req) {
     const user = await this.userService.findOne(req.user.UserID);
     return this.userService.deleteUser(user);
+  }
+
+  @Put()
+  @UseGuards(JwtAuthGuard)
+  async updateUser(@Request() req,@Body() updateData:any) {
+    const user = await this.userService.findOne(req.user.UserID);
+    return this.userService.updateUser(user,updateData);
   }
 }

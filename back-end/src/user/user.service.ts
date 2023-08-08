@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ForbiddenException,
   HttpStatus,
   Injectable,
@@ -9,6 +10,7 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './DTO/create.user.dto';
 import * as bcrypt from 'bcrypt';
+import { UpdateUserDto } from './DTO/update.user.dto';
 
 export const bcryptConstant = {
   saltOrRounds: 10,
@@ -83,4 +85,30 @@ export class UserService {
   async deleteUser(user) {
     await this.userRepository.remove(user);
   }
+  async updateUser(user, updateData) {
+    let result = {...user};
+  
+    // 기존 유저 정보 복사
+    result.Name = updateData.Name;
+    result.Email = updateData.Email;
+    result.PhoneNumber = updateData.PhoneNumber;
+    result.Nickname = updateData.Nickname;
+    result.Address = updateData.Address;
+  
+    if (updateData.newPassword !== null) {
+      console.log(updateData.newPassword);
+      const isMatch = await bcrypt.compare(updateData.currentPassword, user.Password);
+      if (!isMatch) {
+        throw new BadRequestException('Current password is incorrect');
+      }
+      
+      const hashedPassword = await bcrypt.hash(updateData.newPassword, bcryptConstant.saltOrRounds);
+      result.Password = hashedPassword;
+    }
+  
+    // userRepository 업데이트
+    this.userRepository.update(user, result);
+  }
+  
+  
 }
