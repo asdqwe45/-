@@ -2,6 +2,7 @@
 
 # dependencies
 */*/node_modules
+*/dist
 */node_modules
 /node_modules
 /.pnp
@@ -11,8 +12,8 @@
 /coverage
 
 # production
-/build
-
+/*/build
+*/build
 # misc
 .DS_Store
 .env.local

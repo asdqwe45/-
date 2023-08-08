@@ -23,11 +23,9 @@ let UserController = exports.UserController = class UserController {
     }
     async getUserInfo(req) {
         const { UserID, Admin } = req.user;
-        console.log(req.user);
         if (Admin == 0) {
             {
                 const user = await this.userService.findOne(UserID);
-                console.log(user);
                 return user;
             }
         }

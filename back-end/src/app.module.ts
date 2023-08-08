@@ -18,9 +18,9 @@ import { join } from 'path';
 import { ReservationModule } from './reservation/reservation.module';
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath:join(__dirname,'..','../../front-end/build')
-    }),
+    // ServeStaticModule.forRoot({
+    //   rootPath:join(__dirname,'..','../../front-end/build')
+    // }),
     CacheModule.register({
       isGlobal: true,
       ttl: 60,
