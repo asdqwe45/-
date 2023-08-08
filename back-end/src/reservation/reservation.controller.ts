@@ -15,7 +15,8 @@ export class ReservationController {
   @UseGuards(JwtAuthGuard)
   async getReservationByUserID(@Request() req) {
     const user = await this.userService.findOne(req.user.UserID);
-    return await this.reservationService.getByUserID(user.seq);
+    const reservation = await this.reservationService.getByUserID(user.seq);
+    return {reservation};
   }
   @Get('/state')
   async getReservedTimeByDate(@Query('date') date: Date =new Date()): Promise<any>{
@@ -27,7 +28,8 @@ export class ReservationController {
   }
   @Get('/dog/:dogID')
   async getDog(@Param('dogID') id: number){
-    return await this.reservationService.getByDogID(id);
+    const reservation = await this.reservationService.getByDogID(id);
+    return {reservation};
   }
   @Post()
   @UseGuards(JwtAuthGuard)
