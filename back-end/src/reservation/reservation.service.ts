@@ -22,77 +22,21 @@ export class ReservationService {
     const StartDay = new Date(date);
     StartDay.setHours(0, 0, 0, 0);
 
-        const VisitReservations = await this.reservationRepository.find({
-            where: {
-                ReservationDatetime: Between(StartDay,EndDay),
-                Type:"visit",
-            },
-        });
-        const PlayReservations = await this.reservationRepository.find({
-            where: {
-                ReservationDatetime: Between(StartDay,EndDay),
-                Type:"play",
-            },
-        });
+    const EndDay = new Date(date);
+    EndDay.setHours(23, 59, 59, 999);
 
-        const VisitReservedTimes = VisitReservations.map((reservation) => {
-            return reservation.ReservationDatetime.getHours().toString();
-        })
-        let VisitResult=[];
-        for(let i=9;i<=17;i++){
-            if(!VisitReservedTimes.includes(i.toString())){
-                VisitResult.push(`${i.toString()} : false`);
-            }
-            else{
-                VisitResult.push(`${i.toString()} : true`);
-            }
-        }
-        const PlayReservedTimes = PlayReservations.map((reservation) => {
-            return reservation.ReservationDatetime.getHours().toString();
-        })
-        let PlayResult=[];
-        for(let i=9;i<=17;i++){
-            if(!PlayReservedTimes.includes(i.toString())){
-                PlayResult.push(`${i.toString()} : false`);
-            }
-            else{
-                PlayResult.push(`${i.toString()} : true`);
-            }
-        }
-        const Result = {
-            "type: visit":VisitResult,
-            "type: play":PlayResult,
-        };
-        
-        return Result;
-    }
-    isValidDate(date:Date): boolean {
-        return !isNaN(date.getTime());
-    }
-    async deleteOne(ID: number) {
-        return await this.reservationRepository.delete({ReservationID:ID});
-    }
-    async getByDogID(id: number) {
-        const reservations = await this.reservationRepository.find({ where: { DogID: id } });
-    
-        return reservations.map((reservation) => {
-            reservation.ReservationDatetime.setHours(reservation.ReservationDatetime.getHours() + 9);
-            return reservation; // 수정된 reservation 객체를 반환합니다.
-        });
-    }
-    
-    async createReservation(reservationData: CreateReservationDto) {
-        return await this.reservationRepository.save(reservationData);
-    }
-    async getByUserID(sequence: number) {
-        const reservations = await this.reservationRepository.find({ where: { seq: sequence } });
-    
-        return reservations.map((reservation) => {
-            reservation.ReservationDatetime.setHours(reservation.ReservationDatetime.getHours() + 9);
-            return reservation; // 수정된 reservation 객체를 반환합니다.
-        });
-    }
-    
+    const VisitReservations = await this.reservationRepository.find({
+      where: {
+        ReservationDatetime: Between(StartDay, EndDay),
+        Type: 'visit',
+      },
+    });
+    const PlayReservations = await this.reservationRepository.find({
+      where: {
+        ReservationDatetime: Between(StartDay, EndDay),
+        Type: 'play',
+      },
+    });
 
     const VisitReservedTimes = VisitReservations.map((reservation) => {
       return reservation.ReservationDatetime.getHours().toString();
@@ -129,12 +73,33 @@ export class ReservationService {
   async deleteOne(ID: number) {
     return await this.reservationRepository.delete({ ReservationID: ID });
   }
-  async getOneByDogID(id: number) {
-    console.log(id);
-    return await this.reservationRepository.find({ where: { DogID: id } });
+  async getByDogID(id: number) {
+    const reservations = await this.reservationRepository.find({
+      where: { DogID: id },
+    });
+
+    return reservations.map((reservation) => {
+      reservation.ReservationDatetime.setHours(
+        reservation.ReservationDatetime.getHours() + 9,
+      );
+      return reservation; // 수정된 reservation 객체를 반환합니다.
+    });
   }
+
   async createReservation(reservationData: CreateReservationDto) {
     return await this.reservationRepository.save(reservationData);
+  }
+  async getByUserID(sequence: number) {
+    const reservations = await this.reservationRepository.find({
+      where: { seq: sequence },
+    });
+
+    return reservations.map((reservation) => {
+      reservation.ReservationDatetime.setHours(
+        reservation.ReservationDatetime.getHours() + 9,
+      );
+      return reservation; // 수정된 reservation 객체를 반환합니다.
+    });
   }
 
   //   async getAllLostDogs( ):Promise<any>{
