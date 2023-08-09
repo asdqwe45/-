@@ -33,13 +33,13 @@ let ReservationService = exports.ReservationService = class ReservationService {
         const VisitReservations = await this.reservationRepository.find({
             where: {
                 ReservationDatetime: (0, typeorm_1.Between)(StartDay, EndDay),
-                Type: "방문예약",
+                Type: '방문예약',
             },
         });
         const PlayReservations = await this.reservationRepository.find({
             where: {
                 ReservationDatetime: (0, typeorm_1.Between)(StartDay, EndDay),
-                Type: "놀아주기예약",
+                Type: '놀아주기예약',
             },
         });
         const VisitReservedTimes = VisitReservations.map((reservation) => {
@@ -67,8 +67,8 @@ let ReservationService = exports.ReservationService = class ReservationService {
             }
         }
         const Result = {
-            "type: visit": VisitResult,
-            "type: play": PlayResult,
+            'type: visit': VisitResult,
+            'type: play': PlayResult,
         };
         return Result;
     }
