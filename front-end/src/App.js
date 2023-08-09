@@ -54,6 +54,7 @@ function App() {
       {/* REMOTEPLAY */}
       <Route path="/remoteplay" element={<RequireAuth><Main page={'remoteplay'} /></RequireAuth>} />
       <Route path="/remoteplay-guide" element={<RequireAuth><Main page={'remoteplay-guide'} /></RequireAuth>} />
+      <Route path="/recommenddog" element={<RequireAuth><Main page={'recommenddog'} /></RequireAuth>} />
 
       {/* NAVBAR */}
       <Route path="/aboutus" element={<RequireAuth><Main page={'aboutus'} /></RequireAuth>} />

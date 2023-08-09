@@ -2,66 +2,85 @@ import { Link } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import DatePicker from 'react-datepicker';
 import { useState } from 'react';
-import axios from 'axios'; // Import axios
-import "react-datepicker/dist/react-datepicker.css"; // Import the CSS
+import axios from 'axios';
+import "react-datepicker/dist/react-datepicker.css";
 
+const parseTimeData = (data) => {
+    const parsed = {};
+    data.forEach(item => {
+        const [hour, available] = item.split(' : ');
+        parsed[hour] = available === 'true';
+    });
+    return parsed;
+}
 
-// {
-//     "09:00": true,
-//     "10:00": false,
-//     "11:00": true,
-//     "12:00": false,
-//     "13:00": true,
-//     "14:00": false,
-//     "15:00": true,
-//     "16:00": false,
-//     "17:00": true
-//   }
-// 이런식으로 요청 받아서 시간대 별로 예약이 이미 되어있음을 표시해주면 됨
-// 일자도 예약이 다 차있다고 표시할지 말지?
-
-
-
-
+const completeReservationButtonStyle = {
+    padding: '12px 15px',
+    borderRadius: '6px',
+    border: 'none',
+    cursor: 'pointer',
+    fontSize: '18px',
+    backgroundColor: '#8F5E34',  // green color
+    color: 'white',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    transition: 'background-color 0.3s ease',
+    marginTop: '10px',  // some space from the above content
+    ':hover': {
+        backgroundColor: '#45a049'  // slightly darker green on hover
+    }
+};
 
 const Reservation = () => {
-
+    const [receivedData, setReceivedData] = useState([]);
     const [agreedToTerms, setAgreedToTerms] = useState(false);
-
-    const handleAgreementChange = (e) => {
-        setAgreedToTerms(e.target.checked);
-    }
-
+    const [availabilityData, setAvailabilityData] = useState({});
     const location = useLocation();
     const { dogID, } = location.state || { dogID: "", };
     const token = localStorage.getItem('rasyueToken');
-
-    // State to keep track of selected type
     const [selectedType, setSelectedType] = useState('visit');
     const [selectedTime, setSelectedTime] = useState(null);
     const [startDate, setStartDate] = useState(new Date());
-    const [selectedDateTime, setSelectedDateTime] = useState(''); // To display selected date and time
+    const [selectedDateTime, setSelectedDateTime] = useState('');
 
+    const handleAgreementChange = (e) => {
+        setAgreedToTerms(e.target.checked);
+        if (e.target.checked) {
+            handleDateChange(startDate);
+        }
+    }
 
     const handleOptionChange = (e) => {
         setSelectedType(e.target.value);
+        handleDateChange(startDate);
     }
 
     const handleTimeChange = (time) => {
-        setSelectedTime(time); // Update the selected time
+        setSelectedTime(time);
         let newDate = new Date(startDate);
         let hourString = time < 10 ? `0${time}` : `${time}`;
         let dateString = newDate.toISOString().substring(0, 10);
         setSelectedDateTime(`${dateString}T${hourString}:00:00Z`);
     }
 
-    const handleDateChange = (date) => {
+    const handleDateChange = async (date) => {
+        if (date instanceof Event) {
+            date = date.target.value;
+        }
+
         setStartDate(date);
         let newDate = new Date(date);
-        // newDate.setHours(0, 0, 0);
-        let dateString = newDate.toISOString();
-        dateString = dateString.slice(0, -14);  // remove the milliseconds
+        let dateString = newDate.toISOString().slice(0, -14);
         setSelectedDateTime(`${dateString}T00:00:00Z`);
+
+        try {
+            const response = await axios.get(`http://localhost:3001/reservation/state?date=${dateString}`);
+            setReceivedData(response.data);
+            const timeDataForSelectedType = response.data[`type: ${selectedType}`] || [];
+            const parsedData = parseTimeData(timeDataForSelectedType);
+            setAvailabilityData(parsedData);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const sendReservationData = async () => {
@@ -72,104 +91,114 @@ const Reservation = () => {
                 "type": selectedType,
                 "time": selectedDateTime
             };
-            const response = await axios.post('/api/reservation', payload);
+            const response = await axios.post('http://localhost:3001/reservation', payload);
             console.log(response.data);
         } catch (error) {
             console.log(error);
         }
     }
 
-    console.log(token);
-    console.log(dogID);
-    console.log(selectedType); // Log the selected type
-    console.log(selectedDateTime)
+    const morningTimeOptions = [];
+    const afternoonTimeOptions = [];
 
-
-
-
-
-
-    const timeOptions = []; // Array to hold the time options
     for (let i = 9; i <= 17; i++) {
-        const buttonStyle = selectedTime === i
-            ? { backgroundColor: 'blue', color: 'white' }
-            : {};
-        timeOptions.push(
+        const isAvailable = availabilityData[i.toString()];
+
+        let buttonStyle = {
+            padding: '8px 10px',
+            margin: '5px',
+            borderRadius: '5px',
+            border: 'none',
+            cursor: 'pointer',
+            fontSize: '16px'
+        };
+
+        if (selectedTime === i) {
+            buttonStyle.backgroundColor = 'blue';
+            buttonStyle.color = 'white';
+        } else if (isAvailable) {
+            buttonStyle.backgroundColor = '#e0e0e0';
+            buttonStyle.color = '#a0a0a0';
+            buttonStyle.cursor = 'not-allowed';
+        } else {
+            buttonStyle.backgroundColor = '#f5f5f5';
+        }
+
+        const button = (
             <button
                 key={i}
                 style={buttonStyle}
                 onClick={() => handleTimeChange(i)}
+                disabled={isAvailable}
             >
-                {i}:00
+                {isAvailable ? "예약중" : `${i}:00`}
             </button>
         );
+
+        if (i <= 12) {
+            morningTimeOptions.push(button);
+        } else {
+            afternoonTimeOptions.push(button);
+        }
     }
-
-
-    // let selectedDate = new Date(selectedDateTime);
-    // console.log(selectedDate)
-    // let year = selectedDate.getFullYear();
-    // let month = selectedDate.getMonth() + 1; // Months are zero-based
-    // let day = selectedDate.getDate();
-    // let hour = selectedDate.getHours();
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <h1>여기는 예약페이지</h1>
             <p>예약</p>
-
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '400px', width: '500px', border: 'solid' }}>
-                <p>동의서약서 내용</p>
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '500px', width: '500px', border: 'solid', marginRight: '20px' }}>
+                    <p>동의서약서 내용</p>
+                    <div>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={agreedToTerms}
+                                onChange={handleAgreementChange}
+                            />
+                            I agree to the terms and conditions.
+                        </label>
+                    </div>
+                </div>
+                {agreedToTerms && (
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <DatePicker
+                            inline
+                            selected={startDate}
+                            onChange={handleDateChange}
+                            dateFormat="MMMM d, yyyy"
+                        />
+                        <form>
+                            <div>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        value="visit"
+                                        checked={selectedType === 'visit'}
+                                        onChange={handleOptionChange}
+                                    />
+                                    Visit
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        value="play"
+                                        checked={selectedType === 'play'}
+                                        onChange={handleOptionChange}
+                                    />
+                                    Play
+                                </label>
+                            </div>
+                        </form>
+                        <div style={{ marginBottom: '10px' }}>{morningTimeOptions}</div>
+                        <div>{afternoonTimeOptions}</div>
+                        <p>Selected date and time: {selectedDateTime}</p>
+                        <button style={completeReservationButtonStyle} onClick={sendReservationData}>Complete Reservation</button>
+                    </div>
+                )}
             </div>
-
-            {/* Add a checkbox for the agreement */}
-            <div>
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={agreedToTerms}
-                        onChange={handleAgreementChange}
-                    />
-                    I agree to the terms and conditions.
-                </label>
-            </div>
-            {agreedToTerms && (
-                <>
-                    <DatePicker
-                        inline // This will make the datepicker inline
-                        selected={startDate}
-                        onChange={handleDateChange}
-                        dateFormat="MMMM d, yyyy"
-                    />
-                    <form>
-                        <div>
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="visit"
-                                    checked={selectedType === 'visit'}
-                                    onChange={handleOptionChange}
-                                />
-                                Visit
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="play"
-                                    checked={selectedType === 'play'}
-                                    onChange={handleOptionChange}
-                                />
-                                Play
-                            </label>
-                        </div>
-                    </form>
-                    <div>{timeOptions}</div> {/* Render the time options */}
-                    <p>Selected date and time: {selectedDateTime}</p> {/* Display the selected date and time */}
-                    <button onClick={sendReservationData}>Complete Reservation</button> {/* Call the function on button click */}
-                </>
-            )}
         </div>
     );
 };
