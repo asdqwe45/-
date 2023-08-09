@@ -13,19 +13,17 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { TokenMiddleware } from 'middleware/token.middleware';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
 import { ReservationModule } from './reservation/reservation.module';
-import { MulterModule } from '@nestjs/platform-express';
-import { ImageModule } from './image/image.module';
+import { PlayModule } from './play/play.module';
+import { WebsocketModule } from './websocket/websocket.module';
+
+
 @Module({
   imports: [
     // ServeStaticModule.forRoot({
     //   rootPath:join(__dirname,'..','../../front-end/build')
     // }),
-    MulterModule.register({
-      dest: './uploads',
-    }),
+    
     CacheModule.register({
       isGlobal: true,
       ttl: 60,
@@ -47,7 +45,8 @@ import { ImageModule } from './image/image.module';
     UserModule,
     AuthModule,
     ReservationModule,
-    ImageModule
+    PlayModule,
+    WebsocketModule
   ],
 })
 export class AppModule {

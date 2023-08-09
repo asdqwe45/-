@@ -59,7 +59,8 @@
 
 .menuLink {
     /* 상위 메뉴의 글씨색을 흰색으로 설정 */
-    color: black
+    color: black;
+    font-size: 17px;
 }
 
 .topMenuLi:hover .menuLink {
@@ -116,4 +117,27 @@
 
 .backg {
     background-color: #e2d9ce;
+}
+
+.hidden-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.banner{
+    /* display : flex; */
+    position : fixed;
+    background-color : #DB7B0A;
+    bottom : 0;
+    right : 0px;
+    width : 300px;
+    height : 250px;
+    color : white;
+    font-size : 20px;
+    border-radius : 10px;
+    transform: translateY(0);
+    transition: transform 2s ease-in-out;
+    z-index: 1;
 }

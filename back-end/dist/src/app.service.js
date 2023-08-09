@@ -8,6 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
+var app = require("express")();
+var http = require("http").createServer(app);
+var io = require('socket.io')(http);
+var port = 3000;
 let AppService = exports.AppService = class AppService {
     getHello() {
         return 'Hello World!';

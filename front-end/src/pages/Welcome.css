@@ -1,0 +1,48 @@
+.welcomebody {
+    margin: 0;
+    overflow-y: hidden;
+}
+
+.outer {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* 화면에서 스크롤바 안보이게 */
+.outer::-webkit-scrollbar {
+    display: none;
+}
+
+.inner {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.bg-1 {
+    background-color: #FAEBD7;
+}
+
+.bg-2 {
+    background-color: #C3A193;
+}
+
+.bg-3 {
+    background-color: #9C4919;
+}
+
+.bg-4 {
+    background-color: #DB7B0A;
+}
+
+.divider {
+    width: 100%;
+    height: 5px;
+    background-color: gray;
+}
+
+.pad {
+    padding-right: 50px;
+}
