@@ -11,4 +11,6 @@ export declare class UserService {
     findAll(): Promise<User[]>;
     findOne(id: string): Promise<Partial<User>>;
     findAllCount(): Promise<number>;
+    deleteUser(user: any): Promise<void>;
+    updateUser(user: any, updateData: any): Promise<void>;
 }

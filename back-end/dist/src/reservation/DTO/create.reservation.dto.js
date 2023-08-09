@@ -17,17 +17,13 @@ exports.CreateReservationDto = CreateReservationDto;
 __decorate([
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
-], CreateReservationDto.prototype, "ReservationID", void 0);
-__decorate([
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
 ], CreateReservationDto.prototype, "DogID", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateReservationDto.prototype, "seq", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
+    (0, class_validator_1.IsDateString)(),
     __metadata("design:type", Date)
 ], CreateReservationDto.prototype, "ReservationDatetime", void 0);
 __decorate([

@@ -22,7 +22,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Reservation.prototype, "DogID", void 0);
 __decorate([
-    (0, typeorm_1.Column)('int'),
+    (0, typeorm_1.Column)('int', { nullable: true }),
     __metadata("design:type", Number)
 ], Reservation.prototype, "seq", void 0);
 __decorate([
@@ -30,7 +30,7 @@ __decorate([
     __metadata("design:type", Date)
 ], Reservation.prototype, "ReservationDatetime", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 255 }),
+    (0, typeorm_1.Column)({ length: 255, nullable: true }),
     __metadata("design:type", String)
 ], Reservation.prototype, "Confirm", void 0);
 __decorate([

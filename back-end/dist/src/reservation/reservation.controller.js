@@ -15,9 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReservationController = void 0;
 const common_1 = require("@nestjs/common");
 const reservation_service_1 = require("./reservation.service");
+const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
+const user_service_1 = require("../user/user.service");
+const create_reservation_dto_1 = require("./DTO/create.reservation.dto");
 let ReservationController = exports.ReservationController = class ReservationController {
-    constructor(reservationService) {
+    constructor(reservationService, userService) {
         this.reservationService = reservationService;
+        this.userService = userService;
+    }
+    async getReservationByUserID(req) {
+        const user = await this.userService.findOne(req.user.UserID);
+        const reservation = await this.reservationService.getByUserID(user.seq);
+        return { reservation };
     }
     async getReservedTimeByDate(date = new Date()) {
         return this.reservationService.getReservedTimeByDate(date);
@@ -26,12 +35,24 @@ let ReservationController = exports.ReservationController = class ReservationCon
         return await this.reservationService.deleteOne(ID);
     }
     async getDog(id) {
-        return await this.reservationService.getOneByDogID(id);
+        const reservation = await this.reservationService.getByDogID(id);
+        return { reservation };
     }
-    async createReservation(reservationData) {
+    async createReservation(reservationData, req) {
+        const user = await this.userService.findOne(req.user.UserID);
+        reservationData.Confirm = "pending";
+        reservationData.seq = user.seq;
         return this.reservationService.createReservation(reservationData);
     }
 };
+__decorate([
+    (0, common_1.Get)('/user'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ReservationController.prototype, "getReservationByUserID", null);
 __decorate([
     (0, common_1.Get)('/state'),
     __param(0, (0, common_1.Query)('date')),
@@ -55,13 +76,16 @@ __decorate([
 ], ReservationController.prototype, "getDog", null);
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [create_reservation_dto_1.CreateReservationDto, Object]),
     __metadata("design:returntype", Promise)
 ], ReservationController.prototype, "createReservation", null);
 exports.ReservationController = ReservationController = __decorate([
     (0, common_1.Controller)('api/reservation'),
-    __metadata("design:paramtypes", [reservation_service_1.ReservationService])
+    __metadata("design:paramtypes", [reservation_service_1.ReservationService,
+        user_service_1.UserService])
 ], ReservationController);
 //# sourceMappingURL=reservation.controller.js.map

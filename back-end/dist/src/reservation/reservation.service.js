@@ -33,13 +33,13 @@ let ReservationService = exports.ReservationService = class ReservationService {
         const VisitReservations = await this.reservationRepository.find({
             where: {
                 ReservationDatetime: (0, typeorm_1.Between)(StartDay, EndDay),
-                Type: "방문예약",
+                Type: "visit",
             },
         });
         const PlayReservations = await this.reservationRepository.find({
             where: {
                 ReservationDatetime: (0, typeorm_1.Between)(StartDay, EndDay),
-                Type: "놀아주기예약",
+                Type: "play",
             },
         });
         const VisitReservedTimes = VisitReservations.map((reservation) => {
@@ -78,12 +78,22 @@ let ReservationService = exports.ReservationService = class ReservationService {
     async deleteOne(ID) {
         return await this.reservationRepository.delete({ ReservationID: ID });
     }
-    async getOneByDogID(id) {
-        console.log(id);
-        return await this.reservationRepository.find({ where: { DogID: id } });
+    async getByDogID(id) {
+        const reservations = await this.reservationRepository.find({ where: { DogID: id } });
+        return reservations.map((reservation) => {
+            reservation.ReservationDatetime.setHours(reservation.ReservationDatetime.getHours() + 9);
+            return reservation;
+        });
     }
     async createReservation(reservationData) {
         return await this.reservationRepository.save(reservationData);
+    }
+    async getByUserID(sequence) {
+        const reservations = await this.reservationRepository.find({ where: { seq: sequence } });
+        return reservations.map((reservation) => {
+            reservation.ReservationDatetime.setHours(reservation.ReservationDatetime.getHours() + 9);
+            return reservation;
+        });
     }
 };
 exports.ReservationService = ReservationService = __decorate([

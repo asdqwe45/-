@@ -12,13 +12,16 @@ const reservation_controller_1 = require("./reservation.controller");
 const reservation_service_1 = require("./reservation.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const reservation_entity_1 = require("./entities/reservation.entity");
+const user_service_1 = require("../user/user.service");
+const typeorm_2 = require("typeorm");
+const user_entity_1 = require("../user/entities/user.entity");
 let ReservationModule = exports.ReservationModule = class ReservationModule {
 };
 exports.ReservationModule = ReservationModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([reservation_entity_1.Reservation])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([reservation_entity_1.Reservation]), typeorm_1.TypeOrmModule.forFeature([user_entity_1.User])],
         controllers: [reservation_controller_1.ReservationController],
-        providers: [reservation_service_1.ReservationService]
+        providers: [reservation_service_1.ReservationService, typeorm_2.Repository, user_service_1.UserService]
     })
 ], ReservationModule);
 //# sourceMappingURL=reservation.module.js.map

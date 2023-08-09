@@ -6,5 +6,6 @@ export declare class UserController {
     constructor(userService: UserService);
     getUserInfo(req: any): Promise<Partial<User>>;
     create(createUserDto: CreateUserDto): Promise<any>;
-    findOne(id: string): Promise<Partial<User>>;
+    deleteUser(req: any): Promise<void>;
+    updateUser(req: any, updateData: any): Promise<void>;
 }
