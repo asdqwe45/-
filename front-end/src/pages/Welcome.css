@@ -4,11 +4,12 @@
 }
 
 .outer {
+    position: relative;
     height: 100vh;
     overflow-y: auto;
 }
 
-/* 화면에서 스크롤바 안보이게 */
+/* Hide scrollbar */
 .outer::-webkit-scrollbar {
     display: none;
 }
@@ -22,7 +23,7 @@
 }
 
 .bg-1 {
-    background-color: #FAEBD7;
+    background-color: #D4E5F3;
 }
 
 .bg-2 {
@@ -30,19 +31,59 @@
 }
 
 .bg-3 {
-    background-color: #9C4919;
+    background-color: #C3A193;
 }
 
 .bg-4 {
-    background-color: #DB7B0A;
+    background-color: #C3A193;
+    display: flex;
+    align-items: flex-end;
+    /* Align vertically to the bottom */
+    justify-content: flex-start;
+    /* Align horizontally to the start */
+    padding-left: 100px;
+    /* Some padding to not stick to the very edge */
+    padding-bottom: 50px;
+    /* Some padding to not stick to the very edge */
 }
 
 .divider {
     width: 100%;
     height: 5px;
-    background-color: gray;
+    background-color: #C3A193;
+    color: #C3A193;
 }
 
 .pad {
     padding-right: 50px;
+}
+
+.speech-bubble {
+    position: relative;
+    padding: 30px 25px;
+    /* Increased vertical padding to increase height */
+    background: linear-gradient(to bottom, #f7f7f7, #e5e5e5);
+    border-radius: 15px;
+    margin: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    color: #555;
+    max-width: 200px;
+    text-align: center;
+    height: 80px;
+    /* Optional: You can set a specific height if needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #e5e5e5;
+    transform: translateX(-50%);
 }

@@ -10,6 +10,11 @@ export default function LoginPage(props) {
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
+    const onFormSubmit = (e) => {
+        e.preventDefault(); // Prevent default form submission
+        onClickLogin();
+    };
+
     const handleInputId = (e) => {
         setInputId(e.target.value);
     };
@@ -59,15 +64,15 @@ export default function LoginPage(props) {
                     </div>
                 </div>
                 <div className="right" style={{ borderRadius: '40px' }}>
-                    {/* SVG and other UI elements go here ... */}
-                    <div className="form">
+                    {/* ... other UI elements ... */}
+                    <form onSubmit={onFormSubmit} style={{ margin: '42px' }}>
                         <label className='llabel' htmlFor="id">ID:</label>
                         <input className='linput' style={{ border: 'inset', marginTop: '10px' }} type="text" id="id" value={inputId} onChange={handleInputId} />
                         <label className='llabel' htmlFor="password">Password:</label>
                         <input className='linput' style={{ border: 'inset', marginTop: '10px' }} type="password" id="password" value={inputPw} onChange={handleInputPw} />
                         {errorMessage && <p className="error-message">{errorMessage}</p>}
-                        <input className='linput' style={{ background: 'none' }} type="submit" id="submit" value="Submit" onClick={onClickLogin} />
-                    </div>
+                        <input className='linput' style={{ background: 'none' }} type="submit" id="submit" value="Submit" />
+                    </form>
                 </div>
             </div>
         </div>

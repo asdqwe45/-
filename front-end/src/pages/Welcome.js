@@ -87,7 +87,7 @@ function Welcome() {
 
     return (
         <div ref={outerDivRef} className="outer welcomebody">
-            <nav className="navbar navbar-expand-lg bg-body-none fixed-top">
+            <nav className="navbar navbar-expand-lg fixed-top"   >
                 <div className="container-fluid" style={{
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -137,27 +137,153 @@ function Welcome() {
             </nav>
 
             <Dots scrollIndex={scrollIndex} />
-            <div className="inner bg-1">
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src="/weldog1.png" alt="" width="600" height="600" />
-                    <p>Your Text for Image 1</p>
-                </div>
+            <div className="inner bg-1" style={{
+                backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/welcomedog6.jpg)',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+
+
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-end',
+                alignItems: 'center'
+            }}>
+                <p style={{
+                    fontSize: '70px',
+                    fontStyle: 'italic',
+                    fontWeight: 'bold',
+                    color: 'white',
+                    fontFamily: 'Arial Black',
+                    // marginTop: '400px',  // 여기서 p 태그와 이미지 사이의 간격을 조정할 수 있습니다.
+                    marginBottom: '10px'
+                }}>
+                    Welcome to 百聞不如一犬
+                </p>
+                <p style={{
+                    fontSize: '20px',
+                    fontStyle: 'italic',
+                    // fontWeight: 'bold',
+                    color: 'white',
+                    // fontFamily: 'Arial Black',
+                    // marginTop: '400px',  // 여기서 p 태그와 이미지 사이의 간격을 조정할 수 있습니다.
+                    marginBottom: '40px'
+                }}>We offer the best services for your convenience, contact us today and book a service</p>
+                <img src="/welcomedog9.png" alt="Welcomedog5 Image" style={{ height: '55%', width: '1200px' }} />
             </div>
             <div className="divider"></div>
 
-            <div className="inner bg-2">
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <p>Your Text for Image 2</p>
-                    <img src="/weldog2.png" alt="" width="400" height="400" style={{ paddingLeft: '150px' }} />
+            <div className="inner bg-2" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <p style={{
+                        fontSize: '70px',
+                        fontStyle: 'italic',
+                        fontWeight: 'bold',
+                        color: 'white',
+                        fontFamily: 'Arial Black',
+                        marginBottom: '50px'
+                    }}>
+                        Our Services
+                    </p>
 
+                    <div style={{ display: 'flex' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginRight: '30px' }}>
+                            <div style={{ position: 'relative', width: '300px' }}>
+                                <img src="/wel1.jpg" alt="" style={{ height: '350px', width: '100%' }} />
+                                <div style={{ position: 'absolute', height: '70px', bottom: '0', left: '0', right: '0', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '20px', textAlign: 'center' }}>
+
+                                    <p style={{
+                                        fontSize: '20px',
+                                        fontStyle: 'italic',
+                                        fontWeight: 'bold',
+                                        color: 'white',
+                                        fontFamily: 'Arial Black',
+                                    }}>유기견 입양</p>
+                                </div>
+                            </div>
+                            <p style={{
+                                width: '300px', textAlign: 'center', fontSize: '17px',
+                                fontStyle: 'italic',
+                                // fontWeight: 'bold',
+                                color: 'white',
+                                fontFamily: 'Arial Black',
+                                marginTop: '25px'
+                            }}>저희는 유기견들을 보호함과 동시에 입양 서비스를 제공하고 있습니다.</p>
+                        </div>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginRight: '30px' }}>
+                            <div style={{ position: 'relative', width: '300px' }}>
+                                <img src="/wel2.jpg" alt="" style={{ height: '350px', width: '100%' }} />
+                                <div style={{ position: 'absolute', height: '70px', bottom: '0', left: '0', right: '0', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '20px', textAlign: 'center' }}>
+                                    <p style={{
+                                        fontSize: '20px',
+                                        fontStyle: 'italic',
+                                        fontWeight: 'bold',
+                                        color: 'white',
+                                        fontFamily: 'Arial Black',
+                                    }}>분실견 찾기</p>
+                                </div>
+                            </div>
+                            <p style={{
+                                width: '300px', textAlign: 'center', fontSize: '17px',
+                                fontStyle: 'italic',
+                                // fontWeight: 'bold',
+                                color: 'white',
+                                fontFamily: 'Arial Black',
+                                marginTop: '25px'
+                            }}>저희는 보호자들이 분실견을 찾을 수 있도록 최상의 서비스를 제공하고 있습니다.</p>
+                        </div>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                            <div style={{ position: 'relative', width: '300px' }}>
+                                <img src="/wel3.jpg" alt="" style={{ height: '350px', width: '100%' }} />
+                                <div style={{ position: 'absolute', height: '70px', bottom: '0', left: '0', right: '0', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '20px', textAlign: 'center' }}>
+                                    <p style={{
+                                        fontSize: '20px',
+                                        fontStyle: 'italic',
+                                        fontWeight: 'bold',
+                                        color: 'white',
+                                        fontFamily: 'Arial Black',
+
+                                    }}>유기견 놀아주기</p>
+                                </div>
+                            </div>
+                            <p style={{
+                                width: '300px', textAlign: 'center', fontSize: '17px',
+                                fontStyle: 'italic',
+                                // fontWeight: 'bold',
+                                color: 'white',
+                                fontFamily: 'Arial Black',
+                                marginTop: '25px'
+                            }}>저희는 유기견들이 지루해하지 않게 원격 조종 장난감으로 놀아주기 서비스를 제공하고 있습니다.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="divider"></div>
 
             <div className="inner bg-3">
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src="/weldog3.png" alt="" width="400" height="400" style={{ paddingRight: '150px' }} />
-                    <p>Your Text for Image 3</p>
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', height: '100%' }}>
+
+                    <p style={{
+                        fontSize: '70px',
+                        fontStyle: 'italic',
+                        fontWeight: 'bold',
+                        color: 'white',
+                        fontFamily: 'Arial Black',
+                        marginTop: '100px'
+                    }}>Why Us?</p>
+
+                    <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', padding: '0 10%', marginTop: '10px' }}>
+                        <p className="speech-bubble">Your text here</p>
+                        <p className="speech-bubble">Your text here</p>
+                        <p className="speech-bubble">Your text here</p>
+                    </div>
+
+                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                        <img src="wel10.png" alt="Description of Image" />
+                    </div>
+
                 </div>
             </div>
             <div className="divider"></div>
