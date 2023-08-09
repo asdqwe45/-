@@ -34,7 +34,6 @@ export class LostDogsService {
   }
   
   async update(DogID: number, updateData: UpdateDogDto): Promise<void> {
-    this.getOneLostDog(DogID);
     await this.dogsRepository.update(DogID, updateData);
   }
 }

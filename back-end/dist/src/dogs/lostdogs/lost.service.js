@@ -42,7 +42,6 @@ let LostDogsService = exports.LostDogsService = class LostDogsService {
         await this.dogsRepository.save(dogData);
     }
     async update(DogID, updateData) {
-        this.getOneLostDog(DogID);
         await this.dogsRepository.update(DogID, updateData);
     }
 };

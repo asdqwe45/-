@@ -9,6 +9,6 @@ import { EndpointService } from 'src/endpoint/endpoint.service';
 @Module({
   imports: [TypeOrmModule.forFeature([Dog])],
   controllers: [DogsController],
-  providers: [DogsService,Repository,EndpointService]
+  providers: [DogsService, Repository, EndpointService],
 })
 export class DogsModule {}
