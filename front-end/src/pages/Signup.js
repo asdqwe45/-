@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
+import './Signup.css';
 
 const Signup = () => {
     const [name, setName] = useState('');
@@ -52,8 +53,17 @@ const Signup = () => {
             return;
         }
 
+
+
+
+
+
+
+
+
+
         try {
-            const response = await axios.post('/api/user/signup', {
+            const response = await axios.post('http://localhost:3001/user/signup', {
                 Name: name,
                 UserID: userID,
                 Password: password,
@@ -61,7 +71,7 @@ const Signup = () => {
                 PhoneNumber: phoneNumber,
                 Nickname: nickname,
                 Address: address,
-                Admin: 0, // Assuming the value of Admin is 0 by default
+                Admin: admin ? 1 : 0, // Assuming the value of Admin is 0 by default
             });
             if (response.data) {
                 console.log(response.data);
@@ -80,22 +90,57 @@ const Signup = () => {
     };
 
     return (
-        <div>
+        <div className="spage">
 
-            <form onSubmit={handleSubmit}>
-                <label>Name: <input value={name} onChange={(e) => setName(e.target.value)} /></label><br />
-                <label>User ID: <input value={userID} onChange={(e) => setUserID(e.target.value)} /></label><br />
-                <label>Password: <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></label><br />
-                <label>Confirm Password: <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} /></label><br />
-                <label>Admin: <input type="checkbox" checked={admin} onChange={(e) => setAdmin(e.target.checked)} /></label><br />
-                <label>Email: <input value={email} onChange={(e) => setEmail(e.target.value)} /></label><br />
-                <label>Phone Number: <input value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} /></label><br />
-                <label>Nickname: <input value={nickname} onChange={(e) => setNickname(e.target.value)} /></label><br />
-                <label>Address: <input value={address} onChange={(e) => setAddress(e.target.value)} /></label><br />
-                <button type="submit">Submit</button>
-            </form>
-            <Link to="/login">로그인페이지로</Link>
-        </div>
+            <div className="scontainer">
+                <div className="sleft" style={{ borderRadius: '40px' }}>
+                    <div className="slogin">Signup</div>
+                    <div className="seula">
+                        {/* <li>New Here?</li> */}
+                        <li>One of us?<br />
+                            If you already has an account, just sign in. We've missed you!</li>
+                        <li><Link to="/login">Login</Link></li>
+                        <li><Link to="/">Home</Link></li>
+                    </div>
+                </div>
+
+                <div className="sright" style={{ borderRadius: '40px' }}>
+                    <form onSubmit={handleSubmit}>
+                        <div className="sform" style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <div >
+                                <label className='slabel'>Name: <input className='sinput' style={{ border: 'inset', marginTop: '10px' }} value={name} onChange={(e) => setName(e.target.value)} /></label><br />
+                                <label className='slabel'>User ID: <input className='sinput' style={{ border: 'inset', marginTop: '10px' }} value={userID} onChange={(e) => setUserID(e.target.value)} /></label><br />
+                                <label className='slabel'>Password: <input className='sinput' style={{ border: 'inset', marginTop: '10px' }} type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></label><br />
+                                <label className='slabel'>Confirm Password: <input className='sinput' style={{ border: 'inset', marginTop: '10px' }} type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} /></label><br />
+                                <label className='slabel'>Admin: <input className='sinput' type="checkbox" checked={admin} onChange={(e) => setAdmin(e.target.checked)} /></label><br />
+                            </div>
+                            <div>
+                                <label className='slabel'>Email: <input className='sinput' style={{ border: 'inset', marginTop: '10px' }} value={email} onChange={(e) => setEmail(e.target.value)} /></label><br />
+                                <label className='slabel'>Phone Number: <input className='sinput' style={{ border: 'inset', marginTop: '10px' }} value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} /></label><br />
+                                <label className='slabel'>Nickname: <input className='sinput' style={{ border: 'inset', marginTop: '10px' }} value={nickname} onChange={(e) => setNickname(e.target.value)} /></label><br />
+                                <label className='slabel'>Address: <input className='sinput' style={{ border: 'inset', marginTop: '10px' }} value={address} onChange={(e) => setAddress(e.target.value)} /></label><br />
+                                <label className='slabel'><div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <button type="submit" className='ssubmit'>Submit</button>
+                                </div></label>
+                            </div>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+
+
+
+
+
+            </div>
+        </div >
+
+
+
 
     );
 };

@@ -50,12 +50,15 @@
 }
 
 .dogbaiscinfodiv {
-    background-color: white;
+    border-radius : 10px;
+    background-color: #D6C7B2;
+    color : BLACK;
     width: 300px;
     height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 /* ///////////////////// */
@@ -75,7 +78,7 @@ ul.pagination li {
     display: inline-block;
     width: 30px;
     height: 30px;
-    border: 1px solid #e2e2e2;
+    border: 1px solid rgb(0, 0, 0, 0);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,7 +95,7 @@ ul.pagination li:last-child {
 
 ul.pagination li a {
     text-decoration: none;
-    color: #337ab7;
+    color: black;
     font-size: 1rem;
 }
 
@@ -101,16 +104,18 @@ ul.pagination li.active a {
 }
 
 ul.pagination li.active {
-    background-color: #337ab7;
+    background-color: #D6C7B2;
 }
 
 ul.pagination li a:hover,
 ul.pagination li a.active {
-    color: blue;
+    /* color: #005B4B; */
+    color : #D6C7B2;
 }
 
 .page-selection {
     width: 48px;
     height: 30px;
-    color: #337ab7;
+    /* color: #337ab7; */
+    color : black;
 }

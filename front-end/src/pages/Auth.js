@@ -8,3 +8,15 @@ export const setToken = (token) => {
 export const getToken = (token) => {
     return localStorage.getItem('rasyueToken')
 }
+
+export const setID = (userid) => {
+    localStorage.setItem('userid', userid)
+}
+
+// export const getID = (userid) => {
+//     return localStorage.getItem('userid', userid)
+// }
+
+export const setAdmin = (admin) => {
+    localStorage.setItem('admin', admin)
+}
