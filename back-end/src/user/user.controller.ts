@@ -22,17 +22,8 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   async getUserInfo(@Request() req) {
     const { UserID, Admin } = req.user;
-    // console.log(req.user);
-    if (Admin == 0) {
-      {
-        const user = await this.userService.findOne(UserID);
-        // console.log(user);
-        return user;
-      }
-    }
-    // admin이 1일경우
-    else {
-    }
+    const user = await this.userService.findOne(UserID);
+    return user;
   }
 
   @Post('signup')
@@ -40,10 +31,6 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string): Promise<Partial<User>> {
-    return this.userService.findOne(id);
-  }
   @Delete()
   @UseGuards(JwtAuthGuard)
   async deleteUser(@Request() req) {
