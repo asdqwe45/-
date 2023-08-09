@@ -20,6 +20,6 @@ export class ImageService {
 
   async getImage(DogID: number) {
     const dog = await this.dogRepository.findOneBy({ DogID: DogID });
-    return dog.image;
+    return dog.Image;
   }
 }

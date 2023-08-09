@@ -16,6 +16,7 @@ exports.StrayDogsController = void 0;
 const common_1 = require("@nestjs/common");
 const straydogs_service_1 = require("./straydogs.service");
 const update_dog_dto_1 = require("../DTO/update.dog.dto");
+const platform_express_1 = require("@nestjs/platform-express");
 let StrayDogsController = exports.StrayDogsController = class StrayDogsController {
     constructor(strayDogsService) {
         this.strayDogsService = strayDogsService;
@@ -38,11 +39,23 @@ let StrayDogsController = exports.StrayDogsController = class StrayDogsControlle
     deleteOne(ID) {
         return this.strayDogsService.deleteOne(ID);
     }
-    create(dogData) {
-        this.strayDogsService.create(dogData);
+    async create(dogData, file) {
+        let filePath = null;
+        if (file) {
+            filePath = file.path;
+            dogData.Image = filePath;
+        }
+        await this.strayDogsService.create(dogData, filePath);
+        return { success: true, message: 'Dog updated successfully!' };
     }
-    patch(DogID, updateData) {
-        this.strayDogsService.update(DogID, updateData);
+    async updateDog(DogID, updateData, file) {
+        let filePath = null;
+        if (file) {
+            filePath = file.path;
+            updateData.Image = filePath;
+        }
+        await this.strayDogsService.update(DogID, updateData);
+        return { success: true, message: 'Dog updated successfully!' };
     }
 };
 __decorate([
@@ -69,19 +82,23 @@ __decorate([
 ], StrayDogsController.prototype, "deleteOne", null);
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('Image')),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], StrayDogsController.prototype, "create", null);
 __decorate([
     (0, common_1.Put)('/:id'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('Image')),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, update_dog_dto_1.UpdateDogDto]),
-    __metadata("design:returntype", void 0)
-], StrayDogsController.prototype, "patch", null);
+    __metadata("design:paramtypes", [Number, update_dog_dto_1.UpdateDogDto, Object]),
+    __metadata("design:returntype", Promise)
+], StrayDogsController.prototype, "updateDog", null);
 exports.StrayDogsController = StrayDogsController = __decorate([
     (0, common_1.Controller)('api/straydog'),
     __metadata("design:paramtypes", [straydogs_service_1.StrayDogsService])
