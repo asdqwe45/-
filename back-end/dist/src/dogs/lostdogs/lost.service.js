@@ -22,23 +22,27 @@ let LostDogsService = exports.LostDogsService = class LostDogsService {
         this.dogsRepository = dogsRepository;
     }
     async getAllLostDogs() {
-        const dogs = (await this.dogsRepository.find({ where: { Status: "Lost" } })).reverse();
+        const dogs = (await this.dogsRepository.find({ where: { Status: 'Lost' } })).reverse();
         return dogs;
     }
     async getAllLostDogsCount() {
-        const count = this.dogsRepository.count({ where: { Status: "Lost" } });
+        const count = this.dogsRepository.count({ where: { Status: 'Lost' } });
         return count;
     }
     async getOneLostDog(DogID) {
-        const LostDog = this.dogsRepository.findOneBy({ Status: "Lost", DogID: DogID });
+        const LostDog = this.dogsRepository.findOneBy({
+            Status: 'Lost',
+            DogID: DogID,
+        });
         return LostDog;
     }
     async deleteOne(DogID) {
         this.getOneLostDog(DogID);
         this.dogsRepository.delete(DogID);
     }
-    async create(dogData) {
-        dogData.Status = "Lost";
+    async create(dogData, filePath) {
+        dogData.Status = 'Lost';
+        dogData.Image = filePath;
         await this.dogsRepository.save(dogData);
     }
     async update(DogID, updateData) {

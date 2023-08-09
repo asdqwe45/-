@@ -49,7 +49,7 @@ export class StrayDogsController {
       filePath = file.path;
       dogData.Image = filePath;
     }
-    await this.strayDogsService.create(dogData,filePath);
+    await this.strayDogsService.create(dogData, filePath);
     return { success: true, message: 'Dog updated successfully!' };
   }
   @Put('/:id')
