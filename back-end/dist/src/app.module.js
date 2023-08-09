@@ -23,6 +23,8 @@ const auth_module_1 = require("./auth/auth.module");
 const cache_manager_1 = require("@nestjs/cache-manager");
 const token_middleware_1 = require("../middleware/token.middleware");
 const reservation_module_1 = require("./reservation/reservation.module");
+const platform_express_1 = require("@nestjs/platform-express");
+const image_module_1 = require("./image/image.module");
 let AppModule = exports.AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -33,6 +35,9 @@ let AppModule = exports.AppModule = class AppModule {
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            platform_express_1.MulterModule.register({
+                dest: './uploads',
+            }),
             cache_manager_1.CacheModule.register({
                 isGlobal: true,
                 ttl: 60,
@@ -53,10 +58,9 @@ exports.AppModule = AppModule = __decorate([
             admin_module_1.AdminModule,
             user_module_1.UserModule,
             auth_module_1.AuthModule,
-            reservation_module_1.ReservationModule
+            reservation_module_1.ReservationModule,
+            image_module_1.ImageModule
         ],
-        controllers: [],
-        providers: [],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

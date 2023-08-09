@@ -1,27 +1,17 @@
-import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
-import multer from 'multer';
-import path from 'path';
-import fs from 'fs';
+import * as multer from 'multer';
+import * as path from 'path';
 
-const mkdir = (directory: string) => {
-  if (!fs.existsSync(directory)) {
-    fs.mkdirSync(directory, { recursive: true });
-  }
-};
-
-const storageDirectory = path.join(process.cwd(), 'uploads');
-mkdir(storageDirectory);
-
-export const multerOptionsFactory = (): MulterOptions => {
+export const multerOptionsFactory = (): multer.Options => {
   return {
     storage: multer.diskStorage({
       destination(req, file, done) {
-        done(null, storageDirectory);
+        done(null, path.join(process.cwd(), 'uploads'));
       },
+
       filename(req, file, done) {
-        const ext = path.extname(file.originalname);
-        const basename = path.basename(file.originalname, ext);
-        done(null, `${basename}_${Date.now()}${ext}`);
+        const ext = path.extname(file.originalname); // 파일 확장자 추출
+        const DogID = req.params.DogID; // request에서 DogID를 가져옵니다.
+        done(null, `${DogID}${ext}`); // DogID와 확장자를 결합하여 파일 이름을 지정합니다.
       },
     }),
     limits: { fileSize: 10 * 1024 * 1024 },
