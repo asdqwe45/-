@@ -48,8 +48,6 @@ import { WebsocketModule } from './websocket/websocket.module';
     PlayModule,
     WebsocketModule
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
