@@ -61,6 +61,7 @@ function Straydog() {
         let selected = data.selected;
         setCurrentPage(selected);
     };
+    console.log(perPage)
     
 
     return (
