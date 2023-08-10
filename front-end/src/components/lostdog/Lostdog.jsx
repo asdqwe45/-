@@ -87,13 +87,7 @@ function Lostdog() {
                                                         <div>
 
                                                             <p>
-                                                                나이 : {item.Age}
-                                                            </p>
-                                                            <p>
-                                                                성별 : {item.Sex}
-                                                            </p>
-                                                            <p>
-                                                                견종 : {item.DogID}
+                                                                나이 : {item.Comment}
                                                             </p>
 
                                                         </div>

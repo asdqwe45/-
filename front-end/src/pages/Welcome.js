@@ -158,7 +158,7 @@ function Welcome() {
                     // marginTop: '400px',  // 여기서 p 태그와 이미지 사이의 간격을 조정할 수 있습니다.
                     marginBottom: '10px'
                 }}>
-                    Welcome to 百聞不如一犬
+                    Welcome to 백문이불여일犬
                 </p>
                 <p style={{
                     fontSize: '20px',

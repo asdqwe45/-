@@ -61,6 +61,7 @@ function Straydog() {
         let selected = data.selected;
         setCurrentPage(selected);
     };
+    
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
@@ -78,9 +79,9 @@ function Straydog() {
                                         <div className="card" >
                                             {/* <!-- 앞면 --> */}
                                             <div className="front">
-
-                                                {/* <img src={item.Image} alt={item.DogId} style={{ width: '300px', height: '300px', }} className="nav-link active" /> */}
-                                                <img src="/sokuri.jpg" alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active"/>
+                                                
+                                                <img src={`/upload/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', }} className="nav-link active" />
+                                                {/* <img src="/sokuri.jpg" alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active"/> */}
 
                                             </div>
                                             {/* <!-- 뒷면 --> */}

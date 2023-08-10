@@ -67,7 +67,7 @@ const Main = (props) => {
             fetchData();
             
             const today = new Date()
-            console.log('오늘 : ',today)
+            // console.log('오늘 : ',today)
             setYear(today.getFullYear())
             setMonth(today.getMonth() + 1)
             setDate(today.getDate())
@@ -271,7 +271,7 @@ const Main = (props) => {
 
             </div>
             {/* 예약시간 띄우기 */}
-            <div> {reservationtime.length === 0
+            <div> {reservationtime.length === 0 || page === 'remoteplay'
             ?   null
             :   (parseInt(nowminute) >= 50
             ?   <Link to="/remoteplay">

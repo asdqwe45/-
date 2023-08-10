@@ -8,7 +8,7 @@ import './admin.css';
 
 
 const StraydogUpdate = () => {
-
+    const userid = localStorage.getItem('userid');
     // 강아지 아이디 받기
     const { id } = useParams()
     // ====================================================
@@ -99,6 +99,11 @@ const StraydogUpdate = () => {
         setDiscoveredPlace(event.target.value);
         console.log(event.target.value);
     }
+    const [Comment, setComment] = useState(null)
+    const changeComment = event => {
+        setComment(event.target.value);
+        console.log(event.target.value)
+    }
     // ===================================================
 
     const navigate = useNavigate()
@@ -125,6 +130,8 @@ const StraydogUpdate = () => {
                 LostLocation: null,
                 LostDate: null,
                 ReturnedHome: null,
+                Comment : Comment,
+                UserID : userid
                 
             }), { headers: { "Content-Type": 'application/json' } })
             .then(function (response) {
@@ -228,7 +235,7 @@ const StraydogUpdate = () => {
                 </div>
                 <hr/>
                 <div className='input_div'>
-                    <label htmlFor='discovered_place'> 추가 내용 </label><input id='discovered_place' className='input_text' type="text" placeholder={dog.DiscoveredPlace} />
+                    <label htmlFor='discovered_place'> 추가 내용 </label><textarea id='discovered_place' className='input_text' type="text" placeholder={dog.DiscoveredPlace} onChange={changeComment}/>
                 </div>
                 <hr/>
 

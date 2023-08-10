@@ -27,8 +27,9 @@ const StraydogCreate = () => {
     };
     const [Image, setImage] = useState(null)
     const changeImage = event => {
-        setImage(event.target.value);
-        console.log(event.target.value);
+        setImage(event.target.files[0]);
+        console.log(event.target.files[0]);
+        
     };
     const [Breed, setBreed] = useState(null)
     const changeBreed = event => {
@@ -84,8 +85,7 @@ const StraydogCreate = () => {
     //     return
     // }
     
-
-
+    
     // CREATE 버튼 눌렀을 때 시행
     const Create = (e) => {
         // e.preventDefault();
@@ -113,27 +113,29 @@ const StraydogCreate = () => {
 
         else {
             // e.preventDefault();
-            
-            axios.post('/straydog', JSON.stringify(
-                {
-                    "Sex": Sex,
-                    "Age": parseInt(Age),
-                    "ChipNumber": ChipNumber,
-                    "Image": Image,
-                    "Breed": Breed,
-                    "RemainedDay": parseInt(RemainedDay),
-                    "DogSize": DogSize,
-                    "Weight": parseInt(Weight),
-                    "Status": "stray",
-                    "EnteredDay": EnteredDay,
-                    "DiscoveredPlace": DiscoveredPlace,
-                    "LostLocation": null,
-                    "LostDate": null,
-                    "ReturnedHome": null,
-                    "Comment" : Comment,
-                    "UserID" : userid
-                    
-                }), { headers: { "Content-Type": 'application/json' } })
+            const formData = new FormData();
+            console.log(formData, '처음ㄴ')
+            formData.append('Sex', Sex);
+            console.log(formData)
+            formData.append('Age', parseInt(Age));
+            formData.append('ChipNumber', ChipNumber);
+            formData.append('Image', Image); 
+            console.log(Image)
+            formData.append('Breed', Breed);
+            formData.append('RemainedDay', parseInt(RemainedDay));
+            formData.append('DogSize', DogSize);
+            formData.append('Weight', parseInt(Weight));
+            formData.append('Status', 'stray')
+            formData.append('EnteredDay', EnteredDay)
+            formData.append('DiscoveredPlace', DiscoveredPlace)
+            formData.append('LostLocation', null)
+            // formData.append('LostDate', null)
+            formData.append('ReturnedHome', null)
+            formData.append('Comment', Comment)
+            formData.append("UserID", userid)
+        console.log(formData)
+
+            axios.post('/straydog', formData)
                 .then(function (response) {
                     console.log(response);
                     navigate('/straydog')
@@ -172,7 +174,7 @@ const StraydogCreate = () => {
                 </div>
                 <hr />
                 <div className='input_div'>
-                    <label htmlFor='image' className='kk'> 사 진 </label><input id='image' type="text" className='input_text' onChange={changeImage} />
+                    <label htmlFor='image' className='kk'> 사 진 </label><input id='image' type="file" className='input_text' onChange={changeImage} />
                 </div>
                 <hr />
                 <div className='input_div'>
