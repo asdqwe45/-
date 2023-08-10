@@ -23,13 +23,8 @@ const auth_module_1 = require("./auth/auth.module");
 const cache_manager_1 = require("@nestjs/cache-manager");
 const token_middleware_1 = require("../middleware/token.middleware");
 const reservation_module_1 = require("./reservation/reservation.module");
-<<<<<<< HEAD
 const play_module_1 = require("./play/play.module");
-const websocket_module_1 = require("./websocket/websocket.module");
-=======
-const platform_express_1 = require("@nestjs/platform-express");
-const image_module_1 = require("./image/image.module");
->>>>>>> ef537544fbf82bfb0c446b70e3026fadef35a1af
+const websocket_gateway_1 = require("./websocket/websocket.gateway");
 let AppModule = exports.AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -40,9 +35,6 @@ let AppModule = exports.AppModule = class AppModule {
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            platform_express_1.MulterModule.register({
-                dest: './uploads',
-            }),
             cache_manager_1.CacheModule.register({
                 isGlobal: true,
                 ttl: 60,
@@ -64,13 +56,9 @@ exports.AppModule = AppModule = __decorate([
             user_module_1.UserModule,
             auth_module_1.AuthModule,
             reservation_module_1.ReservationModule,
-<<<<<<< HEAD
             play_module_1.PlayModule,
-            websocket_module_1.WebsocketModule
-=======
-            image_module_1.ImageModule
->>>>>>> ef537544fbf82bfb0c446b70e3026fadef35a1af
         ],
+        providers: [websocket_gateway_1.WebsocketGateway]
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

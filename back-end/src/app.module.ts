@@ -16,6 +16,7 @@ import { TokenMiddleware } from 'middleware/token.middleware';
 import { ReservationModule } from './reservation/reservation.module';
 import { PlayModule } from './play/play.module';
 import { WebsocketModule } from './websocket/websocket.module';
+import { WebsocketGateway } from './websocket/websocket.gateway';
 
 
 @Module({
@@ -46,8 +47,8 @@ import { WebsocketModule } from './websocket/websocket.module';
     AuthModule,
     ReservationModule,
     PlayModule,
-    WebsocketModule
   ],
+  providers:[WebsocketGateway]
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
