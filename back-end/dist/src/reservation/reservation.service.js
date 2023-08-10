@@ -33,21 +33,13 @@ let ReservationService = exports.ReservationService = class ReservationService {
         const VisitReservations = await this.reservationRepository.find({
             where: {
                 ReservationDatetime: (0, typeorm_1.Between)(StartDay, EndDay),
-<<<<<<< HEAD
-                Type: "visit",
-=======
                 Type: 'visit',
->>>>>>> ef537544fbf82bfb0c446b70e3026fadef35a1af
             },
         });
         const PlayReservations = await this.reservationRepository.find({
             where: {
                 ReservationDatetime: (0, typeorm_1.Between)(StartDay, EndDay),
-<<<<<<< HEAD
-                Type: "play",
-=======
                 Type: 'play',
->>>>>>> ef537544fbf82bfb0c446b70e3026fadef35a1af
             },
         });
         const VisitReservedTimes = VisitReservations.map((reservation) => {
@@ -87,13 +79,9 @@ let ReservationService = exports.ReservationService = class ReservationService {
         return await this.reservationRepository.delete({ ReservationID: ID });
     }
     async getByDogID(id) {
-<<<<<<< HEAD
-        const reservations = await this.reservationRepository.find({ where: { DogID: id } });
-=======
         const reservations = await this.reservationRepository.find({
             where: { DogID: id },
         });
->>>>>>> ef537544fbf82bfb0c446b70e3026fadef35a1af
         return reservations.map((reservation) => {
             reservation.ReservationDatetime.setHours(reservation.ReservationDatetime.getHours() + 9);
             return reservation;
@@ -103,13 +91,9 @@ let ReservationService = exports.ReservationService = class ReservationService {
         return await this.reservationRepository.save(reservationData);
     }
     async getByUserID(sequence) {
-<<<<<<< HEAD
-        const reservations = await this.reservationRepository.find({ where: { seq: sequence } });
-=======
         const reservations = await this.reservationRepository.find({
             where: { seq: sequence },
         });
->>>>>>> ef537544fbf82bfb0c446b70e3026fadef35a1af
         return reservations.map((reservation) => {
             reservation.ReservationDatetime.setHours(reservation.ReservationDatetime.getHours() + 9);
             return reservation;

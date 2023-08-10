@@ -40,6 +40,12 @@ let LostDogsController = exports.LostDogsController = class LostDogsController {
         return this.lostDogsService.deleteOne(ID);
     }
     async create(dogData, file) {
+        if (dogData.EnteredDay === '') {
+            dogData.EnteredDay = null;
+        }
+        if (dogData.LostDate === '') {
+            dogData.LostDate = null;
+        }
         let filePath = null;
         if (file) {
             filePath = file.path;

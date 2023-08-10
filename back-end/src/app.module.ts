@@ -16,7 +16,8 @@ import { TokenMiddleware } from 'middleware/token.middleware';
 import { ReservationModule } from './reservation/reservation.module';
 import { PlayModule } from './play/play.module';
 import { WebsocketModule } from './websocket/websocket.module';
-
+import * as express from 'express';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -53,6 +54,8 @@ export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(TokenMiddleware)
-      .forRoutes({ path: 'dog', method: RequestMethod.ALL });
+      .forRoutes({ path: 'dog', method: RequestMethod.ALL })
+      .apply(express.static(join(__dirname, '..', '../uploads')))
+      .forRoutes('uploads');
   }
 }
