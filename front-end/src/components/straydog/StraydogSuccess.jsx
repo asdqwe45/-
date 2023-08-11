@@ -71,7 +71,7 @@ function StraydogSuccess() {
                                             {/* <!-- 앞면 --> */}
                                             <div className="front">
 
-                                                <img src='sokurisuccess.jpg' alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active" />
+                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active" />
 
                                             
                                             </div>

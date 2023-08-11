@@ -64,7 +64,7 @@ const StraydogDetail = () => {
             <div style={{ paddingTop: '40px' }}>
 
                 {/* {dog.Image} */}
-                <img src='dog1.jpg' width="400" height="350" style={{ marginBottom : '40px'}} />
+                <img src={`/uploads/${dog.Image}`} width="400" height="350" style={{ marginBottom : '40px'}} />
 
                 <div className='info'>
                     <div className="info_per">

@@ -68,7 +68,7 @@ function Lostdog() {
                                         <div className="card" >
                                             {/* <!-- 앞면 --> */}
                                             <div className="front" style={{position : 'relative'}}>
-                                            <img src='dog2.jpg' alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active" />
+                                            <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active" />
                                             <div>
                                                 {item.ReturnedHome === 'Yes'
                                                 ? <img src='home.jpg' alt={item.DogId} style={{ width : '300px', height : '300px', borderRadius : '10px', backgroundColor : 'rgb(0, 0, 0, 0.4)', position : 'absolute', left : '0px', top : '0px' }} className="nav-link active" />
