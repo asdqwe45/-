@@ -59,10 +59,12 @@ const StraydogUpdate = () => {
         setChipNumber(event.target.value);
         console.log(event.target.value);
     };
-    const [Image, setImage] = useState(dog.Image)
+    const [Image, setImage] = useState(null)
     const changeImage = event => {
-        setImage(event.target.value);
-        console.log(event.target.value);
+        setImage(event.target.files[0])
+        console.log(Image,'3')
+        console.log(event.target.files[0]);
+        
     };
     const [Breed, setBreed] = useState(dog.Breed)
     const changeBreed = event => {
@@ -174,7 +176,7 @@ const StraydogUpdate = () => {
                 </div>
                 <hr/>
                 <div className='input_div'>
-                    <label htmlFor='image' className='kk'> 사 진 </label><input id='image' type="text" placeholder={dog.Image} className='input_text' onChange={changeImage} />
+                    <label htmlFor='image' className='kk'> 사 진 </label><input id='image' type="file" className='input_text' onChange={changeImage} />
                 </div>
                 <hr/>
                 <div className='input_div'>

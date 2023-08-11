@@ -80,7 +80,7 @@ function Straydog() {
                                         <div className="card" >
                                             {/* <!-- 앞면 --> */}
                                             <div className="front">
-                                                {item.Image}
+                                                {/* {item.Image} */}
                                                 <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', }} className="nav-link active" />
                                                 {/* <img src="/sokuri.jpg" alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active"/> */}
 

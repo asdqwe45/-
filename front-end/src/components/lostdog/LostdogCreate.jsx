@@ -22,8 +22,9 @@ const LostdogCreate = () => {
     };
     const [Image, setImage] = useState(null)
     const changeImage = event => {
-        setImage(event.target.value);
-        console.log(event.target.value);
+        setImage(event.target.files[0]);
+        console.log(event.target.files[0]);
+        
     };
     const [Breed, setBreed] = useState(null)
     const changeBreed = event => {
@@ -112,45 +113,26 @@ const LostdogCreate = () => {
         }
         else {
             // e.preventDefault();
-            console.log(typeof (LostDate), 1)
-        console.log(LostDate, 2)
-            console.log({
-                "Sex": Sex,
-                "Age": parseInt(Age),
-                "ChipNumber": ChipNumber,
-                "Image": Image,
-                "Breed": Breed,
-                "RemainedDay": "2023-08-04",
-                "DogSize": DogSize,
-                "Weight": parseInt(Weight),
-                "Status": "lost",
-                "EnteredDay": null,
-                "DiscoveredPlace": null,
-                "LostLocation": LostLocation,
-                "LostDate": LostDate,
-                "ReturnedHome": "No",
-                "Comment" : Comment,
-                "UserID" : userid,
-            })
-            axios.post('/api/lostdog', JSON.stringify(
-                {
-                    "Sex": Sex,
-                    "Age": parseInt(Age),
-                    "ChipNumber": ChipNumber,
-                    "Image": Image,
-                    "Breed": Breed,
-                    "RemainedDay": null,
-                    "DogSize": DogSize,
-                    "Weight": parseInt(Weight),
-                    "Status": "lost",
-                    "EnteredDay": null,
-                    "DiscoveredPlace": null,
-                    "LostLocation": LostLocation,
-                    "LostDate": LostDate,
-                    "ReturnedHome": "No",
-                    "Comment" : Comment,
-                    "UserID" : 'qudtls210',
-                }), { headers: { "Content-Type": 'application/json' } })
+            const formData = new FormData();
+            formData.append('Sex', Sex);
+            formData.append('Age', parseInt(Age));
+            formData.append('ChipNumber', ChipNumber);
+            formData.append('Image', Image); 
+            formData.append('Breed', Breed);
+            formData.append('RemainedDay', null);
+            formData.append('DogSize', DogSize);
+            formData.append('Weight', parseInt(Weight));
+            formData.append('Status', 'lost')
+            formData.append('EnteredDay', null)
+            formData.append('DiscoveredPlace', null)
+            formData.append('LostLocation', LostLocation)
+            formData.append('LostDate', LostDate)
+            formData.append('ReturnedHome', ReturnedHome)
+            formData.append('Comment', Comment)
+            formData.append("UserID", userid)
+        console.log(formData)
+
+            axios.post('/api/lostdog', formData)
                 .then(function (response) {
                     console.log(response);
                     navigate('/lostdog')
@@ -191,7 +173,7 @@ const LostdogCreate = () => {
                     </div>
                     <hr />
                     <div className='input_div'>
-                        <label htmlFor='image' className='kk'> 사 진 </label><input id='image' type="text" className='input_text' onChange={changeImage} />
+                    <label htmlFor='image' className='kk'> 사 진 </label><input id='image' type="file" className='input_text' onChange={changeImage} />
                     </div>
                     <hr />
                     <div className='input_div'>

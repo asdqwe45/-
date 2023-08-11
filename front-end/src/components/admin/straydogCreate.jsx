@@ -114,13 +114,10 @@ const StraydogCreate = () => {
         else {
             // e.preventDefault();
             const formData = new FormData();
-            console.log(formData, '처음ㄴ')
             formData.append('Sex', Sex);
-            console.log(formData)
             formData.append('Age', parseInt(Age));
             formData.append('ChipNumber', ChipNumber);
             formData.append('Image', Image); 
-            console.log(Image)
             formData.append('Breed', Breed);
             formData.append('RemainedDay', parseInt(RemainedDay));
             formData.append('DogSize', DogSize);
@@ -129,7 +126,7 @@ const StraydogCreate = () => {
             formData.append('EnteredDay', EnteredDay)
             formData.append('DiscoveredPlace', DiscoveredPlace)
             formData.append('LostLocation', null)
-            // formData.append('LostDate', null)
+            formData.append('LostDate', null)
             formData.append('ReturnedHome', null)
             formData.append('Comment', Comment)
             formData.append("UserID", userid)

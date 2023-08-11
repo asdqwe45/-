@@ -57,28 +57,27 @@ const Main = (props) => {
 
     // GET
     useEffect(() => {
-        setTimeout(() =>{
-            const fetchData = async () => {
 
-                const response = await axios.get('/api/reservation/user',config);
-                setReservationTimes(response.data.reservation)
-                
-            }
-            fetchData();
+        const fetchData = async () => {
+
+            const response = await axios.get('/api/reservation/user',config);
+            setReservationTimes(response.data.reservation)
             
-            const today = new Date()
-            // console.log('오늘 : ',today)
-            setYear(today.getFullYear())
-            setMonth(today.getMonth() + 1)
-            setDate(today.getDate())
-            setHour(today.getHours())
-            setMinute(today.getMinutes())
+        }
+        fetchData();
+        
+        const today = new Date()
+        // console.log('오늘 : ',today)
+        setYear(today.getFullYear())
+        setMonth(today.getMonth() + 1)
+        setDate(today.getDate())
+        setHour(today.getHours())
+        setMinute(today.getMinutes())
 
-        }, 5000)
         
     
         
-    });
+    }, []);
 
     
 
