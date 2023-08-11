@@ -39,7 +39,7 @@ function StraydogFail() {
     useEffect(() => {
         const fetchData = async () => {
 
-            const response = await axios.get(`/deaddog?page=${currentPage + 1}&pageSize=${perPage}`);
+            const response = await axios.get(`/api/deaddog?page=${currentPage + 1}&pageSize=${perPage}`);
 
             setData(response.data.DeadDog); // set data
             setTotalPage(Math.ceil(response.data.totalItem / perPage));

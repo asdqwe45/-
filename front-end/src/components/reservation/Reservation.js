@@ -105,7 +105,7 @@ const Reservation = () => {
 
 
         try {
-            const response = await axios.get(`http://localhost:3001/reservation/state?date=${dateString}`);
+            const response = await axios.get(`/api/reservation/state?date=${dateString}`);
             setReceivedData(response.data);
             const timeDataForSelectedType = response.data[`type: ${selectedType}`] || [];
             const parsedData = parseTimeData(timeDataForSelectedType);

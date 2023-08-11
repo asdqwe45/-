@@ -39,7 +39,7 @@ function StraydogSuccess() {
     useEffect(() => {
         const fetchData = async () => {
 
-            const response = await axios.get(`/adopteddog?page=${currentPage + 1}&pageSize=${perPage}`);
+            const response = await axios.get(`/api/adopteddog?page=${currentPage + 1}&pageSize=${perPage}`);
 
             setData(response.data.adoptedDog); // set data
             setTotalPage(Math.ceil(response.data.totalItem / perPage));

@@ -39,7 +39,7 @@ function Lostdog() {
     useEffect(() => {
         const fetchData = async () => {
 
-            const response = await axios.get(`/lostdog?page=${currentPage + 1}&pageSize=${perPage}`);
+            const response = await axios.get(`/api/lostdog?page=${currentPage + 1}&pageSize=${perPage}`);
 
             setData(response.data.lostDog); // set data
             setTotalPage(Math.ceil(response.data.totalItem / perPage));

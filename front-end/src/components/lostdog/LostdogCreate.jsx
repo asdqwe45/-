@@ -132,7 +132,7 @@ const LostdogCreate = () => {
                 "Comment" : Comment,
                 "UserID" : userid,
             })
-            axios.post('/lostdog', JSON.stringify(
+            axios.post('/api/lostdog', JSON.stringify(
                 {
                     "Sex": Sex,
                     "Age": parseInt(Age),

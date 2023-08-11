@@ -33,7 +33,7 @@ export default function LoginPage(props) {
             return;
         }
 
-        axios.post("http://localhost:3001/user/login", {
+        axios.post("api/user/login", {
             UserID: inputId,
             Password: inputPw,
         })

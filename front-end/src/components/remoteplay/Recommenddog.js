@@ -9,7 +9,7 @@ const Remoteplay = () => {
     let content = <h1>로딩중 ... </h1>
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get('/urgentdog');
+            const response = await axios.get('/api/urgentdog');
 
             seturgentdog(response.data)
             

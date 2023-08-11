@@ -27,7 +27,7 @@ const LostdogDetail = () => {
     console.log('도그 아이디', id)
     useEffect(() => {
         const apiCall = async () => {
-            const response = await axios.get(`/lostdog/${id}`);
+            const response = await axios.get(`/api/lostdog/${id}`);
             // console.log(response.data, '맞지?')
             setDog(response.data)
         }

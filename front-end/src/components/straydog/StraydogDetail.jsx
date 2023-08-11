@@ -30,7 +30,7 @@ const StraydogDetail = () => {
     console.log('도그 아이디', id)
     useEffect(() => {
         const apiCall = async () => {
-            const response = await axios.get(`/straydog/${id}`);
+            const response = await axios.get(`/api/straydog/${id}`);
             // console.log(response.data, '맞지?')
             setDog(response.data)
         }
@@ -39,7 +39,7 @@ const StraydogDetail = () => {
     }, [])
 
     const DeleteDog = async () => {
-        const response = await axios.delete(`/straydog/${id}`);
+        const response = await axios.delete(`/api/straydog/${id}`);
         // console.log(response.data, '맞지?')
         setDog(response.data)
     }

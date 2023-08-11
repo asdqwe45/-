@@ -47,7 +47,7 @@ function Straydog() {
     // fetch data
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(`/straydog?page=${currentPage + 1}&pageSize=${perPage}`);
+            const response = await axios.get(`/api/straydog?page=${currentPage + 1}&pageSize=${perPage}`);
 
             setData(response.data.StrayDog); // set data
             setTotalPage(Math.ceil(response.data.totalItem / perPage));
@@ -80,8 +80,8 @@ function Straydog() {
                                         <div className="card" >
                                             {/* <!-- 앞면 --> */}
                                             <div className="front">
-                                                
-                                                <img src={`/upload/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', }} className="nav-link active" />
+                                                {item.Image}
+                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', }} className="nav-link active" />
                                                 {/* <img src="/sokuri.jpg" alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active"/> */}
 
                                             </div>
