@@ -13,6 +13,7 @@ import {
 import { LostDogsService } from './lost.service';
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import * as path from 'path';
 
 @Controller('api/lostdog')
 export class LostDogsController {
@@ -53,11 +54,11 @@ export class LostDogsController {
     }
     let filePath = null;
     if (file) {
-      filePath = file.path;
+      filePath =  path.basename(file.path);
       dogData.Image = filePath;
     }
     await this.lostDogsService.create(dogData, filePath);
-    return { success: true, message: 'Dog updated successfully!' };
+    return { success: true, message: 'Dog created successfully!' };
   }
 
   @Put('/:id')

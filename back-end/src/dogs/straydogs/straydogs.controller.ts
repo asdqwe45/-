@@ -13,7 +13,7 @@ import {
 import { StrayDogsService } from './straydogs.service';
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-
+import * as path from 'path';
 @Controller('api/straydog')
 export class StrayDogsController {
   constructor(private readonly strayDogsService: StrayDogsService) {}
@@ -52,11 +52,11 @@ export class StrayDogsController {
     }
     let filePath = null;
     if (file) {
-      filePath = file.path;
+      filePath =  path.basename(file.path);
       dogData.Image = filePath;
     }
     await this.strayDogsService.create(dogData, filePath);
-    return { success: true, message: 'Dog updated successfully!' };
+    return { success: true, message: 'Dog created successfully!' };
   }
   @Put('/:id')
   @UseInterceptors(FileInterceptor('Image'))
@@ -67,7 +67,7 @@ export class StrayDogsController {
   ) {
     let filePath = null;
     if (file) {
-      filePath = file.path;
+      filePath =  path.basename(file.path);
       updateData.Image = filePath;
     }
     await this.strayDogsService.update(DogID, updateData);

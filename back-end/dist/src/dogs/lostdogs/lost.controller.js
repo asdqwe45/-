@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const lost_service_1 = require("./lost.service");
 const update_dog_dto_1 = require("../DTO/update.dog.dto");
 const platform_express_1 = require("@nestjs/platform-express");
+const path = require("path");
 let LostDogsController = exports.LostDogsController = class LostDogsController {
     constructor(lostDogsService) {
         this.lostDogsService = lostDogsService;
@@ -48,11 +49,11 @@ let LostDogsController = exports.LostDogsController = class LostDogsController {
         }
         let filePath = null;
         if (file) {
-            filePath = file.path;
+            filePath = path.basename(file.path);
             dogData.Image = filePath;
         }
         await this.lostDogsService.create(dogData, filePath);
-        return { success: true, message: 'Dog updated successfully!' };
+        return { success: true, message: 'Dog created successfully!' };
     }
     async updateDog(DogID, updateData, file) {
         let filePath = null;

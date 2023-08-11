@@ -11,10 +11,10 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  await app.listen(3000);
   app.enableCors({
     origin: true,
     credentials: true,
   });
+  await app.listen(3000);
 }
 bootstrap();
