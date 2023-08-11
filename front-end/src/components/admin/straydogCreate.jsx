@@ -135,7 +135,7 @@ const StraydogCreate = () => {
             formData.append("UserID", userid)
         console.log(formData)
 
-            axios.post('/straydog', formData)
+            axios.post('/api/straydog', formData)
                 .then(function (response) {
                     console.log(response);
                     navigate('/straydog')

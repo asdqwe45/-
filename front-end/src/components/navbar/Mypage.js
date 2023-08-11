@@ -19,7 +19,7 @@ const Mypage = () => {
         
         const fetchData = async () => {
 
-            const response = await axios.get('/reservation/user',config);
+            const response = await axios.get('/api/reservation/user',config);
             setReservationTimes(response.data.reservation)
             console.log(response.data)
         }

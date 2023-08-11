@@ -34,7 +34,7 @@ const StraydogUpdate = () => {
     console.log('도그 아이디', id)
     useEffect(() => {
         const apiCall = async () => {
-            const response = await axios.get(`/straydog/${id}`);
+            const response = await axios.get(`/api/straydog/${id}`);
             console.log(response.data, '맞지?')
             setDog(response.data)
         }
@@ -114,7 +114,7 @@ const StraydogUpdate = () => {
         console.log(EnteredDay, 1)
         console.log(Date(EnteredDay), 2)
         // PUT 요청
-        axios.put(`/straydog/${id}`, JSON.stringify(
+        axios.put(`/api/straydog/${id}`, JSON.stringify(
             {
                 Sex: Sex,
                 Age: parseInt(Age),
