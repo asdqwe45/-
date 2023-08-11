@@ -15,7 +15,7 @@ export class Dog {
   @Column({ length: 255 })
   ChipNumber: string;
 
-  @Column({ length: 255 })
+  @Column({ length: 255,nullable: true })
   Image: string;
 
   @Column({ length: 50 })

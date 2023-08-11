@@ -34,7 +34,7 @@ export class LostDogsController {
     const lostDog = lostDogs.slice(startIndex, endIndex);
     return { totalItem, lostDog };
   }
-  @Get(':id')
+  @Get('/:id')
   getOneLostDog(@Param('id') ID: number) {
     return this.lostDogsService.getOneLostDog(ID);
   }
@@ -70,7 +70,7 @@ export class LostDogsController {
   ) {
     let filePath = null;
     if (file) {
-      filePath = file.path;
+      filePath =  path.basename(file.path);
       updateData.Image = filePath;
     }
     await this.lostDogsService.update(DogID, updateData);

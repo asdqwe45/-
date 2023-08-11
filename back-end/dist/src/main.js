@@ -10,11 +10,8 @@ async function bootstrap() {
         forbidNonWhitelisted: true,
         transform: true,
     }));
-    app.enableCors({
-        origin: true,
-        credentials: true,
-    });
     await app.listen(3000);
+    app.enableCors();
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

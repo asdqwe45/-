@@ -58,7 +58,7 @@ let LostDogsController = exports.LostDogsController = class LostDogsController {
     async updateDog(DogID, updateData, file) {
         let filePath = null;
         if (file) {
-            filePath = file.path;
+            filePath = path.basename(file.path);
             updateData.Image = filePath;
         }
         await this.lostDogsService.update(DogID, updateData);
@@ -74,7 +74,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LostDogsController.prototype, "getDogs", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
