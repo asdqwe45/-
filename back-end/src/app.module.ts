@@ -18,13 +18,19 @@ import { PlayModule } from './play/play.module';
 import { WebsocketModule } from './websocket/websocket.module';
 import * as express from 'express';
 import { join } from 'path';
-
+import { ServeStaticModule } from '@nestjs/serve-static';
 @Module({
   imports: [
+
+    // 서버용
     // ServeStaticModule.forRoot({
-    //   rootPath:join(__dirname,'..','../../front-end/build')
+    //   rootPath: join(__dirname, '..', '../public')
     // }),
-    
+    // 서버 빌드테스트
+    ServeStaticModule.forRoot({
+      rootPath:join(__dirname,'..','../../front-end/build')
+    }),
+
     CacheModule.register({
       isGlobal: true,
       ttl: 60,
