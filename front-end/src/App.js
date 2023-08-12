@@ -64,6 +64,9 @@ function App() {
       {/* ADMIN */}
       <Route path="/admin/create" element={<RequireAuth><Main page={'admin-create'} /></RequireAuth>} />
       <Route path="/admin/update/:id" element={<RequireAuth><Main page={'admin-update'} /></RequireAuth>} />
+      <Route path="/admin/reservation" element={<RequireAuth><Main page={'admin-reservation'} /></RequireAuth>} />
+      <Route path="/admin/dog" element={<RequireAuth><Main page={'admin-dog'} /></RequireAuth>} />
+      <Route path="/admin/user" element={<RequireAuth><Main page={'admin-user'} /></RequireAuth>} />
     </Routes>
 
 

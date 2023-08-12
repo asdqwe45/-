@@ -6,8 +6,8 @@ import './Straydog.css';
 import ReactPaginate from 'react-paginate';
 
 function chunkArray(array, size) {
-    
-    
+
+
     // const userid = localStorage.getItem('userid');
     // console.log(userid)
     // const admin = localStorage.getItem('admin');
@@ -62,13 +62,13 @@ function Straydog() {
         setCurrentPage(selected);
     };
     console.log(perPage)
-    
+
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
-            <div>
-            <h1 style={{paddingBottom : '50px', fontFamily : 'GmarketSansMedium'}}>| 유기견 |</h1>
-            </div>
+
+            <h1 style={{ paddingBottom: '20px', fontFamily: 'GmarketSansMedium' }}>| 유기견 |</h1>
+
             <table style={{ marginTop: '140px' }}>
                 <tbody >
                     {dataChunks.map((chunk, i) =>
@@ -135,18 +135,19 @@ function Straydog() {
                 containerClassName={"pagination"}
                 subContainerClassName={"pages pagination"}
                 activeClassName={"active"}
+
             />
             <div>{admin === '1'
-            ? <Link to={{ pathname: `/admin/create` }} className="nav-link active">
-                <button className="btn btn-secondary">
-                    등록하기
-                </button>
-            </Link>
-            : null
-        }
-                
+                ? <Link to={{ pathname: `/admin/create` }} className="nav-link active">
+                    <button className="btn btn-secondary">
+                        등록하기
+                    </button>
+                </Link>
+                : null
+            }
+
             </div>
-            
+
 
 
         </div>

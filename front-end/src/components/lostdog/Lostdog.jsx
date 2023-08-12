@@ -56,8 +56,8 @@ function Lostdog() {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
-            <h1 style={{paddingBottom : '50px', fontFamily : 'GmarketSansMedium'}}>| 분실견 |</h1>
-            <table style={{ marginTop: '140px' }}>
+            <h1 style={{ paddingBottom: '20px', fontFamily: 'GmarketSansMedium' }}>| 분실견 |</h1>
+            <table>
                 <tbody >
                     {dataChunks.map((chunk, i) =>
                         <tr key={i} >
@@ -67,17 +67,17 @@ function Lostdog() {
                                     <div className="flip" >
                                         <div className="card" >
                                             {/* <!-- 앞면 --> */}
-                                            <div className="front" style={{position : 'relative'}}>
-                                            <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active" />
-                                            <div>
-                                                {item.ReturnedHome === 'Yes'
-                                                ? <img src='home.jpg' alt={item.DogId} style={{ width : '300px', height : '300px', borderRadius : '10px', backgroundColor : 'rgb(0, 0, 0, 0.4)', position : 'absolute', left : '0px', top : '0px' }} className="nav-link active" />
-                                            
-                                                : null
-                                                }
-                                            </div>
-                                                
-                                                
+                                            <div className="front" style={{ position: 'relative' }}>
+                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px' }} className="nav-link active" />
+                                                <div>
+                                                    {item.ReturnedHome === 'Yes'
+                                                        ? <img src='home.jpg' alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px', backgroundColor: 'rgb(0, 0, 0, 0.4)', position: 'absolute', left: '0px', top: '0px' }} className="nav-link active" />
+
+                                                        : null
+                                                    }
+                                                </div>
+
+
 
                                             </div>
                                             {/* <!-- 뒷면 --> */}

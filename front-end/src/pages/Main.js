@@ -15,6 +15,9 @@ import Mypage from '../components/navbar/Mypage'
 import Maincarousel from '../components/main/Carousel'
 import StraydogCreate from '../components/admin/straydogCreate'
 import StraydogUpdate from '../components/admin/straydogUpdate'
+import ReservationShow from '../components/admin/reservationShow'
+import DogInfoShow from '../components/admin/doginfoShow'
+import UserInfoShow from '../components/admin/userinfoShow'
 import LostdogDetail from '../components/lostdog/LostdogDetail'
 import LostdogCreate from '../components/lostdog/LostdogCreate'
 import LostdogUpdate from '../components/lostdog/LostdogUpdate'
@@ -23,6 +26,8 @@ import Recommenddog from '../components/remoteplay/Recommenddog'
 import './Main.css';
 import { useNavigate } from "react-router-dom";
 import React from 'react'
+
+
 
 
 
@@ -126,11 +131,19 @@ const Main = (props) => {
         content = <StraydogCreate />
     } else if (page === 'admin-update') {
         content = <StraydogUpdate />
+    } else if (page === 'admin-reservation') {
+        content = <ReservationShow />
+    } else if (page === 'admin-dog') {
+        content = <DogInfoShow />
+    } else if (page === 'admin-user') {
+        content = <UserInfoShow />
     } else if (page === 'reservation') {
         content = <Reservation />
     } else if (page === 'recommenddog') {
         content = <Recommenddog />
     }
+
+
 
 
 

@@ -182,7 +182,7 @@ function Welcome() {
                     marginBottom: '40px'
                 }}>We offer the best services for your convenience, if you want more information contact us</p>
                 <a className="contactButton" onClick={handleContactClick}>Contact Us</a>
-                <img src="/welcomedog9.png" alt="Welcomedog5 Image" style={{ height: '55%', width: '1200px' }} />
+                <img src="/welcomedog11.png" alt="Welcomedog5 Image" style={{ height: '55%', width: '1200px' }} />
             </div>
             <div className="divider"></div>
 

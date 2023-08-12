@@ -56,9 +56,9 @@ function StraydogSuccess() {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
-            <div>
-            <h1 style={{paddingBottom : '50px', fontFamily : 'GmarketSansMedium'}}>| 입양 완료 |</h1>
-            </div>
+
+            <h1 style={{ paddingBottom: '20px', fontFamily: 'GmarketSansMedium' }}>| 입양 완료 |</h1>
+
             <table style={{ marginTop: '140px' }}>
                 <tbody >
                     {dataChunks.map((chunk, i) =>
@@ -71,13 +71,13 @@ function StraydogSuccess() {
                                             {/* <!-- 앞면 --> */}
                                             <div className="front">
 
-                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active" />
+                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px' }} className="nav-link active" />
 
-                                            
+
                                             </div>
                                             {/* <!-- 뒷면 --> */}
                                             <div className="back">
-                                                
+
                                                 <div className='dogbaiscinfodiv'>
                                                     <div>
 
