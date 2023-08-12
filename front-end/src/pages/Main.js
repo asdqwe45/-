@@ -60,12 +60,12 @@ const Main = (props) => {
 
         const fetchData = async () => {
 
-            const response = await axios.get('/api/reservation/user',config);
+            const response = await axios.get('/api/reservation/user', config);
             setReservationTimes(response.data.reservation)
-            
+
         }
         fetchData();
-        
+
         const today = new Date()
         // console.log('오늘 : ',today)
         setYear(today.getFullYear())
@@ -74,25 +74,25 @@ const Main = (props) => {
         setHour(today.getHours())
         setMinute(today.getMinutes())
 
-        
-    
-        
+
+
+
     }, []);
 
-    
+
 
 
     const reservationtime = reservationtimes.filter((time) => {
         // console.log(parseInt(now.slice(11, 13)), parseInt(time.ReservationDatetime.slice(11, 13))+1)
-        return (parseInt(nowyear) === parseInt(time.ReservationDatetime.slice(0,4)) &&
-        parseInt(nowmonth) === parseInt(time.ReservationDatetime.slice(5,7)) &&
-        parseInt(nowdate) === parseInt(time.ReservationDatetime.slice(8,10)) &&
-        ((parseInt(nowhour) + 1 === parseInt(time.ReservationDatetime.slice(11,13)) && parseInt(nowminute) >= 30) ||
-        (parseInt(nowhour) === parseInt(time.ReservationDatetime.slice(11,13)) && parseInt(nowminute) < 30)) &&
-        time.Type === 'play'
+        return (parseInt(nowyear) === parseInt(time.ReservationDatetime.slice(0, 4)) &&
+            parseInt(nowmonth) === parseInt(time.ReservationDatetime.slice(5, 7)) &&
+            parseInt(nowdate) === parseInt(time.ReservationDatetime.slice(8, 10)) &&
+            ((parseInt(nowhour) + 1 === parseInt(time.ReservationDatetime.slice(11, 13)) && parseInt(nowminute) >= 30) ||
+                (parseInt(nowhour) === parseInt(time.ReservationDatetime.slice(11, 13)) && parseInt(nowminute) < 30)) &&
+            time.Type === 'play'
         )
 
-    })  
+    })
     const page = props.page
     if (page === 'straydog') {
         content = <Straydog />
@@ -133,7 +133,7 @@ const Main = (props) => {
     }
 
 
-    
+
 
 
 
@@ -250,7 +250,7 @@ const Main = (props) => {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
 
-                <hr style={{ width: '1000px' }} />
+                <hr style={{ width: '80%' }} />
             </div>
 
             <div style={{ marginTop: '40px', marginLeft: '160px', paddingBottom: '40px' }}>
@@ -271,80 +271,80 @@ const Main = (props) => {
             </div>
             {/* 예약시간 띄우기 */}
             <div> {reservationtime.length === 0 || page === 'remoteplay'
-            ?   null
-            :   (parseInt(nowminute) >= 50
-            ?   <Link to="/remoteplay">
-                    <div className='banner' >
-                    <p style={{ padding : '30px', paddingRight : '230px'}}>
-                        <div style={{fontFamily : 'GmarketSansMedium', borderBottom : 'white 1px solid'}}>
-                            알림
-                        </div>                    
-                    </p>
-                    
-                    <div style={{fontFamily : 'GmarketSansMedium', textAlign : 'center'}}>
-                        원격놀이 10분 전 입니다.
-                    </div>
+                ? null
+                : (parseInt(nowminute) >= 50
+                    ? <Link to="/remoteplay">
+                        <div className='banner' >
+                            <p style={{ padding: '30px', paddingRight: '230px' }}>
+                                <div style={{ fontFamily: 'GmarketSansMedium', borderBottom: 'white 1px solid' }}>
+                                    알림
+                                </div>
+                            </p>
 
-                    <div style={{textAlign : 'center', paddingTop : '30px'}}>
-                        
-                            <button style={{fontFamily : 'GmarketSansMedium', backgroundColor : 'rgb(0,0,0,0)', border : '0px', color : 'white' , borderBottom : 'white 1px solid'}}>
-                                이동
-                            </button>
-                        
-                    </div>
-                
-                    </div>
-                </Link>
-            
-            :(parseInt(nowminute) >= 30
-            ?   <Link to="/remoteplay">
-                    <div className='banner' >
-                    <p style={{ padding : '30px', paddingRight : '230px'}}>
-                        <div style={{fontFamily : 'GmarketSansMedium', borderBottom : 'white 1px solid'}}>
-                            알림
-                        </div>                    
-                    </p>
-                    
-                    <div style={{fontFamily : 'GmarketSansMedium', textAlign : 'center'}}>
-                        원격놀이 30분 전 입니다.
-                    </div>
+                            <div style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center' }}>
+                                원격놀이 10분 전 입니다.
+                            </div>
 
-                    <div style={{textAlign : 'center', paddingTop : '30px'}}>
-                        
-                            <button style={{fontFamily : 'GmarketSansMedium', backgroundColor : 'rgb(0,0,0,0)', border : '0px', color : 'white', borderBottom : 'white 1px solid'}}>
-                                이동
-                            </button>
-                        
-                    </div>
-                
-                    </div>
-                </Link>     
-            :   <Link to="/remoteplay">
-                    <div className='banner' >
-                    <p style={{ padding : '30px', paddingRight : '230px'}}>
-                        <div style={{fontFamily : 'GmarketSansMedium', borderBottom : 'white 1px solid'}}>
-                            알림
-                        </div>                    
-                    </p>
-                    
-                    <div style={{fontFamily : 'GmarketSansMedium', textAlign : 'center'}}>
-                        현재 놀이가 진행중입니다. 
-                    </div>
+                            <div style={{ textAlign: 'center', paddingTop: '30px' }}>
 
-                    <div style={{textAlign : 'center', paddingTop : '30px'}}>
-                        
-                            <button style={{fontFamily : 'GmarketSansMedium', backgroundColor : 'rgb(0,0,0,0)', border : '0px', color : 'white', borderBottom : 'white 1px solid'}}>
-                                이동
-                            </button>
-                        
-                    </div>
+                                <button style={{ fontFamily: 'GmarketSansMedium', backgroundColor: 'rgb(0,0,0,0)', border: '0px', color: 'white', borderBottom: 'white 1px solid' }}>
+                                    이동
+                                </button>
 
-                    </div>
-                </Link> 
-            )   
+                            </div>
 
-            )
-                
+                        </div>
+                    </Link>
+
+                    : (parseInt(nowminute) >= 30
+                        ? <Link to="/remoteplay">
+                            <div className='banner' >
+                                <p style={{ padding: '30px', paddingRight: '230px' }}>
+                                    <div style={{ fontFamily: 'GmarketSansMedium', borderBottom: 'white 1px solid' }}>
+                                        알림
+                                    </div>
+                                </p>
+
+                                <div style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center' }}>
+                                    원격놀이 30분 전 입니다.
+                                </div>
+
+                                <div style={{ textAlign: 'center', paddingTop: '30px' }}>
+
+                                    <button style={{ fontFamily: 'GmarketSansMedium', backgroundColor: 'rgb(0,0,0,0)', border: '0px', color: 'white', borderBottom: 'white 1px solid' }}>
+                                        이동
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        </Link>
+                        : <Link to="/remoteplay">
+                            <div className='banner' >
+                                <p style={{ padding: '30px', paddingRight: '230px' }}>
+                                    <div style={{ fontFamily: 'GmarketSansMedium', borderBottom: 'white 1px solid' }}>
+                                        알림
+                                    </div>
+                                </p>
+
+                                <div style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center' }}>
+                                    현재 놀이가 진행중입니다.
+                                </div>
+
+                                <div style={{ textAlign: 'center', paddingTop: '30px' }}>
+
+                                    <button style={{ fontFamily: 'GmarketSansMedium', backgroundColor: 'rgb(0,0,0,0)', border: '0px', color: 'white', borderBottom: 'white 1px solid' }}>
+                                        이동
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        </Link>
+                    )
+
+                )
+
             }
             </div>
 

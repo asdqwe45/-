@@ -131,7 +131,7 @@ const Reservation = () => {
                     'Authorization': `Bearer ${token}` // 토큰을 Bearer 토큰 형식으로 포함
                 }
             };
-            const response = await axios.post('http://localhost:3001/reservation', payload, config);
+            const response = await axios.post('/api/reservation', payload, config);
             console.log(response.data);
 
             alert("예약이 완료되었습니다!");

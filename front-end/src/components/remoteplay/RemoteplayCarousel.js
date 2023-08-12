@@ -3,6 +3,14 @@ import './RemoteplayCarousel.css';
 import { useNavigate } from 'react-router-dom'
 
 
+const CustomPrevIcon = () => {
+    return <span className="carousel-control-prev-icon bg-none" aria-hidden="true" />;
+};
+
+const CustomNextIcon = () => {
+    return <span className="carousel-control-next-icon bg-none" aria-hidden="true" />;
+};
+
 const Remoteplaycarousel = (props) => {
 
     console.log(props.urgentdog, '하위에서 받은 값.')
@@ -12,15 +20,15 @@ const Remoteplaycarousel = (props) => {
     const navigate = useNavigate()
     const reservation = (id, e) => {
         console.log(id)
-        navigate(`/reservation/`)
+        navigate(`/reservation/`, { state: { dogID: id } })
     }
 
 
 
     return (
-        <Carousel id="carouselExampleDark" variant="dark" slide={false} prevIcon={true} nextIcon={true} className="fullscreen-carousel1">
+        <Carousel id="carouselExampleDark" variant="dark" slide={false} prevIcon={<CustomPrevIcon />} nextIcon={<CustomNextIcon />} className="fullscreen-carousel1">
             <Carousel.Item interval={10000} onClick={(e) => { reservation(urgentdog[0].DogID, e) }} >
-                <img className="d-block" src="/dog1.jpg" alt="First slide" style={{ width: '500px', height: '700px' }} />
+                <img className="d-block" src="/dog1.jpg" alt="First slide" style={{ width: '500px', height: '600px' }} />
                 <Carousel.Caption className="d-none d-md-block">
 
                     <p style={{
@@ -30,7 +38,7 @@ const Remoteplaycarousel = (props) => {
                         color: 'white',
                         fontFamily: 'Arial Black',
                         textAlign: 'center'
-                    }}>놀고 싶으면 클릭하라고해
+                    }}>
                     </p>
 
 
@@ -47,7 +55,7 @@ const Remoteplaycarousel = (props) => {
                         color: 'white',
                         fontFamily: 'Arial Black',
                         textAlign: 'center'
-                    }}>놀고 싶으면 클릭하라고해
+                    }}>
                     </p>
                 </Carousel.Caption>
             </Carousel.Item>
@@ -61,7 +69,7 @@ const Remoteplaycarousel = (props) => {
                         color: 'white',
                         fontFamily: 'Arial Black',
                         textAlign: 'center'
-                    }}>놀고 싶으면 클릭하라고해
+                    }}>
                     </p>
                 </Carousel.Caption>
             </Carousel.Item>
@@ -75,7 +83,7 @@ const Remoteplaycarousel = (props) => {
                         color: 'white',
                         fontFamily: 'Arial Black',
                         textAlign: 'center'
-                    }}>놀고 싶으면 클릭하라고해
+                    }}>
                     </p>
                 </Carousel.Caption>
             </Carousel.Item>

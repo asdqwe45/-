@@ -47,7 +47,7 @@ const Maincarousel = () => {
                         <div style={{ display: 'flex', alignItems: 'center' }}>
 
                             <div style={{ border: ' solid', width: ' 350px', marginLeft: '220px', borderRadius: '10px' }}>
-                                <Link to="/lost-dogs" style={{
+                                <Link to="/lostdog" style={{
                                     fontSize: '75px',
                                     fontStyle: 'italic',
                                     fontWeight: 'bold',
@@ -75,7 +75,7 @@ const Maincarousel = () => {
                     }}>
                         <div style={{ border: ' solid', width: ' 260px', borderRadius: '10px', }}>
 
-                            <Link to="/lost-dogs" style={{
+                            <Link to="/recommenddog" style={{
                                 fontSize: '75px',
                                 fontStyle: 'italic',
                                 fontWeight: 'bold',

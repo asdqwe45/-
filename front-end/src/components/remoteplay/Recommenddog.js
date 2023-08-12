@@ -12,20 +12,21 @@ const Remoteplay = () => {
             const response = await axios.get('/api/urgentdog');
 
             seturgentdog(response.data)
-            
+
             console.log(response.data)
         }
         fetchData();
     }, [])
-    if ( urgentdog !== null){
-        content = <Remoteplaycarousel urgentdog={urgentdog}/>
+    if (urgentdog !== null) {
+        content = <Remoteplaycarousel urgentdog={urgentdog} />
     }
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
-            <h1 style={{marginBottom : '100px'}}>
+            <h1 style={{ marginBottom: '100px' }}>
                 추천 유기견
             </h1>
+            <p>놀아주세요!</p>
             {content}
         </div>
     );
