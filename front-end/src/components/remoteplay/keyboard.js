@@ -147,19 +147,28 @@ class Keyboard {
     this.keys.push(e.code);
     var keysArray = this.convertKeycodes(this.keys);
     // 데이터를 보낼 때는 키가 떼어졌을 때만 한 번 보냄
-    const data = JSON.stringify({ keycodes: keysArray, type: "keydown", keys: [key] });
+    const data = JSON.stringify({  type: "keydown", keys: key });
     this.processKeys(data);
   }
 
   onKeyUp(e) {
-    console.log("keyup");
+    // console.log("keyup");
     e.preventDefault();
     e.stopPropagation();
     e.stopImmediatePropagation();
     this.keys = this.keys.filter(function(c) {
       return c !== e.code;
     });
-    
+    const { key } = e;
+    const index = this.keys.indexOf(key);
+    if (index !== -1) {
+      this.keys.splice(index, 1);
+    }
+    this.keys.push(e.code);
+    var keysArray = this.convertKeycodes(this.keys);
+    // 데이터를 보낼 때는 키가 떼어졌을 때만 한 번 보냄
+    const data = JSON.stringify({  type: "keyup", keys: key });
+    this.processKeys(data);
   }
 }
 

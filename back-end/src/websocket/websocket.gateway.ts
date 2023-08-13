@@ -58,12 +58,17 @@ export class WebsocketGateway implements OnGatewayConnection, OnGatewayDisconnec
     console.log(`Client disconnected: ${client}`);
   }
 
-  // @SubscribeMessage('message')
-  // handleMessage(client: WebSocket, @MessageBody() payload: any): void {
-  //   const key = payload.key;
-  //   console.log(`Received key from client: ${key}`);
-  // }
-  @SubscribeMessage('keys')
+  @SubscribeMessage('video')
+  handleVideo(client: WebSocket, @MessageBody() data: ArrayBuffer): void {
+    // 영상 데이터를 다른 클라이언트에게 브로드캐스트
+    this.server.clients.forEach((client) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(data);
+      }
+    });
+  }
+
+  @SubscribeMessage('command')
   handleMessage(client: WebSocket, @MessageBody() payload: any): void {
     try {
       const key = payload.key;
