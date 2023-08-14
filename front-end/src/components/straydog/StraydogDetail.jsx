@@ -30,7 +30,7 @@ const StraydogDetail = () => {
     console.log('도그 아이디', id)
     useEffect(() => {
         const apiCall = async () => {
-            const response = await axios.get(`/straydog/${id}`);
+            const response = await axios.get(`/api/straydog/${id}`);
             // console.log(response.data, '맞지?')
             setDog(response.data)
         }
@@ -39,7 +39,7 @@ const StraydogDetail = () => {
     }, [])
 
     const DeleteDog = async () => {
-        const response = await axios.delete(`/straydog/${id}`);
+        const response = await axios.delete(`/api/straydog/${id}`);
         // console.log(response.data, '맞지?')
         setDog(response.data)
     }
@@ -64,7 +64,7 @@ const StraydogDetail = () => {
             <div style={{ paddingTop: '40px' }}>
 
                 {/* {dog.Image} */}
-                <img src='dog1.jpg' width="400" height="350" style={{ marginBottom : '40px'}} />
+                <img src={`/uploads/${dog.Image}`} width="400" height="350" style={{ marginBottom : '40px'}} />
 
                 <div className='info'>
                     <div className="info_per">

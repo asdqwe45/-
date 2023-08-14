@@ -105,7 +105,7 @@ const Reservation = () => {
 
 
         try {
-            const response = await axios.get(`http://localhost:3001/reservation/state?date=${dateString}`);
+            const response = await axios.get(`/api/reservation/state?date=${dateString}`);
             setReceivedData(response.data);
             const timeDataForSelectedType = response.data[`type: ${selectedType}`] || [];
             const parsedData = parseTimeData(timeDataForSelectedType);
@@ -131,7 +131,7 @@ const Reservation = () => {
                     'Authorization': `Bearer ${token}` // 토큰을 Bearer 토큰 형식으로 포함
                 }
             };
-            const response = await axios.post('http://localhost:3001/reservation', payload, config);
+            const response = await axios.post('/api/reservation', payload, config);
             console.log(response.data);
 
             alert("예약이 완료되었습니다!");

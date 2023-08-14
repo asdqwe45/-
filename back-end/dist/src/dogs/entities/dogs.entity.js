@@ -30,7 +30,7 @@ __decorate([
     __metadata("design:type", String)
 ], Dog.prototype, "ChipNumber", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 255 }),
+    (0, typeorm_1.Column)({ length: 255, nullable: true }),
     __metadata("design:type", String)
 ], Dog.prototype, "Image", void 0);
 __decorate([

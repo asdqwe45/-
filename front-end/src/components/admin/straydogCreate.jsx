@@ -27,8 +27,9 @@ const StraydogCreate = () => {
     };
     const [Image, setImage] = useState(null)
     const changeImage = event => {
-        setImage(event.target.value);
-        console.log(event.target.value);
+        setImage(event.target.files[0]);
+        console.log(event.target.files[0]);
+
     };
     const [Breed, setBreed] = useState(null)
     const changeBreed = event => {
@@ -75,7 +76,7 @@ const StraydogCreate = () => {
     const userid = localStorage.getItem('userid');
     // =====================================================
     const navigate = useNavigate()
-    
+
     // const changeFormatDate = (date) => {
     //     const year = date.getFullyear()
     //     const month = date.getMonth()
@@ -83,7 +84,6 @@ const StraydogCreate = () => {
     //     console.log(year+' '+month+' '+day)
     //     return
     // }
-    
 
 
     // CREATE 버튼 눌렀을 때 시행
@@ -113,27 +113,26 @@ const StraydogCreate = () => {
 
         else {
             // e.preventDefault();
-            
-            axios.post('/straydog', JSON.stringify(
-                {
-                    "Sex": Sex,
-                    "Age": parseInt(Age),
-                    "ChipNumber": ChipNumber,
-                    "Image": Image,
-                    "Breed": Breed,
-                    "RemainedDay": parseInt(RemainedDay),
-                    "DogSize": DogSize,
-                    "Weight": parseInt(Weight),
-                    "Status": "stray",
-                    "EnteredDay": EnteredDay,
-                    "DiscoveredPlace": DiscoveredPlace,
-                    "LostLocation": null,
-                    "LostDate": null,
-                    "ReturnedHome": null,
-                    "Comment" : Comment,
-                    "UserID" : userid
-                    
-                }), { headers: { "Content-Type": 'application/json' } })
+            const formData = new FormData();
+            formData.append('Sex', Sex);
+            formData.append('Age', parseInt(Age));
+            formData.append('ChipNumber', ChipNumber);
+            formData.append('Image', Image);
+            formData.append('Breed', Breed);
+            formData.append('RemainedDay', parseInt(RemainedDay));
+            formData.append('DogSize', DogSize);
+            formData.append('Weight', parseInt(Weight));
+            formData.append('Status', 'stray')
+            formData.append('EnteredDay', EnteredDay)
+            formData.append('DiscoveredPlace', DiscoveredPlace)
+            formData.append('LostLocation', null)
+            formData.append('LostDate', null)
+            formData.append('ReturnedHome', null)
+            formData.append('Comment', Comment)
+            formData.append("UserID", userid)
+            console.log(formData)
+
+            axios.post('/api/straydog', formData)
                 .then(function (response) {
                     console.log(response);
                     navigate('/straydog')
@@ -151,15 +150,15 @@ const StraydogCreate = () => {
 
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px', paddingLeft : '200px', paddingRight : '200px'}}>
-            <h1 style={{paddingBottom : '50px', fontFamily : 'GmarketSansMedium'}}>| 유기견 추가 |</h1>
-            <div style={{width : '800px', border : 'gray 5px solid', paddingLeft : '100px', paddingRight : '100px', paddingTop: '50px', fontFamily: 'Noto Sans'}} >
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px', paddingLeft: '200px', paddingRight: '200px' }}>
+            <h1 style={{ paddingBottom: '50px', fontFamily: 'GmarketSansMedium' }}>| 유기견 추가 |</h1>
+            <div style={{ width: '800px', border: 'gray 5px solid', paddingLeft: '100px', paddingRight: '100px', paddingTop: '50px', fontFamily: 'Noto Sans' }} >
 
                 <div onChange={changeSex} className='input_div'>
                     <div className='kk'>성 별 </div>
                     <div>
-                        <input className="btn-check" type="radio" name="sex" value="Male" id="male"/><label htmlFor="male" className="btn btn-outline-secondary">수컷</label>
-                        <input className="btn-check" type="radio" name="sex" value="Female" id="female"/><label htmlFor="female" className="btn btn-outline-secondary">암컷</label>
+                        <input className="btn-check" type="radio" name="sex" value="Male" id="male" /><label htmlFor="male" className="btn btn-outline-secondary">수컷</label>
+                        <input className="btn-check" type="radio" name="sex" value="Female" id="female" /><label htmlFor="female" className="btn btn-outline-secondary">암컷</label>
                     </div>
                 </div>
                 <hr />
@@ -172,7 +171,7 @@ const StraydogCreate = () => {
                 </div>
                 <hr />
                 <div className='input_div'>
-                    <label htmlFor='image' className='kk'> 사 진 </label><input id='image' type="text" className='input_text' onChange={changeImage} />
+                    <label htmlFor='image' className='kk'> 사 진 </label><input id='image' type="file" className='input_text' onChange={changeImage} />
                 </div>
                 <hr />
                 <div className='input_div'>
@@ -182,10 +181,10 @@ const StraydogCreate = () => {
                 <div onChange={changeDogSize} className='input_div'>
                     <div className='kk'>크기</div>
                     <div>
-                    <input className="btn-check" type="radio" name="size" value="small" id="small" /><label htmlFor="small" className="btn btn-outline-secondary" >소형견</label>
-                    <input className="btn-check" type="radio" name="size" value="medium" id="medium" /><label htmlFor="medium" className="btn btn-outline-secondary" >중형견</label>
-                    <input className="btn-check" type="radio" name="size" value="large" id="large" /><label htmlFor="large" className="btn btn-outline-secondary" >대형견</label>
-                    </div>   
+                        <input className="btn-check" type="radio" name="size" value="small" id="small" /><label htmlFor="small" className="btn btn-outline-secondary" >소형견</label>
+                        <input className="btn-check" type="radio" name="size" value="medium" id="medium" /><label htmlFor="medium" className="btn btn-outline-secondary" >중형견</label>
+                        <input className="btn-check" type="radio" name="size" value="large" id="large" /><label htmlFor="large" className="btn btn-outline-secondary" >대형견</label>
+                    </div>
                 </div>
                 <hr />
                 <div className='input_div'>
@@ -193,16 +192,16 @@ const StraydogCreate = () => {
                 </div>
                 <hr />
                 <div className='input_div'>
-                    <label htmlFor='status' className='kk'> 상 태 </label><input id='status' value="stray" type="text" className='input_text' style={{backgroundColor : '#EEEEEE'}}/>
+                    <label htmlFor='status' className='kk'> 상 태 </label><input id='status' value="stray" type="text" className='input_text' style={{ backgroundColor: '#EEEEEE' }} />
                 </div>
                 <hr />
 
 
-        
 
-        {/* STRAY */}
+
+                {/* STRAY */}
                 <div className='input_div'>
-                    <label htmlFor='entered_day' className='kk'> 입소 날짜 </label><input id='entered_day' type="date" className='input_text' style={{width : '220px'}} min="2000-01-01" max="2100-12-31" onChange={changeEnteredDay} />
+                    <label htmlFor='entered_day' className='kk'> 입소 날짜 </label><input id='entered_day' type="date" className='input_text' style={{ width: '220px' }} min="2000-01-01" max="2100-12-31" onChange={changeEnteredDay} />
                 </div>
                 <hr />
                 <div className='input_div'>
@@ -223,15 +222,15 @@ const StraydogCreate = () => {
 
                 {/* <input type="submit" /> */}
                 {/* <input type="submit" style={{width : '100px', height : '100px'}} value="추가" OnClick={Create}></input> */}
-                <hr/>
+                <hr />
                 <div className='input_div'>
-                    <label htmlFor='comment'> 추가 내용 </label><textarea id='comment' className='input_text' type="text" rows="5" cols="23" onChange={changeComment}/>
+                    <label htmlFor='comment'> 추가 내용 </label><textarea id='comment' className='input_text' type="text" rows="5" cols="23" onChange={changeComment} />
                 </div>
-                <hr/>
-                <div style={{display : 'flex', justifyContent : 'center', marginTop : '10px', marginBottom : '10px'}}>
+                <hr />
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px', marginBottom: '10px' }}>
                     <button className="btn btn-secondary" onClick={Create} style={{ width: '200px', height: '50px' }}>유기견 추가하기</button>
                 </div>
-            
+
             </div>
         </div>
     );

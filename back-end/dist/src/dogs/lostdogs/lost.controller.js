@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const lost_service_1 = require("./lost.service");
 const update_dog_dto_1 = require("../DTO/update.dog.dto");
 const platform_express_1 = require("@nestjs/platform-express");
+const path = require("path");
 let LostDogsController = exports.LostDogsController = class LostDogsController {
     constructor(lostDogsService) {
         this.lostDogsService = lostDogsService;
@@ -40,18 +41,24 @@ let LostDogsController = exports.LostDogsController = class LostDogsController {
         return this.lostDogsService.deleteOne(ID);
     }
     async create(dogData, file) {
+        if (dogData.EnteredDay === '') {
+            dogData.EnteredDay = null;
+        }
+        if (dogData.LostDate === '') {
+            dogData.LostDate = null;
+        }
         let filePath = null;
         if (file) {
-            filePath = file.path;
+            filePath = path.basename(file.path);
             dogData.Image = filePath;
         }
         await this.lostDogsService.create(dogData, filePath);
-        return { success: true, message: 'Dog updated successfully!' };
+        return { success: true, message: 'Dog created successfully!' };
     }
     async updateDog(DogID, updateData, file) {
         let filePath = null;
         if (file) {
-            filePath = file.path;
+            filePath = path.basename(file.path);
             updateData.Image = filePath;
         }
         await this.lostDogsService.update(DogID, updateData);
@@ -67,7 +74,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LostDogsController.prototype, "getDogs", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

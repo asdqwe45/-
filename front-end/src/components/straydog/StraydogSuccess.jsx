@@ -39,7 +39,7 @@ function StraydogSuccess() {
     useEffect(() => {
         const fetchData = async () => {
 
-            const response = await axios.get(`/adopteddog?page=${currentPage + 1}&pageSize=${perPage}`);
+            const response = await axios.get(`/api/adopteddog?page=${currentPage + 1}&pageSize=${perPage}`);
 
             setData(response.data.adoptedDog); // set data
             setTotalPage(Math.ceil(response.data.totalItem / perPage));
@@ -56,9 +56,9 @@ function StraydogSuccess() {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
-            <div>
-            <h1 style={{paddingBottom : '50px', fontFamily : 'GmarketSansMedium'}}>| 입양 완료 |</h1>
-            </div>
+
+            <h1 style={{ paddingBottom: '20px', fontFamily: 'GmarketSansMedium' }}>| 입양 완료 |</h1>
+
             <table style={{ marginTop: '140px' }}>
                 <tbody >
                     {dataChunks.map((chunk, i) =>
@@ -71,24 +71,18 @@ function StraydogSuccess() {
                                             {/* <!-- 앞면 --> */}
                                             <div className="front">
 
-                                                <img src='sokurisuccess.jpg' alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active" />
+                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px' }} className="nav-link active" />
 
-                                            
+
                                             </div>
                                             {/* <!-- 뒷면 --> */}
                                             <div className="back">
-                                                
+
                                                 <div className='dogbaiscinfodiv'>
                                                     <div>
 
                                                         <p>
-                                                            나이 : {item.Age}
-                                                        </p>
-                                                        <p>
-                                                            성별 : {item.Sex}
-                                                        </p>
-                                                        <p>
-                                                            견종 : {item.DogID}
+                                                            {item.Comment}
                                                         </p>
 
                                                     </div>

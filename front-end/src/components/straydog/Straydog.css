@@ -2,16 +2,17 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    box-sizing: border-box;
-    font-family: Pretendard;
+    /* box-sizing: border-box; */
+    /* font-family: Pretendard; */
 }
 
 .flip {
     width: 300px;
     height: 300px;
     position: relative;
-    perspective: 1100px;
-    margin: 2rem;
+    /* perspective: 1100px; */
+    margin: 1rem;
+    /* margin-top: 130px; */
 }
 
 .card {
@@ -50,15 +51,15 @@
 }
 
 .dogbaiscinfodiv {
-    border-radius : 10px;
+    border-radius: 10px;
     background-color: #D6C7B2;
-    color : BLACK;
+    color: BLACK;
     width: 300px;
     height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 /* ///////////////////// */
@@ -110,12 +111,12 @@ ul.pagination li.active {
 ul.pagination li a:hover,
 ul.pagination li a.active {
     /* color: #005B4B; */
-    color : #D6C7B2;
+    color: #D6C7B2;
 }
 
 .page-selection {
     width: 48px;
     height: 30px;
     /* color: #337ab7; */
-    color : black;
+    color: black;
 }

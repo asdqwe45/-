@@ -32,7 +32,7 @@ const LostdogUpdate = () => {
     console.log('도그 아이디', id)
     useEffect(() => {
         const apiCall = async () => {
-            const response = await axios.get(`/lostdog/${id}`);
+            const response = await axios.get(`/api/lostdog/${id}`);
             console.log(response.data, '맞지?')
             setDog(response.data)
         }
@@ -57,10 +57,11 @@ const LostdogUpdate = () => {
         setChipNumber(event.target.value);
         console.log(event.target.value);
     };
-    const [Image, setImage] = useState(dog.Image)
+    const [Image, setImage] = useState(null)
     const changeImage = event => {
-        setImage(event.target.value);
-        console.log(event.target.value);
+        setImage(event.target.files[0]);
+        console.log(event.target.files[0]);
+        
     };
     const [Breed, setBreed] = useState(dog.Breed)
     const changeBreed = event => {
@@ -123,7 +124,7 @@ const LostdogUpdate = () => {
         console.log(typeof (LostDate), 1)
         console.log(LostDate, 2)
         // PUT 요청
-        axios.put(`/lostdog/${id}`, JSON.stringify(
+        axios.put(`/api/lostdog/${id}`, JSON.stringify(
             {
                 Sex: Sex,
                 Age: parseInt(Age),
@@ -179,7 +180,7 @@ const LostdogUpdate = () => {
                 </div>
                 <hr/>
                 <div className='input_div'>
-                    <label htmlFor='image' className='kk'> 사 진 </label><input id='image' type="text" placeholder={dog.Image} className='input_text' onChange={changeImage} />
+                    <label htmlFor='image' className='kk'> 사 진 </label><input id='image' type="file" className='input_text' onChange={changeImage} />
                 </div>
                 <hr/>
                 <div className='input_div'>

@@ -12,7 +12,8 @@
 
 .carousel-caption {
     /* position: absolute; No longer required */
-    top: 50%;
+
+
     /* left: 100%; No longer required */
     /* right: 50%; No longer required */
     /* transform: translate(-50%, -50%); No longer required */
@@ -20,7 +21,7 @@
     /* margin-left: 230px; Commented out - adjust if needed */
 
     /* Optional - for some space from the right edge */
-    margin-right: 10%;
+    margin-right: 7%;
 }
 
 .pad {

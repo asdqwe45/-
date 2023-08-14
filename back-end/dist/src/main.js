@@ -13,10 +13,7 @@ async function bootstrap() {
     }));
     app.useWebSocketAdapter(new platform_ws_1.WsAdapter(app));
     await app.listen(3000);
-    app.enableCors({
-        origin: true,
-        credentials: true,
-    });
+    app.enableCors();
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

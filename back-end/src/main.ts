@@ -16,9 +16,6 @@ async function bootstrap() {
   app.useWebSocketAdapter(new WsAdapter(app));
 
   await app.listen(3000);
-  app.enableCors({
-    origin: true,
-    credentials: true,
-  });
+  app.enableCors();
 }
 bootstrap();

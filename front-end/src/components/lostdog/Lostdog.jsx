@@ -39,7 +39,7 @@ function Lostdog() {
     useEffect(() => {
         const fetchData = async () => {
 
-            const response = await axios.get(`/lostdog?page=${currentPage + 1}&pageSize=${perPage}`);
+            const response = await axios.get(`/api/lostdog?page=${currentPage + 1}&pageSize=${perPage}`);
 
             setData(response.data.lostDog); // set data
             setTotalPage(Math.ceil(response.data.totalItem / perPage));
@@ -56,8 +56,8 @@ function Lostdog() {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
-            <h1 style={{paddingBottom : '50px', fontFamily : 'GmarketSansMedium'}}>| 분실견 |</h1>
-            <table style={{ marginTop: '140px' }}>
+            <h1 style={{ paddingBottom: '20px', fontFamily: 'GmarketSansMedium' }}>| 분실견 |</h1>
+            <table>
                 <tbody >
                     {dataChunks.map((chunk, i) =>
                         <tr key={i} >
@@ -67,17 +67,17 @@ function Lostdog() {
                                     <div className="flip" >
                                         <div className="card" >
                                             {/* <!-- 앞면 --> */}
-                                            <div className="front" style={{position : 'relative'}}>
-                                            <img src='dog2.jpg' alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active" />
-                                            <div>
-                                                {item.ReturnedHome === 'Yes'
-                                                ? <img src='home.jpg' alt={item.DogId} style={{ width : '300px', height : '300px', borderRadius : '10px', backgroundColor : 'rgb(0, 0, 0, 0.4)', position : 'absolute', left : '0px', top : '0px' }} className="nav-link active" />
-                                            
-                                                : null
-                                                }
-                                            </div>
-                                                
-                                                
+                                            <div className="front" style={{ position: 'relative' }}>
+                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px' }} className="nav-link active" />
+                                                <div>
+                                                    {item.ReturnedHome === 'Yes'
+                                                        ? <img src='home.jpg' alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px', backgroundColor: 'rgb(0, 0, 0, 0.4)', position: 'absolute', left: '0px', top: '0px' }} className="nav-link active" />
+
+                                                        : null
+                                                    }
+                                                </div>
+
+
 
                                             </div>
                                             {/* <!-- 뒷면 --> */}
@@ -87,13 +87,7 @@ function Lostdog() {
                                                         <div>
 
                                                             <p>
-                                                                나이 : {item.Age}
-                                                            </p>
-                                                            <p>
-                                                                성별 : {item.Sex}
-                                                            </p>
-                                                            <p>
-                                                                견종 : {item.DogID}
+                                                                나이 : {item.Comment}
                                                             </p>
 
                                                         </div>

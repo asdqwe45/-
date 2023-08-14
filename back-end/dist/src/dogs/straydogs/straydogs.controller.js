@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const straydogs_service_1 = require("./straydogs.service");
 const update_dog_dto_1 = require("../DTO/update.dog.dto");
 const platform_express_1 = require("@nestjs/platform-express");
+const path = require("path");
 let StrayDogsController = exports.StrayDogsController = class StrayDogsController {
     constructor(strayDogsService) {
         this.strayDogsService = strayDogsService;
@@ -40,18 +41,24 @@ let StrayDogsController = exports.StrayDogsController = class StrayDogsControlle
         return this.strayDogsService.deleteOne(ID);
     }
     async create(dogData, file) {
+        if (dogData.EnteredDay === '') {
+            dogData.EnteredDay = null;
+        }
+        if (dogData.LostDate === '') {
+            dogData.LostDate = null;
+        }
         let filePath = null;
         if (file) {
-            filePath = file.path;
+            filePath = path.basename(file.path);
             dogData.Image = filePath;
         }
         await this.strayDogsService.create(dogData, filePath);
-        return { success: true, message: 'Dog updated successfully!' };
+        return { success: true, message: 'Dog created successfully!' };
     }
     async updateDog(DogID, updateData, file) {
         let filePath = null;
         if (file) {
-            filePath = file.path;
+            filePath = path.basename(file.path);
             updateData.Image = filePath;
         }
         await this.strayDogsService.update(DogID, updateData);

@@ -13,6 +13,7 @@ import {
 import { LostDogsService } from './lost.service';
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import * as path from 'path';
 
 @Controller('api/lostdog')
 export class LostDogsController {
@@ -33,7 +34,7 @@ export class LostDogsController {
     const lostDog = lostDogs.slice(startIndex, endIndex);
     return { totalItem, lostDog };
   }
-  @Get(':id')
+  @Get('/:id')
   getOneLostDog(@Param('id') ID: number) {
     return this.lostDogsService.getOneLostDog(ID);
   }
@@ -45,13 +46,19 @@ export class LostDogsController {
   @Post()
   @UseInterceptors(FileInterceptor('Image'))
   async create(@Body() dogData, @UploadedFile() file) {
+    if(dogData.EnteredDay==='' ){
+      dogData.EnteredDay=null;
+    }
+    if(dogData.LostDate==='' ){
+      dogData.LostDate=null;
+    }
     let filePath = null;
     if (file) {
-      filePath = file.path;
+      filePath =  path.basename(file.path);
       dogData.Image = filePath;
     }
     await this.lostDogsService.create(dogData, filePath);
-    return { success: true, message: 'Dog updated successfully!' };
+    return { success: true, message: 'Dog created successfully!' };
   }
 
   @Put('/:id')
@@ -63,7 +70,7 @@ export class LostDogsController {
   ) {
     let filePath = null;
     if (file) {
-      filePath = file.path;
+      filePath =  path.basename(file.path);
       updateData.Image = filePath;
     }
     await this.lostDogsService.update(DogID, updateData);

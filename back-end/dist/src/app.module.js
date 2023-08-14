@@ -24,12 +24,16 @@ const cache_manager_1 = require("@nestjs/cache-manager");
 const token_middleware_1 = require("../middleware/token.middleware");
 const reservation_module_1 = require("./reservation/reservation.module");
 const play_module_1 = require("./play/play.module");
-const websocket_gateway_1 = require("./websocket/websocket.gateway");
+const websocket_module_1 = require("./websocket/websocket.module");
+const express = require("express");
+const path_1 = require("path");
 let AppModule = exports.AppModule = class AppModule {
     configure(consumer) {
         consumer
             .apply(token_middleware_1.TokenMiddleware)
-            .forRoutes({ path: 'dog', method: common_1.RequestMethod.ALL });
+            .forRoutes({ path: 'dog', method: common_1.RequestMethod.ALL })
+            .apply(express.static((0, path_1.join)(__dirname, '..', '../uploads')))
+            .forRoutes('uploads');
     }
 };
 exports.AppModule = AppModule = __decorate([
@@ -57,6 +61,7 @@ exports.AppModule = AppModule = __decorate([
             auth_module_1.AuthModule,
             reservation_module_1.ReservationModule,
             play_module_1.PlayModule,
+            websocket_module_1.WebsocketModule
         ],
         providers: [websocket_gateway_1.WebsocketGateway]
     })
