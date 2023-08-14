@@ -54,7 +54,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     ReservationModule,
     PlayModule,
   ],
-  providers:[WebsocketGateway]
+  providers:[WebsocketModule]
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
