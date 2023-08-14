@@ -19,6 +19,7 @@ import { WebsocketModule } from './websocket/websocket.module';
 import * as express from 'express';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { WebsocketGateway } from './websocket/websocket.gateway';
 @Module({
   imports: [
 
@@ -54,7 +55,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     ReservationModule,
     PlayModule,
   ],
-  providers:[WebsocketModule]
+  providers:[WebsocketGateway]
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

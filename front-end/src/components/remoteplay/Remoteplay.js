@@ -16,7 +16,7 @@
 //       this.enableKeyCapture();
 //     }
 //   }
- 
+
 //   async requestFullscreen() {
 //     var elem = this.props.videoRef.current;
 //     if (elem.requestFullscreen) {
@@ -31,7 +31,7 @@
 //   }
 
 //   async handleClick() {
-//     if (this.state.isToggleOn) { 
+//     if (this.state.isToggleOn) {
 //       try {
 //         if (this.props.fullscreen) {
 //           this.requestFullscreen();
@@ -79,15 +79,15 @@
 //     window.removeEventListener("keydown", this.keyboard.onKeyDown, true);
 //     window.removeEventListener("keyup", this.keyboard.onKeyUp, true);
 //   }
- 
+
 //   async enableKeyCapture() {
 //     this.keyboard = new Keyboard((keys) => {
 //       this.sendKeys(keys);
 //       const websocketAddress = "ws://192.168.0.5:8080"; // NestJS WebSocket 서버 주소
 //       const socket = new WebSocket(websocketAddress);
-      
+
 //       socket.onopen = () => {
-//         socket.send(JSON.stringify({ 
+//         socket.send(JSON.stringify({
 //           event: 'command',
 //           data: 'test',
 //         }),)
@@ -97,14 +97,14 @@
 //         const url = URL.createObjectURL(blob);
 //       }
 //     });
-    
-//     if (this.datachannel) {   
-//       this.addKeyboardListeners();  
-//       console.log("key capture enabled");   
+
+//     if (this.datachannel) {
+//       this.addKeyboardListeners();
+//       console.log("key capture enabled");
 //     }
 //   }
 
-//   disableKeyCapture() { 
+//   disableKeyCapture() {
 //     if (this.datachannel) {
 //       this.removeKeyboardListeners();
 //       console.info("key capture disabled");
@@ -130,9 +130,9 @@
 //   }
 // }
 
-// class Options extends Component { 
+// class Options extends Component {
 //   constructor(props) {
-//     super(props); 
+//     super(props);
 //     this.handleChangeKeyCapture = this.handleChangeKeyCapture.bind(this);
 //     this.handleChangeCodec = this.handleChangeCodec.bind(this);
 //     this.handleChangeResolution = this.handleChangeResolution.bind(this);
@@ -394,7 +394,7 @@ class SessionManager extends Component {
           this.requestFullscreen();
         }
         this.session = new WebrtcSession(
-          "ws://192.168.137.75:8888/webrtc",
+          "ws://192.168.100.250:8888/webrtc",
           this.props.options
         ); // this.props.url
         this.session.setOnStreamCallback(this.props.onStream);
@@ -440,13 +440,21 @@ class SessionManager extends Component {
   enableKeyCapture() {
     this.keyboard = new Keyboard((keys) => {
       // this.sendKeys(keys);
-      const websocketAddress = "ws://192.168.137.75:8765";
+      const websocketAddress = "ws://192.168.100.48:6001";
       const socket = new WebSocket(websocketAddress);
       socket.onopen = () => {
+        socket.send(
+          JSON.stringify({
+            event: "command",
+            data: keys,
+          })
+        );
         console.log(keys);
-        socket.send(keys);
-        socket.close();
       };
+      // socket.onmessage = (event) => {
+      //   const blob = new Blob([event.data], { type: "image/jpeg" });
+      //   const url = URL.createObjectURL(blob);
+      // };
     });
     if (this.datachannel) {
       this.addKeyboardListeners();
@@ -543,8 +551,7 @@ class Options extends Component {
     return (
       <Accordion id="panelElement" bsStyle="info">
         <Accordion.Header>Options</Accordion.Header>
-        <Accordion.Body collapsible>
-        </Accordion.Body>
+        <Accordion.Body collapsible></Accordion.Body>
         <Accordion.Body collapsible>
           <Form>
             <Form.Check
@@ -618,7 +625,7 @@ class ScreenSharing extends Component {
   }
 
   getDefaultUrl() {
-    return "ws://192.168.137.75:8888/webrtc";
+    return "ws://192.168.100.250:8888/webrtc";
     // if (window.location.hostname) {
     //   var address =
     //     window.location.hostname +
@@ -668,7 +675,13 @@ class ScreenSharing extends Component {
     return (
       <div>
         <div>
-          <video ref={this.videoRef} style={{width : '600px', height : '300px'}}id="videoElement" autoPlay="" controls>
+          <video
+            ref={this.videoRef}
+            style={{ width: "600px", height: "300px" }}
+            id="videoElement"
+            autoPlay=""
+            controls
+          >
             Your browser does not support the video tag.
           </video>
         </div>
@@ -698,11 +711,18 @@ class ScreenSharing extends Component {
 
 const Remoteplay = () => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingTop: "200px",
+      }}
+    >
       <h1>원격놀이</h1>
       <ScreenSharing />
     </div>
   );
 };
 export default Remoteplay;
-
