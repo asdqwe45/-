@@ -90,6 +90,7 @@ const Reservation = () => {
         let newDate = new Date(startDate);
         let hourString = time < 10 ? `0${time}` : `${time}`;
         let dateString = newDate.toISOString().substring(0, 10);
+        console.log(hourString, dateString, 'tagtab22')
         setSelectedDateTime(`${dateString}T${hourString}:00`);
     }
 
@@ -101,6 +102,7 @@ const Reservation = () => {
         setStartDate(date);
         let newDate = new Date(date);
         let dateString = newDate.toISOString().slice(0, -14);
+        console.log(dateString, 'tabtab')
         setSelectedDateTime(`${dateString}T00:00`);
 
 
@@ -197,10 +199,10 @@ const Reservation = () => {
 
         return `예약날짜 : ${year}-${month}-${date} ${hours}:${minutes}`;
     }
-    console.log(token)
-    console.log(dogID)
-    console.log(selectedType)
-    console.log(selectedDateTime)
+    // console.log(token)
+    // console.log(dogID)
+    // console.log(selectedType)
+    // console.log(selectedDateTime)
 
 
     return (

@@ -15,21 +15,21 @@ const StraydogUpdate = () => {
 
     // 강아지 초기 정보 가져오기 
     const [dog, setDog] = useState({
-        "DogID": 37,
-        "Sex": "Female",
-        "Age": 15,
-        "ChipNumber": "123987654321",
-        "Image": "http://example.com/dog5.jpg",
-        "Breed": "SiGorJabJong",
-        "RemainedDay": "150",
-        "DogSize": "Large",
-        "Weight": 123,
-        "Status": "stray",
-        "EnteredDay": null,
-        "DiscoveredPlace": null,
-        "LostLocation": "AnYang",
-        "LostDate": "2023-02-08",
-        "ReturnedHome": "Yes"
+        DogID: 37,
+        Sex: "Female",
+        Age: 15,
+        ChipNumber: "123987654321",
+        Image: "http://example.com/dog5.jpg",
+        Breed: "SiGorJabJong",
+        RemainedDay: "150",
+        DogSize: "Large",
+        Weight: 123,
+        Status: "stray",
+        EnteredDay: null,
+        DiscoveredPlace: null,
+        LostLocation: "",
+        LostDate: "",
+        ReturnedHome: ""
     });
     console.log('도그 아이디', id)
     useEffect(() => {
@@ -37,6 +37,17 @@ const StraydogUpdate = () => {
             const response = await axios.get(`/api/straydog/${id}`);
             console.log(response.data, '맞지?')
             setDog(response.data)
+            setSex(response.data.Sex)
+            setAge(response.data.Age)
+            setChipNumber(response.data.ChipNumber)
+            setImage(response.data.Image)
+            setBreed(response.data.Breed)
+            setRemainedDay(response.data.RemainedDay)
+            setDogSize(response.data.DogSize)
+            setWeight(response.data.Weight)
+            setEnteredDay(response.data.EnteredDay)
+            setDiscoveredPlace(response.data.DiscoveredPlace)
+            setComment(response.data.Comment)
         }
         apiCall()
 
@@ -59,11 +70,17 @@ const StraydogUpdate = () => {
         setChipNumber(event.target.value);
         console.log(event.target.value);
     };
-    const [Image, setImage] = useState(null)
+    const [PreviewImage, setPreviewImage] = useState(null);
+    const [Image, setImage] = useState(dog.Image)
     const changeImage = event => {
         setImage(event.target.files[0])
         console.log(Image,'3')
         console.log(event.target.files[0]);
+        const reader = new FileReader();
+        reader.onload = (e) => {
+        setPreviewImage(e.target.result);
+        };
+        reader.readAsDataURL(event.target.files[0]);
         
     };
     const [Breed, setBreed] = useState(dog.Breed)
@@ -101,7 +118,7 @@ const StraydogUpdate = () => {
         setDiscoveredPlace(event.target.value);
         console.log(event.target.value);
     }
-    const [Comment, setComment] = useState(null)
+    const [Comment, setComment] = useState(dog.Comment)
     const changeComment = event => {
         setComment(event.target.value);
         console.log(event.target.value)
@@ -112,7 +129,8 @@ const StraydogUpdate = () => {
     // 업데이트 버튼 누르면 put 요청
     const Update = (e) => {
         // e.preventDefault();
-        console.log(dog)
+        console.log(dog.Image)
+        console.log(Image)
         console.log(EnteredDay, 1)
         console.log(Date(EnteredDay), 2)
         // PUT 요청
@@ -129,9 +147,9 @@ const StraydogUpdate = () => {
                 Status: Status,
                 EnteredDay: EnteredDay,
                 DiscoveredPlace: DiscoveredPlace,
-                LostLocation: null,
-                LostDate: null,
-                ReturnedHome: null,
+                LostLocation: '',
+                LostDate: '',
+                ReturnedHome: '',
                 Comment : Comment,
                 UserID : userid
                 
@@ -176,7 +194,10 @@ const StraydogUpdate = () => {
                 </div>
                 <hr/>
                 <div className='input_div'>
-                    <label htmlFor='image' className='kk'> 사 진 </label><input id='image' type="file" className='input_text' onChange={changeImage} />
+                    <label htmlFor='image' className='kk'> 사 진 </label>
+                    {PreviewImage && <img src={PreviewImage} alt="미리보기" style={{ maxWidth: '100px', maxHeight: '100px' }} />}
+                    
+                    <input id='image' type="file" className='input_text' onChange={changeImage} />
                 </div>
                 <hr/>
                 <div className='input_div'>

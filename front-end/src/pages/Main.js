@@ -60,32 +60,37 @@ const Main = (props) => {
     const [nowhour, setHour] = useState(today.getHours())
     const [nowminute, setMinute] = useState(today.getMinutes())
 
+
+
+
     // GET
     useEffect(() => {
-
-        const fetchData = async () => {
+        const intervalId = setInterval(() => {
+            const fetchData = async () => {
 
             const response = await axios.get('/api/reservation/user', config);
             setReservationTimes(response.data.reservation)
 
+            }
+            fetchData();
+
+            const today = new Date()
+            // console.log('오늘 : ',today)
+            setYear(today.getFullYear())
+            setMonth(today.getMonth() + 1)
+            setDate(today.getDate())
+            setHour(today.getHours())
+            setMinute(today.getMinutes())
+
+
+
+        }, 1000); 
+        return () => {
+            clearInterval(intervalId);
         }
-        fetchData();
+        
 
-        const today = new Date()
-        // console.log('오늘 : ',today)
-        setYear(today.getFullYear())
-        setMonth(today.getMonth() + 1)
-        setDate(today.getDate())
-        setHour(today.getHours())
-        setMinute(today.getMinutes())
-
-
-
-
-    }, []);
-
-
-
+    }, [nowmonth]);
 
     const reservationtime = reservationtimes.filter((time) => {
         // console.log(parseInt(now.slice(11, 13)), parseInt(time.ReservationDatetime.slice(11, 13))+1)

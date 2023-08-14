@@ -62,87 +62,88 @@ const StraydogDetail = () => {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <h1 style={{ fontFamily: 'GmarketSansMedium', paddingBottom: '20px' }}>| 상세정보 |</h1>
             <p style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center', }} >페이지 하단 입양하기를 누르면 방문예약 페이지로 이동합니다.</p>
-            <div style={{}}>
+            <div style={{ width: '600px', height: '1300px', border: '#D6C7B2 5px solid' }}>
+                <div style={{ marginLeft: '100px', marginRight: '100px' }}>
 
-                {/* {dog.Image} */}
-                <img src={`/uploads/${dog.Image}`} width="400" height="350" style={{ marginBottom: '40px' }} />
+                    {/* {dog.Image} */}
+                    <img src={`/uploads/${dog.Image}`} width="400" height="350" style={{ marginBottom: '40px', marginTop : '40px' }} />
 
-                <div className='info'>
-                    <div className="info_per">
-                        <p>견 종 : </p>
-                        <p>{dog.Breed}</p>
+                    <div className='info'>
+                        <div className="info_per">
+                            <p>견 종 : </p>
+                            <p>{dog.Breed}</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p>나 이 : </p>
+                            <p>{dog.Age}</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p>크 기 : </p>
+                            <p>{dog.DogSize}</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p>성 별 : </p>
+                            <p>{dog.Sex}</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p>무 게 : </p>
+                            <p>{dog.Weight}kg</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p>안락사까지 남은 날짜 : </p>
+                            <p>{dog.RemainedDay}</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p>입소 날짜 : </p>
+                            <p>{dog.EnteredDay}</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p>기타사항 : </p>
+                            <p>{dog.comment}</p>
+                        </div>
+                        <hr />
                     </div>
-                    <hr />
-                    <div className="info_per">
-                        <p>나 이 : </p>
-                        <p>{dog.Age}</p>
+                
+                <div>{admin === '1'
+                    ? <div style={{ display: 'flex', justifyContent : 'right'  }}>
+                        <div style={{ paddingTop: '50px'}}>
+                            <Link to={{ pathname: `/admin/update/${id}` }} className="nav-link active">
+                                <button className="btn btn-secondary">
+                                    수정하기
+                                </button>
+                            </Link>
+                        </div>
+                        <div style={{ paddingTop: '50px' }}>
+                            <Link to={{ pathname: `/straydog` }} className="nav-link active">
+                                <button className="btn btn-secondary" onClick={onDelete}>
+                                    삭제하기
+                                </button>
+                            </Link>
+
+                        </div>
                     </div>
-                    <hr />
-                    <div className="info_per">
-                        <p>크 기 : </p>
-                        <p>{dog.DogSize}</p>
+                    : <div style={{ display: 'flex' }}>
+                        <div style={{ paddingTop: '50px' }}>
+                            <Link to='/reservation' className="nav-link active" state={{ dogID: dog.DogID }}>
+                                <button className="btn btn-secondary">
+                                    입양하기
+                                </button>
+                            </Link>
+                        </div>
                     </div>
-                    <hr />
-                    <div className="info_per">
-                        <p>성 별 : </p>
-                        <p>{dog.Sex}</p>
-                    </div>
-                    <hr />
-                    <div className="info_per">
-                        <p>무 게 : </p>
-                        <p>{dog.Weight}kg</p>
-                    </div>
-                    <hr />
-                    <div className="info_per">
-                        <p>안락사까지 남은 날짜 : </p>
-                        <p>{dog.RemainedDay}</p>
-                    </div>
-                    <hr />
-                    <div className="info_per">
-                        <p>입소 날짜 : </p>
-                        <p>{dog.EnteredDay}</p>
-                    </div>
-                    <hr />
-                    <div className="info_per">
-                        <p>기타사항 : </p>
-                        <p>{dog.comment}</p>
-                    </div>
-                    <hr />
+                }
                 </div>
-            </div>
-            <div>{admin === '1'
-                ? <div style={{ display: 'flex' }}>
-                    <div style={{ paddingTop: '50px' }}>
-                        <Link to={{ pathname: `/admin/update/${id}` }} className="nav-link active">
-                            <button className="btn btn-secondary">
-                                수정하기
-                            </button>
-                        </Link>
-                    </div>
-                    <div style={{ paddingTop: '50px' }}>
-                        <Link to={{ pathname: `/straydog` }} className="nav-link active">
-                            <button className="btn btn-secondary" onClick={onDelete}>
-                                삭제하기
-                            </button>
-                        </Link>
-
-                    </div>
                 </div>
-                : <div style={{ display: 'flex' }}>
-                    <div style={{ paddingTop: '50px' }}>
-                        <Link to='/reservation' className="nav-link active" state={{ dogID: dog.DogID }}>
-                            <button className="btn btn-secondary">
-                                입양하기
-                            </button>
-                        </Link>
-                    </div>
-                </div>
-            }
-
-            </div>
             {/* 이건 user만 보이기 */}
 
-
+            </div>
             {/* 이건 관리자만 보이기 */}
 
 
