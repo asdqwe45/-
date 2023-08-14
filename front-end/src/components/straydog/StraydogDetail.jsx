@@ -7,7 +7,7 @@ import './StraydogDetail.css';
 
 const StraydogDetail = () => {
 
-    
+
 
     const { id } = useParams()
     const [dog, setDog] = useState({
@@ -43,16 +43,16 @@ const StraydogDetail = () => {
         // console.log(response.data, '맞지?')
         setDog(response.data)
     }
-    
+
     const onDelete = () => {
 
         if (window.confirm("정말 삭제합니까?")) {
-    
-          alert("삭제되었습니다.");
-          DeleteDog()
-    
+
+            alert("삭제되었습니다.");
+            DeleteDog()
+
         }
-      };
+    };
     const admin = localStorage.getItem('admin');
     const userid = localStorage.getItem('userid');
 
@@ -60,53 +60,54 @@ const StraydogDetail = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
-            <h1 style={{paddingBottom : '50px', fontFamily : 'GmarketSansMedium'}}>| 유기견 상세정보 |</h1>
-            <div style={{ paddingTop: '40px' }}>
+            <h1 style={{ fontFamily: 'GmarketSansMedium', paddingBottom: '20px' }}>| 상세정보 |</h1>
+            <p style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center', }} >페이지 하단 입양하기를 누르면 방문예약 페이지로 이동합니다.</p>
+            <div style={{}}>
 
                 {/* {dog.Image} */}
-                <img src={`/uploads/${dog.Image}`} width="400" height="350" style={{ marginBottom : '40px'}} />
+                <img src={`/uploads/${dog.Image}`} width="400" height="350" style={{ marginBottom: '40px' }} />
 
                 <div className='info'>
                     <div className="info_per">
                         <p>견 종 : </p>
                         <p>{dog.Breed}</p>
                     </div>
-                    <hr/>
+                    <hr />
                     <div className="info_per">
                         <p>나 이 : </p>
                         <p>{dog.Age}</p>
                     </div>
-                    <hr/>
+                    <hr />
                     <div className="info_per">
                         <p>크 기 : </p>
                         <p>{dog.DogSize}</p>
                     </div>
-                    <hr/>
+                    <hr />
                     <div className="info_per">
                         <p>성 별 : </p>
                         <p>{dog.Sex}</p>
                     </div>
-                    <hr/>
+                    <hr />
                     <div className="info_per">
                         <p>무 게 : </p>
                         <p>{dog.Weight}kg</p>
                     </div>
-                    <hr/>
+                    <hr />
                     <div className="info_per">
                         <p>안락사까지 남은 날짜 : </p>
                         <p>{dog.RemainedDay}</p>
                     </div>
-                    <hr/>
+                    <hr />
                     <div className="info_per">
                         <p>입소 날짜 : </p>
                         <p>{dog.EnteredDay}</p>
                     </div>
-                    <hr/>
+                    <hr />
                     <div className="info_per">
                         <p>기타사항 : </p>
                         <p>{dog.comment}</p>
                     </div>
-                    <hr/>
+                    <hr />
                 </div>
             </div>
             <div>{admin === '1'
@@ -140,10 +141,10 @@ const StraydogDetail = () => {
 
             </div>
             {/* 이건 user만 보이기 */}
-            
+
 
             {/* 이건 관리자만 보이기 */}
-            
+
 
         </div>
     );

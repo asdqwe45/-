@@ -112,7 +112,7 @@ const Signup = () => {
                                 <label className='slabel'>User ID: <input className='sinput' style={{ border: 'inset', marginTop: '10px' }} value={userID} onChange={(e) => setUserID(e.target.value)} /></label><br />
                                 <label className='slabel'>Password: <input className='sinput' style={{ border: 'inset', marginTop: '10px' }} type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></label><br />
                                 <label className='slabel'>Confirm Password: <input className='sinput' style={{ border: 'inset', marginTop: '10px' }} type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} /></label><br />
-                                <label className='slabel'>Admin: <input className='sinput' type="checkbox" checked={admin} onChange={(e) => setAdmin(e.target.checked)} /></label><br />
+                                {/* <label className='slabel'>Admin: <input className='sinput' type="checkbox" checked={admin} onChange={(e) => setAdmin(e.target.checked)} /></label><br /> */}
                             </div>
                             <div>
                                 <label className='slabel'>Email: <input className='sinput' style={{ border: 'inset', marginTop: '10px' }} value={email} onChange={(e) => setEmail(e.target.value)} /></label><br />

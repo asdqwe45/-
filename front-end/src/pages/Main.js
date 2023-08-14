@@ -205,7 +205,7 @@ const Main = (props) => {
                                     <li className="topMenuLi bg-body-none">
                                         <a className="menuLink" href="#">놀아주기</a>
                                         <ul className="submenu">
-                                            <li><Link className="submenuLink longLink" to="/recommenddog">∙ 원격놀이</Link></li>
+                                            <li><Link className="submenuLink longLink" to="/recommenddog">∙ 추천 유기견</Link></li>
                                             <li><Link className="submenuLink longLink" to="/remoteplay-guide">∙ 이용가이드</Link></li>
 
                                         </ul>

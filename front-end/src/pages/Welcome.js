@@ -333,14 +333,14 @@ function Welcome() {
             <div className="inner2 bg-4">
                 <div className="text-section">
                     <div className="company-info">
-                        <p className="highlight">백문이불여일犬</p>
-                        <p className="highlight">Samsung</p>
-                        <p className="highlight">SSAFY</p>
-                        <p className="highlight">광주 1반 C106</p>
+                        <p className="highlight" style={{ fontFamily: 'GmarketSansMedium' }}>백문이불여일犬</p>
+                        <p className="highlight" style={{ fontFamily: 'GmarketSansMedium' }}>Samsung</p>
+                        <p className="highlight" style={{ fontFamily: 'GmarketSansMedium' }}>SSAFY</p>
+                        <p className="highlight" style={{ fontFamily: 'GmarketSansMedium' }}>광주 1반 C106</p>
                     </div>
 
                     <div className="footer-info">
-                        <p>(주) 백문이불여일犬
+                        <p style={{ fontFamily: 'GmarketSansMedium' }}>(주) 백문이불여일犬
                             <br />
                             Address : 광주시 광산구 장덕동 삼성사업장
                             <br />
@@ -348,6 +348,7 @@ function Welcome() {
                             사업자 번호 : 2225-896866
                             <br />
                             TEL : 010-8664-2108   FAX : 050-5656-8585
+                            <br />
                             EMAIL : woojin0321@naver.com
                             <br />
                             All Photo by ⓒ Tom Crew on Unsplash view

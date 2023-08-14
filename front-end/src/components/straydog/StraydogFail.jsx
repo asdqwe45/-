@@ -57,6 +57,7 @@ function StraydogFail() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <h1 style={{ paddingBottom: '20px', fontFamily: 'GmarketSansMedium' }}>| 추모 |</h1>
+            <p style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center', }} >저희 보호소에서 머물다 무지개 다리를 건넌 아이들입니다. <br />같이 추모해주시면 감사드리겠습니다.</p>
             <table>
                 <tbody >
                     {dataChunks.map((chunk, i) =>

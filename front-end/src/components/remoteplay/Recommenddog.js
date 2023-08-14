@@ -23,10 +23,10 @@ const Remoteplay = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
-            <h1 style={{ marginBottom: '100px' }}>
-                추천 유기견
+            <h1 style={{ fontFamily: 'GmarketSansMedium', paddingBottom: '20px' }}>
+                ㅣ백문이불여일犬이 추천하는 아이들ㅣ
             </h1>
-            <p>놀아주세요!</p>
+            <p style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center', }} >저희 보호소에서 추천드리는 아이들입니다. <br />안락사 기간이 얼마 남지 않은 <br />아이들이니 많은 관심 부탁드립니다. <br />아이를 클릭하시면 놀아주기 예약 페이지로 이동합니다.</p>
             {content}
         </div>
     );
