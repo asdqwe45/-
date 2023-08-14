@@ -53,7 +53,7 @@ const LostdogDetail = () => {
             <div style={{ paddingTop: '40px', marginLeft : '100px', marginRight : '100px' }}>
                 <div style={{ position : ' relative'}}>
 
-                    <img src={`../uploads/${dog.Image}`} style={{ width:"400", height:"350", marginBottom : '40px'}} />
+                    <img src={`../uploads/${dog.Image}`} width="400" height="350" style={{ marginBottom : '40px'}} />
 
                 </div>
                 <div className='info'>

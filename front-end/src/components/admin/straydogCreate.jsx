@@ -126,7 +126,7 @@ const StraydogCreate = () => {
             formData.append('EnteredDay', EnteredDay)
             formData.append('DiscoveredPlace', DiscoveredPlace)
             formData.append('LostLocation', null)
-            formData.append('LostDate', null)
+            formData.append('LostDate', '')
             formData.append('ReturnedHome', null)
             formData.append('Comment', Comment)
             formData.append("UserID", userid)

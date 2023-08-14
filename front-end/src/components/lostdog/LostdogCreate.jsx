@@ -119,14 +119,14 @@ const LostdogCreate = () => {
             formData.append('ChipNumber', ChipNumber);
             formData.append('Image', Image); 
             formData.append('Breed', Breed);
-            formData.append('RemainedDay', null);
+            formData.append('RemainedDay', '');
             formData.append('DogSize', DogSize);
             formData.append('Weight', parseInt(Weight));
             formData.append('Status', 'lost')
-            formData.append('EnteredDay', null)
+            formData.append('EnteredDay', '')
             formData.append('DiscoveredPlace', null)
             formData.append('LostLocation', LostLocation)
-            formData.append('LostDate', LostDate)
+            formData.append('LostDate', LostDate)    
             formData.append('ReturnedHome', ReturnedHome)
             formData.append('Comment', Comment)
             formData.append("UserID", userid)
