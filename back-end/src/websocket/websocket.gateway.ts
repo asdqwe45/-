@@ -50,14 +50,14 @@ import { Server, WebSocket } from 'ws';
 export class WebsocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer() server: Server;
 
-  handleConnection(client: WebSocket) {
+  handleConnection(client: WebSocket) {ㅊㅍ
     console.log(`Client connected: ${client}`);
   }
 
   handleDisconnect(client: WebSocket) {
     console.log(`Client disconnected: ${client}`);
   }
-
+4
   @SubscribeMessage('video')
   handleVideo(client: WebSocket, @MessageBody() data: ArrayBuffer): void {
     // 영상 데이터를 다른 클라이언트에게 브로드캐스트
