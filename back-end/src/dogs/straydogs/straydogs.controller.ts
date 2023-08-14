@@ -50,6 +50,9 @@ export class StrayDogsController {
     if(dogData.LostDate==='' ){
       dogData.LostDate=null;
     }
+    if(dogData.RemainedDay==='' ){
+      dogData.RemainedDay=null;
+    }
     let filePath = null;
     if (file) {
       filePath =  path.basename(file.path);
