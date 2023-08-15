@@ -1,10 +1,12 @@
 import WebSocketAsPromised from "websocket-as-promised";
+import react from 'react'
 
 class SignalingChannel {
   constructor(url) {
     if (!("WebSocket" in window)) {
       throw new Error("The browser does not support WebSockets");
     }
+
     this.wsp = new WebSocketAsPromised(url, {
       packMessage: data => JSON.stringify(data),
       unpackMessage: message => JSON.parse(message)
