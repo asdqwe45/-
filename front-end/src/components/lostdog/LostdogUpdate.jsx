@@ -35,6 +35,19 @@ const LostdogUpdate = () => {
             const response = await axios.get(`/api/lostdog/${id}`);
             console.log(response.data, '맞지?')
             setDog(response.data)
+            setDog(response.data)
+            setSex(response.data.Sex)
+            setAge(response.data.Age)
+            setChipNumber(response.data.ChipNumber)
+            setImage(response.data.Image)
+            setBreed(response.data.Breed)
+            setRemainedDay(response.data.RemainedDay)
+            setDogSize(response.data.DogSize)
+            setWeight(response.data.Weight)
+            setLostLocation(response.data.LostLocation)
+            setLostDate(response.data.LostDate)
+            setReturnedHome(response.data.ReturnedHome)
+            setComment(response.data.Comment)
         }
         apiCall()
 
@@ -115,6 +128,11 @@ const LostdogUpdate = () => {
         setReturnedHome(event.target.value);
         console.log(event.target.value);
     };
+    const [Comment, setComment] = useState(dog.Comment)
+    const changeComment = event => {
+        setComment(event.target.value);
+        console.log(event.target.value)
+    }
     // ===================================================
 
     const navigate = useNavigate()
@@ -140,6 +158,7 @@ const LostdogUpdate = () => {
                 LostLocation: LostLocation,
                 LostDate: LostDate,
                 ReturnedHome: ReturnedHome,
+                Comment : Comment,
             }), { headers: { "Content-Type": 'application/json' } })
             .then(function (response) {
                 console.log(response);
@@ -237,7 +256,10 @@ const LostdogUpdate = () => {
                     <label htmlFor='lost_date' className='kk'> 잃어버린 날짜 </label><input id='lost_date' type="date" className='input_text' placeholder={dog.LostDate} min="2000-01-01" max="2100-12-31" style={{width : '220px'}} onChange={changeLostDate} />
                 </div>
                 <hr/>
-
+                <div className='input_div'>
+                    <label htmlFor='discovered_place'> 추가 내용 </label><textarea id='discovered_place' className='input_text' type="text" placeholder={dog.DiscoveredPlace} onChange={changeComment}/>
+                </div>
+                <hr/>               
                 <div onChange={changeReturnedHome} className='input_div'>
                     <label htmlFor='lost_date' className='kk'> 귀가 여부 </label>
                     <div>

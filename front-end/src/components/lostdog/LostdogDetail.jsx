@@ -36,13 +36,23 @@ const LostdogDetail = () => {
     }, [])
 
     const DeleteDog = async () => {
-        const response = await axios.delete(`/lostdog/${id}`);
+        const response = await axios.delete(`/api/straydog/${id}`);
         // console.log(response.data, '맞지?')
         setDog(response.data)
     }
+
+    const onDelete = () => {
+
+        if (window.confirm("정말 삭제합니까?")) {
+
+            alert("삭제되었습니다.");
+            DeleteDog()
+
+        }
+    };
     const admin = localStorage.getItem('admin');
     const userid = localStorage.getItem('userid');
-
+    
 
     // console.log(dog, '아니야?')
 
@@ -53,7 +63,7 @@ const LostdogDetail = () => {
                 <div style={{ marginLeft: '100px', marginRight: '100px' }}>
                     <div style={{ position: ' relative' }}>
 
-                        <img src={`../uploads/${dog.Image}`} width="400" height="350" style={{ marginBottom: '40px' }} />
+                        <img src={`../uploads/${dog.Image}`} width="400" height="350" style={{ marginBottom: '40px', marginTop : '40px' }} />
 
                     </div>
                     <div className='info'>
@@ -107,22 +117,23 @@ const LostdogDetail = () => {
 
                     {/* 해당 작성자와 관리자만 보이기 */}
                     <div>{admin === '1' || userid === dog.UserID
-                        ? <div style={{ display: 'flex', justifyContent: 'right' }}>
-                            <div style={{ paddingTop: '50px' }}>
-                                <Link to={{ pathname: `/lostdog/update/${id}` }} className="nav-link active">
-                                    <button className="btn btn-secondary">
-                                        수정하기
-                                    </button>
-                                </Link>
-                            </div>
-                            <div style={{ paddingTop: '50px' }}>
-                                <Link to='/lostdog' className="nav-link active">
-                                    <button className="btn btn-secondary" onClick={DeleteDog}>
-                                        삭제하기
-                                    </button>
-                                </Link>
-                            </div>
+                        ? <div style={{ display: 'flex', justifyContent : 'right' }}>
+                        <div style={{ paddingTop: '50px'  }}>
+                            <Link to={{ pathname: `/lostdog/update/${id}` }} className="nav-link active">
+                                <button className="btn btn-secondary">
+                                    수정하기
+                                </button>
+                            </Link>
                         </div>
+                        <div style={{ paddingTop: '50px' }}>
+                            <Link to={{ pathname: `/lostdog` }} className="nav-link active">
+                                <button className="btn btn-secondary" onClick={onDelete}>
+                                    삭제하기
+                                </button>
+                            </Link>
+
+                        </div>
+                    </div>
                         : null
                     }
 

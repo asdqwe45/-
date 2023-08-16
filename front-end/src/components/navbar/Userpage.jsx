@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
@@ -9,6 +10,7 @@ const Userpage = () => {
     const [reservationtimes, setReservationTimes] = useState([])
     const [userinformation, setUserInformation] = useState({})
     const [view, setView] = useState('')
+    const navigate = useNavigate()
     // const [times, setTimes] = useState([])    // console.log('22')
     const config = {
         headers: {
@@ -23,6 +25,7 @@ const Userpage = () => {
 
             const response = await axios.get('/api/reservation/user', config);
             setReservationTimes(response.data.reservation)
+            console.log(response.data.reservation)
             
         }
         const apiCall = async () => {
@@ -80,6 +83,7 @@ const Userpage = () => {
             alert("탈퇴되었습니다.");
             DeleteUser()
             localStorage.removeItem("rasyueToken");
+            navigate('/login')
 
         }
     }
@@ -115,9 +119,9 @@ const Userpage = () => {
                 </div>
 
                 <button className="btn btn-secondary mt-3 mx-1" style={{fontFamily: 'GmarketSansMedium'}}>회원 정보 수정</button>
-                <Link to='/'>
-                    <button className="btn btn-secondary mt-3 mx-1" style={{fontFamily: 'GmarketSansMedium'}} onClick={onUserDelete}>회원 탈퇴</button>
-                </Link>
+
+                <button className="btn btn-secondary mt-3 mx-1" style={{fontFamily: 'GmarketSansMedium'}} onClick={onUserDelete}>회원 탈퇴</button>
+
                 <hr/>
                 {/* ----------------------------------------------- */}
                 <h2 style={{ fontFamily: 'GmarketSansMedium' }}>
