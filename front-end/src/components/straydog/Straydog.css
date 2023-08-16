@@ -38,11 +38,11 @@
 }
 
 .front {
-    background: white;
+    /* background: white; */
 }
 
 .back {
-    background: white;
+    /* background: white; */
     transform: rotateY(180deg);
 }
 

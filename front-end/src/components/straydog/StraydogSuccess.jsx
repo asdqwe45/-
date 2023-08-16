@@ -83,7 +83,7 @@ function StraydogSuccess() {
                                                 <div className='dogbaiscinfodiv'>
                                                     <div>
 
-                                                        <p>
+                                                        <p style={{ fontFamily: 'GmarketSansMedium', padding: '20px' }}>
                                                             {item.Comment}
                                                         </p>
 

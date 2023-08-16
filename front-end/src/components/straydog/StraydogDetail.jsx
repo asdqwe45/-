@@ -67,7 +67,7 @@ const StraydogDetail = () => {
                 {/* {dog.Image} */}
                 <img src={`/uploads/${dog.Image}`} width="400" height="350" style={{ marginBottom: '40px' }} />
 
-                <div className='info'>
+                <div className='info' style={{ fontFamily: 'GmarketSansMedium' }}>
                     <div className="info_per">
                         <p>견 종 : </p>
                         <p>{dog.Breed}</p>
@@ -131,7 +131,7 @@ const StraydogDetail = () => {
                 : <div style={{ display: 'flex' }}>
                     <div style={{ paddingTop: '50px' }}>
                         <Link to='/reservation' className="nav-link active" state={{ dogID: dog.DogID }}>
-                            <button className="btn btn-secondary">
+                            <button className="btn btn-secondary" style={{ fontFamily: 'GmarketSansMedium' }}>
                                 입양하기
                             </button>
                         </Link>

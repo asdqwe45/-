@@ -278,7 +278,7 @@ const Main = (props) => {
                     TEL : 010-8664-2108   FAX : 050-5656-8585
                     EMAIL : woojin0321@naver.com
                     <br />
-                    All Photo by ⓒ Tom Crew on Unsplash view
+                    All Photo by ⓒ C106 Crew on Unsplash view
                 </p>
 
             </div>

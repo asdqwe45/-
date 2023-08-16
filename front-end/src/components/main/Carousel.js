@@ -27,7 +27,7 @@ const Maincarousel = () => {
                                 color: 'black',
                                 fontFamily: 'Arial Black', textDecoration: 'none'
                             }}>Family</Link></div>
-                        <p style={{ whiteSpace: 'nowrap', fontSize: '20px', }}>Click it if you want to see our family</p>
+                        <p style={{ whiteSpace: 'nowrap', fontSize: '20px', }}>Click it </p>
                     </p>
 
                 </Carousel.Caption>
@@ -46,7 +46,7 @@ const Maincarousel = () => {
                         Lost,<br />
                         <div style={{ display: 'flex', alignItems: 'center' }}>
 
-                            <div style={{ border: ' solid', width: ' 350px', marginLeft: '220px', borderRadius: '10px' }}>
+                            <div style={{ border: ' solid', width: ' 280px', marginLeft: '220px', borderRadius: '10px' }}>
                                 <Link to="/lostdog" style={{
                                     fontSize: '75px',
                                     fontStyle: 'italic',
@@ -55,7 +55,7 @@ const Maincarousel = () => {
                                     fontFamily: 'Arial Black', textDecoration: 'none'
                                 }}>Find,</Link>
                             </div>
-                            <span style={{ fontSize: '15px', marginLeft: '20px', fontSize: '20px', }}>Click it if you want to find your dog</span>
+                            <span style={{ fontSize: '15px', marginLeft: '20px', fontSize: '20px', }}>Click it</span>
                         </div>
 
                         Hope
@@ -65,7 +65,7 @@ const Maincarousel = () => {
             <Carousel.Item>
                 <img className="d-block w-100" src="/maindog17.jpg" alt="Third slide" />
                 <Carousel.Caption className="d-none d-md-block fadeIn pad">
-                    <p style={{ whiteSpace: 'nowrap', fontSize: '20px', fontWeight: 'bold', }}>Click it if you want to play with our dog</p>
+                    <p style={{ whiteSpace: 'nowrap', fontSize: '20px', fontWeight: 'bold', }}>Click it</p>
                     <p style={{
                         fontSize: '75px',
                         fontStyle: 'italic',

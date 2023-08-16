@@ -221,7 +221,7 @@ function Welcome() {
                                 color: 'white',
                                 fontFamily: 'Arial Black',
                                 marginTop: '25px'
-                            }}>저희는 유기견들을 보호함과 동시에 입양 서비스를 제공하고 있습니다.</p>
+                            }}>저희는 유기견들을 보호함과 동시에 <br />입양 서비스를 제공하고 있습니다.</p>
                         </div>
 
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginRight: '40px' }}>
@@ -244,7 +244,7 @@ function Welcome() {
                                 color: 'white',
                                 fontFamily: 'Arial Black',
                                 marginTop: '25px'
-                            }}>저희는 보호자들이 분실견을 찾을 수 있도록 최상의 서비스를 제공하고 있습니다.</p>
+                            }}>저희는 보호자들이 분실견을 <br />찾을 수 있도록 최상의 서비스를<br /> 제공하고 있습니다.</p>
                         </div>
 
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -268,7 +268,7 @@ function Welcome() {
                                 color: 'white',
                                 fontFamily: 'Arial Black',
                                 marginTop: '25px'
-                            }}>저희는 유기견들이 지루해하지 않게 원격 조종 장난감으로 놀아주기 서비스를 제공하고 있습니다.</p>
+                            }}>저희는 유기견들이 지루해하지 않게<br /> 원격 조종 장난감으로 놀아주기<br /> 서비스를 제공하고 있습니다.</p>
                         </div>
                     </div>
                 </div>
@@ -300,7 +300,7 @@ function Welcome() {
                             fontFamily: 'Arial Black',
                             paddingLeft: '20px',
                             paddingRight: '20px'
-                        }}>원격 조종시스템으로 집에서도 편안하게 강아지들과 교감할 수 있습니다.
+                        }}>원격 조종시스템으로 집에서도<br /> 편안하게 강아지들과<br /> 교감할 수 있습니다.
                             <div className="bubble-tail"></div></p>
                         <p className="speech-bubble3" style={{
                             fontStyle: 'italic',
@@ -309,7 +309,7 @@ function Welcome() {
                             fontFamily: 'Arial Black',
                             paddingLeft: '20px',
                             paddingRight: '20px'
-                        }}>실시간 영상 송출로 강아지와 비슷한 눈높이로 강아지를 생생하게 볼 수 있습니다.
+                        }}>실시간 영상 송출로 강아지와<br /> 비슷한 눈높이로 강아지를<br /> 생생하게 볼 수 있습니다.
                             <div className="bubble-tail3"></div></p>
                         <p className="speech-bubble2" style={{
                             fontStyle: 'italic',
@@ -318,7 +318,7 @@ function Welcome() {
                             fontFamily: 'Arial Black',
                             paddingLeft: '20px',
                             paddingRight: '20px'
-                        }}>해당 유기견과의 생생한 교감을 통해 분실견을 찾을 확률을 높입니다.
+                        }}>해당 유기견과의 생생한 <br /> 교감을 통해 분실견을<br /> 찾을 확률을 높입니다.
                             <div className="bubble-tail2"></div></p>
                     </div>
 
@@ -351,7 +351,7 @@ function Welcome() {
                             <br />
                             EMAIL : woojin0321@naver.com
                             <br />
-                            All Photo by ⓒ Tom Crew on Unsplash view
+                            All Photo by ⓒ C106 Crew on Unsplash view
                         </p>
                     </div>
                 </div>

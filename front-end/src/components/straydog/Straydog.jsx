@@ -82,7 +82,7 @@ function Straydog() {
                                             {/* <!-- 앞면 --> */}
                                             <div className="front">
                                                 {/* {item.Image} */}
-                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', }} className="nav-link active" />
+                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px' }} className="nav-link active" />
                                                 {/* <img src="/sokuri.jpg" alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active"/> */}
 
                                             </div>
@@ -92,13 +92,13 @@ function Straydog() {
                                                     <div className='dogbaiscinfodiv'>
                                                         <div>
 
-                                                            <p>
+                                                            <p style={{ fontFamily: 'GmarketSansMedium' }}>
                                                                 나이 : {item.Age}
                                                             </p>
-                                                            <p>
+                                                            <p style={{ fontFamily: 'GmarketSansMedium' }}>
                                                                 성별 : {item.Sex}
                                                             </p>
-                                                            <p>
+                                                            <p style={{ fontFamily: 'GmarketSansMedium' }}>
                                                                 강아지 아이디 : {item.DogID}
                                                             </p>
 

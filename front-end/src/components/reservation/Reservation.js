@@ -207,11 +207,11 @@ const Reservation = () => {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <h1 style={{ fontFamily: 'GmarketSansMedium', paddingBottom: '20px' }}>ㅣ방문 및 놀아주기 예약ㅣ</h1>
 
-            <p style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>방문 및 강아지 놀아주기 예약페이지 입니다. <br />한시간 단위로 예약이 가능하고 예약중에 있는 시간 예약이 불가능합니다.
+            <p style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>방문 및 강아지 놀아주기 예약페이지 입니다. <br />한시간 단위로 예약이 가능하고 예약중에 있는 시간은 예약이 불가능합니다.
                 <br />동의서약서를 읽어보시고 동의하시면 예약 폼이 나타납니다. <br />놀아주기 및 방문 그리고 예약 날짜를 꼭 확인해주세요.<br />예약을 완료하시면 마이페이지로 이동하고 마이페이지에서 예약현황을 보실 수 있습니다.</p>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '530px', width: '570px', border: 'solid', borderWidth: '2px', marginRight: '20px' }}>
-                    <p style={{ fontSize: '12px', fontFamily: 'GmarketSansMedium' }}>입양 및 강아지 놀아주기 동의서<br /><br />
+                    <p style={{ fontSize: '12px', fontFamily: 'GmarketSansMedium', padding: '20px' }}>입양 및 강아지 놀아주기 동의서<br /><br />
 
                         본 동의서는 강아지의 입양 및 놀아주기를 위해 작성되었습니다. 아래의 내용을 주의 깊게 읽고 동의하실 경우 동의를 눌러주세요.<br />
                         <br />
