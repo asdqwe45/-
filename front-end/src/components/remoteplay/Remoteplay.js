@@ -18,50 +18,6 @@ function App() {
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
 
-<<<<<<< HEAD
-  handleChangeFullscreen(fullscreen) {
-    this.setState({ fullscreen });
-  }
-
-  handleChangeResolution(e) {
-    this.props.options.resolution = e.target.value;
-    this.props.onOptionsChange(this.props.options);
-  }
-
-  async onStream(stream) {
-    this.videoRef.current.srcObject = stream;
-    await this.videoRef.current.play();
-  }
-
-  render() {
-    return (
-      <div>
-        <div>
-          <video ref={this.videoRef} style={{ width: '600px', height: '300px' }} id="videoElement" autoPlay="" controls>
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <div>
-          <Options
-            options={this.state.options}
-            onOptionsChange={this.handleOptionsChange}
-            keyCapture={this.state.keyCapture}
-            onKeyCaptureChange={this.handleChangeKeyCapture}
-            fullscreen={this.state.fullscreen}
-            onFullscreenChange={this.handleChangeFullscreen}
-          />
-        </div>
-        <SessionManager
-          ref={this.sessionRef}
-          url={this.state.url}
-          keyCapture={this.state.keyCapture}
-          options={this.state.options}
-          onStream={this.onStream}
-          videoRef={this.videoRef}
-          fullscreen={this.state.fullscreen}
-        />
-      </div>
-=======
     return () => {
       wsRef.current.close();
       window.removeEventListener("keydown", handleKeyDown);
@@ -78,7 +34,6 @@ function App() {
         event: "command",
         data: data,
       })
->>>>>>> feature/Play/BE
     );
   };
 
