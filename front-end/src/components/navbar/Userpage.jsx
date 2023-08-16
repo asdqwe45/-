@@ -11,7 +11,6 @@ const Userpage = () => {
     const [userinformation, setUserInformation] = useState({})
     const [view, setView] = useState('')
     const navigate = useNavigate()
-    // const [times, setTimes] = useState([])    // console.log('22')
     const config = {
         headers: {
             'Authorization': `Bearer ${token}` // 토큰을 Bearer 토큰 형식으로 포함
@@ -117,10 +116,7 @@ const Userpage = () => {
                 <div style={{fontFamily: 'GmarketSansMedium' }}>
                     주소 : {userinformation.Address}
                 </div>
-
-                <button className="btn btn-secondary mt-3 mx-1" style={{fontFamily: 'GmarketSansMedium'}}>회원 정보 수정</button>
-
-                <button className="btn btn-secondary mt-3 mx-1" style={{fontFamily: 'GmarketSansMedium'}} onClick={onUserDelete}>회원 탈퇴</button>
+                <button className="btn btn-secondary" style={{fontFamily: 'GmarketSansMedium'}} onClick={onUserDelete}>회원 탈퇴</button>
 
                 <hr/>
                 {/* ----------------------------------------------- */}

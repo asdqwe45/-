@@ -1,6 +1,3 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
 import DogInfoShow from '../admin/doginfoShow'
 import ReservationShow from '../admin/reservationShow'
 import UserInfoShow from '../admin/userinfoShow'

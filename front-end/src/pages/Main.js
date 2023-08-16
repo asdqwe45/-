@@ -230,7 +230,7 @@ const Main = (props) => {
                             display: 'flex',
                             justifyContent: 'flex-end'
                         }} className="collapse navbar-collapse " id="navbarNav">
-                            <ul className="navbar-nav ms-auto">
+                            <ul className="navbar-nav">
 
                                 <li className="nav-item">
                                     <Link to="/mypage" className="nav-link active">

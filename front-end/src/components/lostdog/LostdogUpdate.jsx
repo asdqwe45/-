@@ -70,11 +70,15 @@ const LostdogUpdate = () => {
         setChipNumber(event.target.value);
         console.log(event.target.value);
     };
-    const [Image, setImage] = useState(null)
+    const [PreviewImage, setPreviewImage] = useState(null);
+    const [Image, setImage] = useState(dog.Image)
     const changeImage = event => {
-        setImage(event.target.files[0]);
-        console.log(event.target.files[0]);
-        
+        setImage(event.target.files[0])
+        const reader = new FileReader();
+        reader.onload = (e) => {
+        setPreviewImage(e.target.result);
+        };
+        reader.readAsDataURL(event.target.files[0]);
     };
     const [Breed, setBreed] = useState(dog.Breed)
     const changeBreed = event => {
@@ -139,27 +143,31 @@ const LostdogUpdate = () => {
     // 업데이트 버튼 누르면 put 요청
     const Update = (e) => {
         // e.preventDefault();
-        console.log(typeof (LostDate), 1)
-        console.log(LostDate, 2)
         // PUT 요청
+        const formData = new FormData();
+        formData.append('Image', Image);
         axios.put(`/api/lostdog/${id}`, JSON.stringify(
             {
                 Sex: Sex,
                 Age: parseInt(Age),
                 ChipNumber: ChipNumber,
-                Image: Image,
                 Breed: Breed,
-                RemainedDay: null,
                 DogSize: DogSize,
                 Weight: parseInt(Weight),
-                Status: "lost",
-                EnteredDay: null,
-                DiscoveredPlace: null,
-                LostLocation: LostLocation,
-                LostDate: LostDate,
-                ReturnedHome: ReturnedHome,
+                Status: 'lost',
+                LostDate : LostDate,
+                LostLocation : LostLocation,
+                ReturnedHome : ReturnedHome,
                 Comment : Comment,
             }), { headers: { "Content-Type": 'application/json' } })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        axios.put(`/api/lostdog/${id}`, formData)
             .then(function (response) {
                 console.log(response);
                 navigate(`/lostdog-detail/${id}`)
@@ -167,8 +175,7 @@ const LostdogUpdate = () => {
             .catch(function (error) {
                 console.log(error);
             });
-
-    }
+        }
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <h1 style={{paddingBottom : '50px', fontFamily : 'GmarketSansMedium'}}>| 분실견 수정 |</h1>
@@ -176,17 +183,8 @@ const LostdogUpdate = () => {
                 <div onChange={changeSex} className='input_div'>
                     <div className='kk'>성 별 </div>
                     <div>
-                        {dog.Sex === 'Male' 
-                        ? <div> 
-                            <input className="btn-check" type="radio" name="sex" value="Male" id="male" checked="true" /><label htmlFor="male" className="btn btn-outline-secondary">수컷</label>
-                            <input className="btn-check" type="radio" name="sex" value="Female" id="female" /><label htmlFor="female" className="btn btn-outline-secondary">암컷</label>
-                        </div>
-                        : <div> 
-                            <input className="btn-check" type="radio" name="sex" value="Male" id="male"/><label htmlFor="male" className="btn btn-outline-secondary">수컷</label>
-                            <input className="btn-check" type="radio" name="sex" value="Female" id="female" checked="true" /><label htmlFor="female" className="btn btn-outline-secondary">암컷</label>
-                        </div>
-                        }
-                          
+                        <input className="btn-check" type="radio" name="sex" value="Male" id="male" checked={Sex === 'Male'} /><label htmlFor="male" className="btn btn-outline-secondary">수컷</label>
+                        <input className="btn-check" type="radio" name="sex" value="Female" id="female" checked={Sex === 'Female'}/><label htmlFor="female" className="btn btn-outline-secondary">암컷</label>
                     </div>
                 </div>
                 <hr/>
@@ -199,7 +197,9 @@ const LostdogUpdate = () => {
                 </div>
                 <hr/>
                 <div className='input_div'>
-                    <label htmlFor='image' className='kk'> 사 진 </label><input id='image' type="file" className='input_text' onChange={changeImage} />
+                    <label htmlFor='image' className='kk'> 사 진 </label>
+                    {PreviewImage && <img src={PreviewImage} alt="미리보기" style={{ maxWidth: '100px', maxHeight: '100px' }} />}
+                    <input id='image' type="file" className='input_text' onChange={changeImage} style={{width : '200px'}} />
                 </div>
                 <hr/>
                 <div className='input_div'>
@@ -213,26 +213,9 @@ const LostdogUpdate = () => {
                 <div onChange={changeDogSize} className='input_div'>
                     <div className='kk'>크기</div>
                     <div>
-                        {dog.DogSize === 'small'
-                        ? <div>
-                            <input checked='true' className="btn-check" type="radio" name="size" value="small" id="small" /><label htmlFor="small" className="btn btn-outline-secondary">소형견</label>
-                            <input className="btn-check" type="radio" name="size" value="medium" id="medium" /><label htmlFor="medium" className="btn btn-outline-secondary">중형견</label>
-                            <input className="btn-check" type="radio" name="size" value="large" id="large" /><label htmlFor="large" className="btn btn-outline-secondary">대형견</label>
-                        </div>
-                        : (dog.DogSize === 'medium'
-                            ? <div>
-                                <input className="btn-check" type="radio" name="size" value="small" id="small" /><label htmlFor="small" className="btn btn-outline-secondary">소형견</label>
-                                <input checked='true' className="btn-check" type="radio" name="size" value="medium" id="medium" /><label htmlFor="medium" className="btn btn-outline-secondary">중형견</label>
-                                <input className="btn-check" type="radio" name="size" value="large" id="large" /><label htmlFor="large" className="btn btn-outline-secondary">대형견</label>
-                            </div>
-                            : <div>
-                                <input className="btn-check" type="radio" name="size" value="small" id="small" /><label htmlFor="small" className="btn btn-outline-secondary">소형견</label>
-                                <input className="btn-check" type="radio" name="size" value="medium" id="medium" /><label htmlFor="medium" className="btn btn-outline-secondary">중형견</label>
-                                <input checked='true' className="btn-check" type="radio" name="size" value="large" id="large" /><label htmlFor="large" className="btn btn-outline-secondary">대형견</label>
-                            </div>
-                        )
-
-                        }
+                        <input checked={DogSize === 'small'} className="btn-check" type="radio" name="size" value="small" id="small" /><label htmlFor="small" className="btn btn-outline-secondary">소형견</label>
+                        <input checked={DogSize === 'medium'} className="btn-check" type="radio" name="size" value="medium" id="medium" /><label htmlFor="medium" className="btn btn-outline-secondary">중형견</label>
+                        <input checked={DogSize === 'large'} className="btn-check" type="radio" name="size" value="large" id="large" /><label htmlFor="large" className="btn btn-outline-secondary">대형견</label>
                     </div>
                     
                 </div>
@@ -262,19 +245,10 @@ const LostdogUpdate = () => {
                 <hr/>               
                 <div onChange={changeReturnedHome} className='input_div'>
                     <label htmlFor='lost_date' className='kk'> 귀가 여부 </label>
-                    <div>
-                        {dog.ReturnedHome === 'Yes'
-                        ? <div className='kk'>
-                            <input checked='true' className="btn-check" type="radio" name="theme" value="Yes" id="Yes" /><label htmlFor="Yes" className="btn btn-outline-secondary">귀가 완료</label>
-                            <input className="btn-check" type="radio" name="theme" value="No" id="No" /><label htmlFor="No" className="btn btn-outline-secondary">분실 상태</label>
-                        </div>
-                        : <div className='kk'>
-                            <input className="btn-check" type="radio" name="theme" value="Yes" id="Yes" /><label htmlFor="Yes" className="btn btn-outline-secondary">귀가 완료</label>
-                            <input checked='true' className="btn-check" type="radio" name="theme" value="No" id="No" /><label htmlFor="No" className="btn btn-outline-secondary">분실 상태</label>
-                        </div>
-                        }
+                    <div className='kk'>
+                        <input checked={ReturnedHome === 'Yes'} className="btn-check" type="radio" name="theme" value="Yes" id="Yes" /><label htmlFor="Yes" className="btn btn-outline-secondary">귀가 완료</label>
+                        <input checked={ReturnedHome === 'No'} className="btn-check" type="radio" name="theme" value="No" id="No" /><label htmlFor="No" className="btn btn-outline-secondary">분실 상태</label>
                     </div>
-                    
                 </div>
 
                 <hr/>

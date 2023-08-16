@@ -133,7 +133,7 @@ const LostdogCreate = () => {
             formData.append('DiscoveredPlace', null)
             formData.append('LostLocation', LostLocation)
             formData.append('LostDate', LostDate)    
-            formData.append('ReturnedHome', ReturnedHome)
+            formData.append('ReturnedHome', 'No')
             formData.append('Comment', Comment)
             formData.append("UserID", userid)
         console.log(formData)

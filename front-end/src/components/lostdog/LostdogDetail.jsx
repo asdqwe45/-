@@ -109,7 +109,7 @@ const LostdogDetail = () => {
                         <hr />
                         <div className="info_per">
                             <p> 기타사항 : </p>
-                            <p>{dog.comment}</p>
+                            <p style={{width : '200px'}}>{dog.Comment}</p>
                         </div>
                         <hr />
                     </div>

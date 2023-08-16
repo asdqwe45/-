@@ -106,13 +106,13 @@ const StraydogDetail = () => {
                         <hr />
                         <div className="info_per">
                             <p>기타사항 : </p>
-                            <p>{dog.comment}</p>
+                            <p style={{width : '200px'}}>{dog.Comment}</p>
                         </div>
                         <hr />
                     </div>
-                </div>
+                
                 <div>{admin === '1'
-                    ? <div style={{ display: 'flex' }}>
+                    ? <div style={{ display: 'flex', justifyContent : 'right'}}>
                         <div style={{ paddingTop: '50px' }}>
                             <Link to={{ pathname: `/admin/update/${id}` }} className="nav-link active">
                                 <button className="btn btn-secondary">
@@ -129,7 +129,7 @@ const StraydogDetail = () => {
 
                         </div>
                     </div>
-                    : <div style={{ display: 'flex' }}>
+                    : <div style={{ display: 'flex', justifyContent : 'center' }}>
                         <div style={{ paddingTop: '50px' }}>
                             <Link to='/reservation' className="nav-link active" state={{ dogID: dog.DogID }}>
                                 <button className="btn btn-secondary" style={{ fontFamily: 'GmarketSansMedium' }}>
@@ -142,7 +142,7 @@ const StraydogDetail = () => {
 
                 </div>
                 {/* 이건 user만 보이기 */}
-
+                </div>
             </div>
             {/* 이건 관리자만 보이기 */}
 

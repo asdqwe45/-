@@ -83,14 +83,6 @@ const StraydogCreate = () => {
     // =====================================================
     const navigate = useNavigate()
 
-    // const changeFormatDate = (date) => {
-    //     const year = date.getFullyear()
-    //     const month = date.getMonth()
-    //     const day = date.getDate()
-    //     console.log(year+' '+month+' '+day)
-    //     return
-    // }
-
 
     // CREATE 버튼 눌렀을 때 시행
     const Create = (e) => {
