@@ -14,8 +14,6 @@ import { AuthModule } from './auth/auth.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { TokenMiddleware } from 'middleware/token.middleware';
 import { ReservationModule } from './reservation/reservation.module';
-import { PlayModule } from './play/play.module';
-import { WebsocketModule } from './websocket/websocket.module';
 import * as express from 'express';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
@@ -53,7 +51,6 @@ import { WebsocketGateway } from './websocket/websocket.gateway';
     UserModule,
     AuthModule,
     ReservationModule,
-    PlayModule,
   ],
   providers:[WebsocketGateway]
 })
