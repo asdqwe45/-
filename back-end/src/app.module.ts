@@ -14,11 +14,10 @@ import { AuthModule } from './auth/auth.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { TokenMiddleware } from 'middleware/token.middleware';
 import { ReservationModule } from './reservation/reservation.module';
-import { PlayModule } from './play/play.module';
-import { WebsocketModule } from './websocket/websocket.module';
 import * as express from 'express';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { WebsocketGateway } from './websocket/websocket.gateway';
 @Module({
   imports: [
 
@@ -27,9 +26,9 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     //   rootPath: join(__dirname, '..', '../public')
     // }),
     // 서버 빌드테스트
-    // ServeStaticModule.forRoot({
-    //   rootPath:join(__dirname,'..','../../front-end/build')
-    // }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '../../front-end/build')
+    }),
 
     CacheModule.register({
       isGlobal: true,
@@ -52,9 +51,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     UserModule,
     AuthModule,
     ReservationModule,
-    PlayModule,
-    WebsocketModule
   ],
+  providers: [WebsocketGateway]
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

@@ -36,7 +36,6 @@ let AuthService = exports.AuthService = class AuthService {
             });
         }
         else {
-            console.log('test');
         }
         const isMatch = await bcrypt.compare(Password, user.Password);
         if (isMatch) {

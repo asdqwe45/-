@@ -76,7 +76,6 @@ let UserService = exports.UserService = class UserService {
         result.Nickname = updateData.Nickname;
         result.Address = updateData.Address;
         if (updateData.newPassword !== null && updateData.newPassword !== undefined) {
-            console.log("password");
             const isMatch = await bcrypt.compare(updateData.currentPassword, user.Password);
             if (!isMatch) {
                 throw new common_1.BadRequestException('Current password is incorrect');

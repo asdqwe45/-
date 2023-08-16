@@ -23,11 +23,13 @@ const auth_module_1 = require("./auth/auth.module");
 const cache_manager_1 = require("@nestjs/cache-manager");
 const token_middleware_1 = require("../middleware/token.middleware");
 const reservation_module_1 = require("./reservation/reservation.module");
-const play_module_1 = require("./play/play.module");
-const websocket_module_1 = require("./websocket/websocket.module");
 const express = require("express");
 const path_1 = require("path");
 const serve_static_1 = require("@nestjs/serve-static");
+<<<<<<< HEAD
+=======
+const websocket_gateway_1 = require("./websocket/websocket.gateway");
+>>>>>>> feature/Play/BE
 let AppModule = exports.AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -41,7 +43,11 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             serve_static_1.ServeStaticModule.forRoot({
+<<<<<<< HEAD
                 rootPath: (0, path_1.join)(__dirname, '..', '../public')
+=======
+                rootPath: (0, path_1.join)(__dirname, '..', '../../front-end/build')
+>>>>>>> feature/Play/BE
             }),
             cache_manager_1.CacheModule.register({
                 isGlobal: true,
@@ -64,9 +70,8 @@ exports.AppModule = AppModule = __decorate([
             user_module_1.UserModule,
             auth_module_1.AuthModule,
             reservation_module_1.ReservationModule,
-            play_module_1.PlayModule,
-            websocket_module_1.WebsocketModule
         ],
+        providers: [websocket_gateway_1.WebsocketGateway]
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
