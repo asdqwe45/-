@@ -356,12 +356,6 @@
 // // };
 // // export default Remoteplay;
 
-
-
-
-
-
-
 // // import React, { Component } from "react";
 // // import { Button, Tooltip, OverlayTrigger, FormControl } from "react-bootstrap";
 // // import WebrtcSession from "./webrtc";
@@ -456,12 +450,12 @@
 // //             data: keys,
 // //           })
 // //         );
-        
+
 // //       };
 // //       // socket.onmessage = (event) => {
 // //       //   const blob = new Blob([event.data], { type: "image/jpeg" });
 // //       //   const url = URL.createObjectURL(blob);
-        
+
 // //       //   // You can do something with the 'url' here
 // //       // };
 // //     });
@@ -470,7 +464,6 @@
 // //       console.info("key capture enabled");
 // //     }
 // //   }
-  
 
 // //   disableKeyCapture() {
 // //     if (this.datachannel) {
@@ -740,7 +733,6 @@
 // // };
 // // export default Remoteplay;
 
-
 // // ChatGPT 꺼
 // import React, { Component } from "react";
 // import { Button, Tooltip, OverlayTrigger } from "react-bootstrap";
@@ -911,20 +903,18 @@
 // App.js
 // App.js
 
-
-
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
 function App() {
   const imgRef = useRef(null);
   const wsRef = useRef(null);
 
   useEffect(() => {
-    wsRef.current = new WebSocket('ws://localhost:6001'); // WebSocket 서버 주소를 적절히 변경
+    wsRef.current = new WebSocket("ws://localhost:6001"); // WebSocket 서버 주소를 적절히 변경
 
     wsRef.current.onmessage = (event) => {
       const imageBuffer = event.data; // 이미지 데이터를 Buffer로 받아옴
-      const imageBlob = new Blob([imageBuffer], { type: 'image/jpeg' });
+      const imageBlob = new Blob([imageBuffer], { type: "image/jpeg" });
       const imageURL = URL.createObjectURL(imageBlob);
       imgRef.current.src = imageURL;
     };
@@ -942,5 +932,3 @@ function App() {
 }
 
 export default App;
-
-
