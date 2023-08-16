@@ -26,9 +26,9 @@ import { WebsocketGateway } from './websocket/websocket.gateway';
     //   rootPath: join(__dirname, '..', '../public')
     // }),
     // 서버 빌드테스트
-    // ServeStaticModule.forRoot({
-    //   rootPath:join(__dirname,'..','../../front-end/build')
-    // }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '../../front-end/build')
+    }),
 
     CacheModule.register({
       isGlobal: true,
@@ -52,7 +52,7 @@ import { WebsocketGateway } from './websocket/websocket.gateway';
     AuthModule,
     ReservationModule,
   ],
-  providers:[WebsocketGateway]
+  providers: [WebsocketGateway]
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

@@ -6,7 +6,7 @@ function App() {
   const [pressedKey, setPressedKey] = useState(null);
 
   useEffect(() => {
-    wsRef.current = new WebSocket("ws://localhost:6001");
+    wsRef.current = new WebSocket("wss://i9c106.p.ssafy.io/websocket/");
 
     wsRef.current.onmessage = (event) => {
       const imageBuffer = event.data;

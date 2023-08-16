@@ -34,7 +34,8 @@ export class WebsocketGateway implements OnGatewayConnection, OnGatewayDisconnec
   }
   @SubscribeMessage('command')
   handleMessage(@ConnectedSocket() client: WebSocket,@MessageBody() payload: any): void {
-  const key = payload.keys;
+  payload=JSON.parse(payload);
+  const key = payload.type;
   try {
     console.log(`Received key from client: ${key}`);
     // 메시지 처리 로직을 추가합니다.
