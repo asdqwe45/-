@@ -5,7 +5,7 @@ import Remoteplaycarousel from './RemoteplayCarousel'
 
 const Remoteplay = () => {
 
-    const [urgentdog, seturgentdog] = useState()
+    const [urgentdog, seturgentdog] = useState(null)
     let content = <h1>로딩중 ... </h1>
     useEffect(() => {
         const fetchData = async () => {
@@ -13,7 +13,7 @@ const Remoteplay = () => {
 
             seturgentdog(response.data)
 
-            console.log(response.data)
+            // console.log(response.data)
         }
         fetchData();
     }, [])

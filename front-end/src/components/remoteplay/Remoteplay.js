@@ -310,7 +310,7 @@ class ScreenSharing extends Component {
     return (
       <div>
         <div>
-          <video ref={this.videoRef} style={{width : '600px', height : '300px'}}id="videoElement" autoPlay="" controls>
+          <video ref={this.videoRef} style={{ width: '600px', height: '300px' }} id="videoElement" autoPlay="" controls>
             Your browser does not support the video tag.
           </video>
         </div>

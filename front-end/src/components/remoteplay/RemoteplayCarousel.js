@@ -13,8 +13,12 @@ const CustomNextIcon = () => {
 
 const Remoteplaycarousel = (props) => {
 
-    console.log(props.urgentdog, '하위에서 받은 값.')
+    // console.log(props.urgentdog, '하위에서 받은 값.')
     const urgentdog = props.urgentdog
+    // console.log(urgentdog)
+    // console.log(urgentdog['1'].Image)
+    // console.log(urgentdog[2].Image)
+    // console.log(urgentdog[3].Image)
 
 
     const navigate = useNavigate()
@@ -28,7 +32,7 @@ const Remoteplaycarousel = (props) => {
     return (
         <Carousel id="carouselExampleDark" variant="dark" slide={false} prevIcon={<CustomPrevIcon />} nextIcon={<CustomNextIcon />} className="fullscreen-carousel1">
             <Carousel.Item interval={10000} onClick={(e) => { reservation(urgentdog[0].DogID, e) }} >
-                <img className="d-block" src="/dog1.jpg" alt="First slide" style={{ width: '500px', height: '500px', borderRadius: '20px' }} />
+                <img className="d-block" src={`/uploads/${urgentdog[0].Image}`} alt="First slide" style={{ width: '500px', height: '500px', borderRadius: '20px' }} />
                 <Carousel.Caption className="d-none d-md-block">
 
                     <p style={{
@@ -46,7 +50,7 @@ const Remoteplaycarousel = (props) => {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item interval={2000} onClick={(e) => { reservation(urgentdog[1].DogID, e) }}>
-                <img className="d-block" src="/dog2.jpg" alt="Second slide" style={{ width: '500px', height: '500px', borderRadius: '20px' }} />
+                <img className="d-block" src={`/uploads/${urgentdog[1].Image}`} alt="Second slide" style={{ width: '500px', height: '500px', borderRadius: '20px' }} />
                 <Carousel.Caption className="d-none d-md-block">
                     <p style={{
                         fontSize: '15px',
@@ -60,7 +64,7 @@ const Remoteplaycarousel = (props) => {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item onClick={(e) => { reservation(urgentdog[2].DogID, e) }}>
-                <img className="d-block" src="/dog3.jpg" alt="Third slide" style={{ width: '500px', height: '500px', borderRadius: '20px' }} />
+                <img className="d-block" src={`/uploads/${urgentdog[2].Image}`} alt="Third slide" style={{ width: '500px', height: '500px', borderRadius: '20px' }} />
                 <Carousel.Caption className="d-none d-md-block">
                     <p style={{
                         fontSize: '15px',
@@ -74,7 +78,7 @@ const Remoteplaycarousel = (props) => {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item onClick={(e) => { reservation(urgentdog[3].DogID, e) }}>
-                <img className="d-block" src="/dog6.jpg" alt="Third slide" style={{ width: '500px', height: '500px', borderRadius: '20px' }} />
+                <img className="d-block" src={`/uploads/${urgentdog[3].Image}`} alt="Third slide" style={{ width: '500px', height: '500px', borderRadius: '20px' }} />
                 <Carousel.Caption className="d-none d-md-block">
                     <p style={{
                         fontSize: '15px',
