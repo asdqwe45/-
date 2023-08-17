@@ -88,8 +88,14 @@ function Lostdog() {
                                                     <div className='dogbaiscinfodiv' style={{ borderRadius: '5px' }}>
                                                         <div>
 
-                                                            <p>
-                                                                나이 : {item.Comment}
+                                                            <p style={{ fontFamily: 'GmarketSansMedium', padding: '20px' }}>
+
+                                                                나이 : {item.Age} <br />
+                                                                성별 : {item.Sex} <br />
+                                                                품종 : {item.Breed} <br />
+                                                                분실 장소 : {item.LostLocation} <br />
+                                                                분실 날짜 : {item.LostDate} <br />
+                                                                특징 : {item.Comment}
                                                             </p>
 
                                                         </div>
