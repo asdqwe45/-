@@ -10,7 +10,6 @@ function DogInfoShow() {
     const token = localStorage.getItem('rasyueToken');
 
     const perPage = 10; // 페이지당 항목 수
-
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(`/api/admin/dogs?page=${currentPage + 1}&pageSize=${perPage}`,
@@ -19,7 +18,6 @@ function DogInfoShow() {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-            console.log(response.data)
             setDogs(response.data.Dog);
             setTotalItem(response.data.totalItem);
             setTotalPage(Math.ceil(response.data.totalItem / perPage));
@@ -36,12 +34,10 @@ function DogInfoShow() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <h1 style={{ paddingBottom: '50px', fontFamily: 'GmarketSansMedium' }}>강아지 정보 (총 {totalItem}마리)</h1>
-
             <table style={{ marginTop: '50px', width: '80%' }}>
                 <thead>
                     <tr>
                         <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>DogID</th>
-
                         <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>품종</th>
                         <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>나이</th>
                         <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>크기</th>
@@ -57,7 +53,7 @@ function DogInfoShow() {
                 </thead>
                 <tbody>
                     {dogs.map(dog =>
-                        <tr key={dog.dogid}>
+                        <tr key={dog.DogID}>
                             <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.DogID}</td>
                             <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.Breed}</td>
                             <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.Age}</td>

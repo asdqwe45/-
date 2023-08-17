@@ -16,7 +16,7 @@ const optionContainerStyle = {
     borderRadius: '5px',
     transition: 'background-color 0.3s ease',
     justifyContent: 'center', // added this line
-    alignItems: 'center'      // added this line
+    alignItems : 'center'      // added this line
 };
 
 const selectedOptionStyle = {
@@ -26,7 +26,6 @@ const selectedOptionStyle = {
 
 const optionLabelStyle = {
     fontSize: '18px',
-    // marginLeft: '10px',
 };
 
 const parseTimeData = (data) => {
@@ -90,7 +89,6 @@ const Reservation = () => {
         let newDate = new Date(startDate);
         let hourString = time < 10 ? `0${time}` : `${time}`;
         let dateString = newDate.toISOString().substring(0, 10);
-        console.log(hourString, dateString, 'tagtab22')
         setSelectedDateTime(`${dateString}T${hourString}:00`);
     }
 
@@ -102,7 +100,6 @@ const Reservation = () => {
         setStartDate(date);
         let newDate = new Date(date);
         let dateString = newDate.toISOString().slice(0, -14);
-        console.log(dateString, 'tabtab')
         setSelectedDateTime(`${dateString}T00:00`);
 
 
@@ -120,7 +117,6 @@ const Reservation = () => {
     const sendReservationData = async () => {
         try {
             const payload = {
-                // "token": token,
                 "DogID": dogID,
                 "ReservationDatetime": selectedDateTime,
                 "Type": selectedType,
@@ -134,7 +130,6 @@ const Reservation = () => {
                 }
             };
             const response = await axios.post('/api/reservation', payload, config);
-            console.log(response.data);
 
             alert("예약이 완료되었습니다!");
             navigation("/mypage");
@@ -199,11 +194,6 @@ const Reservation = () => {
 
         return `예약날짜 : ${year}-${month}-${date} ${hours}:${minutes}`;
     }
-    // console.log(token)
-    // console.log(dogID)
-    // console.log(selectedType)
-    // console.log(selectedDateTime)
-
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>

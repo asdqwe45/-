@@ -7,16 +7,8 @@ import ReactPaginate from 'react-paginate';
 
 function chunkArray(array, size) {
 
-
-    // const userid = localStorage.getItem('userid');
-    // console.log(userid)
-    // const admin = localStorage.getItem('admin');
-    // console.log(admin)
-
     const chunked_arr = [];
     let copied = [...array];
-
-
     while (copied.length > 0) {
         chunked_arr.push(copied.splice(0, size));
     }
@@ -29,39 +21,23 @@ function Straydog() {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPage, setTotalPage] = useState(0);
-    // console.log(data.length)
-
     const dataChunks = chunkArray(data, 3);
-
-
-
     const admin = localStorage.getItem('admin');
-    const userid = localStorage.getItem('userid');
+    const perPage = 12; 
 
-
-
-    // fetch data
-    const perPage = 12; // items per page
-    // total page count (24 items / 3 items per page = 8 pages)
-
-    // fetch data
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(`/api/straydog?page=${currentPage + 1}&pageSize=${perPage}`);
-
-            setData(response.data.StrayDog); // set data
+            setData(response.data.StrayDog);
             setTotalPage(Math.ceil(response.data.totalItem / perPage));
-            console.log(response.data)
         }
         fetchData();
     }, [currentPage, perPage]);
 
-    // handle page click
     const handlePageClick = (data) => {
         let selected = data.selected;
         setCurrentPage(selected);
     };
-    console.log(perPage)
 
 
     return (
@@ -72,49 +48,30 @@ function Straydog() {
 
             <table style={{ marginTop: '140px' }}>
                 <tbody >
-                    {dataChunks.map((chunk, i) =>
-                        <tr key={i} >
+                    {dataChunks.map((chunk, id) =>
+                        <tr key={id} >
                             {chunk.map(item =>
-                                <td key={item.DogId} >
-
+                                <td key={item.DogID} >
                                     <div className="flip" >
                                         <div className="card" >
-                                            {/* <!-- 앞면 --> */}
                                             <div className="front">
-                                                {/* {item.Image} */}
-                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px' }} className="nav-link active" />
-                                                {/* <img src="/sokuri.jpg" alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active"/> */}
-
+                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px' }} className="nav-link active" />            
                                             </div>
-                                            {/* <!-- 뒷면 --> */}
                                             <div className="back">
                                                 <Link to={{ pathname: `/straydog-detail/${item.DogID}` }} className="nav-link active" state={{ dogID: item.dogID }}>
                                                     <div className='dogbaiscinfodiv'>
                                                         <div>
-
                                                             <p style={{ fontFamily: 'GmarketSansMedium' }}>
                                                                 나이 : {item.Age} <br />
                                                                 성별 : {item.Sex} <br />
                                                                 품종 : {item.Breed}
-
                                                             </p>
-
-
                                                         </div>
                                                     </div>
-
-
                                                 </Link>
                                             </div>
-
                                         </div>
                                     </div>
-
-                                    {/* <img src={item.Image} alt={item.DogId} style={{ width: '300px', height: '300px', }} />
-                                    <p>{item.Sex}</p>
-                                    <p>{item.Age}</p>
-                                    <p>{item.DogID}</p> */}
-
                                 </td>
                             )}
                         </tr>
@@ -134,7 +91,6 @@ function Straydog() {
                 containerClassName={"pagination"}
                 subContainerClassName={"pages pagination"}
                 activeClassName={"active"}
-
             />
             <div>{admin === '1'
                 ? <Link to={{ pathname: `/admin/create` }} className="nav-link active">
@@ -144,11 +100,7 @@ function Straydog() {
                 </Link>
                 : null
             }
-
             </div>
-
-
-
         </div>
     );
 }

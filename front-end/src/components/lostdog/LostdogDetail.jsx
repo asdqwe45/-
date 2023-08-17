@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import '../straydog/StraydogDetail.css';
@@ -24,37 +24,31 @@ const LostdogDetail = () => {
         "LostDate": "2023-02-08",
         "ReturnedHome": "Yes"
     });
-    console.log('도그 아이디', id)
     useEffect(() => {
         const apiCall = async () => {
             const response = await axios.get(`/api/lostdog/${id}`);
-            // console.log(response.data, '맞지?')
             setDog(response.data)
         }
         apiCall()
 
     }, [])
 
+    const navigate = useNavigate()
+    
     const DeleteDog = async () => {
         const response = await axios.delete(`/api/straydog/${id}`);
-        // console.log(response.data, '맞지?')
         setDog(response.data)
     }
 
     const onDelete = () => {
-
         if (window.confirm("정말 삭제합니까?")) {
-
             alert("삭제되었습니다.");
             DeleteDog()
-
+            navigate('lostdog')
         }
     };
     const admin = localStorage.getItem('admin');
     const userid = localStorage.getItem('userid');
-    
-
-    // console.log(dog, '아니야?')
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
@@ -118,30 +112,26 @@ const LostdogDetail = () => {
                     {/* 해당 작성자와 관리자만 보이기 */}
                     <div>{admin === '1' || userid === dog.UserID
                         ? <div style={{ display: 'flex', justifyContent : 'right' }}>
-                        <div style={{ paddingTop: '50px'  }}>
+                        <div>
                             <Link to={{ pathname: `/lostdog/update/${id}` }} className="nav-link active">
                                 <button className="btn btn-secondary">
                                     수정하기
                                 </button>
                             </Link>
                         </div>
-                        <div style={{ paddingTop: '50px' }}>
-                            <Link to={{ pathname: `/lostdog` }} className="nav-link active">
-                                <button className="btn btn-secondary" onClick={onDelete}>
-                                    삭제하기
-                                </button>
-                            </Link>
+                        <div>
+                            <button className="btn btn-secondary" onClick={onDelete}>
+                                삭제하기
+                            </button>
 
                         </div>
                     </div>
                         : null
                     }
-
                     </div>
                 </div>
             </div>
         </div>
-
     );
 };
 export default LostdogDetail

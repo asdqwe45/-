@@ -296,7 +296,7 @@ function Welcome() {
                     }}>Why Us?</p>
 
                     <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', padding: '0 15%', marginTop: '20px' }}>
-                        <p className="speech-bubble" style={{
+                        <div className="speech-bubble" style={{
                             fontStyle: 'italic',
                             fontWeight: 'bold',
                             color: 'white',
@@ -304,8 +304,8 @@ function Welcome() {
                             paddingLeft: '20px',
                             paddingRight: '20px'
                         }}>원격 조종시스템으로 집에서도<br /> 편안하게 강아지들과<br /> 교감할 수 있습니다.
-                            <div className="bubble-tail"></div></p>
-                        <p className="speech-bubble3" style={{
+                            <div className="bubble-tail"></div></div>
+                        <div className="speech-bubble3" style={{
                             fontStyle: 'italic',
                             fontWeight: 'bold',
                             color: 'white',
@@ -313,8 +313,8 @@ function Welcome() {
                             paddingLeft: '20px',
                             paddingRight: '20px'
                         }}>실시간 영상 송출로 강아지와<br /> 비슷한 눈높이로 강아지를<br /> 생생하게 볼 수 있습니다.
-                            <div className="bubble-tail3"></div></p>
-                        <p className="speech-bubble2" style={{
+                            <div className="bubble-tail3"></div></div>
+                        <div className="speech-bubble2" style={{
                             fontStyle: 'italic',
                             fontWeight: 'bold',
                             color: 'white',
@@ -322,7 +322,7 @@ function Welcome() {
                             paddingLeft: '20px',
                             paddingRight: '20px'
                         }}>해당 유기견과의 생생한 <br /> 교감을 통해 분실견을<br /> 찾을 확률을 높입니다.
-                            <div className="bubble-tail2"></div></p>
+                            <div className="bubble-tail2"></div></div>
                     </div>
 
                     <div style={{ width: '100%', display: 'flex', justifyContent: 'center', height: '500px' }}>

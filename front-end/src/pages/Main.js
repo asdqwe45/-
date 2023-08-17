@@ -293,11 +293,11 @@ const Main = (props) => {
                 : (parseInt(nowminute) >= 50
                     ? <Link to="/remoteplay">
                         <div className='banner' >
-                            <p style={{ padding: '30px', paddingRight: '230px' }}>
+                            <div style={{ padding: '30px', paddingRight: '230px' }}>
                                 <div style={{ fontFamily: 'GmarketSansMedium', borderBottom: 'white 1px solid' }}>
                                     알림
                                 </div>
-                            </p>
+                            </div>
 
                             <div style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center' }}>
                                 원격놀이 10분 전 입니다.
@@ -317,11 +317,11 @@ const Main = (props) => {
                     : (parseInt(nowminute) >= 30
                         ? <Link to="/remoteplay">
                             <div className='banner' >
-                                <p style={{ padding: '30px', paddingRight: '230px' }}>
+                                <div style={{ padding: '30px', paddingRight: '230px' }}>
                                     <div style={{ fontFamily: 'GmarketSansMedium', borderBottom: 'white 1px solid' }}>
                                         알림
                                     </div>
-                                </p>
+                                </div>
 
                                 <div style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center' }}>
                                     원격놀이 30분 전 입니다.
@@ -339,11 +339,11 @@ const Main = (props) => {
                         </Link>
                         : <Link to="/remoteplay">
                             <div className='banner' >
-                                <p style={{ padding: '30px', paddingRight: '230px' }}>
+                                <div style={{ padding: '30px', paddingRight: '230px' }}>
                                     <div style={{ fontFamily: 'GmarketSansMedium', borderBottom: 'white 1px solid' }}>
                                         알림
                                     </div>
-                                </p>
+                                </div>
 
                                 <div style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center' }}>
                                     현재 놀이가 진행중입니다.
