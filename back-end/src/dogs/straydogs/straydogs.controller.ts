@@ -43,8 +43,18 @@ export class StrayDogsController {
     return this.strayDogsService.getOneStrayDog(ID);
   }
   @Delete('/:id')
-  deleteOne(@Param('id') ID: number): Promise<any> {
-    return this.strayDogsService.deleteOne(ID);
+  @UseGuards(JwtAuthGuard)
+  deleteOne(@Param('id') ID: number, @Request() req): Promise<any> {
+    const isAdmin = req.user.Admin;
+    if (isAdmin) {
+      return this.strayDogsService.deleteOne(ID);
+    } else {
+      throw new ForbiddenException({
+        statusCode: HttpStatus.FORBIDDEN,
+        message: [`사용자 정보가 일치하지 않습니다.`],
+        error: 'Forbidden',
+      });
+    }
   }
   @Post()
   @UseInterceptors(FileInterceptor('Image'))
@@ -77,6 +87,7 @@ export class StrayDogsController {
     }
   }
   @Put('/:id')
+  @UseGuards(JwtAuthGuard)
   @UseInterceptors(FileInterceptor('Image'))
   async updateDog(
     @Param('id') DogID: number,
