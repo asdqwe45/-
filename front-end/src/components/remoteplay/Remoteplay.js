@@ -3,10 +3,11 @@ import React, { useState, useEffect, useRef } from "react";
 function App() {
   const imgRef = useRef(null);
   const wsRef = useRef(null);
-  const [pressedKey, setPressedKey] = useState(null);
+  const wsRef2 = useRef(null);
 
   useEffect(() => {
-    wsRef.current = new WebSocket("wss://i9c106.p.ssafy.io/websocket/");
+    wsRef.current = new WebSocket("ws://localhost:6001");
+    wsRef2.current = new WebSocket("ws://localhost:6002");
 
     wsRef.current.onmessage = (event) => {
       const imageBuffer = event.data;
@@ -19,7 +20,7 @@ function App() {
     window.addEventListener("keyup", handleKeyUp);
 
     return () => {
-      wsRef.current.close();
+      wsRef2.current.close();
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
@@ -27,9 +28,7 @@ function App() {
   const handleKeyDown = (event) => {
     const key = event.key;
     const data = JSON.stringify({ type: "keydown", keys: key });
-    console.log(data);
-    setPressedKey(data);
-    wsRef.current.send(
+    wsRef2.current.send(
       JSON.stringify({
         event: "command",
         data: data,
@@ -41,8 +40,7 @@ function App() {
     const key = event.key;
     const data = JSON.stringify({ type: "keyup", keys: key });
     console.log(data);
-    setPressedKey(data);
-    wsRef.current.send(
+    wsRef2.current.send(
       JSON.stringify({
         event: "command",
         data: data,

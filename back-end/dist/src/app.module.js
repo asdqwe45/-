@@ -26,10 +26,8 @@ const reservation_module_1 = require("./reservation/reservation.module");
 const express = require("express");
 const path_1 = require("path");
 const serve_static_1 = require("@nestjs/serve-static");
-<<<<<<< HEAD
-=======
 const websocket_gateway_1 = require("./websocket/websocket.gateway");
->>>>>>> feature/Play/BE
+const web_socket2_gateway_1 = require("./web-socket2/web-socket2.gateway");
 let AppModule = exports.AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -43,11 +41,7 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             serve_static_1.ServeStaticModule.forRoot({
-<<<<<<< HEAD
                 rootPath: (0, path_1.join)(__dirname, '..', '../public')
-=======
-                rootPath: (0, path_1.join)(__dirname, '..', '../../front-end/build')
->>>>>>> feature/Play/BE
             }),
             cache_manager_1.CacheModule.register({
                 isGlobal: true,
@@ -71,7 +65,7 @@ exports.AppModule = AppModule = __decorate([
             auth_module_1.AuthModule,
             reservation_module_1.ReservationModule,
         ],
-        providers: [websocket_gateway_1.WebsocketGateway]
+        providers: [websocket_gateway_1.WebsocketGateway, web_socket2_gateway_1.WebSocket2Gateway]
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

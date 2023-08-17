@@ -18,6 +18,8 @@ import * as express from 'express';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { WebsocketGateway } from './websocket/websocket.gateway';
+import { WebSocket2Module } from './web-socket2/web-socket2.module';
+import { WebSocket2Gateway } from './web-socket2/web-socket2.gateway';
 @Module({
   imports: [
 
@@ -52,7 +54,7 @@ import { WebsocketGateway } from './websocket/websocket.gateway';
     AuthModule,
     ReservationModule,
   ],
-  providers: [WebsocketGateway]
+  providers: [WebsocketGateway, WebSocket2Gateway]
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
