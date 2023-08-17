@@ -183,6 +183,7 @@ function Welcome() {
                 }}>We offer the best services for your convenience, if you want more information contact us</p>
                 <a className="contactButton" onClick={handleContactClick}>Contact Us</a>
                 <img src="/welcomedog11.png" alt="Welcomedog5 Image" style={{ height: '55%', width: '1200px' }} />
+                <img src="/scroll.png" alt="" style={{ height: '100px', width: '100px', position: 'absolute', right: '60px', bottom: '20px', }} />
             </div>
             <div className="divider"></div>
 
@@ -271,7 +272,9 @@ function Welcome() {
                             }}>저희는 유기견들이 지루해하지 않게<br /> 원격 조종 장난감으로 놀아주기<br /> 서비스를 제공하고 있습니다.</p>
                         </div>
                     </div>
+
                 </div>
+                <img src="/scroll.png" alt="" style={{ height: '100px', width: '100px', position: 'absolute', right: '60px', bottom: '20px', }} />
             </div>
             <div className="divider"></div>
 
@@ -325,6 +328,8 @@ function Welcome() {
                     <div style={{ width: '100%', display: 'flex', justifyContent: 'center', height: '500px' }}>
                         <img src="wel10.png" alt="Description of Image" />
                     </div>
+                    <img src="/scroll.png" alt="" style={{ height: '100px', width: '100px', position: 'absolute', right: '60px', bottom: '20px', }} />
+
 
                 </div>
             </div>

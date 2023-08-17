@@ -93,14 +93,12 @@ function Straydog() {
                                                         <div>
 
                                                             <p style={{ fontFamily: 'GmarketSansMedium' }}>
-                                                                나이 : {item.Age}
+                                                                나이 : {item.Age} <br />
+                                                                성별 : {item.Sex} <br />
+                                                                품종 : {item.Breed}
+
                                                             </p>
-                                                            <p style={{ fontFamily: 'GmarketSansMedium' }}>
-                                                                성별 : {item.Sex}
-                                                            </p>
-                                                            <p style={{ fontFamily: 'GmarketSansMedium' }}>
-                                                                강아지 아이디 : {item.DogID}
-                                                            </p>
+
 
                                                         </div>
                                                     </div>
