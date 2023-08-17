@@ -6,8 +6,8 @@ function App() {
   const wsRef2 = useRef(null);
 
   useEffect(() => {
-    wsRef.current = new WebSocket("ws://localhost:6001");
-    wsRef2.current = new WebSocket("ws://localhost:6002");
+    wsRef.current = new WebSocket("wss://i9c106.p.ssafy.io/video/");
+    wsRef2.current = new WebSocket("wss://i9c106.p.ssafy.io/command/");
 
     wsRef.current.onmessage = (event) => {
       const imageBuffer = event.data;
