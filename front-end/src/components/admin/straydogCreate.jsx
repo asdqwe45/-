@@ -102,6 +102,10 @@ const StraydogCreate = () => {
                 .then(function (response) {
                     navigate('/straydog')
                 })
+                .catch(function (error) {
+                    alert('관리자만 가능합니다.')
+                    navigate('/straydog')
+                })
         }
     }
     return (

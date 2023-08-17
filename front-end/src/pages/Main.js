@@ -123,7 +123,9 @@ const Main = (props) => {
     } else if (page === 'lostdog-update') {
         content = <LostdogUpdate />
     } else if (page === 'remoteplay') {
-        content = <Remoteplay />
+        if (reservationtime.length !== 0){
+            content = <Remoteplay />
+        }
     } else if (page === 'remoteplay-guide') {
         content = <RemoteplayGuide />
     } else if (page === 'aboutus') {

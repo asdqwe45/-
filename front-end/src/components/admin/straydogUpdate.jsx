@@ -120,6 +120,10 @@ const StraydogUpdate = () => {
             .then(function (response) {
                 navigate(`/straydog-detail/${id}`)
             })
+            .catch(function (error) {
+                alert('관리자만 가능합니다.')
+                navigate('/straydog')
+            })
         }
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
