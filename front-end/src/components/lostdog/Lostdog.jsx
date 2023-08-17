@@ -8,47 +8,29 @@ import ReactPaginate from 'react-paginate';
 function chunkArray(array, size) {
     const chunked_arr = [];
     let copied = [...array];
-
     while (copied.length > 0) {
         chunked_arr.push(copied.splice(0, size));
     }
     return chunked_arr;
 }
-
-
-
 function Lostdog() {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPage, setTotalPage] = useState(0);
-    // console.log(data.length)
-
     const dataChunks = chunkArray(data, 3);
+    const perPage = 12;
 
-
-
-
-
-
-
-    // fetch data
-    const perPage = 12; // items per page
-    // total page count (24 items / 3 items per page = 8 pages)
-
-    // fetch data
     useEffect(() => {
         const fetchData = async () => {
 
             const response = await axios.get(`/api/lostdog?page=${currentPage + 1}&pageSize=${perPage}`);
 
-            setData(response.data.lostDog); // set data
+            setData(response.data.lostDog);
             setTotalPage(Math.ceil(response.data.totalItem / perPage));
-            console.log(response.data)
         }
         fetchData();
     }, [currentPage, perPage]);
 
-    // handle page click
     const handlePageClick = (data) => {
         let selected = data.selected;
         setCurrentPage(selected);
@@ -64,11 +46,10 @@ function Lostdog() {
                     {dataChunks.map((chunk, i) =>
                         <tr key={i} >
                             {chunk.map(item =>
-                                <td key={item.DogId} >
+                                <td key={item.DogID} >
 
                                     <div className="flip" >
                                         <div className="card" >
-                                            {/* <!-- 앞면 --> */}
                                             <div className="front" style={{ position: 'relative' }}>
                                                 <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '5px' }} className="nav-link active" />
                                                 <div>
@@ -78,18 +59,12 @@ function Lostdog() {
                                                         : null
                                                     }
                                                 </div>
-
-
-
                                             </div>
-                                            {/* <!-- 뒷면 --> */}
                                             <div className="back">
                                                 <Link to={{ pathname: `/lostdog-detail/${item.DogID}` }} className="nav-link active " state={{ dogID: item.dogID }}>
                                                     <div className='dogbaiscinfodiv' style={{ borderRadius: '5px' }}>
                                                         <div>
-
                                                             <p style={{ fontFamily: 'GmarketSansMedium', padding: '20px' }}>
-
                                                                 나이 : {item.Age} <br />
                                                                 성별 : {item.Sex} <br />
                                                                 품종 : {item.Breed} <br />
@@ -97,22 +72,12 @@ function Lostdog() {
                                                                 분실 날짜 : {item.LostDate} <br />
                                                                 특징 : {item.Comment}
                                                             </p>
-
                                                         </div>
                                                     </div>
-
-
                                                 </Link>
                                             </div>
-
                                         </div>
                                     </div>
-
-                                    {/* <img src={item.Image} alt={item.DogId} style={{ width: '300px', height: '300px', }} />
-                                    <p>{item.Sex}</p>
-                                    <p>{item.Age}</p>
-                                    <p>{item.DogID}</p> */}
-
                                 </td>
                             )}
                         </tr>

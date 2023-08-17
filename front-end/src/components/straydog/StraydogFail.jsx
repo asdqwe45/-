@@ -21,34 +21,19 @@ function StraydogFail() {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPage, setTotalPage] = useState(0);
-    // console.log(data.length)
-
     const dataChunks = chunkArray(data, 3);
+    const perPage = 12
 
-
-
-
-
-
-
-    // fetch data
-    const perPage = 12; // items per page
-    // total page count (24 items / 3 items per page = 8 pages)
-
-    // fetch data
     useEffect(() => {
         const fetchData = async () => {
 
             const response = await axios.get(`/api/deaddog?page=${currentPage + 1}&pageSize=${perPage}`);
 
-            setData(response.data.DeadDog); // set data
+            setData(response.data.DeadDog);
             setTotalPage(Math.ceil(response.data.totalItem / perPage));
-            console.log(response.data)
         }
         fetchData();
     }, [currentPage, perPage]);
-
-    // handle page click
     const handlePageClick = (data) => {
         let selected = data.selected;
         setCurrentPage(selected);
@@ -63,26 +48,15 @@ function StraydogFail() {
                     {dataChunks.map((chunk, i) =>
                         <tr key={i} >
                             {chunk.map(item =>
-                                <td key={item.DogId} >
-
+                                <td key={item.DogID} >
                                     <div className="flip" >
                                         <div className="card" >
-                                            {/* <!-- 앞면 --> */}
                                             <div className="front" style={{ position: 'relative' }}>
                                                 <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '5px' }} className="nav-link active" />
-                                                <div>
-                                                    {item.Status === 'Dead'
-                                                        ? <img src='rainbow.jpg' alt={item.DogId} style={{ width: '290px', height: '290px', borderRadius: '5px', position: 'absolute', left: '0px', top: '0px' }} className="nav-link active" />
-
-                                                        : null
-                                                    }
-                                                </div>
                                             </div>
-                                            {/* <!-- 뒷면 --> */}
                                             <div className="back">
                                                 <div className='dogbaiscinfodiv' style={{ borderRadius: '5px' }}>
                                                     <div>
-
                                                         <p style={{ fontFamily: 'GmarketSansMedium' }}>
                                                             나이 : {item.Age}
                                                         </p>
@@ -92,16 +66,11 @@ function StraydogFail() {
                                                         <p style={{ fontFamily: 'GmarketSansMedium' }}>
                                                             견종 : {item.DogID}
                                                         </p>
-
                                                     </div>
                                                 </div>
-
                                             </div>
-
                                         </div>
                                     </div>
-
-
                                 </td>
                             )}
                         </tr>

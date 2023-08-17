@@ -65,7 +65,6 @@ const StraydogGuide = () => {
                                     전문 관리사를 통한 자세한 상담 후 <br />
                                     계약서 작성을 도와드려요.
                                 </p>
-
                             </div>
                         </div>
                     </div>

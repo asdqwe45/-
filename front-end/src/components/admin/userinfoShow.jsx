@@ -19,7 +19,6 @@ function UserInfoShow() {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-            console.log(response.data)
             setUsers(response.data.user);
             setTotalItem(response.data.totalItem);
             setTotalPage(Math.ceil(response.data.totalItem / perPage));
@@ -51,7 +50,7 @@ function UserInfoShow() {
                 </thead>
                 <tbody>
                     {users.map(user =>
-                        <tr key={user.id}>
+                        <tr key={user.UserID}>
                             <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{user.UserID}</td>
                             <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{user.Name}</td>
                             <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{user.Email}</td>

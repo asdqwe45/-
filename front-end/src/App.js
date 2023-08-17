@@ -15,13 +15,6 @@ function App() {
 
   const [dogID, setDogID] = useState(null)
 
-  // // const location =;    
-  // if ( location != null) {
-
-  //   setDogID(location.state)
-  // }
-  // console.log(dogID)
-
   return (
     <Routes>
 

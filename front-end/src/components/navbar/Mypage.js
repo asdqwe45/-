@@ -4,14 +4,7 @@ import UserInfoShow from '../admin/userinfoShow'
 import Userpage from './Userpage'
 
 const Mypage = () => {
-
-
     const admin = localStorage.getItem('admin');
-    console.log(admin)
-    console.log(typeof(admin))
-
-
-
     return (
         <div>
             {admin === '0'
@@ -22,8 +15,6 @@ const Mypage = () => {
                     <UserInfoShow/>
                 </div>
         }
-            
-            
         </div>
     );
 };

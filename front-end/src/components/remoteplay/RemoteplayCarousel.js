@@ -13,17 +13,10 @@ const CustomNextIcon = () => {
 
 const Remoteplaycarousel = (props) => {
 
-    // console.log(props.urgentdog, '하위에서 받은 값.')
     const urgentdog = props.urgentdog
-    // console.log(urgentdog)
-    // console.log(urgentdog['1'].Image)
-    // console.log(urgentdog[2].Image)
-    // console.log(urgentdog[3].Image)
-
 
     const navigate = useNavigate()
     const reservation = (id, e) => {
-        console.log(id)
         navigate(`/reservation/`, { state: { dogID: id } })
     }
 
