@@ -5,6 +5,7 @@ import './admin.css';
 
 const StraydogCreate = () => {
 
+
     const [Sex, setSex] = useState(null)
     const changeSex = event => {
         setSex(event.target.value);
@@ -23,7 +24,7 @@ const StraydogCreate = () => {
         setImage(event.target.files[0]);
         const reader = new FileReader();
         reader.onload = (e) => {
-        setPreviewImage(e.target.result);
+            setPreviewImage(e.target.result);
         };
         reader.readAsDataURL(event.target.files[0]);
     };
@@ -130,11 +131,11 @@ const StraydogCreate = () => {
                 </div>
                 <hr />
                 <div className='input_div'>
-                    
+
                     <label htmlFor='image' className='kk'> 사 진 </label>
                     {PreviewImage && <img src={PreviewImage} alt="미리보기" style={{ maxWidth: '100px', maxHeight: '100px' }} />}
-                    <input id='image' type="file" accept="image/*" className='input_text' onChange={changeImage} style={{width : '200px'}} />
-                    
+                    <input id='image' type="file" accept="image/*" className='input_text' onChange={changeImage} style={{ width: '200px' }} />
+
                 </div>
                 <hr />
                 <div className='input_div'>

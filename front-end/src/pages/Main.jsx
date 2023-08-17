@@ -37,7 +37,7 @@ const Main = (props) => {
     let content = <Maincarousel />
 
     const navigate = useNavigate();
-
+    const admin = localStorage.getItem('admin');
     const signOut = () => {
         localStorage.removeItem("rasyueToken");
         navigate("/login");
@@ -68,8 +68,8 @@ const Main = (props) => {
         const intervalId = setInterval(() => {
             const fetchData = async () => {
 
-            const response = await axios.get('/api/reservation/user', config);
-            setReservationTimes(response.data.reservation)
+                const response = await axios.get('/api/reservation/user', config);
+                setReservationTimes(response.data.reservation)
 
             }
             fetchData();
@@ -84,11 +84,11 @@ const Main = (props) => {
 
 
 
-        }, 1000); 
+        }, 1000);
         return () => {
             clearInterval(intervalId);
         }
-        
+
 
     }, [nowmonth]);
 
@@ -123,7 +123,7 @@ const Main = (props) => {
     } else if (page === 'lostdog-update') {
         content = <LostdogUpdate />
     } else if (page === 'remoteplay') {
-        if (reservationtime.length !== 0){
+        if (reservationtime.length !== 0) {
             content = <Remoteplay />
         }
     } else if (page === 'remoteplay-guide') {
@@ -135,9 +135,14 @@ const Main = (props) => {
     } else if (page === 'mypage') {
         content = <Mypage />
     } else if (page === 'admin-create') {
-        content = <StraydogCreate />
+        if (admin === '1') {
+            content = <StraydogCreate />
+        }
     } else if (page === 'admin-update') {
-        content = <StraydogUpdate />
+        if (admin === '1') {
+            content = <StraydogUpdate />
+        }
+
     } else if (page === 'admin-reservation') {
         content = <ReservationShow />
     } else if (page === 'admin-dog') {
