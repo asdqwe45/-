@@ -23,7 +23,7 @@ function Straydog() {
     const [totalPage, setTotalPage] = useState(0);
     const dataChunks = chunkArray(data, 3);
     const admin = localStorage.getItem('admin');
-    const perPage = 12; 
+    const perPage = 12;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -55,16 +55,19 @@ function Straydog() {
                                     <div className="flip" >
                                         <div className="card" >
                                             <div className="front">
-                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px' }} className="nav-link active" />            
+                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px' }} className="nav-link active" />
                                             </div>
                                             <div className="back">
                                                 <Link to={{ pathname: `/straydog-detail/${item.DogID}` }} className="nav-link active" state={{ dogID: item.dogID }}>
                                                     <div className='dogbaiscinfodiv'>
                                                         <div>
                                                             <p style={{ fontFamily: 'GmarketSansMedium' }}>
-                                                                나이 : {item.Age} <br />
-                                                                성별 : {item.Sex} <br />
-                                                                품종 : {item.Breed}
+
+                                                                • 성별 : {item.Sex} <br />
+                                                                • 품종 : {item.Breed} <br />
+                                                                • 나이 : {item.Age} <br />
+                                                                • 입소 날짜 : {item.EnteredDay} <br />
+                                                                • 발견 장소 : {item.DiscoveredPlace}
                                                             </p>
                                                         </div>
                                                     </div>

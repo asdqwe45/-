@@ -115,7 +115,12 @@ const StraydogUpdate = () => {
                 DiscoveredPlace: DiscoveredPlace,
                 Comment : Comment,
             }), { headers: { "Content-Type": 'application/json' } })
+            .then(function (response) {
+                
+            })
+            .catch(function (error) {
 
+            })
         axios.put(`/api/straydog/${id}`, formData)
             .then(function (response) {
                 navigate(`/straydog-detail/${id}`)
