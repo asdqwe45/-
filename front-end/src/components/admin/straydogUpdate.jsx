@@ -3,13 +3,9 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './admin.css';
-// import './StraydogDetail.css';
-
-
 
 const StraydogUpdate = () => {
     const { id } = useParams()
-
     const [dog, setDog] = useState({
         DogID: 37,
         Sex: "Female",
@@ -27,11 +23,9 @@ const StraydogUpdate = () => {
         LostDate: "",
         ReturnedHome: ""
     });
-    // console.log('도그 아이디', id)
     useEffect(() => {
         const apiCall = async () => {
             const response = await axios.get(`/api/straydog/${id}`);
-            // console.log(response.data, '맞지?')
             setDog(response.data)
             setSex(response.data.Sex)
             setAge(response.data.Age)
@@ -46,23 +40,18 @@ const StraydogUpdate = () => {
             setComment(response.data.Comment)
         }
         apiCall()
-
     },[])
-
     const [Sex, setSex] = useState(dog.Sex)
     const changeSex = event => {
         setSex(event.target.value);
-        console.log(event.target.value)
     };
     const [Age, setAge] = useState(dog.Age)
     const changeAge = event => {
         setAge(event.target.value);
-        console.log(event.target.value)
     };
     const [ChipNumber, setChipNumber] = useState(dog.ChipNumber)
     const changeChipNumber = event => {
         setChipNumber(event.target.value);
-        console.log(event.target.value);
     };
     const [PreviewImage, setPreviewImage] = useState(null);
     const [Image, setImage] = useState(dog.Image)
@@ -77,47 +66,38 @@ const StraydogUpdate = () => {
     const [Breed, setBreed] = useState(dog.Breed)
     const changeBreed = event => {
         setBreed(event.target.value);
-        console.log(event.target.value);
     };
     const [RemainedDay, setRemainedDay] = useState(dog.RemainedDay)
     const changeRemainedDay = event => {
         setRemainedDay(event.target.value);
-        console.log(event.target.value);
     };
     const [DogSize, setDogSize] = useState(dog.DogSize)
     const changeDogSize = event => {
         setDogSize(event.target.value);
-        console.log(event.target.value);
     };
     const [Weight, setWeight] = useState(dog.Weight)
     const changeWeight = event => {
         setWeight(event.target.value);
-        console.log(event.target.value);
     };
     const [Status, setStatus] = useState(dog.Status)
     const changeStatus = event => {
         setStatus(event.target.value);
-        console.log(event.target.value);
     };
     const [EnteredDay, setEnteredDay] = useState(dog.EnteredDay)
     const changeEnteredDay = event => {
         setEnteredDay(event.target.value);
-        console.log(event.target.value);
     };
     const [DiscoveredPlace, setDiscoveredPlace] = useState(dog.DiscoveredPlace)
     const changeDiscoveredPlace = event => {
         setDiscoveredPlace(event.target.value);
-        console.log(event.target.value);
     }
     const [Comment, setComment] = useState(dog.Comment)
     const changeComment = event => {
         setComment(event.target.value);
-        console.log(event.target.value)
     }
 
     const navigate = useNavigate()
-
-    const Update = (e) => {
+    const Update = () => {
 
         const formData = new FormData();
         formData.append('Image', Image);
@@ -135,35 +115,22 @@ const StraydogUpdate = () => {
                 DiscoveredPlace: DiscoveredPlace,
                 Comment : Comment,
             }), { headers: { "Content-Type": 'application/json' } })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
 
         axios.put(`/api/straydog/${id}`, formData)
             .then(function (response) {
-                console.log(response);
                 navigate(`/straydog-detail/${id}`)
             })
-            .catch(function (error) {
-                console.log(error);
-            });
         }
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <h1 style={{paddingBottom : '50px', fontFamily : 'GmarketSansMedium'}}>| 유기견 수정 |</h1>
             <div style={{width : '800px', border : 'gray 5px solid', paddingLeft : '100px', paddingRight : '100px', paddingTop: '50px', fontFamily: 'Noto Sans'}}>
-                <div onChange={changeSex} className='input_div'>
+                <div className='input_div'>
                     <div className='kk'>성 별 </div>
                     <div> 
-                        <input className="btn-check" type="radio" name="sex" value="Male" id="male" checked={Sex === 'Male'} /><label htmlFor="male" className="btn btn-outline-secondary">수컷</label>
-                        <input className="btn-check" type="radio" name="sex" value="Female" id="female" checked={Sex === 'Female'} /><label htmlFor="female" className="btn btn-outline-secondary">암컷</label>
+                        <input onChange={changeSex} className="btn-check" type="radio" name="sex" value="Male" id="male" checked={Sex === 'Male'} /><label htmlFor="male" className="btn btn-outline-secondary">수컷</label>
+                        <input onChange={changeSex} className="btn-check" type="radio" name="sex" value="Female" id="female" checked={Sex === 'Female'} /><label htmlFor="female" className="btn btn-outline-secondary">암컷</label>
                     </div>
-
-                          
-
                 </div>
                 <hr/>
                 <div className='input_div'>
@@ -189,15 +156,13 @@ const StraydogUpdate = () => {
                     <label htmlFor='remained_day' className='kk'> 남은 날짜 </label><input id='remained_day' type="number" placeholder={dog.RemainedDay} className='input_text' onChange={changeRemainedDay} />
                 </div>
                 <hr/>
-                <div onChange={changeDogSize} className='input_div'>
+                <div className='input_div'>
                     <div className='kk'>크기</div>
                     <div>
-                    <input checked={DogSize === 'small'} className="btn-check" type="radio" name="size" value="small" id="small"/><label htmlFor="small" className="btn btn-outline-secondary">소형견</label>
-                    <input checked={DogSize === 'medium'} className="btn-check" type="radio" name="size" value="medium" id="medium"/><label htmlFor="medium" className="btn btn-outline-secondary">중형견</label>
-                    <input checked={DogSize === 'large'} className="btn-check" type="radio" name="size" value="large" id="large"/><label htmlFor="large" className="btn btn-outline-secondary">대형견</label>
+                    <input onChange={changeDogSize} checked={DogSize === 'small'} className="btn-check" type="radio" name="size" value="small" id="small"/><label htmlFor="small" className="btn btn-outline-secondary">소형견</label>
+                    <input onChange={changeDogSize} checked={DogSize === 'medium'} className="btn-check" type="radio" name="size" value="medium" id="medium"/><label htmlFor="medium" className="btn btn-outline-secondary">중형견</label>
+                    <input onChange={changeDogSize} checked={DogSize === 'large'} className="btn-check" type="radio" name="size" value="large" id="large"/><label htmlFor="large" className="btn btn-outline-secondary">대형견</label>
                     </div>
-                    
-                    
                 </div>
                 <hr/>
                 <div className='input_div'>
@@ -213,7 +178,6 @@ const StraydogUpdate = () => {
                     </select>
                 </div>
                 <hr />
-                {/* STRAY */}
                 <div className='input_div'>
                     <label htmlFor='entered_day' className='kk'> 입소 날짜 </label><input id='entered_day' className='input_text' type="date" min="2000-01-01" max="2100-12-31" style={{width : '220px'}} placeholder={dog.EnteredDay} onChange={changeEnteredDay} />
                 </div>
@@ -228,7 +192,7 @@ const StraydogUpdate = () => {
                 <hr/>
 
                 <div style={{display : 'flex', justifyContent : 'center', marginTop : '10px', marginBottom : '10px'}}>
-                <button className="btn btn-secondary" onClick={Update} style={{ width: '200px', height: '50px' }}>수정 완료</button>
+                    <button className="btn btn-secondary" onClick={Update} style={{ width: '200px', height: '50px' }}>수정 완료</button>
                 </div>
             </div>
         </div>

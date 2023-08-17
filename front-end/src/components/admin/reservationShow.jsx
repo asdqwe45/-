@@ -10,9 +10,6 @@ function ReservationShow() {
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPage, setTotalPage] = useState(0);
     const token = localStorage.getItem('rasyueToken');
-
-    const admin = localStorage.getItem('admin');
-
     const perPage = 10; // 페이지당 항목 수
 
     useEffect(() => {
@@ -25,13 +22,10 @@ function ReservationShow() {
                     }
                 }
             );
-            console.log(response.data)
             setData(response.data.reservation);
             setTotalItem(response.data.totalItem);
             setTotalPage(Math.ceil(response.data.totalItem / perPage));
         }
-
-
         fetchData();
     }, [currentPage, perPage]);
 
@@ -65,7 +59,7 @@ function ReservationShow() {
                 </thead>
                 <tbody>
                     {data.map(reservation =>
-                        <tr key={reservation.id}>
+                        <tr key={reservation.ReservationID}>
                             <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{reservation.seq}</td>
                             <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{reservation.DogID}</td>
                             <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{formatType(reservation.type)}</td>

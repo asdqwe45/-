@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './StraydogDetail.css';
@@ -6,8 +6,6 @@ import './StraydogDetail.css';
 
 
 const StraydogDetail = () => {
-
-
 
     const { id } = useParams()
     const [dog, setDog] = useState({
@@ -27,36 +25,30 @@ const StraydogDetail = () => {
         "LostDate": "2023-02-08",
         "ReturnedHome": "Yes"
     });
-    console.log('도그 아이디', id)
+
+    const navigate = useNavigate()
+
     useEffect(() => {
         const apiCall = async () => {
             const response = await axios.get(`/api/straydog/${id}`);
-            // console.log(response.data, '맞지?')
             setDog(response.data)
         }
         apiCall()
-
     }, [])
 
     const DeleteDog = async () => {
         const response = await axios.delete(`/api/straydog/${id}`);
-        // console.log(response.data, '맞지?')
         setDog(response.data)
     }
 
     const onDelete = () => {
-
         if (window.confirm("정말 삭제합니까?")) {
-
             alert("삭제되었습니다.");
             DeleteDog()
-
+            navigate('/straydog')
         }
     };
     const admin = localStorage.getItem('admin');
-    const userid = localStorage.getItem('userid');
-
-    // console.log(dog, '아니야?')
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
@@ -65,7 +57,6 @@ const StraydogDetail = () => {
             <div style={{ width: '600px', height: '1300px', border: '#D6C7B2 5px solid' }}>
                 <div style={{ marginLeft: '100px', marginRight: '100px' }}>
 
-                    {/* {dog.Image} */}
                     <img src={`/uploads/${dog.Image}`} width="400" height="350" style={{ marginBottom: '40px', marginTop: '40px' }} />
 
                     <div className='info' style={{ fontFamily: 'GmarketSansMedium' }}>
@@ -111,42 +102,34 @@ const StraydogDetail = () => {
                         <hr />
                     </div>
                 
-                <div>{admin === '1'
-                    ? <div style={{ display: 'flex', justifyContent : 'right'}}>
-                        <div style={{ paddingTop: '50px' }}>
-                            <Link to={{ pathname: `/admin/update/${id}` }} className="nav-link active">
-                                <button className="btn btn-secondary">
-                                    수정하기
-                                </button>
-                            </Link>
-                        </div>
-                        <div style={{ paddingTop: '50px' }}>
-                            <Link to={{ pathname: `/straydog` }} className="nav-link active">
+                    <div>{admin === '1'
+                        ? <div style={{ display: 'flex', justifyContent : 'right'}}>
+                            <div>
+                                <Link to={{ pathname: `/admin/update/${id}` }} className="nav-link active">
+                                    <button className="btn btn-secondary">
+                                        수정하기
+                                    </button>
+                                </Link>
+                            </div>
+                            <div>
                                 <button className="btn btn-secondary" onClick={onDelete}>
                                     삭제하기
                                 </button>
-                            </Link>
-
+                            </div>
                         </div>
-                    </div>
-                    : <div style={{ display: 'flex', justifyContent : 'center' }}>
-                        <div style={{ paddingTop: '50px' }}>
-                            <Link to='/reservation' className="nav-link active" state={{ dogID: dog.DogID }}>
-                                <button className="btn btn-secondary" style={{ fontFamily: 'GmarketSansMedium' }}>
-                                    입양하기
-                                </button>
-                            </Link>
+                        : <div style={{ display: 'flex', justifyContent : 'center' }}>
+                            <div>
+                                <Link to='/reservation' className="nav-link active" state={{ dogID: dog.DogID }}>
+                                    <button className="btn btn-secondary" style={{ fontFamily: 'GmarketSansMedium' }}>
+                                        입양하기
+                                    </button>
+                                </Link>
+                            </div>
                         </div>
+                        }
                     </div>
-                }
-
-                </div>
-                {/* 이건 user만 보이기 */}
                 </div>
             </div>
-            {/* 이건 관리자만 보이기 */}
-
-
         </div>
     );
 };

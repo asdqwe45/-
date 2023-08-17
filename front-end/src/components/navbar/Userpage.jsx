@@ -24,13 +24,11 @@ const Userpage = () => {
 
             const response = await axios.get('/api/reservation/user', config);
             setReservationTimes(response.data.reservation)
-            console.log(response.data.reservation)
             
         }
         const apiCall = async () => {
             const response = await axios.get('/api/user', config);
             setUserInformation(response.data)
-            console.log(response.data)
 
         }
         fetchData();
@@ -38,18 +36,12 @@ const Userpage = () => {
 
     }, []);
 
-    // console.log(times)
-    // console.log(view)
-
     const changeView = event => {
         setView(event.target.value)
     }
 
     const today = new Date()
     const times = reservationtimes.filter((reservationtime) => {
-        // console.log(today, '1')
-        // console.log(reservationtime.ReservationDatetime, '2')
-        // console.log(today < reservationtime.ReservationDatetime)
         return today < new Date(reservationtime.ReservationDatetime)
     })
 
@@ -58,7 +50,6 @@ const Userpage = () => {
 
 
     const DeleteReservation = async (reservationid) => {
-        console.log(reservationid)
         const response = await axios.delete(`/api/reservation/${reservationid}`);
         window.location.reload()
     }
@@ -92,9 +83,6 @@ const Userpage = () => {
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', paddingTop: '200px' }}>
             <div style={{width : '800px'}}>
-                {/* ------------------------------------------
-                여기에 뭐라도 넣으면 되지 않을까요?
-                ------------------------------------------ */}
                 <h2 className="mb-3" style={{ fontFamily: 'GmarketSansMedium' }}>
                     기본 정보
                 </h2>
