@@ -60,32 +60,37 @@ const Main = (props) => {
     const [nowhour, setHour] = useState(today.getHours())
     const [nowminute, setMinute] = useState(today.getMinutes())
 
+
+
+
     // GET
     useEffect(() => {
-
-        const fetchData = async () => {
+        const intervalId = setInterval(() => {
+            const fetchData = async () => {
 
             const response = await axios.get('/api/reservation/user', config);
             setReservationTimes(response.data.reservation)
 
+            }
+            fetchData();
+
+            const today = new Date()
+            // console.log('오늘 : ',today)
+            setYear(today.getFullYear())
+            setMonth(today.getMonth() + 1)
+            setDate(today.getDate())
+            setHour(today.getHours())
+            setMinute(today.getMinutes())
+
+
+
+        }, 1000); 
+        return () => {
+            clearInterval(intervalId);
         }
-        fetchData();
+        
 
-        const today = new Date()
-        // console.log('오늘 : ',today)
-        setYear(today.getFullYear())
-        setMonth(today.getMonth() + 1)
-        setDate(today.getDate())
-        setHour(today.getHours())
-        setMinute(today.getMinutes())
-
-
-
-
-    }, []);
-
-
-
+    }, [nowmonth]);
 
     const reservationtime = reservationtimes.filter((time) => {
         // console.log(parseInt(now.slice(11, 13)), parseInt(time.ReservationDatetime.slice(11, 13))+1)
@@ -205,7 +210,7 @@ const Main = (props) => {
                                     <li className="topMenuLi bg-body-none">
                                         <a className="menuLink" href="#">놀아주기</a>
                                         <ul className="submenu">
-                                            <li><Link className="submenuLink longLink" to="/recommenddog">∙ 원격놀이</Link></li>
+                                            <li><Link className="submenuLink longLink" to="/recommenddog">∙ 추천 유기견</Link></li>
                                             <li><Link className="submenuLink longLink" to="/remoteplay-guide">∙ 이용가이드</Link></li>
 
                                         </ul>
@@ -225,7 +230,7 @@ const Main = (props) => {
                             display: 'flex',
                             justifyContent: 'flex-end'
                         }} className="collapse navbar-collapse " id="navbarNav">
-                            <ul className="navbar-nav ms-auto">
+                            <ul className="navbar-nav">
 
                                 <li className="nav-item">
                                     <Link to="/mypage" className="nav-link active">
@@ -278,7 +283,7 @@ const Main = (props) => {
                     TEL : 010-8664-2108   FAX : 050-5656-8585
                     EMAIL : woojin0321@naver.com
                     <br />
-                    All Photo by ⓒ Tom Crew on Unsplash view
+                    All Photo by ⓒ C106 Crew on Unsplash view
                 </p>
 
             </div>

@@ -7,14 +7,20 @@ function DogInfoShow() {
     const [totalItem, setTotalItem] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPage, setTotalPage] = useState(0);
+    const token = localStorage.getItem('rasyueToken');
 
     const perPage = 10; // 페이지당 항목 수
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(`/api/admin/dogs?page=${currentPage + 1}&pageSize=${perPage}`);
-
-            setDogs(response.data.dog);
+            const response = await axios.get(`/api/admin/dogs?page=${currentPage + 1}&pageSize=${perPage}`,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+            console.log(response.data)
+            setDogs(response.data.Dog);
             setTotalItem(response.data.totalItem);
             setTotalPage(Math.ceil(response.data.totalItem / perPage));
         }
@@ -35,18 +41,35 @@ function DogInfoShow() {
                 <thead>
                     <tr>
                         <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>DogID</th>
-                        <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>이름</th>
+
                         <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>품종</th>
                         <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>나이</th>
+                        <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>크기</th>
+                        <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>입양된 날짜</th>
+                        <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>분실 날짜</th>
+                        <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>발견된 장소</th>
+                        <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>상태</th>
+                        <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>남은 날짜</th>
+                        <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>성별</th>
+                        <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>무게</th>
+                        <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>등록자</th>
                     </tr>
                 </thead>
                 <tbody>
                     {dogs.map(dog =>
                         <tr key={dog.dogid}>
-                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.dogid}</td>
-                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.name}</td>
-                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.breed}</td>
-                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.age}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.DogID}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.Breed}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.Age}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.DogSize}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.EnteredDay}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.LostDate}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.LostLocation}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.Status}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.RemainDay}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.Sex}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.Weight}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{dog.UserID}</td>
                         </tr>
                     )}
                 </tbody>

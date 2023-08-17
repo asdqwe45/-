@@ -7,13 +7,19 @@ function UserInfoShow() {
     const [totalItem, setTotalItem] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPage, setTotalPage] = useState(0);
+    const token = localStorage.getItem('rasyueToken');
 
     const perPage = 10; // 페이지당 항목 수
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(`/api/admin/users?page=${currentPage + 1}&pageSize=${perPage}`);
-
+            const response = await axios.get(`/api/admin/users?page=${currentPage + 1}&pageSize=${perPage}`,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+            console.log(response.data)
             setUsers(response.data.user);
             setTotalItem(response.data.totalItem);
             setTotalPage(Math.ceil(response.data.totalItem / perPage));
@@ -36,14 +42,21 @@ function UserInfoShow() {
                     <tr>
                         <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>UserID</th>
                         <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>사용자 이름</th>
+                        <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>이메일</th>
+                        <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>전화번호</th>
+                        <th style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>관리자</th>
+
                         {/* 추가로 필요한 다른 컬럼들도 여기에 넣을 수 있습니다. */}
                     </tr>
                 </thead>
                 <tbody>
                     {users.map(user =>
                         <tr key={user.id}>
-                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{user.id}</td>
-                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{user.username}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{user.UserID}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{user.Name}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{user.Email}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{user.PhoneNumber}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{user.Admin === 1 ? 'O' : 'X'}</td>
                             {/* 추가로 필요한 다른 데이터들도 여기에 넣을 수 있습니다. */}
                         </tr>
                     )}

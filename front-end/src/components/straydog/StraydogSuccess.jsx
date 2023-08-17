@@ -58,6 +58,8 @@ function StraydogSuccess() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
 
             <h1 style={{ paddingBottom: '20px', fontFamily: 'GmarketSansMedium' }}>| 입양 완료 |</h1>
+            <p style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center', }}>저희 보호소에서 입양이 완료된 아이들입니다.
+            </p>
 
             <table style={{ marginTop: '140px' }}>
                 <tbody >
@@ -81,7 +83,7 @@ function StraydogSuccess() {
                                                 <div className='dogbaiscinfodiv'>
                                                     <div>
 
-                                                        <p>
+                                                        <p style={{ fontFamily: 'GmarketSansMedium', padding: '20px' }}>
                                                             {item.Comment}
                                                         </p>
 

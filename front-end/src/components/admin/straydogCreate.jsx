@@ -26,9 +26,15 @@ const StraydogCreate = () => {
         console.log(event.target.value);
     };
     const [Image, setImage] = useState(null)
+    const [PreviewImage, setPreviewImage] = useState(null);
     const changeImage = event => {
         setImage(event.target.files[0]);
         console.log(event.target.files[0]);
+        const reader = new FileReader();
+        reader.onload = (e) => {
+        setPreviewImage(e.target.result);
+        };
+        reader.readAsDataURL(event.target.files[0]);
 
     };
     const [Breed, setBreed] = useState(null)
@@ -77,14 +83,6 @@ const StraydogCreate = () => {
     // =====================================================
     const navigate = useNavigate()
 
-    // const changeFormatDate = (date) => {
-    //     const year = date.getFullyear()
-    //     const month = date.getMonth()
-    //     const day = date.getDate()
-    //     console.log(year+' '+month+' '+day)
-    //     return
-    // }
-
 
     // CREATE 버튼 눌렀을 때 시행
     const Create = (e) => {
@@ -126,7 +124,7 @@ const StraydogCreate = () => {
             formData.append('EnteredDay', EnteredDay)
             formData.append('DiscoveredPlace', DiscoveredPlace)
             formData.append('LostLocation', null)
-            formData.append('LostDate', null)
+            formData.append('LostDate', '')
             formData.append('ReturnedHome', null)
             formData.append('Comment', Comment)
             formData.append("UserID", userid)
@@ -171,7 +169,11 @@ const StraydogCreate = () => {
                 </div>
                 <hr />
                 <div className='input_div'>
-                    <label htmlFor='image' className='kk'> 사 진 </label><input id='image' type="file" className='input_text' onChange={changeImage} />
+                    
+                    <label htmlFor='image' className='kk'> 사 진 </label>
+                    {PreviewImage && <img src={PreviewImage} alt="미리보기" style={{ maxWidth: '100px', maxHeight: '100px' }} />}
+                    <input id='image' type="file" accept="image/*" className='input_text' onChange={changeImage} style={{width : '200px'}} />
+                    
                 </div>
                 <hr />
                 <div className='input_div'>

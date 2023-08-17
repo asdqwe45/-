@@ -36,79 +36,89 @@ const LostdogDetail = () => {
     }, [])
 
     const DeleteDog = async () => {
-        const response = await axios.delete(`/lostdog/${id}`);
+        const response = await axios.delete(`/api/straydog/${id}`);
         // console.log(response.data, '맞지?')
         setDog(response.data)
     }
+
+    const onDelete = () => {
+
+        if (window.confirm("정말 삭제합니까?")) {
+
+            alert("삭제되었습니다.");
+            DeleteDog()
+
+        }
+    };
     const admin = localStorage.getItem('admin');
     const userid = localStorage.getItem('userid');
-
+    
 
     // console.log(dog, '아니야?')
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
-            <h1 style={{paddingBottom : '50px', fontFamily : 'GmarketSansMedium'}}>| 분실견 상세정보 |</h1>
-            <div style={{ width : '600px', height : '1300px', border : '#D6C7B2 5px solid'}}>
-            <div style={{ paddingTop: '40px', marginLeft : '100px', marginRight : '100px' }}>
-                <div style={{ position : ' relative'}}>
+            <h1 style={{ fontFamily: 'GmarketSansMedium', paddingBottom: '20px' }}>| 상세정보 |</h1>
+            <div style={{ width: '600px', height: '1300px', border: '#D6C7B2 5px solid' }}>
+                <div style={{ marginLeft: '100px', marginRight: '100px' }}>
+                    <div style={{ position: ' relative' }}>
 
-                    <img src={`../uploads/${dog.Image}`} style={{ width:"400", height:"350", marginBottom : '40px'}} />
+                        <img src={`../uploads/${dog.Image}`} width="400" height="350" style={{ marginBottom: '40px', marginTop : '40px' }} />
 
-                </div>
-                <div className='info'>
-                    <div className="info_per">
-                        <p>견 종 : </p>
-                        <p>{dog.Breed}</p>
                     </div>
-                    <hr/>
-                    <div className="info_per">
-                        <p>칩 번호 : </p>
-                        <p>{dog.ChipNumber}</p>
+                    <div className='info'>
+                        <div className="info_per">
+                            <p>견 종 : </p>
+                            <p>{dog.Breed}</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p>칩 번호 : </p>
+                            <p>{dog.ChipNumber}</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p>나 이 : </p>
+                            <p>{dog.Age}</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p>크 기 : </p>
+                            <p>{dog.DogSize}</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p>성 별 : </p>
+                            <p>{dog.Sex}</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p>무 게 : </p>
+                            <p>{dog.Weight}kg</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p>잃어버린 날짜 : </p>
+                            <p>{dog.LostDate}</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p>잃어버린 장소 : </p>
+                            <p>{dog.LostLocation}</p>
+                        </div>
+                        <hr />
+                        <div className="info_per">
+                            <p> 기타사항 : </p>
+                            <p style={{width : '200px'}}>{dog.Comment}</p>
+                        </div>
+                        <hr />
                     </div>
-                    <hr/>
-                    <div className="info_per">
-                        <p>나 이 : </p>
-                        <p>{dog.Age}</p>
-                    </div>
-                    <hr/>
-                    <div className="info_per">
-                        <p>크 기 : </p>
-                        <p>{dog.DogSize}</p>
-                    </div>
-                    <hr/>
-                    <div className="info_per">
-                        <p>성 별 : </p>
-                        <p>{dog.Sex}</p>
-                    </div>
-                    <hr/>
-                    <div className="info_per">
-                        <p>무 게 : </p>
-                        <p>{dog.Weight}kg</p>
-                    </div>
-                    <hr/>
-                    <div className="info_per">
-                        <p>잃어버린 날짜 : </p>
-                        <p>{dog.LostDate}</p>
-                    </div>
-                    <hr/>
-                    <div className="info_per">
-                        <p>잃어버린 장소 : </p>
-                        <p>{dog.LostLocation}</p>
-                    </div>
-                    <hr/>
-                    <div className="info_per">
-                        <p> 기타사항 : </p>
-                        <p>{dog.comment}</p>
-                    </div>
-                    <hr/>
-                </div>
-            
 
-            {/* 해당 작성자와 관리자만 보이기 */}
-                <div>{admin === '1' || userid === dog.UserID
-                    ? <div style={{ display: 'flex', justifyContent : 'right' }}>
-                        <div style={{ paddingTop: '50px' }}>
+
+                    {/* 해당 작성자와 관리자만 보이기 */}
+                    <div>{admin === '1' || userid === dog.UserID
+                        ? <div style={{ display: 'flex', justifyContent : 'right' }}>
+                        <div style={{ paddingTop: '50px'  }}>
                             <Link to={{ pathname: `/lostdog/update/${id}` }} className="nav-link active">
                                 <button className="btn btn-secondary">
                                     수정하기
@@ -116,21 +126,22 @@ const LostdogDetail = () => {
                             </Link>
                         </div>
                         <div style={{ paddingTop: '50px' }}>
-                            <Link to='/lostdog' className="nav-link active">
-                                <button className="btn btn-secondary" onClick={DeleteDog}>
+                            <Link to={{ pathname: `/lostdog` }} className="nav-link active">
+                                <button className="btn btn-secondary" onClick={onDelete}>
                                     삭제하기
                                 </button>
                             </Link>
+
                         </div>
                     </div>
-                    : null
+                        : null
                     }
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-       
+
     );
 };
 export default LostdogDetail

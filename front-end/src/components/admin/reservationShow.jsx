@@ -9,6 +9,7 @@ function ReservationShow() {
     const [totalItem, setTotalItem] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPage, setTotalPage] = useState(0);
+    const token = localStorage.getItem('rasyueToken');
 
     const admin = localStorage.getItem('admin');
 
@@ -16,12 +17,21 @@ function ReservationShow() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(`/api/admin/reservation?page=${currentPage + 1}&pageSize=${perPage}`);
-
+            const response = await axios.get(
+                `/api/admin/reservation?page=${currentPage + 1}&pageSize=${perPage}`,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
+            console.log(response.data)
             setData(response.data.reservation);
             setTotalItem(response.data.totalItem);
             setTotalPage(Math.ceil(response.data.totalItem / perPage));
         }
+
+
         fetchData();
     }, [currentPage, perPage]);
 
@@ -56,10 +66,11 @@ function ReservationShow() {
                 <tbody>
                     {data.map(reservation =>
                         <tr key={reservation.id}>
-                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{reservation.userID}</td>
-                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{reservation.dogID}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{reservation.seq}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{reservation.DogID}</td>
                             <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{formatType(reservation.type)}</td>
-                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{formatDate(reservation.time)}</td>
+                            <td style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>{formatDate(reservation.ReservationDatetime
+                            )}</td>
                         </tr>
                     )}
                 </tbody>
@@ -79,13 +90,7 @@ function ReservationShow() {
                 activeClassName={"active"}
             />
 
-            {admin === '1' &&
-                <Link to="/admin/create">
-                    <button className="btn btn-secondary">
-                        예약 추가하기
-                    </button>
-                </Link>
-            }
+
         </div>
     );
 }

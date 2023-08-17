@@ -13,6 +13,7 @@ const ormconfig: TypeOrmModuleOptions = {
   database: 'dog', // 스키마 이름
   entities: [User, Dog, Reservation],
   synchronize: false, // 테이블을 생성할꺼냐 묻는 속성, 최초에 한번만 true
+  timezone:'+09:00',
 };
 
 export default ormconfig;

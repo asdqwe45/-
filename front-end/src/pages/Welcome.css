@@ -290,7 +290,7 @@
 }
 
 .highlight {
-    text-decoration: underline;
+    /* text-decoration: underline; */
     /* 밑줄 */
     font-weight: bold;
     /* 굵게 */

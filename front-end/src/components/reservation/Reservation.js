@@ -90,6 +90,7 @@ const Reservation = () => {
         let newDate = new Date(startDate);
         let hourString = time < 10 ? `0${time}` : `${time}`;
         let dateString = newDate.toISOString().substring(0, 10);
+        console.log(hourString, dateString, 'tagtab22')
         setSelectedDateTime(`${dateString}T${hourString}:00`);
     }
 
@@ -101,6 +102,7 @@ const Reservation = () => {
         setStartDate(date);
         let newDate = new Date(date);
         let dateString = newDate.toISOString().slice(0, -14);
+        console.log(dateString, 'tabtab')
         setSelectedDateTime(`${dateString}T00:00`);
 
 
@@ -197,19 +199,42 @@ const Reservation = () => {
 
         return `예약날짜 : ${year}-${month}-${date} ${hours}:${minutes}`;
     }
-    console.log(token)
-    console.log(dogID)
-    console.log(selectedType)
-    console.log(selectedDateTime)
+    // console.log(token)
+    // console.log(dogID)
+    // console.log(selectedType)
+    // console.log(selectedDateTime)
 
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
-            <h1>예약페이지</h1>
-            <p style={{ textAlign: 'center' }}>방문 및 강아지 놀아주기 예약페이지 입니다. <br />한시간 단위로 예약이 가능하고 예약중에 있는 시간 예약이 불가능합니다.</p>
+            <h1 style={{ fontFamily: 'GmarketSansMedium', paddingBottom: '20px' }}>ㅣ방문 및 놀아주기 예약ㅣ</h1>
+
+            <p style={{ textAlign: 'center', fontFamily: 'GmarketSansMedium' }}>방문 및 강아지 놀아주기 예약페이지 입니다. <br />한시간 단위로 예약이 가능하고 예약중에 있는 시간은 예약이 불가능합니다.
+                <br />동의서약서를 읽어보시고 동의하시면 예약 폼이 나타납니다. <br />놀아주기 및 방문 그리고 예약 날짜를 꼭 확인해주세요.<br />예약을 완료하시면 마이페이지로 이동하고 마이페이지에서 예약현황을 보실 수 있습니다.</p>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '500px', width: '500px', border: 'solid', marginRight: '20px' }}>
-                    <p>동의서약서 내용</p>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '530px', width: '570px', border: 'solid', borderWidth: '2px', marginRight: '20px' }}>
+                    <p style={{ fontSize: '12px', fontFamily: 'GmarketSansMedium', padding: '20px' }}>입양 및 강아지 놀아주기 동의서<br /><br />
+
+                        본 동의서는 강아지의 입양 및 놀아주기를 위해 작성되었습니다. 아래의 내용을 주의 깊게 읽고 동의하실 경우 동의를 눌러주세요.<br />
+                        <br />
+                        입양 동의 내용:<br />
+
+                        입양자는 강아지에게 안전하고 건강한 환경을 제공할 의무가 있습니다.<br />
+                        입양자는 강아지의 의료적인 필요를 충족시켜야 합니다. (예: 예방접종, 정기적인 건강 검진 등)<br />
+                        입양 후 발생하는 모든 비용은 입양자의 책임입니다.<br /><br />
+                        강아지 놀아주기 동의 내용:<br />
+
+                        강아지를 존중하고 사랑으로 다룰 것을 동의합니다.<br />
+                        강아지와 놀아줄 시 안전에 최우선으로 주의하겠습니다.<br />
+                        강아지가 위험에 노출되거나 스트레스를 받는 상황을 피하겠습니다.<br /><br />
+                        면책 조항:<br />
+
+                        본 동의서 서명 후 발생하는 문제나 상황에 대하여 단체/기관은 책임지지 않습니다.<br />
+                        입양자 및 놀아주는 자는 강아지와의 상호작용 중 발생하는 모든 위험을 이해하고 이에 동의합니다.<br /><br />
+                        동의서 해지 조건:<br />
+
+                        위의 조건을 위반할 경우, 단체/기관은 동의서를 해지하고 강아지를 회수할 수 있습니다.<br />
+                        본 동의서의 모든 내용에 동의하며, 강아지의 입양 및 놀아주기 활동에 적극적으로 참여할 것을 약속합니다.</p>
                     <div>
                         <label>
                             <input

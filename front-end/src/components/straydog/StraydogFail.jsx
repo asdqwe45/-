@@ -57,6 +57,7 @@ function StraydogFail() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <h1 style={{ paddingBottom: '20px', fontFamily: 'GmarketSansMedium' }}>| 추모 |</h1>
+            <p style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center', }} >저희 보호소에서 머물다 무지개 다리를 건넌 아이들입니다. <br />같이 추모해주시면 감사드리겠습니다.</p>
             <table>
                 <tbody >
                     {dataChunks.map((chunk, i) =>
@@ -68,10 +69,10 @@ function StraydogFail() {
                                         <div className="card" >
                                             {/* <!-- 앞면 --> */}
                                             <div className="front" style={{ position: 'relative' }}>
-                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px' }} className="nav-link active" />
+                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '5px' }} className="nav-link active" />
                                                 <div>
                                                     {item.Status === 'Dead'
-                                                        ? <img src='rainbow.jpg' alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px', position: 'absolute', left: '0px', top: '0px' }} className="nav-link active" />
+                                                        ? <img src='rainbow.jpg' alt={item.DogId} style={{ width: '290px', height: '290px', borderRadius: '5px', position: 'absolute', left: '0px', top: '0px' }} className="nav-link active" />
 
                                                         : null
                                                     }
@@ -79,16 +80,16 @@ function StraydogFail() {
                                             </div>
                                             {/* <!-- 뒷면 --> */}
                                             <div className="back">
-                                                <div className='dogbaiscinfodiv'>
+                                                <div className='dogbaiscinfodiv' style={{ borderRadius: '5px' }}>
                                                     <div>
 
-                                                        <p>
+                                                        <p style={{ fontFamily: 'GmarketSansMedium' }}>
                                                             나이 : {item.Age}
                                                         </p>
-                                                        <p>
+                                                        <p style={{ fontFamily: 'GmarketSansMedium' }}>
                                                             성별 : {item.Sex}
                                                         </p>
-                                                        <p>
+                                                        <p style={{ fontFamily: 'GmarketSansMedium' }}>
                                                             견종 : {item.DogID}
                                                         </p>
 

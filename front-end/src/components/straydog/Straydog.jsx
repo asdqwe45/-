@@ -68,6 +68,7 @@ function Straydog() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
 
             <h1 style={{ paddingBottom: '20px', fontFamily: 'GmarketSansMedium' }}>| 유기견 |</h1>
+            <p style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center', }} >저희가 보호중인 아이들입니다. <br />가족이 필요한 아이들이니 많은 관심 부탁드립니다.<br /> 더 자세한 정보를 보거나 입양을 원하시면 아이들을 클릭해주세요.</p>
 
             <table style={{ marginTop: '140px' }}>
                 <tbody >
@@ -81,7 +82,7 @@ function Straydog() {
                                             {/* <!-- 앞면 --> */}
                                             <div className="front">
                                                 {/* {item.Image} */}
-                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', }} className="nav-link active" />
+                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px' }} className="nav-link active" />
                                                 {/* <img src="/sokuri.jpg" alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius : '10px' }} className="nav-link active"/> */}
 
                                             </div>
@@ -91,15 +92,13 @@ function Straydog() {
                                                     <div className='dogbaiscinfodiv'>
                                                         <div>
 
-                                                            <p>
-                                                                나이 : {item.Age}
+                                                            <p style={{ fontFamily: 'GmarketSansMedium' }}>
+                                                                나이 : {item.Age} <br />
+                                                                성별 : {item.Sex} <br />
+                                                                품종 : {item.Breed}
+
                                                             </p>
-                                                            <p>
-                                                                성별 : {item.Sex}
-                                                            </p>
-                                                            <p>
-                                                                강아지 아이디 : {item.DogID}
-                                                            </p>
+
 
                                                         </div>
                                                     </div>

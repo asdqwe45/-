@@ -57,6 +57,8 @@ function Lostdog() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <h1 style={{ paddingBottom: '20px', fontFamily: 'GmarketSansMedium' }}>| 분실견 |</h1>
+            <p style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center', }} >저희 보호소에서 보호중인 분실견들입니다. <br />빠른 시일내로 주인을 찾을 수 있도록 많은 관심 부탁드립니다.
+                <br /> 분실견 등록을 원하시면 페이지 하단에 등록하기 버튼을 누르시면 등록이 가능합니다.<br />집 아이콘으로 어둡게 표시된 아이들은 귀가 조치가 완료된 아이들입니다.<br />자세한 정보를 원하시면 아이를 클릭해주세요. </p>
             <table>
                 <tbody >
                     {dataChunks.map((chunk, i) =>
@@ -68,10 +70,10 @@ function Lostdog() {
                                         <div className="card" >
                                             {/* <!-- 앞면 --> */}
                                             <div className="front" style={{ position: 'relative' }}>
-                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px' }} className="nav-link active" />
+                                                <img src={`/uploads/${item.Image}`} alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '5px' }} className="nav-link active" />
                                                 <div>
                                                     {item.ReturnedHome === 'Yes'
-                                                        ? <img src='home.jpg' alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '10px', backgroundColor: 'rgb(0, 0, 0, 0.4)', position: 'absolute', left: '0px', top: '0px' }} className="nav-link active" />
+                                                        ? <img src='home.jpg' alt={item.DogId} style={{ width: '300px', height: '300px', borderRadius: '5px', backgroundColor: 'rgb(0, 0, 0, 0.4)', position: 'absolute', left: '0px', top: '0px' }} className="nav-link active" />
 
                                                         : null
                                                     }
@@ -83,11 +85,17 @@ function Lostdog() {
                                             {/* <!-- 뒷면 --> */}
                                             <div className="back">
                                                 <Link to={{ pathname: `/lostdog-detail/${item.DogID}` }} className="nav-link active " state={{ dogID: item.dogID }}>
-                                                    <div className='dogbaiscinfodiv'>
+                                                    <div className='dogbaiscinfodiv' style={{ borderRadius: '5px' }}>
                                                         <div>
 
-                                                            <p>
-                                                                나이 : {item.Comment}
+                                                            <p style={{ fontFamily: 'GmarketSansMedium', padding: '20px' }}>
+
+                                                                나이 : {item.Age} <br />
+                                                                성별 : {item.Sex} <br />
+                                                                품종 : {item.Breed} <br />
+                                                                분실 장소 : {item.LostLocation} <br />
+                                                                분실 날짜 : {item.LostDate} <br />
+                                                                특징 : {item.Comment}
                                                             </p>
 
                                                         </div>

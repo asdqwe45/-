@@ -8,42 +8,47 @@ import './admin.css';
 
 
 const StraydogUpdate = () => {
-    const userid = localStorage.getItem('userid');
-    // 강아지 아이디 받기
     const { id } = useParams()
-    // ====================================================
 
-    // 강아지 초기 정보 가져오기 
     const [dog, setDog] = useState({
-        "DogID": 37,
-        "Sex": "Female",
-        "Age": 15,
-        "ChipNumber": "123987654321",
-        "Image": "http://example.com/dog5.jpg",
-        "Breed": "SiGorJabJong",
-        "RemainedDay": "150",
-        "DogSize": "Large",
-        "Weight": 123,
-        "Status": "stray",
-        "EnteredDay": null,
-        "DiscoveredPlace": null,
-        "LostLocation": "AnYang",
-        "LostDate": "2023-02-08",
-        "ReturnedHome": "Yes"
+        DogID: 37,
+        Sex: "Female",
+        Age: 15,
+        ChipNumber: "123987654321",
+        Image: "http://example.com/dog5.jpg",
+        Breed: "SiGorJabJong",
+        RemainedDay: "150",
+        DogSize: "Large",
+        Weight: 123,
+        Status: "stray",
+        EnteredDay: null,
+        DiscoveredPlace: null,
+        LostLocation: "",
+        LostDate: "",
+        ReturnedHome: ""
     });
-    console.log('도그 아이디', id)
+    // console.log('도그 아이디', id)
     useEffect(() => {
         const apiCall = async () => {
             const response = await axios.get(`/api/straydog/${id}`);
-            console.log(response.data, '맞지?')
+            // console.log(response.data, '맞지?')
             setDog(response.data)
+            setSex(response.data.Sex)
+            setAge(response.data.Age)
+            setChipNumber(response.data.ChipNumber)
+            setImage(response.data.Image)
+            setBreed(response.data.Breed)
+            setRemainedDay(response.data.RemainedDay)
+            setDogSize(response.data.DogSize)
+            setWeight(response.data.Weight)
+            setEnteredDay(response.data.EnteredDay)
+            setDiscoveredPlace(response.data.DiscoveredPlace)
+            setComment(response.data.Comment)
         }
         apiCall()
 
-    }, [])
-    // ===================================================
+    },[])
 
-    // 강아지 정보 수정 시 변수들 수정 
     const [Sex, setSex] = useState(dog.Sex)
     const changeSex = event => {
         setSex(event.target.value);
@@ -59,12 +64,15 @@ const StraydogUpdate = () => {
         setChipNumber(event.target.value);
         console.log(event.target.value);
     };
-    const [Image, setImage] = useState(null)
+    const [PreviewImage, setPreviewImage] = useState(null);
+    const [Image, setImage] = useState(dog.Image)
     const changeImage = event => {
         setImage(event.target.files[0])
-        console.log(Image,'3')
-        console.log(event.target.files[0]);
-        
+        const reader = new FileReader();
+        reader.onload = (e) => {
+        setPreviewImage(e.target.result);
+        };
+        reader.readAsDataURL(event.target.files[0]);
     };
     const [Breed, setBreed] = useState(dog.Breed)
     const changeBreed = event => {
@@ -101,27 +109,23 @@ const StraydogUpdate = () => {
         setDiscoveredPlace(event.target.value);
         console.log(event.target.value);
     }
-    const [Comment, setComment] = useState(null)
+    const [Comment, setComment] = useState(dog.Comment)
     const changeComment = event => {
         setComment(event.target.value);
         console.log(event.target.value)
     }
-    // ===================================================
 
     const navigate = useNavigate()
-    // 업데이트 버튼 누르면 put 요청
+
     const Update = (e) => {
-        // e.preventDefault();
-        console.log(dog)
-        console.log(EnteredDay, 1)
-        console.log(Date(EnteredDay), 2)
-        // PUT 요청
+
+        const formData = new FormData();
+        formData.append('Image', Image);
         axios.put(`/api/straydog/${id}`, JSON.stringify(
             {
                 Sex: Sex,
                 Age: parseInt(Age),
                 ChipNumber: ChipNumber,
-                Image: Image,
                 Breed: Breed,
                 RemainedDay: parseInt(RemainedDay),
                 DogSize: DogSize,
@@ -129,13 +133,16 @@ const StraydogUpdate = () => {
                 Status: Status,
                 EnteredDay: EnteredDay,
                 DiscoveredPlace: DiscoveredPlace,
-                LostLocation: null,
-                LostDate: null,
-                ReturnedHome: null,
                 Comment : Comment,
-                UserID : userid
-                
             }), { headers: { "Content-Type": 'application/json' } })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        axios.put(`/api/straydog/${id}`, formData)
             .then(function (response) {
                 console.log(response);
                 navigate(`/straydog-detail/${id}`)
@@ -143,28 +150,20 @@ const StraydogUpdate = () => {
             .catch(function (error) {
                 console.log(error);
             });
-        console.log('내가 가지고 있는것')
-
-    }
+        }
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <h1 style={{paddingBottom : '50px', fontFamily : 'GmarketSansMedium'}}>| 유기견 수정 |</h1>
             <div style={{width : '800px', border : 'gray 5px solid', paddingLeft : '100px', paddingRight : '100px', paddingTop: '50px', fontFamily: 'Noto Sans'}}>
                 <div onChange={changeSex} className='input_div'>
                     <div className='kk'>성 별 </div>
-                    <div style={{position : 'static'}}>
-                        {dog.Sex === 'Male' 
-                        ? <div> 
-                            <input className="btn-check" type="radio" name="sex" value="Male" id="male" checked="true" /><label htmlFor="male" className="btn btn-outline-secondary">수컷</label>
-                            <input className="btn-check" type="radio" name="sex" value="Female" id="female" /><label htmlFor="female" className="btn btn-outline-secondary">암컷</label>
-                        </div>
-                        : <div> 
-                            <input className="btn-check" type="radio" name="sex" value="Male" id="male"/><label htmlFor="male" className="btn btn-outline-secondary">수컷</label>
-                            <input className="btn-check" type="radio" name="sex" value="Female" id="female" checked="true" /><label htmlFor="female" className="btn btn-outline-secondary">암컷</label>
-                        </div>
-                        }
-                          
+                    <div> 
+                        <input className="btn-check" type="radio" name="sex" value="Male" id="male" checked={Sex === 'Male'} /><label htmlFor="male" className="btn btn-outline-secondary">수컷</label>
+                        <input className="btn-check" type="radio" name="sex" value="Female" id="female" checked={Sex === 'Female'} /><label htmlFor="female" className="btn btn-outline-secondary">암컷</label>
                     </div>
+
+                          
+
                 </div>
                 <hr/>
                 <div className='input_div'>
@@ -176,7 +175,10 @@ const StraydogUpdate = () => {
                 </div>
                 <hr/>
                 <div className='input_div'>
-                    <label htmlFor='image' className='kk'> 사 진 </label><input id='image' type="file" className='input_text' onChange={changeImage} />
+                    <label htmlFor='image' className='kk'> 사 진 </label>
+                    {PreviewImage && <img src={PreviewImage} alt="미리보기" style={{ maxWidth: '100px', maxHeight: '100px' }} />}
+                    <input id='image' type="file" accept="image/*" className='input_text' onChange={changeImage} style={{width : '200px'}} />
+                    
                 </div>
                 <hr/>
                 <div className='input_div'>
@@ -190,27 +192,11 @@ const StraydogUpdate = () => {
                 <div onChange={changeDogSize} className='input_div'>
                     <div className='kk'>크기</div>
                     <div>
-                        {dog.DogSize === 'small'
-                        ? <div>
-                            <input checked='true' className="btn-check" type="radio" name="size" value="small" id="small" /><label htmlFor="small" className="btn btn-outline-secondary">소형견</label>
-                            <input className="btn-check" type="radio" name="size" value="medium" id="medium" /><label htmlFor="medium" className="btn btn-outline-secondary">중형견</label>
-                            <input className="btn-check" type="radio" name="size" value="large" id="large" /><label htmlFor="large" className="btn btn-outline-secondary">대형견</label>
-                        </div>
-                        : (dog.DogSize === 'medium'
-                            ? <div>
-                                <input className="btn-check" type="radio" name="size" value="small" id="small" /><label htmlFor="small" className="btn btn-outline-secondary">소형견</label>
-                                <input checked='true' className="btn-check" type="radio" name="size" value="medium" id="medium" /><label htmlFor="medium" className="btn btn-outline-secondary">중형견</label>
-                                <input className="btn-check" type="radio" name="size" value="large" id="large" /><label htmlFor="large" className="btn btn-outline-secondary">대형견</label>
-                            </div>
-                            : <div>
-                                <input className="btn-check" type="radio" name="size" value="small" id="small" /><label htmlFor="small" className="btn btn-outline-secondary">소형견</label>
-                                <input className="btn-check" type="radio" name="size" value="medium" id="medium" /><label htmlFor="medium" className="btn btn-outline-secondary">중형견</label>
-                                <input checked='true' className="btn-check" type="radio" name="size" value="large" id="large" /><label htmlFor="large" className="btn btn-outline-secondary">대형견</label>
-                            </div>
-                        )
-
-                        }
+                    <input checked={DogSize === 'small'} className="btn-check" type="radio" name="size" value="small" id="small"/><label htmlFor="small" className="btn btn-outline-secondary">소형견</label>
+                    <input checked={DogSize === 'medium'} className="btn-check" type="radio" name="size" value="medium" id="medium"/><label htmlFor="medium" className="btn btn-outline-secondary">중형견</label>
+                    <input checked={DogSize === 'large'} className="btn-check" type="radio" name="size" value="large" id="large"/><label htmlFor="large" className="btn btn-outline-secondary">대형견</label>
                     </div>
+                    
                     
                 </div>
                 <hr/>
@@ -237,7 +223,7 @@ const StraydogUpdate = () => {
                 </div>
                 <hr/>
                 <div className='input_div'>
-                    <label htmlFor='discovered_place'> 추가 내용 </label><textarea id='discovered_place' className='input_text' type="text" placeholder={dog.DiscoveredPlace} onChange={changeComment}/>
+                    <label htmlFor='discovered_place'> 추가 내용 </label><textarea id='discovered_place' className='input_text' type="text" placeholder={dog.Comment} onChange={changeComment}/>
                 </div>
                 <hr/>
 
