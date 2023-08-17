@@ -4,7 +4,7 @@ function App() {
   const imgRef = useRef(null);
   const wsRef = useRef(null);
   const wsRef2 = useRef(null);
-
+  const [previousKey, setPreviousKey] = useState(null);
   const [pressedKey, setPressedKey] = useState(null);
 
   useEffect(() => {
@@ -29,6 +29,7 @@ function App() {
   }, []);
   const handleKeyDown = (event) => {
     const key = event.key;
+
     const data = JSON.stringify({ type: "keydown", keys: key });
     console.log(data);
     setPressedKey(data);

@@ -6,6 +6,7 @@ export class WebSocket2Gateway implements OnGatewayConnection, OnGatewayDisconne
   @WebSocketServer() server: Server;
 
   private clients: Record<string, WebSocket> = {};
+  private previousKey;
 
   async handleConnection(client: WebSocket) {
     const sessionId = await this.generateSessionID();
@@ -20,13 +21,14 @@ export class WebSocket2Gateway implements OnGatewayConnection, OnGatewayDisconne
       delete this.clients[sessionId];
     }
   }
-
-
   
   @SubscribeMessage('command')
   handleMessage(@ConnectedSocket() client: WebSocket,@MessageBody() payload: any): void {
+    console.log(payload === this.previousKey);
   payload=JSON.parse(payload);
   const key = payload.type;
+  console.log(payload === this.previousKey);
+  
   try {
     console.log(`Received key from client: ${key}`);
     // 메시지 처리 로직을 추가합니다.
@@ -35,8 +37,15 @@ export class WebSocket2Gateway implements OnGatewayConnection, OnGatewayDisconne
     // 오류 처리 로직을 추가합니다.
   }
   for (const sessionId in this.clients) {
-    if (this.clients[sessionId] !== client && this.clients[sessionId].readyState === WebSocket.OPEN) {
-      this.clients[sessionId].send(JSON.stringify(payload)); // JSON 형식으로 전송
+    if (this.clients[sessionId].readyState === WebSocket.OPEN) {
+        console.log(payload);
+
+        this.clients[sessionId].send(JSON.stringify(payload)); // JSON 형식으로 전송
+        console.log(payload);
+
+        this.previousKey = payload;
+        console.log(this.previousKey === payload);
+      
     }
   }
 }
