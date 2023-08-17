@@ -6,7 +6,7 @@ export declare class LostDogsController {
     getDogs(page?: number, pageSize?: number): Promise<any>;
     getOneLostDog(ID: number): Promise<import("../entities/dogs.entity").Dog>;
     deleteOne(ID: number): Promise<any>;
-    create(dogData: any, file: any): Promise<{
+    create(dogData: any, file: any, req: any): Promise<{
         success: boolean;
         message: string;
     }>;
