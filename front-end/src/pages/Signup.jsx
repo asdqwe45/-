@@ -98,7 +98,7 @@ const Signup = () => {
                     <div className="seula">
                         {/* <li>New Here?</li> */}
                         <li>One of us?<br />
-                            If you already has an account, just sign in. We've missed you!</li>
+                            If you already have an account, just sign in. We've missed you!</li>
                         <li><Link to="/login">Login</Link></li>
                         <li><Link to="/">Home</Link></li>
                     </div>

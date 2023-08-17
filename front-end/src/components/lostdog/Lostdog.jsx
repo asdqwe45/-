@@ -39,7 +39,7 @@ function Lostdog() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '200px' }}>
             <h1 style={{ paddingBottom: '20px', fontFamily: 'GmarketSansMedium' }}>| 분실견 |</h1>
-            <p style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center', }} >저희 보호소에서 보호중인 분실견들입니다. <br />빠른 시일내로 주인을 찾을 수 있도록 많은 관심 부탁드립니다.
+            <p style={{ fontFamily: 'GmarketSansMedium', textAlign: 'center', }} >저희 보호소에서 찾는중인 분실견들입니다. <br />빠른 시일내로 주인을 찾을 수 있도록 많은 관심 부탁드립니다.
                 <br /> 분실견 등록을 원하시면 페이지 하단에 등록하기 버튼을 누르시면 등록이 가능합니다.<br />집 아이콘으로 어둡게 표시된 아이들은 귀가 조치가 완료된 아이들입니다.<br />자세한 정보를 원하시면 아이를 클릭해주세요. </p>
             <table>
                 <tbody >

@@ -19,7 +19,7 @@ const Maincarousel = () => {
                         fontFamily: 'Arial Black',
                         textAlign: 'left',
                         marginLeft: '170px',
-                        // paddingBottom: '100px'
+                        
                     }}>
                         <p style={{ marginBottom: '0px' }}>Human,</p>
                         <p>Dog,</p>

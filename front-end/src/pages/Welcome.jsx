@@ -180,7 +180,7 @@ function Welcome() {
                     // fontFamily: 'Arial Black',
                     // marginTop: '400px',  // 여기서 p 태그와 이미지 사이의 간격을 조정할 수 있습니다.
                     marginBottom: '40px'
-                }}>We offer the best services for your convenience, if you want more information contact us</p>
+                }}>We offer the best services for your convenience. if you want more information, contact us.</p>
                 <a className="contactButton" onClick={handleContactClick}>Contact Us</a>
                 <img src="/welcomedog11.png" alt="Welcomedog5 Image" style={{ height: '55%', width: '1200px' }} />
                 <img src="/scroll.png" alt="" style={{ height: '100px', width: '100px', position: 'absolute', right: '60px', bottom: '20px', }} />
