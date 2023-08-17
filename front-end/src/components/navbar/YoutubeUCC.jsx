@@ -6,8 +6,17 @@ const YoutubeUCC = () => {
             <h1>
                 UCC
             </h1>
-            <iframe width="1400" height="787.5" src="https://www.youtube.com/embed/LTbZr7-X3To" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/zOz0kyh3i4Y?autoplay=1"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+            ></iframe>
         </div>
     );
 };
-export default YoutubeUCC
+
+export default YoutubeUCC;
