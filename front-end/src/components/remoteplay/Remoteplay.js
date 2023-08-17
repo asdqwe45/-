@@ -4,8 +4,6 @@ function App() {
   const imgRef = useRef(null);
   const wsRef = useRef(null);
   const wsRef2 = useRef(null);
-  const [previousKey, setPreviousKey] = useState(null);
-  const [pressedKey, setPressedKey] = useState(null);
 
   useEffect(() => {
     wsRef.current = new WebSocket("ws://localhost:6001");
@@ -29,10 +27,7 @@ function App() {
   }, []);
   const handleKeyDown = (event) => {
     const key = event.key;
-
     const data = JSON.stringify({ type: "keydown", keys: key });
-    console.log(data);
-    setPressedKey(data);
     wsRef2.current.send(
       JSON.stringify({
         event: "command",
@@ -45,7 +40,6 @@ function App() {
     const key = event.key;
     const data = JSON.stringify({ type: "keyup", keys: key });
     console.log(data);
-    setPressedKey(data);
     wsRef2.current.send(
       JSON.stringify({
         event: "command",

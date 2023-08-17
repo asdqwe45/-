@@ -22,33 +22,59 @@ export class WebSocket2Gateway implements OnGatewayConnection, OnGatewayDisconne
     }
   }
   
+  // @SubscribeMessage('command')
+  // handleMessage(@ConnectedSocket() client: WebSocket,@MessageBody() payload: any): void {
+  //   payload=JSON.parse(payload);
+  //   const key = payload.type;
+  // try {
+  //   console.log(`Received key from client: ${key}`);
+  //   // 메시지 처리 로직을 추가합니다.
+  // } catch (error) {
+  //   console.error('Error handling message:', error);
+  //   // 오류 처리 로직을 추가합니다.
+  // }
+  // for (const sessionId in this.clients) {
+  //   if (this.clients[sessionId].readyState === WebSocket.OPEN) {
+  //       this.clients[sessionId].send(JSON.stringify(payload)); // JSON 형식으로 전송
+  //       console.log(this.previousKey === payload);
+
+  //       this.previousKey = payload;
+  //       console.log(this.previousKey === payload);
+      
+  //   }
+  // }
   @SubscribeMessage('command')
-  handleMessage(@ConnectedSocket() client: WebSocket,@MessageBody() payload: any): void {
-    console.log(payload === this.previousKey);
-  payload=JSON.parse(payload);
-  const key = payload.type;
-  console.log(payload === this.previousKey);
-  
+handleMessage(@ConnectedSocket() client: WebSocket, @MessageBody() payload: any): void {
   try {
+    const parsedPayload = JSON.parse(payload);
+    const key = parsedPayload.type;
+
     console.log(`Received key from client: ${key}`);
     // 메시지 처리 로직을 추가합니다.
+    
+    for (const sessionId in this.clients) {
+      if (this.clients[sessionId].readyState === WebSocket.OPEN) {
+
+        if (JSON.stringify(this.previousKey) !== JSON.stringify(parsedPayload)) {
+          this.clients[sessionId].send(JSON.stringify(parsedPayload)); // JSON 형식으로 전송
+          console.log("send");
+          // Update the previousKey only if the payload was sent
+          this.previousKey = parsedPayload;
+        }
+      }
+    }
   } catch (error) {
     console.error('Error handling message:', error);
     // 오류 처리 로직을 추가합니다.
   }
-  for (const sessionId in this.clients) {
-    if (this.clients[sessionId].readyState === WebSocket.OPEN) {
-        console.log(payload);
-
-        this.clients[sessionId].send(JSON.stringify(payload)); // JSON 형식으로 전송
-        console.log(payload);
-
-        this.previousKey = payload;
-        console.log(this.previousKey === payload);
-      
-    }
-  }
 }
+
+
+
+
+
+
+
 
   private generateSessionID(): string {
     // Implement your unique session ID generation logic here
