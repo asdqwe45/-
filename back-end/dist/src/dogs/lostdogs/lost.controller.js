@@ -18,7 +18,6 @@ const lost_service_1 = require("./lost.service");
 const update_dog_dto_1 = require("../DTO/update.dog.dto");
 const platform_express_1 = require("@nestjs/platform-express");
 const path = require("path");
-const jwt_auth_guard_1 = require("../../auth/guards/jwt-auth.guard");
 let LostDogsController = exports.LostDogsController = class LostDogsController {
     constructor(lostDogsService) {
         this.lostDogsService = lostDogsService;
@@ -42,32 +41,22 @@ let LostDogsController = exports.LostDogsController = class LostDogsController {
         return this.lostDogsService.deleteOne(ID);
     }
     async create(dogData, file, req) {
-        const isAdmin = req.user.Admin;
-        if (isAdmin) {
-            if (dogData.EnteredDay === '') {
-                dogData.EnteredDay = null;
-            }
-            if (dogData.LostDate === '') {
-                dogData.LostDate = null;
-            }
-            if (dogData.RemainedDay === '') {
-                dogData.RemainedDay = null;
-            }
-            let filePath = null;
-            if (file) {
-                filePath = path.basename(file.path);
-                dogData.Image = filePath;
-            }
-            await this.lostDogsService.create(dogData, filePath);
-            return { success: true, message: 'Dog created successfully!' };
+        if (dogData.EnteredDay === '') {
+            dogData.EnteredDay = null;
         }
-        else {
-            throw new common_1.ForbiddenException({
-                statusCode: common_1.HttpStatus.FORBIDDEN,
-                message: [`사용자 정보가 일치하지 않습니다.`],
-                error: 'Forbidden',
-            });
+        if (dogData.LostDate === '') {
+            dogData.LostDate = null;
         }
+        if (dogData.RemainedDay === '') {
+            dogData.RemainedDay = null;
+        }
+        let filePath = null;
+        if (file) {
+            filePath = path.basename(file.path);
+            dogData.Image = filePath;
+        }
+        await this.lostDogsService.create(dogData, filePath);
+        return { success: true, message: 'Dog created successfully!' };
     }
     async updateDog(DogID, updateData, file) {
         let filePath = null;
@@ -104,7 +93,6 @@ __decorate([
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('Image')),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
     __param(2, (0, common_1.Request)()),

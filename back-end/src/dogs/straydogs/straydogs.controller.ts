@@ -9,19 +9,15 @@ import {
   Body,
   UseInterceptors,
   UploadedFile,
-  UseGuards,
   Request,
-  ForbiddenException,
-  HttpStatus,
 } from '@nestjs/common';
 import { StrayDogsService } from './straydogs.service';
 import { UpdateDogDto } from 'src/dogs/DTO/update.dog.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as path from 'path';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 @Controller('api/straydog')
 export class StrayDogsController {
-  constructor(private readonly strayDogsService: StrayDogsService) {}
+  constructor(private readonly strayDogsService: StrayDogsService) { }
   @Get()
   async getDogs(
     @Query('page') page: number = 1,
@@ -43,51 +39,32 @@ export class StrayDogsController {
     return this.strayDogsService.getOneStrayDog(ID);
   }
   @Delete('/:id')
-  @UseGuards(JwtAuthGuard)
   deleteOne(@Param('id') ID: number, @Request() req): Promise<any> {
-    const isAdmin = req.user.Admin;
-    if (isAdmin) {
-      return this.strayDogsService.deleteOne(ID);
-    } else {
-      throw new ForbiddenException({
-        statusCode: HttpStatus.FORBIDDEN,
-        message: [`사용자 정보가 일치하지 않습니다.`],
-        error: 'Forbidden',
-      });
-    }
+    return this.strayDogsService.deleteOne(ID);
   }
   @Post()
   @UseInterceptors(FileInterceptor('Image'))
-  @UseGuards(JwtAuthGuard)
   async create(@Body() dogData, @UploadedFile() file, @Request() req) {
-    const isAdmin = req.user.Admin;
-    if (isAdmin) {
-      if (dogData.EnteredDay === '') {
-        dogData.EnteredDay = null;
-      }
-      if (dogData.LostDate === '') {
-        dogData.LostDate = null;
-      }
-      if (dogData.RemainedDay === '') {
-        dogData.RemainedDay = null;
-      }
-      let filePath = null;
-      if (file) {
-        filePath = path.basename(file.path);
-        dogData.Image = filePath;
-      }
-      await this.strayDogsService.create(dogData, filePath);
-      return { success: true, message: 'Dog created successfully!' };
-    } else {
-      throw new ForbiddenException({
-        statusCode: HttpStatus.FORBIDDEN,
-        message: [`사용자 정보가 일치하지 않습니다.`],
-        error: 'Forbidden',
-      });
+
+    if (dogData.EnteredDay === '') {
+      dogData.EnteredDay = null;
     }
+    if (dogData.LostDate === '') {
+      dogData.LostDate = null;
+    }
+    if (dogData.RemainedDay === '') {
+      dogData.RemainedDay = null;
+    }
+    let filePath = null;
+    if (file) {
+      filePath = path.basename(file.path);
+      dogData.Image = filePath;
+    }
+    await this.strayDogsService.create(dogData, filePath);
+    return { success: true, message: 'Dog created successfully!' };
+
   }
   @Put('/:id')
-  @UseGuards(JwtAuthGuard)
   @UseInterceptors(FileInterceptor('Image'))
   async updateDog(
     @Param('id') DogID: number,
@@ -95,21 +72,12 @@ export class StrayDogsController {
     @UploadedFile() file,
     @Request() req,
   ) {
-    const isAdmin = req.user.Admin;
-    if (isAdmin) {
-      let filePath = null;
-      if (file) {
-        filePath = path.basename(file.path);
-        updateData.Image = filePath;
-      }
-      await this.strayDogsService.update(DogID, updateData);
-      return { success: true, message: 'Dog updated successfully!' };
-    } else {
-      throw new ForbiddenException({
-        statusCode: HttpStatus.FORBIDDEN,
-        message: [`사용자 정보가 일치하지 않습니다.`],
-        error: 'Forbidden',
-      });
+    let filePath = null;
+    if (file) {
+      filePath = path.basename(file.path);
+      updateData.Image = filePath;
     }
+    await this.strayDogsService.update(DogID, updateData);
+    return { success: true, message: 'Dog updated successfully!' };
   }
 }

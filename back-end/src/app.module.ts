@@ -24,13 +24,13 @@ import { WebSocket2Gateway } from './web-socket2/web-socket2.gateway';
   imports: [
 
     // 서버용
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', '../public')
-    }),
-    // 서버 빌드테스트
     // ServeStaticModule.forRoot({
-    //   rootPath: join(__dirname, '..', '../../front-end/build')
+    //   rootPath: join(__dirname, '..', '../public')
     // }),
+    // 서버 빌드테스트
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '../../front-end/build')
+    }),
 
     CacheModule.register({
       isGlobal: true,

@@ -18,7 +18,6 @@ const straydogs_service_1 = require("./straydogs.service");
 const update_dog_dto_1 = require("../DTO/update.dog.dto");
 const platform_express_1 = require("@nestjs/platform-express");
 const path = require("path");
-const jwt_auth_guard_1 = require("../../auth/guards/jwt-auth.guard");
 let StrayDogsController = exports.StrayDogsController = class StrayDogsController {
     constructor(strayDogsService) {
         this.strayDogsService = strayDogsService;
@@ -39,64 +38,34 @@ let StrayDogsController = exports.StrayDogsController = class StrayDogsControlle
         return this.strayDogsService.getOneStrayDog(ID);
     }
     deleteOne(ID, req) {
-        const isAdmin = req.user.Admin;
-        if (isAdmin) {
-            return this.strayDogsService.deleteOne(ID);
-        }
-        else {
-            throw new common_1.ForbiddenException({
-                statusCode: common_1.HttpStatus.FORBIDDEN,
-                message: [`사용자 정보가 일치하지 않습니다.`],
-                error: 'Forbidden',
-            });
-        }
+        return this.strayDogsService.deleteOne(ID);
     }
     async create(dogData, file, req) {
-        const isAdmin = req.user.Admin;
-        if (isAdmin) {
-            if (dogData.EnteredDay === '') {
-                dogData.EnteredDay = null;
-            }
-            if (dogData.LostDate === '') {
-                dogData.LostDate = null;
-            }
-            if (dogData.RemainedDay === '') {
-                dogData.RemainedDay = null;
-            }
-            let filePath = null;
-            if (file) {
-                filePath = path.basename(file.path);
-                dogData.Image = filePath;
-            }
-            await this.strayDogsService.create(dogData, filePath);
-            return { success: true, message: 'Dog created successfully!' };
+        if (dogData.EnteredDay === '') {
+            dogData.EnteredDay = null;
         }
-        else {
-            throw new common_1.ForbiddenException({
-                statusCode: common_1.HttpStatus.FORBIDDEN,
-                message: [`사용자 정보가 일치하지 않습니다.`],
-                error: 'Forbidden',
-            });
+        if (dogData.LostDate === '') {
+            dogData.LostDate = null;
         }
+        if (dogData.RemainedDay === '') {
+            dogData.RemainedDay = null;
+        }
+        let filePath = null;
+        if (file) {
+            filePath = path.basename(file.path);
+            dogData.Image = filePath;
+        }
+        await this.strayDogsService.create(dogData, filePath);
+        return { success: true, message: 'Dog created successfully!' };
     }
     async updateDog(DogID, updateData, file, req) {
-        const isAdmin = req.user.Admin;
-        if (isAdmin) {
-            let filePath = null;
-            if (file) {
-                filePath = path.basename(file.path);
-                updateData.Image = filePath;
-            }
-            await this.strayDogsService.update(DogID, updateData);
-            return { success: true, message: 'Dog updated successfully!' };
+        let filePath = null;
+        if (file) {
+            filePath = path.basename(file.path);
+            updateData.Image = filePath;
         }
-        else {
-            throw new common_1.ForbiddenException({
-                statusCode: common_1.HttpStatus.FORBIDDEN,
-                message: [`사용자 정보가 일치하지 않습니다.`],
-                error: 'Forbidden',
-            });
-        }
+        await this.strayDogsService.update(DogID, updateData);
+        return { success: true, message: 'Dog updated successfully!' };
     }
 };
 __decorate([
@@ -116,7 +85,6 @@ __decorate([
 ], StrayDogsController.prototype, "getOneStrayDog", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Request)()),
     __metadata("design:type", Function),
@@ -126,7 +94,6 @@ __decorate([
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('Image')),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
     __param(2, (0, common_1.Request)()),
@@ -136,7 +103,6 @@ __decorate([
 ], StrayDogsController.prototype, "create", null);
 __decorate([
     (0, common_1.Put)('/:id'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('Image')),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),

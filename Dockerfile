@@ -21,6 +21,6 @@ COPY --from=frontend-builder /usr/src/app/frontend/build ./public
 
 RUN npm run build
 
-EXPOSE 3000
+EXPOSE 3000 6001 6002
 
 CMD ["node", "./dist/src/main.js"]
