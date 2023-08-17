@@ -58,14 +58,14 @@ function StraydogFail() {
                                                 <div className='dogbaiscinfodiv' style={{ borderRadius: '5px' }}>
                                                     <div>
                                                         <p style={{ fontFamily: 'GmarketSansMedium' }}>
-                                                            나이 : {item.Age}
+                                                            • 성별 : {item.Sex} <br />
+                                                            • 품종 : {item.Breed} <br />
+                                                            • 나이 : {item.Age} <br />
+                                                            • 입소 날짜 : {item.EnteredDay} <br />
+                                                            • 발견 장소 : {item.DiscoveredPlace}
+
                                                         </p>
-                                                        <p style={{ fontFamily: 'GmarketSansMedium' }}>
-                                                            성별 : {item.Sex}
-                                                        </p>
-                                                        <p style={{ fontFamily: 'GmarketSansMedium' }}>
-                                                            견종 : {item.DogID}
-                                                        </p>
+
                                                     </div>
                                                 </div>
                                             </div>
