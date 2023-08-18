@@ -87,6 +87,7 @@ const Reservation = () => {
     const handleTimeChange = (time) => {
         setSelectedTime(time);
         let newDate = new Date(startDate);
+        newDate.setHours(12);
         let hourString = time < 10 ? `0${time}` : `${time}`;
         let dateString = newDate.toISOString().substring(0, 10);
         setSelectedDateTime(`${dateString}T${hourString}:00`);
@@ -99,6 +100,7 @@ const Reservation = () => {
 
         setStartDate(date);
         let newDate = new Date(date);
+        newDate.setHours(12);
         let dateString = newDate.toISOString().slice(0, -14);
         setSelectedDateTime(`${dateString}T00:00`);
 

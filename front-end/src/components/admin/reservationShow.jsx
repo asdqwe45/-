@@ -36,6 +36,7 @@ function ReservationShow() {
     const formatDate = (dateStr) => {
         const date = new Date(dateStr);
         return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 ${date.getHours()}시`;
+        // return `${dateStr.slice(0, 4)}년 ${dateStr.slice(5, 7)}월 ${dateStr.slice(8, 10)}일 ${dateStr.slice(11, 13)}시`;
     }
 
     // 페이지 클릭 처리

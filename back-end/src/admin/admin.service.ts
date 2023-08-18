@@ -12,7 +12,7 @@ export class AdminService {
     async findAllReservation() {
         const reservations = await this.reservationRepository.find();
         return reservations.map((reservation) => {
-            reservation.ReservationDatetime.setHours(reservation.ReservationDatetime.getHours() + 9);
+            reservation.ReservationDatetime.setHours(reservation.ReservationDatetime.getHours());
             return reservation; // 수정된 reservation 객체를 반환합니다.
         });
     }

@@ -24,7 +24,7 @@ let AdminService = exports.AdminService = class AdminService {
     async findAllReservation() {
         const reservations = await this.reservationRepository.find();
         return reservations.map((reservation) => {
-            reservation.ReservationDatetime.setHours(reservation.ReservationDatetime.getHours() + 9);
+            reservation.ReservationDatetime.setHours(reservation.ReservationDatetime.getHours());
             return reservation;
         });
     }
