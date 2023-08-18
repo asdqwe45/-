@@ -16,6 +16,8 @@ exports.LostDogsController = void 0;
 const common_1 = require("@nestjs/common");
 const lost_service_1 = require("./lost.service");
 const update_dog_dto_1 = require("../DTO/update.dog.dto");
+const platform_express_1 = require("@nestjs/platform-express");
+const path = require("path");
 let LostDogsController = exports.LostDogsController = class LostDogsController {
     constructor(lostDogsService) {
         this.lostDogsService = lostDogsService;
@@ -38,11 +40,32 @@ let LostDogsController = exports.LostDogsController = class LostDogsController {
     deleteOne(ID) {
         return this.lostDogsService.deleteOne(ID);
     }
-    create(dogData) {
-        this.lostDogsService.create(dogData);
+    async create(dogData, file, req) {
+        if (dogData.EnteredDay === '') {
+            dogData.EnteredDay = null;
+        }
+        if (dogData.LostDate === '') {
+            dogData.LostDate = null;
+        }
+        if (dogData.RemainedDay === '') {
+            dogData.RemainedDay = null;
+        }
+        let filePath = null;
+        if (file) {
+            filePath = path.basename(file.path);
+            dogData.Image = filePath;
+        }
+        await this.lostDogsService.create(dogData, filePath);
+        return { success: true, message: 'Dog created successfully!' };
     }
-    patch(DogID, updateData) {
-        this.lostDogsService.update(DogID, updateData);
+    async updateDog(DogID, updateData, file) {
+        let filePath = null;
+        if (file) {
+            filePath = path.basename(file.path);
+            updateData.Image = filePath;
+        }
+        await this.lostDogsService.update(DogID, updateData);
+        return { success: true, message: 'Dog updated successfully!' };
     }
 };
 __decorate([
@@ -54,7 +77,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LostDogsController.prototype, "getDogs", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -69,19 +92,24 @@ __decorate([
 ], LostDogsController.prototype, "deleteOne", null);
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('Image')),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.UploadedFile)()),
+    __param(2, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [Object, Object, Object]),
+    __metadata("design:returntype", Promise)
 ], LostDogsController.prototype, "create", null);
 __decorate([
     (0, common_1.Put)('/:id'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('Image')),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, update_dog_dto_1.UpdateDogDto]),
-    __metadata("design:returntype", void 0)
-], LostDogsController.prototype, "patch", null);
+    __metadata("design:paramtypes", [Number, update_dog_dto_1.UpdateDogDto, Object]),
+    __metadata("design:returntype", Promise)
+], LostDogsController.prototype, "updateDog", null);
 exports.LostDogsController = LostDogsController = __decorate([
     (0, common_1.Controller)('api/lostdog'),
     __metadata("design:paramtypes", [lost_service_1.LostDogsService])

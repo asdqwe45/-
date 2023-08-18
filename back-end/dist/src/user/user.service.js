@@ -49,11 +49,41 @@ let UserService = exports.UserService = class UserService {
         if (!user) {
             throw new common_1.NotFoundException(`User with ID ${id} not found.`);
         }
-        const { seq, UserID, Name, Admin } = user;
-        return { seq, UserID, Name, Admin };
+        const { seq, Name, UserID, Password, Admin, Email, PhoneNumber, Nickname, Address, } = user;
+        return {
+            seq,
+            Name,
+            UserID,
+            Password,
+            Admin,
+            Email,
+            PhoneNumber,
+            Nickname,
+            Address,
+        };
     }
     async findAllCount() {
         return this.userRepository.count();
+    }
+    async deleteUser(user) {
+        await this.userRepository.remove(user);
+    }
+    async updateUser(user, updateData) {
+        let result = { ...user };
+        result.Name = updateData.Name;
+        result.Email = updateData.Email;
+        result.PhoneNumber = updateData.PhoneNumber;
+        result.Nickname = updateData.Nickname;
+        result.Address = updateData.Address;
+        if (updateData.newPassword !== null && updateData.newPassword !== undefined) {
+            const isMatch = await bcrypt.compare(updateData.currentPassword, user.Password);
+            if (!isMatch) {
+                throw new common_1.BadRequestException('Current password is incorrect');
+            }
+            const hashedPassword = await bcrypt.hash(updateData.newPassword, exports.bcryptConstant.saltOrRounds);
+            result.Password = hashedPassword;
+        }
+        this.userRepository.update(user, result);
     }
 };
 exports.UserService = UserService = __decorate([

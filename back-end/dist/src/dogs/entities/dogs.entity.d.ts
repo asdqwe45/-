@@ -6,7 +6,7 @@ export declare class Dog {
     ChipNumber: string;
     Image: string;
     Breed: string;
-    RemainedDay: string;
+    RemainedDay: number;
     DogSize: string;
     Weight: number;
     Status: string;
@@ -15,4 +15,6 @@ export declare class Dog {
     LostLocation: string;
     LostDate: Date;
     ReturnedHome: string;
+    Comment: string;
+    UserID: string;
 }
