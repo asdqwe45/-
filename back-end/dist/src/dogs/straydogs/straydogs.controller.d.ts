@@ -5,7 +5,13 @@ export declare class StrayDogsController {
     constructor(strayDogsService: StrayDogsService);
     getDogs(page?: number, pageSize?: number): Promise<any>;
     getOneStrayDog(ID: number): Promise<import("../entities/dogs.entity").Dog>;
-    deleteOne(ID: number): Promise<any>;
-    create(dogData: any): void;
-    patch(DogID: number, updateData: UpdateDogDto): void;
+    deleteOne(ID: number, req: any): Promise<any>;
+    create(dogData: any, file: any, req: any): Promise<{
+        success: boolean;
+        message: string;
+    }>;
+    updateDog(DogID: number, updateData: UpdateDogDto, file: any, req: any): Promise<{
+        success: boolean;
+        message: string;
+    }>;
 }

@@ -5,7 +5,7 @@ export declare class CreateDogDto {
     ChipNumber: string;
     Image: string;
     Breed: string;
-    RemainedDay: string;
+    RemainedDay: number;
     DogSize: string;
     Weight: number;
     Status: string;
@@ -14,4 +14,6 @@ export declare class CreateDogDto {
     LostLocation: string;
     LostDate: Date;
     ReturnedHome: string;
+    UserID: string;
+    Comment: string;
 }

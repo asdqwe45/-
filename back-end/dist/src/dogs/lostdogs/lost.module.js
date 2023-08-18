@@ -13,13 +13,20 @@ const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
 const lost_service_1 = require("./lost.service");
 const lost_controller_1 = require("./lost.controller");
+const multer_options_factory_1 = require("../../common/utils/multer.options.factory");
+const platform_express_1 = require("@nestjs/platform-express");
 let LostDogsModule = exports.LostDogsModule = class LostDogsModule {
 };
 exports.LostDogsModule = LostDogsModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_2.TypeOrmModule.forFeature([dogs_entity_1.Dog])],
+        imports: [
+            platform_express_1.MulterModule.registerAsync({
+                useFactory: multer_options_factory_1.multerOptionsFactory,
+            }),
+            typeorm_2.TypeOrmModule.forFeature([dogs_entity_1.Dog]),
+        ],
         controllers: [lost_controller_1.LostDogsController],
-        providers: [lost_service_1.LostDogsService, typeorm_1.Repository]
+        providers: [lost_service_1.LostDogsService, typeorm_1.Repository],
     })
 ], LostDogsModule);
 //# sourceMappingURL=lost.module.js.map

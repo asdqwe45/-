@@ -29,6 +29,7 @@ export class AuthService {
         message: [`등록되지 않은 사용자입니다.`],
         error: 'Forbidden',
       });
+    } else {
     }
 
     const isMatch = await bcrypt.compare(Password, user.Password);
@@ -56,11 +57,12 @@ export class AuthService {
     // JWT 토큰 생성
     const token = this.jwtService.sign(payload);
 
-    // Redis에 토큰 저장
-    await this.cacheManager.set(token, JSON.stringify(user), 60);
+    await this.cacheManager.set(token, JSON.stringify(user),0);
 
     return {
       accessToken: token,
+      UserID: user.UserID,
+      Admin: user.Admin,
     };
   }
 }

@@ -22,27 +22,32 @@ let StrayDogsService = exports.StrayDogsService = class StrayDogsService {
         this.dogsRepository = dogsRepository;
     }
     async getAllStrayDogs() {
-        const dogs = (await this.dogsRepository.find({ where: { Status: "Stray" } })).reverse();
+        const dogs = (await this.dogsRepository.find({ where: { Status: 'Stray' } })).reverse();
         return dogs;
     }
     async getAllStrayDogsCount() {
-        const count = await this.dogsRepository.count({ where: { Status: "Stray" } });
+        const count = await this.dogsRepository.count({
+            where: { Status: 'Stray' },
+        });
         return count;
     }
     async getOneStrayDog(DogID) {
-        const dog = this.dogsRepository.findOneBy({ Status: "Stray", DogID: DogID });
+        const dog = this.dogsRepository.findOneBy({
+            Status: 'Stray',
+            DogID: DogID,
+        });
         return dog;
     }
     async deleteOne(DogID) {
         this.getOneStrayDog(DogID);
         this.dogsRepository.delete(DogID);
     }
-    async create(dogData) {
-        dogData.Status = "Stray";
+    async create(dogData, filePath) {
+        dogData.Status = 'Stray';
+        dogData.Image = filePath;
         await this.dogsRepository.save(dogData);
     }
     async update(DogID, updateData) {
-        this.getOneStrayDog(DogID);
         await this.dogsRepository.update(DogID, updateData);
     }
 };

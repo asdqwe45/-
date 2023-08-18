@@ -1,19 +1,29 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  UseGuards,
+  Request,
+  Delete,
+  Put,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './DTO/create.user.dto';
 import { User } from './entities/user.entity';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Controller('api/user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  async findAll() {
-    const users = await this.userService.findAll();
-    console.log(users[0]);
-    console.log(typeof users[0].UserID);
-
-    return users;
+  @UseGuards(JwtAuthGuard)
+  async getUserInfo(@Request() req) {
+    const { UserID, Admin } = req.user;
+    const user = await this.userService.findOne(UserID);
+    return user;
   }
 
   @Post('signup')
@@ -21,8 +31,17 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string): Promise<Partial<User>> {
-    return this.userService.findOne(id);
+  @Delete()
+  @UseGuards(JwtAuthGuard)
+  async deleteUser(@Request() req) {
+    const user = await this.userService.findOne(req.user.UserID);
+    return this.userService.deleteUser(user);
+  }
+
+  @Put()
+  @UseGuards(JwtAuthGuard)
+  async updateUser(@Request() req,@Body() updateData:any) {
+    const user = await this.userService.findOne(req.user.UserID);
+    return this.userService.updateUser(user,updateData);
   }
 }

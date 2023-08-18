@@ -4,7 +4,7 @@ export declare class DogsController {
     private readonly dogService;
     constructor(dogService: DogsService);
     private dogs;
-    getDogs(): Promise<{
+    getDogs(req: any): Promise<{
         dog: Dog[];
     }>;
 }
