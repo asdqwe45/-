@@ -35,6 +35,8 @@ let AuthService = exports.AuthService = class AuthService {
                 error: 'Forbidden',
             });
         }
+        else {
+        }
         const isMatch = await bcrypt.compare(Password, user.Password);
         if (isMatch) {
             const { Password, ...result } = user;
@@ -56,9 +58,11 @@ let AuthService = exports.AuthService = class AuthService {
             Admin: user.Admin,
         };
         const token = this.jwtService.sign(payload);
-        await this.cacheManager.set(token, JSON.stringify(user), 60);
+        await this.cacheManager.set(token, JSON.stringify(user), 0);
         return {
             accessToken: token,
+            UserID: user.UserID,
+            Admin: user.Admin,
         };
     }
 };

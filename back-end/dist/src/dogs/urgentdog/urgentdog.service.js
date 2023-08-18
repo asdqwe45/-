@@ -24,7 +24,7 @@ let UrgentDogService = exports.UrgentDogService = class UrgentDogService {
     async getRecommendedDogs() {
         const urgentdogs = await this.dogsRepository
             .createQueryBuilder('dog')
-            .where('dog.Status IN (:...status)', { status: ['Stray', 'Lost'] })
+            .where('dog.Status IN (:...status)', { status: ['Stray'] })
             .orderBy('dog.RemainedDay', 'ASC')
             .addOrderBy('dog.Age', 'DESC')
             .addOrderBy('dog.EnteredDay', 'DESC')

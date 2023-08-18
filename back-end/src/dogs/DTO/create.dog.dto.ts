@@ -1,6 +1,7 @@
 import { IsString, IsNumber, IsOptional, IsDate } from 'class-validator';
+import { IsDateString } from 'class-validator';
 
-export class CreateDogDto{
+export class CreateDogDto {
   @IsNumber()
   DogID: number;
 
@@ -20,8 +21,8 @@ export class CreateDogDto{
   @IsString()
   Breed: string;
 
-  @IsString()
-  RemainedDay: string;
+  @IsNumber()
+  RemainedDay: number;
 
   @IsString()
   DogSize: string;
@@ -33,7 +34,7 @@ export class CreateDogDto{
   @IsString()
   Status: string;
 
-  @IsDate()
+  @IsDateString()
   EnteredDay: Date;
 
   @IsString()
@@ -42,9 +43,15 @@ export class CreateDogDto{
   @IsString()
   LostLocation: string;
 
-  @IsDate()
+  @IsDateString()
   LostDate: Date;
 
   @IsString()
   ReturnedHome: string;
+
+  @IsString()
+  UserID: string;
+
+  @IsString()
+  Comment: string;
 }

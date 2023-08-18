@@ -9,6 +9,6 @@ export declare class LostDogsService {
     getAllLostDogsCount(): Promise<number>;
     getOneLostDog(DogID: number): Promise<Dog>;
     deleteOne(DogID: number): Promise<void>;
-    create(dogData: CreateDogDto): Promise<void>;
+    create(dogData: CreateDogDto, filePath: string): Promise<void>;
     update(DogID: number, updateData: UpdateDogDto): Promise<void>;
 }

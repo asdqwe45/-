@@ -22,13 +22,19 @@ const user_module_1 = require("./user/user.module");
 const auth_module_1 = require("./auth/auth.module");
 const cache_manager_1 = require("@nestjs/cache-manager");
 const token_middleware_1 = require("../middleware/token.middleware");
-const serve_static_1 = require("@nestjs/serve-static");
+const reservation_module_1 = require("./reservation/reservation.module");
+const express = require("express");
 const path_1 = require("path");
+const serve_static_1 = require("@nestjs/serve-static");
+const websocket_gateway_1 = require("./websocket/websocket.gateway");
+const web_socket2_gateway_1 = require("./web-socket2/web-socket2.gateway");
 let AppModule = exports.AppModule = class AppModule {
     configure(consumer) {
         consumer
             .apply(token_middleware_1.TokenMiddleware)
-            .forRoutes({ path: 'dog', method: common_1.RequestMethod.ALL });
+            .forRoutes({ path: 'dog', method: common_1.RequestMethod.ALL })
+            .apply(express.static((0, path_1.join)(__dirname, '..', '../uploads')))
+            .forRoutes('uploads');
     }
 };
 exports.AppModule = AppModule = __decorate([
@@ -57,9 +63,9 @@ exports.AppModule = AppModule = __decorate([
             admin_module_1.AdminModule,
             user_module_1.UserModule,
             auth_module_1.AuthModule,
+            reservation_module_1.ReservationModule,
         ],
-        controllers: [],
-        providers: [],
+        providers: [websocket_gateway_1.WebsocketGateway, web_socket2_gateway_1.WebSocket2Gateway]
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
