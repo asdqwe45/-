@@ -182,4 +182,4 @@
 
 ### - 빌드파일
 
-[ 빌드 파일](./exec/exec.zip) (\*.jar)
+[ 빌드 파일](./exec/exec.zip) (\*.zip)
