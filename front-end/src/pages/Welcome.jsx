@@ -340,7 +340,7 @@ function Welcome() {
                     <div className="company-info">
                         <p className="highlight" style={{ fontFamily: 'GmarketSansMedium' }}>백문이불여일犬</p>
                         <p className="highlight" style={{ fontFamily: 'GmarketSansMedium' }}>Samsung</p>
-                        <p className="highlight" style={{ fontFamily: 'GmarketSansMedium' }}>SSAFY</p>
+                        <p className="highlight" style={{ fontFamily: 'GmarketSansMedium' }}>SSSSS</p>
                         <p className="highlight" style={{ fontFamily: 'GmarketSansMedium' }}>광주 1반 C106</p>
                     </div>
 

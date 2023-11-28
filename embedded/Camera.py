@@ -9,7 +9,7 @@ import ssl
 async def video_stream():
     cap = cv2.VideoCapture(0)
     ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)  # SSL/TLS 컨텍스트 생성
-    async with websockets.connect('wss://i9c106.p.ssafy.io:6001', ssl=ssl_context) as websocket:
+    async with websockets.connect('wss://i9c106.p.SSSSS.io:6001', ssl=ssl_context) as websocket:
         print("connected")
         while cap.isOpened():
             ret, frame = cap.read()
