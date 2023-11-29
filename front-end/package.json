@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "proxy": "http://localhost:3000",
+=======
+  "proxy": "http://i9c106.p.SSSSS.io:3000",
+>>>>>>> 942c610a96b5b6eb5a71e1595e33ec62ba11aa05
   "name": "test_router2",
   "version": "0.1.0",
   "private": true,

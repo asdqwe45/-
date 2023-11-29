@@ -11,8 +11,8 @@ function App() {
     }
   }, false);
   useEffect(() => {
-    wsRef.current = new WebSocket("wss://i9c106.p.ssafy.io/video/");
-    wsRef2.current = new WebSocket("wss://i9c106.p.ssafy.io/command/");
+    wsRef.current = new WebSocket("wss://i9c106.p.SSSSS.io/video/");
+    wsRef2.current = new WebSocket("wss://i9c106.p.SSSSS.io/command/");
 
     wsRef.current.onmessage = (event) => {
       const imageBuffer = event.data;

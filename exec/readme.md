@@ -17,7 +17,7 @@ https://nodejs.org/dist/v18.17.1/node-v18.17.1-x64.msi
 ```
 server {
     listen 80;
-    server_name i9c106.p.ssafy.io;
+    server_name i9c106.p.SSSSS.io;
 
     location / {
         return 301 https://$host$request_uri;
@@ -26,11 +26,11 @@ server {
 
 server {
     listen 443 ssl;
-    server_name i9c106.p.ssafy.io;
+    server_name i9c106.p.SSSSS.io;
 
     # SSL 인증서 파일 위치
-    ssl_certificate /etc/letsencrypt/live/i9c106.p.ssafy.io/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/i9c106.p.ssafy.io/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/i9c106.p.SSSSS.io/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/i9c106.p.SSSSS.io/privkey.pem;
 
     # SSL 설정
     ssl_protocols TLSv1.2 TLSv1.3;
@@ -51,12 +51,12 @@ vscode 설치 :https://code.visualstudio.com/download
 
 ### 프로젝트 클론
 ```bash
-git clone https://lab.ssafy.com/s09-webmobile3-sub2/S09P12C106.git
+git clone https://lab.SSSSS.com/s09-webmobile3-sub2/S09P12C106.git
 cd S09P12C106
 
 ##db 접속 정보
 DB 접속 정보
-Host: i9c106.p.ssafy.io
+Host: i9c106.p.SSSSS.io
 Port: 3306
 Username: test
 Password: test
